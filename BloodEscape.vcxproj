@@ -34,6 +34,7 @@
     <ClInclude Include="source\graphic\Geometry.h" />
     <ClInclude Include="source\graphic\Image.h" />
     <ClInclude Include="source\parameter\CircleParameter.h" />
+    <ClInclude Include="source\parameter\LineParameter.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
