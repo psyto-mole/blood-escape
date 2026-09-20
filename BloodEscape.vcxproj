@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="source\core\Color.cpp" />
     <ClCompile Include="source\core\Font.cpp" />
+    <ClCompile Include="source\core\Key.cpp" />
     <ClCompile Include="source\graphic\Geometry.cpp" />
     <ClCompile Include="source\graphic\Image.cpp" />
     <ClCompile Include="source\Main.cpp" />
@@ -29,6 +30,7 @@
     <ClInclude Include="source\core\Color.h" />
     <ClInclude Include="source\core\Font.h" />
     <ClInclude Include="source\core\GameManager.h" />
+    <ClInclude Include="source\core\Key.h" />
     <ClInclude Include="source\graphic\Geometry.h" />
     <ClInclude Include="source\graphic\Image.h" />
     <ClInclude Include="source\parameter\CircleParameter.h" />
