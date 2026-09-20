@@ -18,4 +18,4 @@
 #define GameDebug	true		// デバッグモードの設定
 #define RuledLine	false		// 罫線モードの設定
 
-#define STRINGLENGTH	256		// 使用できる文字列の長さ
+#define StringLength	256		// 使用できる文字列の長さ
