@@ -89,7 +89,7 @@ bool CollisionPointToPoint(POINT a, POINT b)
 /* --- POINT型から点を描画 --- */
 void DrawPoint(POINT point, unsigned int color)
 {
-	DrawPixel(point.x, point.y, color);
+	DrawPixel(point.x, point.y, color);		// 点を描画する 
 
 	return;
 }
@@ -98,18 +98,19 @@ void DrawPoint(POINT point, unsigned int color)
 /* --- 始点と終点からLINE型を取得 --- */
 LINE GetLine(POINT a, POINT b, int Thickness)
 {
-	LINE line;
+	LINE line;	// LINE型の変数
 
-	line.startPoint = a;
-	line.endPoint = b;
-	line.Thickness = Thickness;
+	line.startPoint = a;			// POINT型引数aを線の始点に設定する
+	line.endPoint = b;				// POINT型引数bを線の終点に設定する
+	line.Thickness = Thickness;		// 引数Thicknessを線の幅に設定する
 
-	return line;
+	return line;	// 求めたLINE型を返す
 }
 
 /* --- LINE型から直線を描画 --- */
 void DrawLineWithStruct(LINE line, unsigned int color)
 {
+	// 引数のLINE型変数と色を用いて直線を描画する
 	DrawLine(line.startPoint.x, line.startPoint.y, line.endPoint.x, line.endPoint.y, color, line.Thickness);
 
 	return;
@@ -134,12 +135,12 @@ RECT GetRectOnPoint(int centerX, int centerY, int width, int height)
 {
 	RECT rect;
 
-	rect.left = centerX - width / 2;
-	rect.top = centerY - height / 2;
-	rect.right = centerX + (width / 2) + 1;
-	rect.bottom = centerY + (height / 2) + 1;
+	rect.left = centerX - width / 2;			// 矩形の左上の点のX座標を計算
+	rect.top = centerY - height / 2;			// 矩形の左上の点のY座標を計算
+	rect.right = centerX + (width / 2) + 1;		// 矩形の右下の点のX座標を計算
+	rect.bottom = centerY + (height / 2) + 1;	// 矩形の右下の点のY座標を計算
 
-	return rect;
+	return rect;	// 求めたRECT型を返す
 }
 
 /* --- 矩形の中心座標を取得(引数は矩形) --- */
@@ -172,29 +173,29 @@ void DrawBoxOnPoint(int centerX, int centerY, int width, int height, unsigned in
 	int left, top;
 	int right, bottom;
 
-	if (width % 2 == 0)
+	if (width % 2 == 0)		// 幅が2で割り切れるなら
 	{
-		left = centerX - width / 2;
-		right = (centerX + width / 2) + 1;
+		left = centerX - width / 2;			// 中心点のX座標から幅の半分を引いた値を矩形の左上の点のX座標とする
+		right = (centerX + width / 2) + 1;	// 中心点のX座標に幅の半分を足した値を矩形の右下の点のX座標とする
 	}
 	else
 	{
-		left = (centerX - 1) - width / 2;
-		right = ((centerX - 1) + width / 2) + 1;
+		left = (centerX - 1) - width / 2;			// 中心点のX座標-1から幅の半分を引いた値を矩形の左上の点のX座標とする
+		right = ((centerX - 1) + width / 2) + 1;	// 中心点のX座標-1に幅の半分を足した値を矩形の右下の点のX座標とする
 	}
 
-	if (height % 2 == 0)
+	if (height % 2 == 0)	// 高さが2で割り切れるなら
 	{
-		top = centerY - height / 2;
-		bottom = (centerY + height / 2) + 1;
+		top = centerY - height / 2;				// 中心点のY座標から高さの半分を引いた値を矩形の左上の点のY座標とする
+		bottom = (centerY + height / 2) + 1;	// 中心点のY座標に高さの半分を足した値を矩形の右下の点のY座標とする
 	}
 	else
 	{
-		top = (centerY - 1) - height / 2;
-		bottom = ((centerY - 1) + height / 2) + 1;
+		top = (centerY - 1) - height / 2;			// 中心点のY座標-1から高さの半分を引いた値を矩形の左上の点のY座標とする
+		bottom = ((centerY - 1) + height / 2) + 1;	// 中心点のY座標-1に高さの半分を足した値を矩形の右下の点のY座標とする
 	}
 
-	DrawBox(left, top, right, bottom, color, fill, lineThickness);
+	DrawBox(left, top, right, bottom, color, fill, lineThickness);	// 求めた矩形を描画する
 
 	return;
 }
@@ -242,11 +243,11 @@ void DrawCircleWithStruct(CIRCLE circle, int color, bool fill, int thickness)
 {
 	int x, y, radius;
 
-	x = circle.point.x;
-	y = circle.point.y;
-	radius = circle.radius;
+	x = circle.point.x;			// 円の中心点のX座標を取得
+	y = circle.point.y;			// 円の中心点のY座標を取得
+	radius = circle.radius;		// 円の半径を取得
 
-	DrawCircle(x, y, radius, color, fill, thickness);
+	DrawCircle(x, y, radius, color, fill, thickness);	// 円を描画
 
 	return;
 }
