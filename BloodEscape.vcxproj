@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClCompile Include="source\core\Color.cpp" />
     <ClCompile Include="source\core\Font.cpp" />
+    <ClCompile Include="source\graphic\Geometry.cpp" />
     <ClCompile Include="source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\Color.h" />
     <ClInclude Include="source\core\Font.h" />
     <ClInclude Include="source\core\GameManager.h" />
+    <ClInclude Include="source\graphic\Geometry.h" />
     <ClInclude Include="source\parameter\CircleParameter.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
