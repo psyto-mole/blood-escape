@@ -5,7 +5,7 @@
 #include "DxLib.h"
 #include ".\\core\\GameManager.h"
 #include "Image.h"
-#include "Font.h"
+#include ".\\core\\Font.h"
 #include ".\\core\\Color.h"
 #include "Key.h"
 #include "Mouse.h"
