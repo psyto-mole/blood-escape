@@ -3,10 +3,10 @@
 /* +++ ライブラリのインクルード +++ */
 #include <string>
 #include "DxLib.h"
-#include ".\\core\\GameManager.h"
+#include "GameManager.h"
 #include "Image.h"
-#include ".\\core\\Font.h"
-#include ".\\core\\Color.h"
+#include "Font.h"
+#include "Color.h"
 #include "Key.h"
 #include "Mouse.h"
 #include "Sound.h"
