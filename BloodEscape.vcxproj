@@ -39,6 +39,7 @@
     <ClInclude Include="source\graphic\Message.h" />
     <ClInclude Include="source\parameter\CircleParameter.h" />
     <ClInclude Include="source\parameter\LineParameter.h" />
+    <ClInclude Include="source\parameter\PointParameter.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
