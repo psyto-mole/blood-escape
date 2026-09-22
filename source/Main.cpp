@@ -47,8 +47,27 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	/* +++ ゲームループ(無限ループ) +++ */
 	while (true)
 	{
+		/* +++ メッセージを処理し続ける(マウスやキーの入力を受け付け続ける) +++ */
+		if (ProcessMessage() != 0)	// エラー発生やウィンドウが閉じられた
+		{
+			break;	// ループを終了
+		}
+
+
+		/* +++ 画面を書き換える(画面を消去する) +++ */
+		if (ClearDrawScreen() != 0)		// エラー発生
+		{
+			break;	// ループを終了
+		}
+
 		/* +++ ゲームの処理を更新できなかったらループを終了する +++ */
 		if (Game_Update() != 0)		// ゲームの処理を更新できなかった
+		{
+			break;	// ループを終了
+		}
+
+		/* +++ 裏画面を表画面に描画 +++ */
+		if (ScreenFlip() != 0)		// エラー発生
 		{
 			break;	// ループを終了
 		}
@@ -105,11 +124,11 @@ int Game_Init(void)
 
 	Menu_Init();
 
-	/* +++ シーン処理の初期化 +++ */
-	if (Scene_Init(Game_Start) == -1)		// 初期化失敗
-	{
-		return -1;	// -1を返す(初期化関数を初期化失敗で終わらせる)
-	}
+	///* +++ シーン処理の初期化 +++ */
+	//if (Scene_Init(Game_Start) == -1)		// 初期化失敗
+	//{
+	//	return -1;	// -1を返す(初期化関数を初期化失敗で終わらせる)
+	//}
 
 	Geometry_Init();
 
@@ -119,20 +138,6 @@ int Game_Init(void)
 /* --- ゲームの処理の更新を行う関数 --- */
 int Game_Update(void)
 {
-	/* +++ メッセージを処理し続ける(マウスやキーの入力を受け付け続ける) +++ */
-	if (ProcessMessage() != 0)	// エラー発生やウィンドウが閉じられた
-	{
-		return -1;	// 更新不可(-1)を返す
-	}
-
-
-	/* +++ 画面を書き換える(画面を消去する) +++ */
-	if (ClearDrawScreen() != 0)		// エラー発生
-	{
-		return -1;	// 更新不可(-1)を返す
-	}
-
-
 	/* +++ キー入力の取得 +++ */
 	if (Key_Update() != 0)	// エラー発生
 	{
@@ -145,17 +150,11 @@ int Game_Update(void)
 	/* +++ カラー処理 +++ */
 	Color_Process();
 
-	/* +++	シーンの処理 +++ */
-	if (Scene_Manage() == -1)	// エラー発生
-	{
-		return -1;	// 更新不可(-1)を返す
-	}
-
-	/* +++ 裏画面を表画面に描画 +++ */
-	if (ScreenFlip() != 0)		// エラー発生
-	{
-		return -1;	// 更新不可(-1)を返す
-	}
+	///* +++	シーンの処理 +++ */
+	//if (Scene_Manage() == -1)	// エラー発生
+	//{
+	//	return -1;	// 更新不可(-1)を返す
+	//}
 
 	return 0;
 }
