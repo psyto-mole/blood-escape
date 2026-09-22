@@ -45,6 +45,7 @@
     <ClInclude Include="source\parameter\LineParameter.h" />
     <ClInclude Include="source\parameter\PointParameter.h" />
     <ClInclude Include="source\parameter\RectrParameter.h" />
+    <ClInclude Include="source\scene\Scene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
