@@ -373,3 +373,5 @@ FodyWeavers.xsd
 
 # directory for save data
 game-data/
+/Development_DailyLog.xlsx
+/Question.txt
