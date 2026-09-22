@@ -361,3 +361,15 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# text file
+*.txt
+
+# excel file
+*.xlsx
+
+# power point file
+*.pptx
+
+# directory for save data
+game-data/
