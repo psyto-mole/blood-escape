@@ -29,8 +29,6 @@
     <ClCompile Include="source\graphic\Image.cpp" />
     <ClCompile Include="source\graphic\Message.cpp" />
     <ClCompile Include="source\Main.cpp" />
-    <ClCompile Include="source\scene\SceneManager.cpp" />
-    <ClCompile Include="source\scene\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\Color.h" />
@@ -47,8 +45,6 @@
     <ClInclude Include="source\parameter\LineParameter.h" />
     <ClInclude Include="source\parameter\PointParameter.h" />
     <ClInclude Include="source\parameter\RectrParameter.h" />
-    <ClInclude Include="source\scene\SceneManager.h" />
-    <ClInclude Include="source\scene\Title.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
