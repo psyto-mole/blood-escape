@@ -2,6 +2,24 @@
 /* === 全シーン共通のインターフェース === */
 
 
+
+enum class SceneType
+{
+    Title,
+    Tutorial,
+    Stage,
+    GameOver,
+    Clear
+};
+
+
+//enum class TransitionType
+//{
+//    None,
+//    ChangeScene
+//};
+
+
 class Scene
 {
 public:
@@ -13,11 +31,11 @@ public:
     virtual void End() = 0;
 };
 
-enum class SceneType
-{
-    Title,
-    Tutorial,
-    Stage,
-    GameOver,
-    Clear
-};
+
+//struct SceneTransition
+//{
+//    SceneType sceneType = SceneType::Title;
+//    TransitionType transitionType = TransitionType::None;
+//
+//    int stageNum = 0;
+//};
