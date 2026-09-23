@@ -29,6 +29,7 @@
     <ClCompile Include="source\graphic\Image.cpp" />
     <ClCompile Include="source\graphic\Message.cpp" />
     <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\scene\Fade.cpp" />
     <ClCompile Include="source\scene\GameOverScene.cpp" />
     <ClCompile Include="source\scene\SceneManager.cpp" />
     <ClCompile Include="source\scene\StageScene.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="source\parameter\LineParameter.h" />
     <ClInclude Include="source\parameter\PointParameter.h" />
     <ClInclude Include="source\parameter\RectrParameter.h" />
+    <ClInclude Include="source\scene\Fade.h" />
     <ClInclude Include="source\scene\GameOverScene.h" />
     <ClInclude Include="source\scene\Scene.h" />
     <ClInclude Include="source\scene\SceneManager.h" />
