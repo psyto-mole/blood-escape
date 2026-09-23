@@ -12,3 +12,12 @@ public:
     virtual void Draw() = 0;
     virtual void End() = 0;
 };
+
+enum class SceneType
+{
+    Title,
+    Tutorial,
+    Stage,
+    GameOver,
+    Clear
+};
