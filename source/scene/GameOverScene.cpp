@@ -1,34 +1,39 @@
+/* === ゲームオーバーシーンのクラスのソースファイル === */
+
 #include "GameOverScene.h"
 
-#include "DxLib.h"
 
+/* --- コンストラクタ --- */
 GameOverScene::GameOverScene(int stage)
-    : stageNumber(stage),
-    selectedIndex(0)
+    : gameoverNumber(stage),    // ゲームオーバーになったステージ番号に引数の値を代入
+    selectedIndex(0)            // 選択肢の初期値を0(リトライ)に設定
 {
 }
 
+/* --- ゲームオーバーシーンの初期化メソッド --- */
 void GameOverScene::Init()
 {
-    // 最初はリトライを選択
-    selectedIndex = 0;
+    selectedIndex = 0;  // 選択肢の初期値を0(リトライ)に設定
 
-    transition = {};
+    transition = {};    // 遷移情報をクリア
+
+    return;
 }
 
+/* --- ゲームオーバーシーンの更新メソッド --- */
 void GameOverScene::Update()
 {
     // -----------------------------
     // 上
     // -----------------------------
 
-    if (CheckHitKey(KEY_INPUT_UP))
+    if (/* キーがクリックされた */)    // キーがクリックされたら
     {
-        selectedIndex--;
+        selectedIndex--;    // 選択肢の値を1減らす(1つ前の選択肢にする)
 
-        if (selectedIndex < 0)
+        if (selectedIndex < 0)  // 選択肢の値が0を下回ったら
         {
-            selectedIndex = 1;
+            selectedIndex = SelectMax;  // 選択肢の値をMaxにする(最後の選択肢にする)
         }
     }
 
@@ -37,13 +42,13 @@ void GameOverScene::Update()
     // 下
     // -----------------------------
 
-    if (CheckHitKey(KEY_INPUT_DOWN))
+    if (/* キーがクリックされた */)   // キーがクリックされたら
     {
-        selectedIndex++;
+        selectedIndex++;    // 選択肢の値を1増やす(次の選択肢にする)
 
-        if (selectedIndex > 1)
+        if (selectedIndex > SelectMax)  // 選択肢の値が選択肢の個数を超えたら
         {
-            selectedIndex = 0;
+            selectedIndex = 0;  // 選択肢を最初に戻す
         }
     }
 
@@ -52,99 +57,99 @@ void GameOverScene::Update()
     // 決定
     // -----------------------------
 
-    if (CheckHitKey(KEY_INPUT_RETURN))
+    if (/* エンターがクリックされた */)     // エンターがクリックされた
     {
-        transition.transitionType =
-            TransitionType::ChangeScene;
+        transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
-
-        // リトライ
-        if (selectedIndex == 0)
+        if (selectedIndex == 0)     // 選択肢が0(リトライ)なら
         {
-            transition.sceneType =
-                SceneType::Stage;
+            transition.sceneType = SceneType::Stage;    // 遷移情報のシーンの種類をステージにする
 
-            transition.stageNum =
-                stageNumber;
+            transition.stageNum = gameoverNumber;  // 遷移情報のステージ番号にゲームオーバーになったステージの番号を代入
         }
-
-        // タイトルへ
-        else
+        else       // 選択肢が1(タイトル)の場合
         {
-            transition.sceneType =
-                SceneType::Title;
+            transition.sceneType = SceneType::Title;    // 遷移情報のシーンの種類をステージにする
         }
     }
+
+    return;
 }
 
+/* --- ゲームオーバーシーンの描画メソッド --- */
 void GameOverScene::Draw()
 {
-    int white =
-        GetColor(255, 255, 255);
+    //int white =
+    //    GetColor(255, 255, 255);
 
-    int red =
-        GetColor(255, 80, 80);
+    //int red =
+    //    GetColor(255, 80, 80);
 
-    int yellow =
-        GetColor(255, 255, 0);
-
-
-    // GAME OVER
-    DrawString(
-        500,
-        150,
-        "GAME OVER",
-        red
-    );
+    //int yellow =
+    //    GetColor(255, 255, 0);
 
 
-    // リトライ
-    if (selectedIndex == 0)
-    {
-        DrawString(
-            500,
-            350,
-            "> リトライ",
-            yellow
-        );
-    }
-    else
-    {
-        DrawString(
-            500,
-            350,
-            "  リトライ",
-            white
-        );
-    }
+    //// GAME OVER
+    //DrawString(
+    //    500,
+    //    150,
+    //    "GAME OVER",
+    //    red
+    //);
 
 
-    // タイトルへ
-    if (selectedIndex == 1)
-    {
-        DrawString(
-            500,
-            420,
-            "> タイトルに戻る",
-            yellow
-        );
-    }
-    else
-    {
-        DrawString(
-            500,
-            420,
-            "  タイトルに戻る",
-            white
-        );
-    }
+    //// リトライ
+    //if (selectedIndex == 0)
+    //{
+    //    DrawString(
+    //        500,
+    //        350,
+    //        "> リトライ",
+    //        yellow
+    //    );
+    //}
+    //else
+    //{
+    //    DrawString(
+    //        500,
+    //        350,
+    //        "  リトライ",
+    //        white
+    //    );
+    //}
+
+
+    //// タイトルへ
+    //if (selectedIndex == 1)
+    //{
+    //    DrawString(
+    //        500,
+    //        420,
+    //        "> タイトルに戻る",
+    //        yellow
+    //    );
+    //}
+    //else
+    //{
+    //    DrawString(
+    //        500,
+    //        420,
+    //        "  タイトルに戻る",
+    //        white
+    //    );
+    //}
+
+    return;
 }
 
+/* --- ゲームオーバーシーンの終了メソッド ---*/
 void GameOverScene::End()
 {
+    return;
 }
 
+/* --- 遷移情報を取得するメソッド --- */
 SceneTransition GameOverScene::GetTransition() const
 {
-    return transition;
+    return transition;  // ゲームオーバーシーンの遷移情報を取得
 }

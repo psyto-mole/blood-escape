@@ -1,52 +1,45 @@
+/* === タイトルシーンのクラスのソースファイル === */
+
 #include "TitleScene.h"
 
-#include "DxLib.h"
 
-TitleScene::TitleScene()
-{
-}
-
+/* --- タイトルシーンの初期化メソッド --- */
 void TitleScene::Init()
 {
-    // 遷移情報をリセット
-    transition = {};
+    transition = {};    // 遷移情報をクリア
+
+    return;
 }
 
+/* --- タイトルシーンの更新メソッド --- */
 void TitleScene::Update()
 {
-    // Enterキー
-    if (CheckHitKey(KEY_INPUT_RETURN))
+    if (CheckHitKey(KEY_INPUT_RETURN))  // Enterキーが押された
     {
-        transition.transitionType =
-            TransitionType::ChangeScene;
+        transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
-        transition.sceneType =
-            SceneType::Tutorial;
+        transition.sceneType = SceneType::Tutorial;     // 遷移情報のシーンの種類をチュートリアルシーンにする
     }
+
+    return;
 }
 
+/* --- タイトルシーンの描画処理 --- */
 void TitleScene::Draw()
 {
-    DrawString(
-        500,
-        200,
-        "ACTION PUZZLE",
-        GetColor(255, 255, 255)
-    );
+    /* +++ 描画処理 +++ */
 
-    DrawString(
-        500,
-        400,
-        "Press Enter",
-        GetColor(255, 255, 255)
-    );
+    return;
 }
 
+/* --- タイトルシーンの終了処理 --- */
 void TitleScene::End()
 {
+    return;
 }
 
+/* --- 遷移情報を取得するメソッド --- */
 SceneTransition TitleScene::GetTransition() const
 {
-    return transition;
+    return transition;  // タイトルシーンの遷移情報を返す
 }

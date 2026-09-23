@@ -1,19 +1,21 @@
 #pragma once
+/* === チュートリアルシーンのクラスのヘッダファイル === */
 
+#include "DxLib.h"
 #include "Scene.h"
 
+
+/* --- チュートリアルシーンのクラス(Sceneクラスの派生クラス) --- */
 class TutorialScene : public Scene
 {
 private:
-    SceneTransition transition;
+    SceneTransition transition;     // 遷移情報
 
 public:
-    TutorialScene();
+    void Init() override;       // チュートリアルシーンの初期化メソッド
+    void Update() override;     // チュートリアルシーンの更新メソッド
+    void Draw() override;       // チュートリアルシーンの描画メソッド
+    void End() override;        // チュートリアルシーンの終了メソッド
 
-    void Init() override;
-    void Update() override;
-    void Draw() override;
-    void End() override;
-
-    SceneTransition GetTransition() const override;
+    SceneTransition GetTransition() const override;     // 遷移情報の取得メソッド
 };
