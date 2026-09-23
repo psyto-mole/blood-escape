@@ -13,11 +13,11 @@ enum class SceneType
 };
 
 
-//enum class TransitionType
-//{
-//    None,
-//    ChangeScene
-//};
+enum class TransitionType
+{
+    None,
+    ChangeScene
+};
 
 
 class Scene
