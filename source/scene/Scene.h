@@ -32,10 +32,10 @@ public:
 };
 
 
-//struct SceneTransition
-//{
-//    SceneType sceneType = SceneType::Title;
-//    TransitionType transitionType = TransitionType::None;
-//
-//    int stageNum = 0;
-//};
+struct SceneTransition
+{
+    SceneType sceneType = SceneType::Title;
+    TransitionType transitionType = TransitionType::None;
+
+    int stageNum = 0;
+};
