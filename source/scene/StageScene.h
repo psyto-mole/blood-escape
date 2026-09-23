@@ -2,18 +2,13 @@
 
 #include "Scene.h"
 
-enum class SceneResult
-{
-    None,
-    Clear,
-    GameOver
-};
 
 class StageScene : public Scene
 {
 private:
+    SceneTransition transition;
+
     int stageNumber;
-    SceneResult result;
 
 public:
     StageScene(int stage);
@@ -23,6 +18,6 @@ public:
     void Draw() override;
     void End() override;
 
-    SceneResult GetResult() const;
+    SceneTransition GetTransition() const override;
     int GetStageNumber() const;
 };

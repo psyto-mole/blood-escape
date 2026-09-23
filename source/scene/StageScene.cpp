@@ -1,14 +1,17 @@
 #include "StageScene.h"
 
 StageScene::StageScene(int stage)
-    : stageNumber(stage),
-    result(SceneResult::None)
+    : stageNumber(stage)
 {
 }
 
 void StageScene::Init()
 {
-    result = SceneResult::None;
+    transition = {};    // 遷移情報をリセット
+
+    // ---------------------------
+    // ステージ初期化
+    // ---------------------------
 
     // ステージデータを読み込む
     // プレイヤーの初期位置を設定
@@ -18,24 +21,44 @@ void StageScene::Init()
 
 void StageScene::Update()
 {
+    // --------------------
+    // ゲーム更新
+    // --------------------
+
     // プレイヤーの更新
     // 敵の更新
     // パズルの更新
     // 当たり判定
 
+    // -----------------
     // クリア判定
-    //if (/* パズルをクリアした */)
-    //{
-    //    result = SceneResult::Clear;
-    //    return;
-    //}
+    // -----------------
 
-    //// ゲームオーバー判定
-    //if (/* ゲームオーバー */)
-    //{
-    //    result = SceneResult::GameOver;
-    //    return;
-    //}
+    if (/* パズルをクリアした */)
+    {
+        transition.transitionType = TransitionType::ChangeScene;
+
+        transition.sceneType = SceneType::Stage;
+
+        transition.stageNum = stageNumber + 1;
+
+        return;
+    }
+
+    // --------------------------
+    // ゲームオーバー判定
+    // --------------------------
+
+    if (/* ゲームオーバー */)
+    {
+        transition.transitionType = TransitionType::ChangeScene;
+
+        transition.sceneType = SceneType::GameOver;
+
+        transition.stageNum = stageNumber;
+
+        return;
+    }
 }
 
 void StageScene::Draw()
@@ -43,6 +66,7 @@ void StageScene::Draw()
     // ステージ描画
     // プレイヤー描画
     // 敵描画
+    // パズル描画
     // UI描画
 }
 
@@ -51,9 +75,9 @@ void StageScene::End()
     // ステージ固有のリソース解放
 }
 
-SceneResult StageScene::GetResult() const
+SceneTransition StageScene::GetTransition() const
 {
-    return result;
+    return transition;
 }
 
 int StageScene::GetStageNumber() const
