@@ -364,14 +364,15 @@ FodyWeavers.xsd
 
 # text file
 *.txt
+/Question.txt
 
 # excel file
 *.xlsx
+/Development_DailyLog.xlsx
 
 # power point file
 *.pptx
 
 # directory for save data
 game-data/
-/Development_DailyLog.xlsx
-/Question.txt
+font/
