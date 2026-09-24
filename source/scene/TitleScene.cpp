@@ -2,6 +2,9 @@
 
 #include "TitleScene.h"
 #include "GameManager.h"
+#include "Color.h"
+#include "Font.h"
+#include "Message.h"
 
 
 /* --- タイトルシーンの初期化メソッド --- */
@@ -33,6 +36,7 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
     /* +++ 描画処理 +++ */
+    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_White, CathodeTube_100_9, "%s", GameTitle);
 
     return;
 }
