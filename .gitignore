@@ -376,3 +376,5 @@ FodyWeavers.xsd
 # directory for save data
 game-data/
 font/
+sound/
+image/
