@@ -14,20 +14,16 @@ enum Font_Align
 	FAlign_AllCenter	// 上下左右ともに中央揃え
 };
 
+/* +++ DXフォントファイルのパス +++ */
+#define PathCathodeTubeS100T9B1 ".\\font\\CathodeTube_8bit_8dot\\CathodeTube_8bit_8dot_S100_T9_B1.dft"
+#define PathCathodeTubeS100T9B4 ".\\font\\CathodeTube_8bit_8dot\\CathodeTube_8bit_8dot_S100_T9_B4.dft"
+
 /* +++ 横書きフォント +++ */
-extern int MSMincho_20_1;	// 明朝体(サイズ20、太さ1)
-extern int MSMincho_30_1;	// 明朝体(サイズ30、太さ1)
-extern int MSMincho_40_1;	// 明朝体(サイズ40、太さ1)
-extern int MSMincho_50_1;	// 明朝体(サイズ50、太さ1)
-extern int MSMincho_100_1;	// 明朝体(サイズ100、太さ1)
-extern int MSMincho_100_9;	// 明朝体(サイズ100、太さ9)
-extern int MSMincho_200_9;	// 明朝体(サイズ200、太さ9)
-extern int MSMincho_300_9;	// 明朝体(サイズ300、太さ9)
+//extern int CathodeTube_30_1;	// ブラウン管8ビット8ドットフォント(サイズ30、太さ1)
+extern int CathodeTube_100_9;	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 /* +++ 縦書きフォント +++ */
-extern int VMSMincho_30_1;	// 明朝体(サイズ30、太さ)
-extern int VMSMincho_40_1;	// 明朝体(サイズ40、太さ)
-extern int VMSMincho_50_1;	// 明朝体(サイズ50、太さ)
+//extern int V_30_1;	// (サイズ30、太さ)
 
 /* --- フォントの初期化関数 --- */
 extern int Font_Init(void);

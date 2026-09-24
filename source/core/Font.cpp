@@ -5,46 +5,30 @@
 
 
 /* +++ 横書きフォント +++ */
-int MSMincho_20_1;		// 明朝体(サイズ20、太さ1)
-int MSMincho_30_1;		// 明朝体(サイズ30、太さ1)
-int MSMincho_40_1;		// 明朝体(サイズ40、太さ1)
-int MSMincho_50_1;		// 明朝体(サイズ50、太さ1)
-int MSMincho_100_1;		// 明朝体(サイズ100、太さ1)
-int MSMincho_100_9;		// 明朝体(サイズ100、太さ9)
-int MSMincho_200_9;		// 明朝体(サイズ200、太さ9)
-int MSMincho_300_9;		// 明朝体(サイズ300、太さ9)
+//int _30_1;		// (サイズ30、太さ1)
+int CathodeTube_100_9;	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 /* +++ 縦書きフォント +++ */
-int VMSMincho_30_1;	// 明朝体(サイズ30、太さ)
-int VMSMincho_40_1;	// 明朝体(サイズ40、太さ)
-int VMSMincho_50_1;	// 明朝体(サイズ50、太さ)
+//int V_30_1;	// (サイズ30、太さ)
 
 /* --- フォントの初期化関数 --- */
 int Font_Init()
 {
 	/* === フォントデータの作成 === */
 	/* +++ 横書きフォント +++ */
-	MSMincho_20_1 = CreateFontToHandle("MS 明朝", 20, 1, DX_FONTTYPE_ANTIALIASING);		// 明朝体(サイズ20、太さ1)
-	MSMincho_30_1 = CreateFontToHandle("MS 明朝", 30, 1, DX_FONTTYPE_ANTIALIASING);		// 明朝体(サイズ30、太さ1)
-	MSMincho_40_1 = CreateFontToHandle("MS 明朝", 40, 1, DX_FONTTYPE_ANTIALIASING);		// 明朝体(サイズ40、太さ1)
-	MSMincho_50_1 = CreateFontToHandle("MS 明朝", 50, 1, DX_FONTTYPE_ANTIALIASING);		// 明朝体(サイズ50、太さ1)
-	MSMincho_100_1 = CreateFontToHandle("MS 明朝", 100, 1, DX_FONTTYPE_ANTIALIASING);	// 明朝体(サイズ100、太さ1)
-	MSMincho_100_9 = CreateFontToHandle("MS 明朝", 100, 9, DX_FONTTYPE_ANTIALIASING);	// 明朝体(サイズ100、太さ9)
-	MSMincho_200_9 = CreateFontToHandle("MS 明朝", 200, 9, DX_FONTTYPE_ANTIALIASING);	// 明朝体(サイズ200、太さ9)
-	MSMincho_300_9 = CreateFontToHandle("MS 明朝", 300, 9, DX_FONTTYPE_ANTIALIASING);	// 明朝体(サイズ300、太さ9)
+	//_30_1 = CreateFontToHandle("MS 明朝", 30, 1, DX_FONTTYPE_ANTIALIASING);		// (サイズ30、太さ1)
+	CathodeTube_100_9 = LoadFontDataToHandle(PathCathodeTubeS100T9B1, 0);	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */
-	VMSMincho_30_1 = CreateFontToHandle("@MS 明朝", 30, 1, DX_FONTTYPE_ANTIALIASING);	// 明朝体(サイズ30、太さ1)
-	VMSMincho_40_1 = CreateFontToHandle("@MS 明朝", 40, 1, DX_FONTTYPE_ANTIALIASING);	// 明朝体(サイズ40、太さ1)
-	VMSMincho_50_1 = CreateFontToHandle("@MS 明朝", 50, 1, DX_FONTTYPE_ANTIALIASING);	// 明朝体(サイズ50、太さ1)
+	//V_30_1 = CreateFontToHandle("@MS 明朝", 30, 1, DX_FONTTYPE_ANTIALIASING);	// (サイズ30、太さ1)
 
 
-	if (MSMincho_100_9 == -1)	// フォントデータが作成できていなかったら
+	if (CathodeTube_100_9 == -1)	// フォントデータが作成できていなかったら
 	{
 		/* +++ エラーメッセージを出力 +++ */
 		MessageBox(
 			GetMainWindowHandle(),
-			"Font Error Envoked",
+			"Cannot load CathodeTube_100_9",
 			"Error",
 			MB_OK
 		);
@@ -60,19 +44,11 @@ void Font_End()
 {
 	/* === フォントデータをメモリから削除 === */
 	/* +++ 横書きフォント +++ */
-	DeleteFontToHandle(MSMincho_20_1);		// 明朝体(サイズ20、太さ1)
-	DeleteFontToHandle(MSMincho_30_1);		// 明朝体(サイズ30、太さ1)
-	DeleteFontToHandle(MSMincho_40_1);		// 明朝体(サイズ40、太さ1)
-	DeleteFontToHandle(MSMincho_50_1);		// 明朝体(サイズ50、太さ1)
-	DeleteFontToHandle(MSMincho_100_1);		// 明朝体(サイズ100、太さ1)
-	DeleteFontToHandle(MSMincho_100_9);		// 明朝体(サイズ100、太さ9)
-	DeleteFontToHandle(MSMincho_200_9);		// 明朝体(サイズ200、太さ9)
-	DeleteFontToHandle(MSMincho_300_9);		// 明朝体(サイズ300、太さ9)
+	//DeleteFontToHandle(MSMincho_30_1);		// (サイズ30、太さ1)
+	DeleteFontToHandle(CathodeTube_100_9);		// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */
-	DeleteFontToHandle(VMSMincho_30_1);		// 明朝体(サイズ30、太さ1)
-	DeleteFontToHandle(VMSMincho_40_1);		// 明朝体(サイズ40、太さ1)
-	DeleteFontToHandle(VMSMincho_50_1);		// 明朝体(サイズ50、太さ1)
+	//DeleteFontToHandle(V_30_1);		// (サイズ30、太さ1)
 }
 
 /* --- 文字列を指定フォント・指定の揃えで描画する関数 --- */
