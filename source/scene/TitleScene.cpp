@@ -2,6 +2,7 @@
 
 #include "TitleScene.h"
 #include "GameManager.h"
+#include "Key.h"
 #include "Color.h"
 #include "Font.h"
 #include "Message.h"
@@ -22,7 +23,7 @@ void TitleScene::Update()
 {
     sceneElapsedFrame += 1; // 経過フレームを1増加
 
-    if (/* エンターがクリックされた */&& sceneElapsedFrame >= GameFPS)  // シーンが切り替わってから1秒以上が経過しEnterキーがクリックされた
+    if (Key_Check_Click(KEY_INPUT_RETURN) && sceneElapsedFrame >= GameFPS)  // シーンが切り替わってから1秒以上が経過しEnterキーがクリックされた
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
