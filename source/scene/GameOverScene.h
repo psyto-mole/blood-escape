@@ -9,11 +9,13 @@
 class GameOverScene : public Scene
 {
 private:
+    SceneTransition transition;     // 遷移情報
+
     int gameoverNumber;     // ゲームオーバーになったステージ番号(GameOverSceneクラス固有の変数)
     int selectedIndex;      // ゲームオーバー画面の選択肢用の変数(0:リトライ,1:タイトルに戻る、GameOverSceneクラス固有の変数)
 
-    SceneTransition transition;     // 遷移情報
-
+    int sceneElapsedFrame;   // シーンの経過フレーム
+    
 public:
     GameOverScene(int stage);   // コンストラクタ
 

@@ -1,6 +1,7 @@
 /* === タイトルシーンのクラスのソースファイル === */
 
 #include "TitleScene.h"
+#include "GameManager.h"
 
 
 /* --- タイトルシーンの初期化メソッド --- */
@@ -8,13 +9,17 @@ void TitleScene::Init()
 {
     transition = {};    // 遷移情報をクリア
 
+    sceneElapsedFrame = 0;
+
     return;
 }
 
 /* --- タイトルシーンの更新メソッド --- */
 void TitleScene::Update()
 {
-    if (CheckHitKey(KEY_INPUT_RETURN))  // Enterキーが押された
+    sceneElapsedFrame += 1; // 経過フレームを1増加
+
+    if (/* エンターがクリックされた */&& sceneElapsedFrame >= GameFPS)  // シーンが切り替わってから1秒以上が経過しEnterキーがクリックされた
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 

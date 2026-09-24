@@ -11,6 +11,8 @@ class TutorialScene : public Scene
 private:
     SceneTransition transition;     // 遷移情報
 
+    int sceneElapsedFrame;   // シーンの経過フレーム
+
 public:
     void Init() override;       // チュートリアルシーンの初期化メソッド
     void Update() override;     // チュートリアルシーンの更新メソッド

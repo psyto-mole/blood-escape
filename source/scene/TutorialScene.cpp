@@ -1,18 +1,25 @@
 /* === チュートリアルシーンのクラスのソースファイル === */
 
 #include "TutorialScene.h"
+#include "GameManager.h"
 
 
 /* --- チュートリアルシーンの初期化メソッド --- */
 void TutorialScene::Init()
 {
     transition = {};    // 遷移情報をクリア
+
+    sceneElapsedFrame = 0;  // 経過フレームをリセット
+
+    return;
 }
 
 /* --- チュートリアルシーンの更新メソッド --- */
 void TutorialScene::Update()
 {
-    if (/* ステージ1に移動する条件 */)   // でステージ1へ
+    sceneElapsedFrame += 1;     // 経過フレームを1加算
+
+    if (/* ステージ1に移動する条件 */ && sceneElapsedFrame >= GameFPS)   // シーンが切り替わってから1秒が経過し　たらステージ1へ
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 

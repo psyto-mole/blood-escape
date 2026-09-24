@@ -11,7 +11,7 @@ class StageScene : public Scene
 private:
     SceneTransition transition;     // 遷移情報
 
-    int stageNumber;    // ステージ番号
+    int stageNumber;    // ステージ番号(StageSceneクラス固有の変数)
 
 public:
     StageScene(int stage);  // コンストラクタ

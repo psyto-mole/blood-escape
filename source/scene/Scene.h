@@ -36,6 +36,8 @@ class Scene
 private:
     SceneTransition transition;     // シーンの遷移情報
 
+    int sceneElapsedFrame;   // シーンの経過フレーム
+
 public:
     virtual ~Scene() = default;     // デストラクタ
 

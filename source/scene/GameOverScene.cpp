@@ -1,6 +1,7 @@
 /* === ゲームオーバーシーンのクラスのソースファイル === */
 
 #include "GameOverScene.h"
+#include "GameManager.h"
 
 
 /* --- コンストラクタ --- */
@@ -17,12 +18,16 @@ void GameOverScene::Init()
 
     transition = {};    // 遷移情報をクリア
 
+    sceneElapsedFrame = 0;  // 経過フレームをリセット
+
     return;
 }
 
 /* --- ゲームオーバーシーンの更新メソッド --- */
 void GameOverScene::Update()
 {
+    sceneElapsedFrame += 1;     // 経過フレームを1加算
+
     // -----------------------------
     // 上
     // -----------------------------
@@ -57,7 +62,7 @@ void GameOverScene::Update()
     // 決定
     // -----------------------------
 
-    if (/* エンターがクリックされた */)     // エンターがクリックされた
+    if (/* エンターがクリックされた */ && sceneElapsedFrame >= GameFPS)     // シーン切り替えから1秒が経過しエンターがクリックされた
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 

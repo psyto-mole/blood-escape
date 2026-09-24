@@ -11,6 +11,8 @@ class TitleScene : public Scene
 private:
     SceneTransition transition;     // シーンの遷移情報
 
+    int sceneElapsedFrame;   // シーンの経過フレーム
+
 public:
     void Init() override;       // タイトルシーンの初期化メソッド
     void Update() override;     // タイトルシーンの更新メソッド

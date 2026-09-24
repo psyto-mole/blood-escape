@@ -1,6 +1,7 @@
 /* === ステージのクラスのソースファイル === */
 
 #include "StageScene.h"
+#include "GameManager.h"
 
 
 /* --- Stageクラスのコンストラクタ --- */
@@ -42,7 +43,7 @@ void StageScene::Update()
     // クリア判定
     // -----------------
 
-    if (/* パズルをクリアした */)
+    if (/* パズルをクリアした */)    // 　たら
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
@@ -57,7 +58,7 @@ void StageScene::Update()
     // ゲームオーバー判定
     // --------------------------
 
-    if (/* ゲームオーバー */)
+    if (/* ゲームオーバー */)  // 　たら
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
