@@ -80,8 +80,8 @@ extern MessagePattern displayMessagePattern;
 
 
 /* === タイトル画面 === */
-#define GameTitle	"Not Bot"		// ゲームのタイトル
-#define PressEnter	"Press Enter"	// Press Enterの文字列
+#define GameTitle			"Blood Escape"	// ゲームのタイトル
+#define StringPressEnter	"Press Enter"	// Press Enterの文字列
 
 
 
