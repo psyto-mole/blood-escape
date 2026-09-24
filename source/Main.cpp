@@ -10,7 +10,7 @@
 #include "Key.h"
 #include "Mouse.h"
 #include "Sound.h"
-#include "SceneManager.h"
+#include "SceneManager."
 #include "Geometry.h"
 #include "Message.h"
 #include "SaveLoad.h"
@@ -73,7 +73,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 	}
 
-
 	Game_End();		// ゲームの終了
 
 	return 0;	// ソフト終了
@@ -124,12 +123,6 @@ int Game_Init(void)
 
 	Menu_Init();
 
-	///* +++ シーン処理の初期化 +++ */
-	//if (Scene_Init(Game_Start) == -1)		// 初期化失敗
-	//{
-	//	return -1;	// -1を返す(初期化関数を初期化失敗で終わらせる)
-	//}
-
 	Geometry_Init();
 
 	return 0;	// 諸々の初期化関数の終了(正常終了)
@@ -149,12 +142,6 @@ int Game_Update(void)
 
 	/* +++ カラー処理 +++ */
 	Color_Process();
-
-	///* +++	シーンの処理 +++ */
-	//if (Scene_Manage() == -1)	// エラー発生
-	//{
-	//	return -1;	// 更新不可(-1)を返す
-	//}
 
 	return 0;
 }
