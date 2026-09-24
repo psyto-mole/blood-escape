@@ -5,6 +5,7 @@
 #include "TutorialScene.h"
 #include "StageScene.h"
 #include "GameOverScene.h"
+#include "ClearScene.h"
 
 /* --- シーンの初期化メソッド --- */
 void SceneManager::Init()
@@ -126,6 +127,10 @@ std::unique_ptr<Scene> SceneManager::CreateScene(const SceneTransition& transiti
         /* +++ ゲームオーバーシーンの場合 +++ */
 
         return std::make_unique<GameOverScene>(transition.stageNum);    // ゲームオーバーシーン型のポインタを返す
+    case SceneType::Clear:
+        /* +++ クリアシーンの場合 +++ */
+
+        return std::make_unique<ClearScene>();    // クリアシーン型のポインタを返す
     }
 
 
