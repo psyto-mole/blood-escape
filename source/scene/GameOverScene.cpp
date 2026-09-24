@@ -2,6 +2,7 @@
 
 #include "GameOverScene.h"
 #include "GameManager.h"
+#include "Key.h"
 
 
 /* --- コンストラクタ --- */
@@ -62,7 +63,7 @@ void GameOverScene::Update()
     // 決定
     // -----------------------------
 
-    if (/* エンターがクリックされた */ && sceneElapsedFrame >= GameFPS)     // シーン切り替えから1秒が経過しエンターがクリックされた
+    if (Key_Check_Click(KEY_INPUT_RETURN) && sceneElapsedFrame >= GameFPS)     // シーン切り替えから1秒が経過しエンターがクリックされた
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 

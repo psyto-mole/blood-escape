@@ -2,6 +2,7 @@
 
 #include "ClearScene.h"
 #include "GameManager.h"
+#include "Key.h"
 
 
 /* --- クリアシーンの初期化メソッド --- */
@@ -19,7 +20,7 @@ void ClearScene::Update()
 {
 	sceneElapsedFrame += 1;		// 経過フレームを1加算
 
-	if (/* エンターがクリックされた */ && sceneElapsedFrame >= GameFPS)	// シーン切り替えから1秒が経過しエンターがクリックされたら
+	if (Key_Check_Click(KEY_INPUT_RETURN) && sceneElapsedFrame >= GameFPS)	// シーン切り替えから1秒が経過しエンターがクリックされたら
 	{
 		transition.transitionType = TransitionType::ChangeScene;	// 遷移情報の遷移の状態を「シーン切り替え」に設定
 		transition.sceneType = SceneType::Title;					// 遷移情報のシーンの種類をタイトルシーンに設定
