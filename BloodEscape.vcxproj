@@ -36,6 +36,7 @@
     <ClCompile Include="source\scene\StageScene.cpp" />
     <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\scene\TutorialScene.cpp" />
+    <ClCompile Include="source\stage\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\Color.h" />
@@ -60,6 +61,7 @@
     <ClInclude Include="source\scene\StageScene.h" />
     <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\scene\TutorialScene.h" />
+    <ClInclude Include="source\stage\Map.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
