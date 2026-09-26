@@ -5,7 +5,7 @@
 #include "GameManager.h"
 
 
-#define PathDataFile	"game-data\gamedata.dat"	// セーブデータを保存するファイルのパス
+#define PathDataFile	".\\game-data\\save\\gamedata.dat"	// セーブデータを保存するファイルのパス
 
 
 extern errno_t errorCode;									// ファイルの読み出し・書き込みの際のエラーコードを格納する変数
