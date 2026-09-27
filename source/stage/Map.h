@@ -4,31 +4,31 @@
 #include "DxLib.h"
 
 
-#define MapWidth    30  // マップの横方向の広さ
-#define MapHeight   30  // マップの縦方向の広さ
+#define MapWidth        60  // マップの横幅
+#define MapHeight       30  // マップの縦幅
+#define TileSize        32  // タイルサイズ
+#define TileSetWidth    3   // タイルセットの横方向のタイル数(タイルセットの画像のサイズ/タイルサイズ)
 
 class Map
 {
 private:
     int mapData[MapWidth][MapHeight];   // マップデータを格納する2次元配列
 
-    int width = 0;
-    int height = 0;
+    int width;      // マップの横幅(タイル数)
+    int height;     // マップの縦幅(タイル数)
 
-    int tileImage = -1;
-
-    int tileSize = 32;
+    int tileImage;  // タイルセットの画像ハンドルを格納する変数
 
 public:
-    ~Map();
+    Map();      // コンストラクタ
+    ~Map();     // デストラクタ
 
-    bool Load(char* csvPath);
-    bool LoadTileImage(char* imagePath);
+    bool Load(const char* csvPath);             // csvファイルからマップデータを読み込むメソッド
+    bool LoadTileImage(const char* imagePath);  // タイルセットの画像を読み込むメソッド
 
-    void Draw() const;
+    void Draw() const;  // マップの描画を行うメソッド
 
-    int GetTile(int x, int y) const;
-
-    int GetWidth() const;
-    int GetHeight() const;
+    int GetTile(int x, int y) const;    // 引数で渡した位置のタイルを取得するメソッド
+    int GetWidth() const;               // マップの横幅を取得するメソッド
+    int GetHeight() const;              // マップの縦幅を取得するメソッド
 };
