@@ -25,6 +25,7 @@
     <ClCompile Include="source\core\Mouse.cpp" />
     <ClCompile Include="source\core\SaveLoad.cpp" />
     <ClCompile Include="source\core\Sound.cpp" />
+    <ClCompile Include="source\gimmick\Gimmick.cpp" />
     <ClCompile Include="source\graphic\Geometry.cpp" />
     <ClCompile Include="source\graphic\Image.cpp" />
     <ClCompile Include="source\graphic\Message.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="source\core\Mouse.h" />
     <ClInclude Include="source\core\SaveLoad.h" />
     <ClInclude Include="source\core\Sound.h" />
+    <ClInclude Include="source\gimmick\Gimmick.h" />
     <ClInclude Include="source\graphic\Geometry.h" />
     <ClInclude Include="source\graphic\Image.h" />
     <ClInclude Include="source\graphic\Message.h" />
@@ -121,7 +123,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\character;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\core;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\graphic;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\parameter;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\scene</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\character;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\core;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\graphic;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\parameter;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\scene;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\gimmick;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\stage</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -153,7 +155,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\character;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\core;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\graphic;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\parameter;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\scene</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\character;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\core;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\graphic;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\parameter;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\scene;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\gimmick;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\stage</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
