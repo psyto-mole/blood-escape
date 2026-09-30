@@ -79,3 +79,67 @@ bool Key_Check_Click(int KEY_INPUT_)
 
 	return false;
 }
+
+/* --- プレイヤーの入力方向を取得する関数-- - */
+int GetInputVector()
+{
+	/* +++ キー入力に応じて入力しているベクトルを返す +++ */
+	// 以下のようなテンキーを考え、「5」をニュートラルとする」
+	// 
+	// 7 8 9
+	// 4 5 6
+	// 1 2 3
+	// 
+	// kキーはAが左、Sが下、Dが右、Wが上
+	// 例) A + S なら1を返す
+	// 
+	if (Key_Check_Press(KEY_INPUT_S))
+	{
+		if (Key_Check_Press(KEY_INPUT_A))
+		{
+			return 1;
+		}
+		else if (Key_Check_Press(KEY_INPUT_D))
+		{
+			return 3;
+		}
+		else if (Key_Check_Press(KEY_INPUT_W))
+		{
+			return 5;
+		}
+		else
+		{
+			return 2;
+		}
+	}
+	else if (Key_Check_Press(KEY_INPUT_W))
+	{
+		if (Key_Check_Press(KEY_INPUT_A))
+		{
+			return 7;
+		}
+		else if (Key_Check_Press(KEY_INPUT_D))
+		{
+			return 9;
+		}
+		else
+		{
+			return 8;
+		}
+	}
+	else if (Key_Check_Press(KEY_INPUT_A))
+	{
+		if (Key_Check_Press(KEY_INPUT_D))
+		{
+			return 5;
+		}
+		else
+		{
+			return 4;
+		}
+	}
+	else if(Key_Check_Press(KEY_INPUT_D))
+	{
+		return 6;
+	}
+}
