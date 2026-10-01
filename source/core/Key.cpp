@@ -23,8 +23,6 @@ void Key_Init(void)
 /* --- キー入力の取得関数 --- */
 int Key_Update(void)
 {
-
-
 	errorChecker = GetHitKeyStateAll(key_buf);	// 全てのキーの入力状態を調べる
 
 	if (errorChecker == -1)		// キー入力のチェックに失敗したら
@@ -90,20 +88,21 @@ int GetInputVector()
 	// 4 5 6
 	// 1 2 3
 	// 
-	// kキーはAが左、Sが下、Dが右、Wが上
-	// 例) A + S なら1を返す
+	// 例)→ + ↓ = 3
+	// 　 ← = 4
+	// 　 → + ↑ = 9
 	// 
-	if (Key_Check_Press(KEY_INPUT_S))
+	if (Key_Check_Press(KEY_INPUT_DOWN))
 	{
-		if (Key_Check_Press(KEY_INPUT_A))
+		if (Key_Check_Press(KEY_INPUT_LEFT))
 		{
 			return 1;
 		}
-		else if (Key_Check_Press(KEY_INPUT_D))
+		else if (Key_Check_Press(KEY_INPUT_RIGHT))
 		{
 			return 3;
 		}
-		else if (Key_Check_Press(KEY_INPUT_W))
+		else if (Key_Check_Press(KEY_INPUT_UP))
 		{
 			return 5;
 		}
@@ -112,13 +111,13 @@ int GetInputVector()
 			return 2;
 		}
 	}
-	else if (Key_Check_Press(KEY_INPUT_W))
+	else if (Key_Check_Press(KEY_INPUT_UP))
 	{
-		if (Key_Check_Press(KEY_INPUT_A))
+		if (Key_Check_Press(KEY_INPUT_LEFT))
 		{
 			return 7;
 		}
-		else if (Key_Check_Press(KEY_INPUT_D))
+		else if (Key_Check_Press(KEY_INPUT_RIGHT))
 		{
 			return 9;
 		}
@@ -127,9 +126,9 @@ int GetInputVector()
 			return 8;
 		}
 	}
-	else if (Key_Check_Press(KEY_INPUT_A))
+	else if (Key_Check_Press(KEY_INPUT_LEFT))
 	{
-		if (Key_Check_Press(KEY_INPUT_D))
+		if (Key_Check_Press(KEY_INPUT_RIGHT))
 		{
 			return 5;
 		}
@@ -138,7 +137,7 @@ int GetInputVector()
 			return 4;
 		}
 	}
-	else if(Key_Check_Press(KEY_INPUT_D))
+	else if(Key_Check_Press(KEY_INPUT_RIGHT))
 	{
 		return 6;
 	}
