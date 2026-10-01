@@ -80,7 +80,7 @@ extern MessagePattern displayMessagePattern;
 
 
 /* === タイトル画面 === */
-#define GameTitle			"Blood Escape"	// ゲームのタイトル
+#define StringGameTitle		"Blood Escape"	// ゲームのタイトル
 #define StringPressEnter	"Press Enter"	// Press Enterの文字列
 
 
@@ -91,7 +91,7 @@ extern MessagePattern displayMessagePattern;
 
 
 /* === ゲームオーバー画面 === */
-#define GameOverTitle	"Game Over"		// ゲームオーバー画面のタイトル
+#define StringGameOver	"Game Over"		// ゲームオーバー画面のタイトル
 
 
 
