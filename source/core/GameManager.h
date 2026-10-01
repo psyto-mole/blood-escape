@@ -13,8 +13,6 @@
 
 // #define BattleSceneFPS		150		// バトルシーン中のFPS設定(GameFPS / BattleSceneFPSの値がバトルシーン中のFPSとなる)
 
-#define ISDISPLAY	true	// オブジェクトを表示する
-
 #define GameDebug	true		// デバッグモードの設定
 #define RuledLine	false		// 罫線モードの設定
 
