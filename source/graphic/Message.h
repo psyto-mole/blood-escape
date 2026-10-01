@@ -91,7 +91,9 @@ extern MessagePattern displayMessagePattern;
 
 
 /* === ゲームオーバー画面 === */
-#define StringGameOver	"Game Over"		// ゲームオーバー画面のタイトル
+#define StringGameOver	"Game Over"			// ゲームオーバー画面のタイトル
+#define StringRetry		"リトライ"			// 「リトライ」
+#define StringBackTitle	"タイトルに戻る"	// 「タイトルに戻る」
 
 
 
