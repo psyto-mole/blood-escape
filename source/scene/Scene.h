@@ -39,6 +39,7 @@ protected:
     int sceneElapsedFrame;   // シーンの経過フレーム
 
 public:
+    Scene();                        // コンストラクタ
     virtual ~Scene() = default;     // デストラクタ
 
     virtual void Init() = 0;    // このシーンの初期化メソッド
