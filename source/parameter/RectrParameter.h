@@ -35,3 +35,11 @@
 #define MenuYesNoButtonCenterY	(GameWindowHeight / 2)			// メニューウィンドウの「はい」・「いいえ」ボタンの中心のY座標
 #define MenuYesNoButtonWidth	100								// メニューウィンドウの「はい」・「いいえ」ボタンの幅
 #define MenuYesNoButtonHeight	50								// メニューウィンドウの「はい」・「いいえ」ボタンの高さ
+
+
+/* === ゲームオーバーシーン === */
+#define GameOverOptionWidth		500
+#define GameOverOptionHeight	100	
+#define GameOverOption1CenterX	(GameWindowWidth / 2  - GameOverOptionWidth / 2 + 100)
+#define GameOverOption2CenterX	(GameWindowWidth / 2  + GameOverOptionWidth / 2 - 100)
+#define GameOverOptionCenterY	(GameWindowHeight / 2 + 300)
