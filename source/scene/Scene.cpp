@@ -3,10 +3,6 @@
 #include "Scene.h"
 
 
-Scene::Scene()
-{
-}
-
 /* --- ‘JˆÚî•ñ‚ğæ“¾‚·‚éƒƒ\ƒbƒh-- - */
 SceneTransition Scene::GetTransition() const
 {
