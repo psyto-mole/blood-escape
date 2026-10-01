@@ -23,8 +23,8 @@ public:
     Map();      // コンストラクタ
     ~Map();     // デストラクタ
 
-    bool Load(const char* csvPath);             // csvファイルからマップデータを読み込むメソッド
-    bool LoadTileImage(const char* imagePath);  // タイルセットの画像を読み込むメソッド
+    int Load(const char* csvPath);              // csvファイルからマップデータを読み込むメソッド
+    int LoadTileImage(const char* imagePath);   // タイルセットの画像を読み込むメソッド
 
     void Draw() const;  // マップの描画を行うメソッド
 

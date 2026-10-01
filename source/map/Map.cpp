@@ -34,7 +34,7 @@ Map::~Map()
 }
 
 /* --- csvファイルからマップデータを読み込むメソッド --- */
-bool Map::Load(const char* csvPath)
+int Map::Load(const char* csvPath)
 {
     FILE* fp;     // ファイルポインタ
 
@@ -48,12 +48,12 @@ bool Map::Load(const char* csvPath)
         /* +++ メッセージボックスでエラーの発生を報告 +++ */
         MessageBox(
             GetMainWindowHandle(),
-            "Cannot open the csv path.",
+            "Cannot open the map csv path.",
             "File Error",
             MB_OK
         );
 
-        return false;   // false(読み込み失敗)を返す
+        return -1;   // -1(読み込み失敗)を返す
     }
 
     /* +++ csvファイルからデータを1行ずつ読み込む +++ */
@@ -120,11 +120,11 @@ bool Map::Load(const char* csvPath)
 
     fclose(fp);     // ファイルを閉じる
 
-    return true;    // true(読み込み完了)を返す
+    return 0;    // 0(読み込み完了)を返す
 }
 
 /* --- タイルセットの画像を読み込むメソッド --- */
-bool Map::LoadTileImage(const char* imagePath)
+int Map::LoadTileImage(const char* imagePath)
 {
     tileImage = LoadGraph(imagePath);   // タイルセットの画像のハンドルを取得
 
@@ -138,10 +138,10 @@ bool Map::LoadTileImage(const char* imagePath)
             MB_OK
         );
 
-        return false;   // false(読み込み失敗)を返す
+        return -1;   // -1(読み込み失敗)を返す
     }
 
-    return true;    // true(読み込み成功)を返す
+    return 0;    // 0(読み込み成功)を返す
 }
 
 /* --- マップの描画メソッド --- */
