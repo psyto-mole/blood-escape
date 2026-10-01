@@ -34,6 +34,7 @@
     <ClCompile Include="source\graphic\Image.cpp" />
     <ClCompile Include="source\graphic\Message.cpp" />
     <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\map\Map.cpp" />
     <ClCompile Include="source\scene\ClearScene.cpp" />
     <ClCompile Include="source\scene\Fade.cpp" />
     <ClCompile Include="source\scene\GameOverScene.cpp" />
@@ -41,7 +42,6 @@
     <ClCompile Include="source\scene\StageScene.cpp" />
     <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\scene\TutorialScene.cpp" />
-    <ClCompile Include="source\stage\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\character\Character.h" />
@@ -59,6 +59,7 @@
     <ClInclude Include="source\graphic\Geometry.h" />
     <ClInclude Include="source\graphic\Image.h" />
     <ClInclude Include="source\graphic\Message.h" />
+    <ClInclude Include="source\map\Map.h" />
     <ClInclude Include="source\parameter\CircleParameter.h" />
     <ClInclude Include="source\parameter\LineParameter.h" />
     <ClInclude Include="source\parameter\PointParameter.h" />
@@ -71,7 +72,6 @@
     <ClInclude Include="source\scene\StageScene.h" />
     <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\scene\TutorialScene.h" />
-    <ClInclude Include="source\stage\Map.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -131,7 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\stage</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -163,7 +163,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\stage</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
