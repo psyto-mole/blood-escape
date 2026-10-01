@@ -42,7 +42,6 @@
     <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\scene\TutorialScene.cpp" />
     <ClCompile Include="source\stage\Map.cpp" />
-    <ClCompile Include="source\stage\Stage1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\character\Character.h" />
@@ -73,7 +72,6 @@
     <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\scene\TutorialScene.h" />
     <ClInclude Include="source\stage\Map.h" />
-    <ClInclude Include="source\stage\Stage1.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
