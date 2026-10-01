@@ -1,11 +1,10 @@
-#include "Font.h"
 /* === フォント処理のソースファイル === */
 
 #include "Font.h"
 
 
 /* +++ 横書きフォント +++ */
-//int _30_1;		// (サイズ30、太さ1)
+int CathodeTube_30_1;		// (サイズ30、太さ1)
 int CathodeTube_100_9;	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 /* +++ 縦書きフォント +++ */
@@ -16,7 +15,7 @@ int Font_Init()
 {
 	/* === フォントデータの作成 === */
 	/* +++ 横書きフォント +++ */
-	//_30_1 = CreateFontToHandle("MS 明朝", 30, 1, DX_FONTTYPE_ANTIALIASING);		// (サイズ30、太さ1)
+	CathodeTube_30_1 = LoadFontDataToHandle(PathCathodeTubeS30T1B1, 0);		// ブラウン管8ビット8ドットフォント(サイズ30、太さ1)
 	CathodeTube_100_9 = LoadFontDataToHandle(PathCathodeTubeS100T9B1, 0);	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */
@@ -29,7 +28,20 @@ int Font_Init()
 		MessageBox(
 			GetMainWindowHandle(),
 			"Cannot load CathodeTube_100_9",
-			"Error",
+			"Font Error",
+			MB_OK
+		);
+
+		return -1;	// 初期化失敗(-1を返す)
+	}
+
+	if (CathodeTube_30_1 == -1)		// フォントデータが作成できていなかったら
+	{
+		/* +++ エラーメッセージを出力 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Cannot load CathodeTube_30_1",
+			"Font Error",
 			MB_OK
 		);
 
@@ -44,7 +56,7 @@ void Font_End()
 {
 	/* === フォントデータをメモリから削除 === */
 	/* +++ 横書きフォント +++ */
-	//DeleteFontToHandle(MSMincho_30_1);		// (サイズ30、太さ1)
+	DeleteFontToHandle(CathodeTube_30_1);		// ブラウン管8ビット8ドットフォント(サイズ30、太さ1)
 	DeleteFontToHandle(CathodeTube_100_9);		// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */

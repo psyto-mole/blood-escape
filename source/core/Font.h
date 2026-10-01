@@ -17,9 +17,11 @@ enum Font_Align
 /* +++ DXフォントファイルのパス +++ */
 #define PathCathodeTubeS100T9B1 ".\\font\\CathodeTube_8bit_8dot\\CathodeTube_8bit_8dot_S100_T9_B1.dft"
 #define PathCathodeTubeS100T9B4 ".\\font\\CathodeTube_8bit_8dot\\CathodeTube_8bit_8dot_S100_T9_B4.dft"
+#define PathCathodeTubeS30T1B1	".\\font\\CathodeTube_8bit_8dot\\CathodeTube_8bit_8dot_S30_T1_B1.dft"
+#define PathCathodeTubeS30T1B4	".\\font\\CathodeTube_8bit_8dot\\CathodeTube_8bit_8dot_S30_T1_B4.dft"
 
 /* +++ 横書きフォント +++ */
-//extern int CathodeTube_30_1;	// ブラウン管8ビット8ドットフォント(サイズ30、太さ1)
+extern int CathodeTube_30_1;	// ブラウン管8ビット8ドットフォント(サイズ30、太さ1)
 extern int CathodeTube_100_9;	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
 
 /* +++ 縦書きフォント +++ */
