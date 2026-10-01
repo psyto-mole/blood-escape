@@ -33,7 +33,7 @@ struct SceneTransition
 /* --- シーンクラス(全てのシーンの基底クラス) --- */
 class Scene
 {
-private:
+protected:
     SceneTransition transition;     // シーンの遷移情報
 
     int sceneElapsedFrame;   // シーンの経過フレーム
@@ -46,5 +46,5 @@ public:
     virtual void Draw() = 0;    // このシーンの描画メソッド
     virtual void End() = 0;     // このシーンの終了メソッド
 
-    virtual SceneTransition GetTransition() const = 0;  // 遷移情報を取得するメソッド(読み取り専用なのでconst)
+    SceneTransition GetTransition() const;  // 遷移情報を取得するメソッド(読み取り専用なのでconst)
 };
