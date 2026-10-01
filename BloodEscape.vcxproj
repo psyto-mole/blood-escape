@@ -42,6 +42,7 @@
     <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\scene\TutorialScene.cpp" />
     <ClCompile Include="source\stage\Map.cpp" />
+    <ClCompile Include="source\stage\Stage1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\character\Character.h" />
@@ -72,6 +73,7 @@
     <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\scene\TutorialScene.h" />
     <ClInclude Include="source\stage\Map.h" />
+    <ClInclude Include="source\stage\Stage1.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -131,13 +133,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\character;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\core;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\graphic;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\parameter;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\scene;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\gimmick;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\stage</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\stage</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -163,13 +165,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\character;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\core;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\graphic;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\parameter;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\scene;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\gimmick;C:\Users\woo09\Desktop\DXlibrary\BloodEscape\source\stage</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\stage</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\woo09\Documents\DXlibrary\DxLib_VC\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
