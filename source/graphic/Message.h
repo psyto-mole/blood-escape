@@ -84,9 +84,7 @@ extern MessagePattern displayMessagePattern;
 #define StringPressEnter	"Press Enter"	// Press Enterの文字列
 
 
-
-/* === リザルト画面 === */
-#define ResultGratulateMessage	"Congratulation!!"			// お祝いメッセージ
+/* === チュートリアル画面 === */
 
 
 
@@ -94,6 +92,11 @@ extern MessagePattern displayMessagePattern;
 #define StringGameOver	"Game Over"			// ゲームオーバー画面のタイトル
 #define StringRetry		"リトライ"			// 「リトライ」
 #define StringBackTitle	"タイトルに戻る"	// 「タイトルに戻る」
+
+
+
+/* === クリア画面 === */
+#define StringResultMessage	"Congratulation!!"	// お祝いメッセージ
 
 
 
