@@ -43,12 +43,12 @@ int Map::Load(const char* csvPath)
     char line[1024];  // csvファイルから読み込んだ文字列を格納する配列
 
     /* +++ csvファイルを読み込みモードで開く +++ */
-    if ((fp = fopen(csvPath, "r")) == NULL)     // csvファイルへのポインタがNULL(ファイルを開けなかった)なら
+    if ((fopen_s(&fp, csvPath, "r")) != 0)     // csvファイルへを開けなかったら
     {
         /* +++ メッセージボックスでエラーの発生を報告 +++ */
         MessageBox(
             GetMainWindowHandle(),
-            "Cannot open the map csv path.",
+            "Cannot open the map csv file.",
             "File Error",
             MB_OK
         );
@@ -61,6 +61,7 @@ int Map::Load(const char* csvPath)
     {
         int x = 0;      // 2次元配列の行番号
         char* token;    // 部分文字列を格納するポインタ
+        char* context;  // トークンの位置を保持する変数
 
         line[strcspn(line, "\r\n")] = '\0';     // 改行を削除(文字列の改行までの長さを取得しインデックスとして指定)
 
@@ -83,7 +84,8 @@ int Map::Load(const char* csvPath)
         //* 0
         //* 0
         //* 0
-        token = strtok(line, ",");  // カンマまでの部分文字列を取得
+        context = NULL;             // トークンの位置を初期化
+        token = strtok_s(line, ",", &context);  // カンマまでの部分文字列を取得
 
         /* +++ 部分文字列をマップデータとして格納 +++ */
         while (token != NULL)   // 部分文字列が存在する限りループ
@@ -97,7 +99,7 @@ int Map::Load(const char* csvPath)
 
             x++;    // x(行番号)を1加算
 
-            token = strtok(NULL, ",");  // 次のカンマまでの部分文字列を取得
+            token = strtok_s(NULL, ",", &context);  // 次のカンマまでの部分文字列を取得
         }
 
 
