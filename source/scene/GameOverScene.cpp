@@ -7,7 +7,7 @@
 #include "Font.h"
 #include "Geometry.h"
 #include "Message.h"
-#include "RectrParameter.h"
+#include "RectParameter.h"
 
 
 /* --- コンストラクタ --- */
