@@ -18,11 +18,15 @@ private:
 
     Fade fadeManager;   // フェード処理を管理する変数
 
+    bool gameEnd;   // ゲームの起動状態を管理する変数
+
 public:
     void Init();    // シーンの初期化メソッド
-    void Update();  // シーンの更新メソッド
+    void Update();   // シーンの更新メソッド
     void Draw();    // シーンの描画メソッド
     void End();     // シーンの終了メソッド
+
+    bool IsGameEnd();   // ゲームの終了を確認するためのメソッド
 
 private:
     void RequestSceneChange(const SceneTransition& transition);             // シーン遷移要請メソッド(切り換えは行わない)

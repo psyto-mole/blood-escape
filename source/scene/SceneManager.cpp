@@ -17,6 +17,8 @@ void SceneManager::Init()
     fadeManager.FadeInit(255, 10);  // フェードの透明度とスピードを設定
     fadeManager.SetStateFadeIn();   // フェードの状態を設定
 
+    gameEnd = false;
+
     return;
 }
 
@@ -87,6 +89,17 @@ void SceneManager::End()
     nextScene.reset();  // 次のシーンの割り当てをなくす(nullptrにする)
 
     return;
+}
+
+/* --- ゲームの終了を確認するためのメソッド-- - */
+bool SceneManager::IsGameEnd()
+{
+    if (gameEnd)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 /* --- シーン遷移要請メソッド --- */
