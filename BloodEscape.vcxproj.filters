@@ -125,7 +125,7 @@
     <ClInclude Include="source\parameter\PointParameter.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="source\parameter\RectrParameter.h">
+    <ClInclude Include="source\parameter\RectParameter.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="source\core\SaveLoad.h">

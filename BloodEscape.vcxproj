@@ -66,7 +66,7 @@
     <ClInclude Include="source\parameter\CircleParameter.h" />
     <ClInclude Include="source\parameter\LineParameter.h" />
     <ClInclude Include="source\parameter\PointParameter.h" />
-    <ClInclude Include="source\parameter\RectrParameter.h" />
+    <ClInclude Include="source\parameter\RectParameter.h" />
     <ClInclude Include="source\scene\ClearScene.h" />
     <ClInclude Include="source\scene\Fade.h" />
     <ClInclude Include="source\scene\GameOverScene.h" />
@@ -134,11 +134,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map;.\\source</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
     </Link>
@@ -166,11 +166,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map;.\\source</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
     </Link>

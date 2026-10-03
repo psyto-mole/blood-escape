@@ -23,7 +23,7 @@ int Game_Update(SceneManager* );	// ゲームの処理の更新を行う関数
 void Game_End(SceneManager* );		// ゲームの終了処理を行う関数
 
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	SetOutApplicationLogValidFlag(false);						// Log.txtの出力の拒否
 	ChangeWindowMode(true);										// ウィンドウモードに設定
@@ -170,10 +170,15 @@ int Game_Update(SceneManager* sceneManager)
 			MB_OK
 		);
 
-		return -1;	// -1を返す(初期化失敗)
+		return -1;	// -1を返す(更新失敗)
 	}
 
 	sceneManager->Update();	// シーンの更新
+
+	if (sceneManager->IsGameEnd())	// ゲームが終了したら
+	{
+		return -1;	// -1を返す
+	}
 
 	return 0;
 }
