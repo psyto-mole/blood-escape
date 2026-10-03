@@ -123,7 +123,7 @@ bool TextPrinter::IsCurrentMessageFinished() const
 {
 	if (IsAllMessageFinished())
 	{
-		return;
+		return true;
 	}
 
 	if (displayPosition >= messageMatrix[currentMessage].size())
