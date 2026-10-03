@@ -4,8 +4,8 @@
 
 
 /* +++ 横書きフォント +++ */
-int CathodeTube_30_1;		// (サイズ30、太さ1)
-int CathodeTube_100_9;	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
+int KHDot_30_1;		// KHドットフォント(サイズ30、太さ1)
+int KHDot_100_9;	// KHドットフォント(サイズ100、太さ9)
 
 /* +++ 縦書きフォント +++ */
 //int V_30_1;	// (サイズ30、太さ)
@@ -15,19 +15,19 @@ int Font_Init()
 {
 	/* === フォントデータの作成 === */
 	/* +++ 横書きフォント +++ */
-	CathodeTube_30_1 = LoadFontDataToHandle(PathCathodeTubeS30T1B1, 0);		// ブラウン管8ビット8ドットフォント(サイズ30、太さ1)
-	CathodeTube_100_9 = LoadFontDataToHandle(PathCathodeTubeS100T9B1, 0);	// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
+	KHDot_30_1	= LoadFontDataToHandle(PathKHDotS30T1B1, 0);	// KHドットフォント(サイズ30、太さ1)
+	KHDot_100_9 = LoadFontDataToHandle(PathKHDotS100T9B1, 0);	// KHドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */
 	//V_30_1 = CreateFontToHandle("@MS 明朝", 30, 1, DX_FONTTYPE_ANTIALIASING);	// (サイズ30、太さ1)
 
 
-	if (CathodeTube_100_9 == -1)	// フォントデータが作成できていなかったら
+	if (KHDot_100_9 == -1)	// フォントデータが作成できていなかったら
 	{
 		/* +++ エラーメッセージを出力 +++ */
 		MessageBox(
 			GetMainWindowHandle(),
-			"Cannot load CathodeTube_100_9",
+			"Cannot load KHDot_100_9",
 			"Font Error",
 			MB_OK
 		);
@@ -35,12 +35,12 @@ int Font_Init()
 		return -1;	// 初期化失敗(-1を返す)
 	}
 
-	if (CathodeTube_30_1 == -1)		// フォントデータが作成できていなかったら
+	if (KHDot_30_1 == -1)	// フォントデータが作成できていなかったら
 	{
 		/* +++ エラーメッセージを出力 +++ */
 		MessageBox(
 			GetMainWindowHandle(),
-			"Cannot load CathodeTube_30_1",
+			"Cannot load KHDot_30_1",
 			"Font Error",
 			MB_OK
 		);
@@ -56,8 +56,8 @@ void Font_End()
 {
 	/* === フォントデータをメモリから削除 === */
 	/* +++ 横書きフォント +++ */
-	DeleteFontToHandle(CathodeTube_30_1);		// ブラウン管8ビット8ドットフォント(サイズ30、太さ1)
-	DeleteFontToHandle(CathodeTube_100_9);		// ブラウン管8ビット8ドットフォント(サイズ100、太さ9)
+	DeleteFontToHandle(KHDot_30_1);		// KHドットフォント(サイズ30、太さ1)
+	DeleteFontToHandle(KHDot_100_9);	// KHドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */
 	//DeleteFontToHandle(V_30_1);		// (サイズ30、太さ1)
