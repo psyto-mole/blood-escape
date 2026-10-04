@@ -50,8 +50,7 @@ void GameOverScene::Update()
                 selectedIndex = NumberOfGameoverOption;  // 選択肢の値をMaxにする(最後の選択肢にする)
             }
         }
-
-        if (Key_Check_Click(KEY_INPUT_RIGHT))   // 右キーがクリックされたら
+        else if (Key_Check_Click(KEY_INPUT_RIGHT))   // 右キーがクリックされたら
         {
             selectedIndex++;    // 選択肢の値を1増やす(次の選択肢にする)
 
@@ -65,13 +64,13 @@ void GameOverScene::Update()
         {
             transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
-            if (selectedIndex == 0)     // 選択肢が0(リトライ)なら
+            if (selectedIndex == 1)     // 選択肢が1(リトライ)なら
             {
                 transition.sceneType = SceneType::Stage;    // 遷移情報のシーンの種類をステージにする
 
                 transition.stageNum = gameoverNumber;  // 遷移情報のステージ番号にゲームオーバーになったステージの番号を代入
             }
-            else       // 選択肢が1(タイトル)の場合
+            else if(selectedIndex == 2)     // 選択肢が1(タイトル)の場合
             {
                 transition.sceneType = SceneType::Title;    // 遷移情報のシーンの種類をステージにする
             }
@@ -86,23 +85,23 @@ void GameOverScene::Update()
 /* --- ゲームオーバーシーンの描画メソッド --- */
 void GameOverScene::Draw()
 {
-    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Violet, CathodeTube_100_9, "%s", StringGameOver);
+    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Violet, KHDot_100_9, "%s", StringGameOver);
 
     if (selectedIndex == 1)
     {
         DrawRect(option1Button, Color_White, true, 1);
         DrawRect(option2Button, Color_White, false, 1);
 
-        DrawFormatStringToHandleAlign(GameOverOption1CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_Black, CathodeTube_30_1, "%s", StringRetry);
-        DrawFormatStringToHandleAlign(GameOverOption2CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_White, CathodeTube_30_1, "%s", StringRetry);
+        DrawFormatStringToHandleAlign(GameOverOption1CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_Black, KHDot_30_1, "%s", StringRetry);
+        DrawFormatStringToHandleAlign(GameOverOption2CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", StringBackTitle);
     }
     else if (selectedIndex == 2)
     {
         DrawRect(option1Button, Color_White, false, 1);
         DrawRect(option2Button, Color_White, true, 1);
 
-        DrawFormatStringToHandleAlign(GameOverOption1CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_White, CathodeTube_30_1, "%s", StringRetry);
-        DrawFormatStringToHandleAlign(GameOverOption1CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_Black, CathodeTube_30_1, "%s", StringRetry);
+        DrawFormatStringToHandleAlign(GameOverOption1CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", StringRetry);
+        DrawFormatStringToHandleAlign(GameOverOption2CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_Black, KHDot_30_1, "%s", StringBackTitle);
     }
 
     return;
