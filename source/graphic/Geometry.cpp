@@ -1,6 +1,7 @@
 /* === 幾何学処理のソースファイル === */
 
 #include "Geometry.h"
+#include "GameManager.h"
 #include "PointParameter.h"
 #include "LineParameter.h"
 #include "RectParameter.h"
