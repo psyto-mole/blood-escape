@@ -6,6 +6,9 @@
 #include "StageScene.h"
 #include "GameOverScene.h"
 #include "ClearScene.h"
+#include "Key.h"
+#include "Color.h"
+#include "Font.h"
 
 /* --- シーンの初期化メソッド --- */
 void SceneManager::Init()
@@ -47,6 +50,11 @@ void SceneManager::Update()
     currentScene->Update();     // 現在のシーンの更新メソッドを実行
 
     SceneTransition transition = currentScene->GetTransition();     // 現在のシーンから遷移情報を取得
+
+    if (Key_Check_Click(KEY_INPUT_Q))
+    {
+        gameEnd = true;
+    }
 
     if (transition.transitionType == TransitionType::None)  // 遷移しない場合
     {
