@@ -40,6 +40,6 @@
 /* === ゲームオーバーシーン === */
 #define GameOverOptionWidth		500
 #define GameOverOptionHeight	100	
-#define GameOverOption1CenterX	(GameWindowWidth / 2  - GameOverOptionWidth / 2 + 100)
-#define GameOverOption2CenterX	(GameWindowWidth / 2  + GameOverOptionWidth / 2 - 100)
+#define GameOverOption1CenterX	(GameWindowWidth / 2  - GameOverOptionWidth / 2 - 100)
+#define GameOverOption2CenterX	(GameWindowWidth / 2  + GameOverOptionWidth / 2 + 100)
 #define GameOverOptionCenterY	(GameWindowHeight / 2 + 300)
