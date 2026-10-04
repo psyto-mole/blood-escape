@@ -55,7 +55,7 @@ void TutorialScene::Update()
 /* --- チュートリアルシーンの描画メソッド --- */
 void TutorialScene::Draw()
 {
-    textPrinter.Draw(100, 900, Color_White, CathodeTube_30_1);  // 文章を文字送り機能付きで表示
+    textPrinter.Draw(100, 900, Color_White, KHDot_30_1);  // 文章を文字送り機能付きで表示
 
     return;
 }

@@ -39,8 +39,8 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
     /* +++ ï`âÊèàóù +++ */
-    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Red, CathodeTube_100_9, "%s", StringGameTitle);
-    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 600, FAlign_AllCenter, Color_White, CathodeTube_30_1, "%s", StringPressEnter);
+    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Red, KHDot_100_9, "%s", StringGameTitle);
+    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 600, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", StringPressEnter);
 
     return;
 }

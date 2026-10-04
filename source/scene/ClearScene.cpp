@@ -35,7 +35,7 @@ void ClearScene::Update()
 /* --- クリアシーンの描画メソッド --- */
 void ClearScene::Draw()
 {
-	DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_White, CathodeTube_100_9, "%s", StringResultMessage);	// お祝いメッセージを描画
+	DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_White, KHDot_100_9, "%s", StringResultMessage);	// お祝いメッセージを描画
 
 	return;
 }
