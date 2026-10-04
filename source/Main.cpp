@@ -180,6 +180,8 @@ int Game_Update(SceneManager* sceneManager)
 		return -1;	// -1‚ğ•Ô‚·
 	}
 
+	sceneManager->Draw();
+
 	return 0;
 }
 
