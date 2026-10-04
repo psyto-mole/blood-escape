@@ -17,6 +17,7 @@ protected:
 public:
 	Player();	// コンストラクタ
 
+	void Init() override;		// プレイヤーの初期化メソッド
 	void Update() override;		// プレイヤーの更新メソッド
 	void Draw() override;		// プレイヤーの描画メソッド
 

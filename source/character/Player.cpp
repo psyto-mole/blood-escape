@@ -13,6 +13,17 @@ Player::Player()
 	inputVector = 5;
 }
 
+/* --- プレイヤーの初期化メソッド-- - */
+void Player::Init()
+{
+	hp = PlayerMaxHP;
+	speed = PlayerSpeed;
+
+	inputVector = 5;
+
+	return;
+}
+
 /* --- プレイヤーの更新メソッド --- */
 void Player::Update()
 {
