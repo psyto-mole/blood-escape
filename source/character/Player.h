@@ -14,6 +14,10 @@ class Player : public Character
 protected:
 	int inputVector;	// プレイヤーの入力方向を格納する変数
 
+	int playerAnimation[9];		// プレイヤーのアニメーションの画像ハンドルの配列
+
+	bool isBleeding;	// 出血状態
+
 public:
 	Player();	// コンストラクタ
 
@@ -22,4 +26,8 @@ public:
 	void Draw() override;		// プレイヤーの描画メソッド
 
 	void MovePlayer();	// プレイヤーの移動メソッド
+
+private:
+	void PlayerAnimation();		// プレイヤーのアニメーションメソッド
+
 };

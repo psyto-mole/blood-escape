@@ -1,16 +1,33 @@
 /* === プレイヤークラスのソースファイル === */
 
 #include "Player.h"
+#include"Image.h"
 #include "Key.h"
+#include "Geometry.h"
+#include "Animation.h"
 
 
 /* --- コンストラクタ --- */
 Player::Player()
 {
-	hp = PlayerMaxHP;
-	speed = PlayerSpeed;
+	positionX = 0;	// キャラクターの現在位置のX座標の初期化
+	positionY = 0;	// キャラクターの現在位置のY座標の初期化
 
-	inputVector = 5;
+	hp = PlayerMaxHP;		// HPを初期化
+	speed = PlayerSpeed;	// 移動速度を初期化
+
+	isBleeding = false;
+
+	inputVector = 5;		// 入力方向を5(ニュートラル)に設定
+
+	// アニメーション画像を読み込み
+	LoadDivGraph(
+		PlayerAnimationPath, 
+		PlayerAnimationDivNum, 
+		PlayerAnimationDivX, PlayerAnimationDivY, 
+		PlayerAnimationSizeX, PlayerAnimationSizeY, 
+		playerAnimation
+	);
 }
 
 /* --- プレイヤーの初期化メソッド-- - */
@@ -18,6 +35,8 @@ void Player::Init()
 {
 	hp = PlayerMaxHP;
 	speed = PlayerSpeed;
+
+	isBleeding = false;
 
 	inputVector = 5;
 
@@ -27,20 +46,24 @@ void Player::Init()
 /* --- プレイヤーの更新メソッド --- */
 void Player::Update()
 {
+	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
+
+	MovePlayer();
+
 	return;
 }
 
 /* --- プレイヤーの描画メソッド-- - */
 void Player::Draw()
 {
+	PlayerAnimation();	// アニメーションを描画
+
 	return;
 }
 
 /* --- プレイヤーの移動メソッド --- */
 void Player::MovePlayer()
-{
-	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
-	
+{	
 	/* +++ 入力方向に応じてキャラクターを移動 +++ */
 	switch (inputVector)
 	{
@@ -83,6 +106,84 @@ void Player::MovePlayer()
 		/* +++ 9方向(右上)なら +++ */
 
 		MoveCharacter(speed, -1 * speed);	// 右上に移動
+		break;
+	default:
+		break;
+	}
+
+	return;
+}
+
+/* --- プレイヤーのアニメーションメソッド-- - */
+void Player::PlayerAnimation()
+{
+	POINT position;
+
+	position = GetPoint(positionX, positionY);	// 座標をPOINT型で取得
+
+	/* +++ 入力方向に応じてキャラクターを描画 +++ */
+	switch (inputVector)
+	{
+	case 1:
+		/* +++ 1方向(左下)なら +++ */
+
+		DrawTurnGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+		break;
+	case 2:
+		/* +++ 2方向(下)なら +++ */
+
+		if (isBleeding)
+		{
+			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[2], FALSE);
+		}
+		else
+		{
+			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[1], FALSE);
+		}
+		break;
+	case 3:
+		/* +++ 3方向(右下)なら +++ */
+
+		if (isBleeding)
+		{
+			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[4], FALSE);
+		}
+		else
+		{
+			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+		}
+		break;
+	case 4:
+		/* +++ 4方向(左)なら +++ */
+
+		DrawTurnGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+		break;
+	case 6:
+		/* +++ 6方向(右)なら +++ */
+
+		if (isBleeding)
+		{
+			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[6], FALSE);
+		}
+		else
+		{
+			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+		}
+		break;
+	case 7:
+		/* +++ 7方向(左上)なら +++ */
+
+		DrawTurnGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
+		break;
+	case 8:
+		/* +++ 8方向(上)なら +++ */
+
+		DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[8], FALSE);
+		break;
+	case 9:
+		/* +++ 9方向(右上)なら +++ */
+
+		DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
 		break;
 	default:
 		break;
