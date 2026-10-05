@@ -25,7 +25,11 @@ public:
 	void Update(Map* mapManager, GimmickManager* gimmickManager) override;	// プレイヤーの更新メソッド
 	void Draw() override;		// プレイヤーの描画メソッド
 
-	void MovePlayer();	// プレイヤーの移動メソッド
+	void MovePlayer();	// プレイヤーの移動メソッド(現在位置は変更しない)
+
+	void ProcessBleeding();		// 出血の処理メソッド
+	void SetBleedingTrue();		// 出血状態にするメソッド
+	void SetBleedingFalse();	// 出血状態を解除するメソッド
 
 private:
 	void PlayerAnimation();		// プレイヤーのアニメーションメソッド

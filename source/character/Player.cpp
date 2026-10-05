@@ -13,7 +13,8 @@ Player::Player()
 	SetCharacterNowPosition(0, 0);		// キャラクターの現在位置のX座標の初期化
 	SetCharacterNextPosition(0, 0);		// キャラクターの現在位置のY座標の初期化
 
-	hp = PlayerMaxHP;		// HPを初期化
+	maxHP = PlayerMaxHP;	// 最大HPを初期化
+	hp = maxHP;				// HPを最大HPに設定
 	speed = PlayerSpeed;	// 移動速度を初期化
 
 	isBleeding = false;
@@ -33,7 +34,7 @@ Player::Player()
 /* --- プレイヤーの初期化メソッド-- - */
 void Player::Init()
 {
-	hp = PlayerMaxHP;
+	hp = maxHP;
 	speed = PlayerSpeed;
 
 	isBleeding = false;
@@ -48,12 +49,14 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 {
 	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
 
-	MovePlayer();
+	MovePlayer();	// 移動処理を行う(現在位置はまだ変更しない)
 
 	if (mapManager->GetTile(nextPosition) == 1)		// 移動後の座標が侵入可能なら
 	{
-		SetCharacterNowPosition(nextPosition);
+		SetCharacterNowPosition(nextPosition);	// 現在位置を移動後の座標に変更
 	}
+
+	ProcessBleeding();	// 出血の処理を行う
 
 	return;
 }
@@ -115,6 +118,33 @@ void Player::MovePlayer()
 	default:
 		break;
 	}
+
+	return;
+}
+
+/* --- 出血の処理メソッド-- - */
+void Player::ProcessBleeding()
+{
+	if (isBleeding)		// 出血状態なら
+	{
+		Calc_HP(1, TRUE);	// 1のスリップダメージを受ける
+	}
+
+	return;
+}
+
+/* --- 出血状態にするメソッド-- - */
+void Player::SetBleedingTrue()
+{
+	isBleeding = true;	// 出血状態にする
+
+	return;
+}
+
+/* --- 出血状態を解除するメソッド-- - */
+void Player::SetBleedingFalse()
+{
+	isBleeding = false;		// 出血状態にする
 
 	return;
 }
