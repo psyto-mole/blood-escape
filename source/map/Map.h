@@ -29,6 +29,7 @@ public:
     void Draw() const;  // マップの描画を行うメソッド
 
     int GetTile(int x, int y) const;    // 引数で渡した位置のタイルを取得するメソッド
+    int GetTile(POINT position) const;  // 引数で渡した位置のタイルを取得するメソッド(引数がPOINT型)
     int GetWidth() const;               // マップの横幅を取得するメソッド
     int GetHeight() const;              // マップの縦幅を取得するメソッド
 };

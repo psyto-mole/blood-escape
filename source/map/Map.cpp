@@ -224,6 +224,17 @@ int Map::GetTile(int x, int y) const
     return mapData[y][x];   // マップデータの該当の位置のデータを返す
 }
 
+/* --- 引数で渡した位置のタイルを取得するメソッド(引数がPOINT型) -- - */
+int Map::GetTile(POINT position) const
+{
+    if (position.x < 0 || position.x >= width || position.y < 0 || position.y >= height)    // 引数で受け取った位置がマップの範囲外なら
+    {
+        return -1;  // -1を返す
+    }
+
+    return mapData[position.y][position.x];   // マップデータの該当の位置のデータを返す
+}
+
 /* --- マップの横幅を取得するメソッド --- */
 int Map::GetWidth() const
 {
