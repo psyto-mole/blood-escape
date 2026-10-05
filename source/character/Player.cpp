@@ -149,6 +149,16 @@ void Player::SetBleedingFalse()
 	return;
 }
 
+/* --- 被ダメージのメソッド-- - */
+void Player::ProcessDamage(int value)
+{
+	Calc_HP(value, TRUE);	// HPを減らす
+
+	SetBleedingTrue();	// 出血状態にする
+
+	return;
+}
+
 /* --- プレイヤーのアニメーションメソッド-- - */
 void Player::PlayerAnimation()
 {

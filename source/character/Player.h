@@ -27,9 +27,12 @@ public:
 
 	void MovePlayer();	// プレイヤーの移動メソッド(現在位置は変更しない)
 
-	void ProcessBleeding();		// 出血の処理メソッド
-	void SetBleedingTrue();		// 出血状態にするメソッド
-	void SetBleedingFalse();	// 出血状態を解除するメソッド
+	void ProcessBleeding();			// 出血の処理メソッド
+	void SetBleedingTrue();			// 出血状態にするメソッド
+	void SetBleedingFalse();		// 出血状態を解除するメソッド
+	void ProcessDamage(int value);	// 被ダメージのメソッド
+
+	void TransfusionBlood();	// 輸血の処理メソッド
 
 private:
 	void PlayerAnimation();		// プレイヤーのアニメーションメソッド
