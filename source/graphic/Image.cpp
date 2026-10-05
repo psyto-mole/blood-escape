@@ -33,45 +33,45 @@ void Image_End()
 	return;
 }
 
-/* --- キャラクターの描画関数 --- */
-//void DrawExtendGraphConditional(int x1, int y1, int x2, int y2, int characterNumber, bool isPlayer)
-//{
-//	/* +++ キャラクターの種類に応じてキャラクター画像を表示 +++ */
-//	switch (characterNumber)
-//	{
-//	case 1:
-//		/* +++ ロボットの場合 +++ */
-//
-//		DrawExtendGraph(x1, y1, x2, y2, RobotImageHandle, true);		// 画面左側に描画
-//		break;
-//	case 2:
-//		/* +++ 勇者の場合 +++ */
-//
-//		DrawExtendGraph(x1, y1, x2, y2, HumanImageHandle, true);	// 画面左側に描画
-//		break;
-//	case 3:
-//		/* +++ ドラゴンの場合 +++ */
-//
-//		DrawExtendGraph(x1, y1, x2, y2, DragonImageHandle, true);	// 画面左側に描画
-//		break;
-//	case 4:
-//		/* +++ ダイトメアの場合 +++ */
-//
-//		DrawExtendGraph(x1, y1, x2, y2, DightmareImageHandle, true);	// 画面左側に描画
-//		break;
-//	case 5:
-//		/* +++ キューキャラクターの場合 +++ */
-//
-//		DrawExtendGraph(x1, y1, x2, y2, NonameImageHandle, true);	// 画面左側に描画
-//		break;
-//	case 99:
-//		/* +++ Sheppキャラクターの場合 +++ */
-//
-//		DrawExtendGraph(x1, y1, x2, y2, SheppImageHandle, true);	// 画面左側に描画
-//		break;
-//	default:
-//		break;
-//	}
-//
-//	return;
-//}
+/* --- 画像を中心座標に基づき描画 --- */
+void DrawGraphOnPoint(POINT center, int width, int height, int imageHandle, int transFlag)
+{
+	int upperLeftX, upperLeftY;		// 画像の左上の座標
+
+	upperLeftX = center.x - (width / 2);	// 画像の左上のX座標を計算
+	upperLeftY = center.y - (height / 2);	// 画像の左上のY座標を計算
+
+	DrawGraph(upperLeftX, upperLeftY, imageHandle, transFlag);	// 画像を描画
+
+	return;
+}
+
+/* --- 画像を中心座標に基づき反転して描画-- - */
+void DrawTurnGraphOnPoint(POINT center, int width, int height, int imageHandle, int transFlag)
+{
+	int upperLeftX, upperLeftY;		// 画像の左上の座標
+
+	upperLeftX = center.x - (width / 2);	// 画像の左上のX座標を計算
+	upperLeftY = center.y - (height / 2);	// 画像の左上のY座標を計算
+
+	DrawTurnGraph(upperLeftX, upperLeftY, imageHandle, transFlag);	// 画像を左右反転して描画
+
+	return;
+}
+
+/* --- 画像を中心座標をもとに拡大・縮小描画する関数-- - */
+void DrawExtendGraphOnPoint(POINT center, int width, int height, int imageHandle, int transFlag)
+{
+	int upperLeftX, upperLeftY;		// 画像の左上の座標
+	int lowerRightX, lowerRightY;	// 画像の右下の座標
+
+	upperLeftX = center.x - (width / 2);	// 画像の左上のX座標を計算
+	upperLeftY = center.y - (height / 2);	// 画像の左上のY座標を計算
+
+	lowerRightX = center.x + (width / 2) + 1;	// 画像の右下のX座標を計算
+	lowerRightY = center.y + (height / 2) + 1;	// 画像の右下のY座標を計算
+
+	DrawExtendGraph(upperLeftX, upperLeftY, lowerRightX, lowerRightY, imageHandle, transFlag);	// 画像を描画(拡大縮小に対応)
+
+	return;
+}
