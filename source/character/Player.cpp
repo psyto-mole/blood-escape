@@ -10,8 +10,8 @@
 /* --- コンストラクタ --- */
 Player::Player()
 {
-	positionX = 0;	// キャラクターの現在位置のX座標の初期化
-	positionY = 0;	// キャラクターの現在位置のY座標の初期化
+	SetCharacterNowPosition(0, 0);		// キャラクターの現在位置のX座標の初期化
+	SetCharacterNextPosition(0, 0);		// キャラクターの現在位置のY座標の初期化
 
 	hp = PlayerMaxHP;		// HPを初期化
 	speed = PlayerSpeed;	// 移動速度を初期化
@@ -44,11 +44,16 @@ void Player::Init()
 }
 
 /* --- プレイヤーの更新メソッド --- */
-void Player::Update()
+void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 {
 	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
 
 	MovePlayer();
+
+	if (mapManager->GetTile(nextPosition) == 1)		// 移動後の座標が侵入可能なら
+	{
+		SetCharacterNowPosition(nextPosition);
+	}
 
 	return;
 }
@@ -117,28 +122,24 @@ void Player::MovePlayer()
 /* --- プレイヤーのアニメーションメソッド-- - */
 void Player::PlayerAnimation()
 {
-	POINT position;
-
-	position = GetPoint(positionX, positionY);	// 座標をPOINT型で取得
-
 	/* +++ 入力方向に応じてキャラクターを描画 +++ */
 	switch (inputVector)
 	{
 	case 1:
 		/* +++ 1方向(左下)なら +++ */
 
-		DrawTurnGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+		DrawTurnGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
 		break;
 	case 2:
 		/* +++ 2方向(下)なら +++ */
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[2], FALSE);
+			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[2], FALSE);
 		}
 		else
 		{
-			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[1], FALSE);
+			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[1], FALSE);
 		}
 		break;
 	case 3:
@@ -146,44 +147,44 @@ void Player::PlayerAnimation()
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[4], FALSE);
+			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[4], FALSE);
 		}
 		else
 		{
-			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
 		}
 		break;
 	case 4:
 		/* +++ 4方向(左)なら +++ */
 
-		DrawTurnGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+		DrawTurnGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
 		break;
 	case 6:
 		/* +++ 6方向(右)なら +++ */
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[6], FALSE);
+			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[6], FALSE);
 		}
 		else
 		{
-			DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
 		}
 		break;
 	case 7:
 		/* +++ 7方向(左上)なら +++ */
 
-		DrawTurnGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
+		DrawTurnGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
 		break;
 	case 8:
 		/* +++ 8方向(上)なら +++ */
 
-		DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[8], FALSE);
+		DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[8], FALSE);
 		break;
 	case 9:
 		/* +++ 9方向(右上)なら +++ */
 
-		DrawGraphOnPoint(position, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
+		DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
 		break;
 	default:
 		break;
