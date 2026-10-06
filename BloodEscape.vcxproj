@@ -45,7 +45,6 @@
     <ClCompile Include="source\scene\StageScene.cpp" />
     <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\scene\TutorialScene.cpp" />
-    <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\character\Character.h" />
@@ -78,7 +77,6 @@
     <ClInclude Include="source\scene\StageScene.h" />
     <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\scene\TutorialScene.h" />
-    <ClInclude Include="source\ui\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
