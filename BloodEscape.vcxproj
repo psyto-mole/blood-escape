@@ -45,6 +45,7 @@
     <ClCompile Include="source\scene\StageScene.cpp" />
     <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\scene\TutorialScene.cpp" />
+    <ClCompile Include="source\ui\StageUI.cpp" />
     <ClCompile Include="source\ui\UI.cpp" />
     <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
@@ -79,6 +80,7 @@
     <ClInclude Include="source\scene\StageScene.h" />
     <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\scene\TutorialScene.h" />
+    <ClInclude Include="source\ui\StageUI.h" />
     <ClInclude Include="source\ui\UI.h" />
     <ClInclude Include="source\ui\UIManager.h" />
   </ItemGroup>
