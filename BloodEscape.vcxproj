@@ -35,8 +35,6 @@
     <ClCompile Include="source\graphic\Geometry.cpp" />
     <ClCompile Include="source\graphic\Image.cpp" />
     <ClCompile Include="source\graphic\Message.cpp" />
-    <ClCompile Include="source\graphic\UI.cpp" />
-    <ClCompile Include="source\graphic\UIManager.cpp" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\map\Map.cpp" />
     <ClCompile Include="source\scene\ClearScene.cpp" />
@@ -47,6 +45,8 @@
     <ClCompile Include="source\scene\StageScene.cpp" />
     <ClCompile Include="source\scene\TitleScene.cpp" />
     <ClCompile Include="source\scene\TutorialScene.cpp" />
+    <ClCompile Include="source\ui\UI.cpp" />
+    <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\character\Character.h" />
@@ -66,8 +66,6 @@
     <ClInclude Include="source\graphic\Geometry.h" />
     <ClInclude Include="source\graphic\Image.h" />
     <ClInclude Include="source\graphic\Message.h" />
-    <ClInclude Include="source\graphic\UI.h" />
-    <ClInclude Include="source\graphic\UIManager.h" />
     <ClInclude Include="source\map\Map.h" />
     <ClInclude Include="source\parameter\CircleParameter.h" />
     <ClInclude Include="source\parameter\LineParameter.h" />
@@ -81,6 +79,8 @@
     <ClInclude Include="source\scene\StageScene.h" />
     <ClInclude Include="source\scene\TitleScene.h" />
     <ClInclude Include="source\scene\TutorialScene.h" />
+    <ClInclude Include="source\ui\UI.h" />
+    <ClInclude Include="source\ui\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -140,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map;.\\source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map;.\\source;.\\source\\ui</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -172,7 +172,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map;.\\source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\\DXlibrary\\DxLib_VC\\プロジェクトに追加すべきファイル_VC用;.\\source\\character;.\\source\\core;.\\source\\graphic;.\\source\\parameter;.\\source\\scene;.\\source\\gimmick;.\\source\\map;.\\source;.\\source\\ui</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
