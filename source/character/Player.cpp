@@ -1,9 +1,12 @@
 /* === プレイヤークラスのソースファイル === */
 
 #include "Player.h"
-#include"Image.h"
+#include "Image.h"
 #include "Key.h"
+#include "Color.h"
+#include "Font.h"
 #include "Geometry.h"
+#include "RectParameter.h"
 #include "Animation.h"
 
 
@@ -37,6 +40,9 @@ void Player::Init()
 	hp = maxHP;
 	speed = PlayerSpeed;
 
+	maxHPBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + maxHP + 1, PlayerHPBarLowerRightY);
+	hpBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + hp + 1, PlayerHPBarLowerRightY);
+
 	isBleeding = false;
 
 	inputVector = 5;
@@ -58,6 +64,8 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 
 	ProcessBleeding();	// 出血の処理を行う
 
+	hpBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + hp + 1, PlayerHPBarLowerRightY);
+
 	return;
 }
 
@@ -65,6 +73,14 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 void Player::Draw()
 {
 	PlayerAnimation();	// アニメーションを描画
+
+	DrawFormatStringToHandleAlign(							// 「HP/最大HP」を描画
+		PlayerHPBarUpperLeftX - 50, PlayerHPBarCenterY,
+		FAlign_AllCenter, Color_White, KHDot_30_1,
+		"%d/%d", hp, maxHP
+	);
+	DrawRect(maxHPBar, Color_Purple, true, 1);	// 最大HPを描画
+	DrawRect(hpBar, Color_Red, true, 1);		// HPを描画
 
 	return;
 }
@@ -122,6 +138,22 @@ void Player::MovePlayer()
 	return;
 }
 
+/* --- ギミックに作用するメソッド-- - */
+void Player::InteractGimmick(Gimmick* gimmick)
+{
+
+
+	return;
+}
+
+/* --- 自傷(出血ギミックに作用する)メソッド-- - */
+void Player::SelfHarm(Gimmick* gimmick)
+{
+
+
+	return;
+}
+
 /* --- 出血の処理メソッド-- - */
 void Player::ProcessBleeding()
 {
@@ -150,7 +182,7 @@ void Player::SetBleedingFalse()
 }
 
 /* --- 被ダメージのメソッド-- - */
-void Player::ProcessDamage(int value)
+void Player::TakeDamage(int value)
 {
 	Calc_HP(value, TRUE);	// HPを減らす
 

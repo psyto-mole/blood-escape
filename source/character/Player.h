@@ -3,6 +3,7 @@
 
 #include "DxLib.h"
 #include "Character.h"
+#include "PlayerUI.h"
 
 
 #define PlayerMaxHP	100		// プレイヤーの最大HP
@@ -18,6 +19,9 @@ protected:
 
 	bool isBleeding;	// 出血状態
 
+	RECT maxHPBar;	// 最大HPバーの矩形
+	RECT hpBar;		// HPバーの矩形
+
 public:
 	Player();	// コンストラクタ
 
@@ -25,14 +29,14 @@ public:
 	void Update(Map* mapManager, GimmickManager* gimmickManager) override;	// プレイヤーの更新メソッド
 	void Draw() override;		// プレイヤーの描画メソッド
 
-	void MovePlayer();	// プレイヤーの移動メソッド(現在位置は変更しない)
+	void MovePlayer();							// プレイヤーの移動メソッド(現在位置は変更しない)
+	void InteractGimmick(Gimmick* gimmick);		// ギミックに作用するメソッド
+	void SelfHarm(Gimmick* gimmick);			// 自傷(出血ギミックに作用する)メソッド
 
 	void ProcessBleeding();			// 出血の処理メソッド
 	void SetBleedingTrue();			// 出血状態にするメソッド
 	void SetBleedingFalse();		// 出血状態を解除するメソッド
-	void ProcessDamage(int value);	// 被ダメージのメソッド
-
-	void TransfusionBlood();	// 輸血の処理メソッド
+	void TakeDamage(int value);		// 被ダメージのメソッド
 
 private:
 	void PlayerAnimation();		// プレイヤーのアニメーションメソッド
