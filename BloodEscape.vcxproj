@@ -35,6 +35,8 @@
     <ClCompile Include="source\graphic\Geometry.cpp" />
     <ClCompile Include="source\graphic\Image.cpp" />
     <ClCompile Include="source\graphic\Message.cpp" />
+    <ClCompile Include="source\graphic\UI.cpp" />
+    <ClCompile Include="source\graphic\UIManager.cpp" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\map\Map.cpp" />
     <ClCompile Include="source\scene\ClearScene.cpp" />
@@ -64,6 +66,8 @@
     <ClInclude Include="source\graphic\Geometry.h" />
     <ClInclude Include="source\graphic\Image.h" />
     <ClInclude Include="source\graphic\Message.h" />
+    <ClInclude Include="source\graphic\UI.h" />
+    <ClInclude Include="source\graphic\UIManager.h" />
     <ClInclude Include="source\map\Map.h" />
     <ClInclude Include="source\parameter\CircleParameter.h" />
     <ClInclude Include="source\parameter\LineParameter.h" />
