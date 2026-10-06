@@ -2,6 +2,7 @@
 /* === 矩形の幅と高さを管理するヘッダーファイル === */
 
 #include "DxLib.h"
+#include "GameManager.h"
 
 
 /* === メニュー === */
@@ -35,6 +36,15 @@
 #define MenuYesNoButtonCenterY	(GameWindowHeight / 2)			// メニューウィンドウの「はい」・「いいえ」ボタンの中心のY座標
 #define MenuYesNoButtonWidth	100								// メニューウィンドウの「はい」・「いいえ」ボタンの幅
 #define MenuYesNoButtonHeight	50								// メニューウィンドウの「はい」・「いいえ」ボタンの高さ
+
+
+/* === ステージシーン === */
+/* +++ プレイヤーUI +++ */
+#define PlayerHPBarCenterY		(GameWindowHeight - 100)							// プレイヤーのHPバーの中心のY座標
+#define PlayerHPBarHeight		50													// プレイヤーのHPバーの高さ
+#define PlayerHPBarUpperLeftX	(GameWindowWidth - 150)								// プレイヤーのHPバーの左上のX座標
+#define PlayerHPBarUpperLeftY	(PlayerHPBarCenterY - PlayerHPBarHeight / 2)		// プレイヤーのHPバーの左上のY座標
+#define PlayerHPBarLowerRightY	(PlayerHPBarCenterY + PlayerHPBarHeight / 2 + 1)	// プレイヤーのHPバーの右下Yの座標
 
 
 /* === ゲームオーバーシーン === */
