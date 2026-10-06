@@ -123,3 +123,9 @@ int Character::Get_HP()
 {
 	return hp;
 }
+
+/* --- Å‘åHP‚ğæ“¾‚·‚éƒƒ\ƒbƒh-- - */
+int Character::Get_maxHP()
+{
+	return maxHP;
+}

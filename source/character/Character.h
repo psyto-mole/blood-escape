@@ -32,10 +32,12 @@ public:
 	void SetCharacterNowPosition(POINT position);	// キャラクターの現在位置を設定するメソッド(引数がPOINT型)
 	void SetCharacterNextPosition(int x, int y);	// キャラクターの移動後の位置を設定するメソッド
 	void SetCharacterNextPosition(POINT position);	// キャラクターの移動後の位置を設定するメソッド(引数がPOINT型)
-	void MoveCharacter(int x, int y);				// 引数で渡した値だけキャラクターを動かすメソッド
-	void MoveCharacter(POINT position);				// 引数で渡した値だけキャラクターを動かすメソッド(引数がPOINT型)
+	void MoveCharacter(int x, int y);				// 引数で渡した値だけキャラクターを動かすメソッド(現在位置は変更しない)
+	void MoveCharacter(POINT position);				// 引数で渡した値だけキャラクターを動かすメソッド(引数がPOINT型、現在位置は変更しない)
 
 	void Calc_HP(int value, int isDamage);		// HPを増減させるメソッド
 
 	int Get_HP();	// HPを取得するメソッド
+
+	int Get_maxHP();	// 最大HPを取得するメソッド
 };
