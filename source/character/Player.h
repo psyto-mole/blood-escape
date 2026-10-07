@@ -3,17 +3,19 @@
 
 #include "DxLib.h"
 #include "Character.h"
-#include "PlayerUI.h"
 
 
 #define PlayerMaxHP	100		// プレイヤーの最大HP
 #define PlayerSpeed	5		// プレイヤーの移動速度
 
+#define DamageOfSelfHarm	10	// 自傷のダメージ
+
 /* --- プレイヤークラス(Characterクラスの派生クラス) --- */
 class Player : public Character
 {
 protected:
-	int inputVector;	// プレイヤーの入力方向を格納する変数
+	int inputVector;			// プレイヤーの入力方向を格納する変数
+	int pastFacingDirection;	// プレイヤーが前に向いていた向き
 
 	int playerAnimation[9];		// プレイヤーのアニメーションの画像ハンドルの配列
 
@@ -21,6 +23,8 @@ protected:
 
 	RECT maxHPBar;	// 最大HPバーの矩形
 	RECT hpBar;		// HPバーの矩形
+
+	RECT interactCollider;	// インタラクトの判定
 
 public:
 	Player();	// コンストラクタ
@@ -30,7 +34,7 @@ public:
 	void Draw() override;		// プレイヤーの描画メソッド
 
 	void MovePlayer();							// プレイヤーの移動メソッド(現在位置は変更しない)
-	void InteractGimmick(Gimmick* gimmick);		// ギミックに作用するメソッド
+	void InteractGimmick(Gimmick* gimmick);		// インタラクト(通常ギミックに作用する)メソッド
 	void SelfHarm(Gimmick* gimmick);			// 自傷(出血ギミックに作用する)メソッド
 
 	void ProcessBleeding();			// 出血の処理メソッド
@@ -41,4 +45,8 @@ public:
 private:
 	void PlayerAnimation();		// プレイヤーのアニメーションメソッド
 
+	RECT GenerateInteractCollision();	// プレイヤーのインタラクト判定の生成メソッド
+	void DrawInteractCollision();		// プレイヤーのインタラクト判定の描画メソッド
+
+	void DrawPlayerUI();	// プレイヤーのUIの描画メソッド
 };

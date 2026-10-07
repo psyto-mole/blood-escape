@@ -20,9 +20,15 @@ Player::Player()
 	hp = maxHP;				// HPを最大HPに設定
 	speed = PlayerSpeed;	// 移動速度を初期化
 
+	maxHPBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + maxHP + 1, PlayerHPBarLowerRightY);
+	hpBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + hp + 1, PlayerHPBarLowerRightY);
+
+	interactCollider = GetRect(0, 0, 0, 0);
+
 	isBleeding = false;
 
-	inputVector = 5;		// 入力方向を5(ニュートラル)に設定
+	inputVector = 5;			// 入力方向を5(ニュートラル)に設定
+	pastFacingDirection = 5;	// プレイヤーが前に向いていた向きを5に設定
 
 	// アニメーション画像を読み込み
 	LoadDivGraph(
@@ -45,7 +51,8 @@ void Player::Init()
 
 	isBleeding = false;
 
-	inputVector = 5;
+	inputVector = 5;			// 入力方向を5(ニュートラル)に設定
+	pastFacingDirection = 5;	// プレイヤーが前に向いていた向きを5に設定
 
 	return;
 }
@@ -53,7 +60,14 @@ void Player::Init()
 /* --- プレイヤーの更新メソッド --- */
 void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 {
+	Gimmick* interactGimmick;
+
 	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
+
+	if (inputVector != 5)
+	{
+		pastFacingDirection = inputVector;
+	}
 
 	MovePlayer();	// 移動処理を行う(現在位置はまだ変更しない)
 
@@ -61,6 +75,23 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 	{
 		SetCharacterNowPosition(nextPosition);	// 現在位置を移動後の座標に変更
 	}
+
+	interactCollider = GenerateInteractCollision();		// インタラクトの判定を生成
+
+	interactGimmick = gimmickManager->GetGimmickWithinRange(interactCollider);	// インタラクトの範囲にあるギミックを取得
+
+	if (interactGimmick != NULL)	// ギミックが取得されていれば
+	{
+		if (Key_Check_Click(KEY_INPUT_A))	// Aキーがクリックされたら
+		{
+			InteractGimmick(interactGimmick);	// インタラクトメソッドを実行
+		}
+		else if (Key_Check_Click(KEY_INPUT_S))	// Sキーがクリックされたら
+		{
+			SelfHarm(interactGimmick);	// 自傷メソッドを実行
+		}
+	}
+
 
 	ProcessBleeding();	// 出血の処理を行う
 
@@ -74,13 +105,9 @@ void Player::Draw()
 {
 	PlayerAnimation();	// アニメーションを描画
 
-	DrawFormatStringToHandleAlign(							// 「HP/最大HP」を描画
-		PlayerHPBarUpperLeftX - 50, PlayerHPBarCenterY,
-		FAlign_AllCenter, Color_White, KHDot_30_1,
-		"%d/%d", hp, maxHP
-	);
-	DrawRect(maxHPBar, Color_Purple, true, 1);	// 最大HPを描画
-	DrawRect(hpBar, Color_Red, true, 1);		// HPを描画
+	DrawInteractCollision();	// インタラクトの判定を描画
+
+	DrawPlayerUI();
 
 	return;
 }
@@ -138,10 +165,13 @@ void Player::MovePlayer()
 	return;
 }
 
-/* --- ギミックに作用するメソッド-- - */
+/* --- インタラクト(通常ギミックに作用する)メソッド-- - */
 void Player::InteractGimmick(Gimmick* gimmick)
 {
-
+	if (/* ギミックが通常ギミックなら */)	// ギミックが通常ギミックなら
+	{
+		gimmick->AdvanceGimmickState();		// 状態を1進める
+	}
 
 	return;
 }
@@ -149,7 +179,12 @@ void Player::InteractGimmick(Gimmick* gimmick)
 /* --- 自傷(出血ギミックに作用する)メソッド-- - */
 void Player::SelfHarm(Gimmick* gimmick)
 {
+	TakeDamage(DamageOfSelfHarm);	// 自傷の被ダメージを受ける
 
+	if (/* ギミックが出血ギミックなら */)	// ギミックが出血ギミックなら
+	{
+		gimmick->AdvanceGimmickState();		// 状態を1進める
+	}
 
 	return;
 }
@@ -261,6 +296,101 @@ void Player::PlayerAnimation()
 	default:
 		break;
 	}
+
+	return;
+}
+
+/* --- プレイヤーのインタラクト判定の生成メソッド --- */
+RECT Player::GenerateInteractCollision()
+{
+	int interactX = 0;	// インタラクト判定の中心のX座標
+	int interactY = 0;	// インタラクト判定の中心のY座標
+	RECT collision;		// インタラクト判定
+
+	/* +++ プレイヤーが向いている(向いていた)向きに応じてインタラクト判定の座標を設定 +++ */
+	switch (pastFacingDirection)
+	{
+	case 1:
+		/* +++ 1方向なら +++ */
+
+		/* +++ プレイヤーの左側に中心座標を設定 +++ */
+		interactX = nowPosition.x - (PlayerInteractRextWidth / 2);
+		interactY = nowPosition.y;
+		break;
+	case 2:
+		/* +++ 2方向なら +++ */
+
+		/* +++ プレイヤーの下側に中心座標を設定 +++ */
+		interactX = nowPosition.x;
+		interactY = nowPosition.y + (PlayerInteractRextHeight / 2);
+		break;
+	case 3:
+		/* +++ 3方向なら +++ */
+
+		/* +++ プレイヤーの右側に中心座標を設定 +++ */
+		interactX = nowPosition.x + (PlayerInteractRextWidth / 2);
+		interactY = nowPosition.y;
+		break;
+	case 4:
+		/* +++ 4方向なら +++ */
+
+		/* +++ プレイヤーの左側に中心座標を設定 +++ */
+		interactX = nowPosition.x - (PlayerInteractRextWidth / 2);
+		interactY = nowPosition.y;
+		break;
+	case 6:
+		/* +++ 6方向なら +++ */
+
+		/* +++ プレイヤーの右側に中心座標を設定 +++ */
+		interactX = nowPosition.x + (PlayerInteractRextWidth / 2);
+		interactY = nowPosition.y;
+		break;
+	case 7:
+		/* +++71方向なら +++ */
+
+		/* +++ プレイヤーの左側に中心座標を設定 +++ */
+		interactX = nowPosition.x - (PlayerInteractRextWidth / 2);
+		interactY = nowPosition.y;
+		break;
+	case 8:
+		/* +++ 8方向なら +++ */
+
+		/* +++ プレイヤーの上側に中心座標を設定 +++ */
+		interactX = nowPosition.x;
+		interactY = nowPosition.y - (PlayerInteractRextHeight / 2);
+		break;
+	case 9:
+		/* +++ 9方向なら +++ */
+
+		/* +++ プレイヤーの右側に中心座標を設定 +++ */
+		interactX = nowPosition.x + (PlayerInteractRextWidth / 2);
+		interactY = nowPosition.y;
+		break;
+	}
+
+	collision = GetRectOnPoint(interactX, interactY, PlayerInteractRextWidth, PlayerInteractRextHeight);		// インタラクト判定を取得
+
+	return collision;	// 生成した判定を返す
+}
+
+/* --- プレイヤーのインタラクト判定の描画メソッド-- - */
+void Player::DrawInteractCollision()
+{
+	DrawRect(interactCollider, Color_LightGreen, false, 1);		// インタラクト判定を緑の枠で描画
+	
+	return;
+}
+
+/* --- プレイヤーのUIの描画メソッド-- - */
+void Player::DrawPlayerUI()
+{
+	DrawFormatStringToHandleAlign(							// 「HP/最大HP」を描画
+		PlayerHPBarUpperLeftX - 50, PlayerHPBarCenterY,
+		FAlign_AllCenter, Color_White, KHDot_30_1,
+		"%d/%d", hp, maxHP
+	);
+	DrawRect(maxHPBar, Color_Purple, true, 1);	// 最大HPを描画
+	DrawRect(hpBar, Color_Red, true, 1);		// HPを描画
 
 	return;
 }
