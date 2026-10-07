@@ -39,6 +39,10 @@
 
 
 /* === ステージシーン === */
+/* +++ プレイヤー +++ */
+#define PlayerInteractRextWidth		32	// プライヤーのインタラクト判定の幅
+#define PlayerInteractRextHeight	32	// プライヤーのインタラクト判定の高さ
+
 /* +++ プレイヤーUI +++ */
 #define PlayerHPBarCenterY		(GameWindowHeight - 100)							// プレイヤーのHPバーの中心のY座標
 #define PlayerHPBarHeight		50													// プレイヤーのHPバーの高さ
