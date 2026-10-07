@@ -3,6 +3,7 @@
 
 #include "DxLib.h"
 #include "Scene.h"
+#include "Player.h"
 #include "Map.h"
 #include "GimmickManager.h"
 
@@ -15,6 +16,7 @@ class StageScene : public Scene
 private:
     int stageNumber;    // ステージ番号(StageSceneクラス固有の変数)
 
+    Player playerObject;            // プレイヤーのオブジェクト
     Map mapManager;                 // マップマネージャー
     GimmickManager gimmickManager;  // ギミックマネージャー
 

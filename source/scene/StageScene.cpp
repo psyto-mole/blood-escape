@@ -21,41 +21,45 @@ StageScene::~StageScene()
 /* --- ステージの初期化メソッド --- */
 void StageScene::Init()
 {
-    char filePath[256];
+    char filePath[256];     // ファイルパス用の配列
 
     transition = {};    // 遷移情報をリセット
 
     sceneElapsedFrame = 0;  // 経過フレームをリセット
 
-    //if (sprintf_s(filePath, sizeof(filePath), ".\\game-data\\map\\Stage%d_Map.csv", stageNumber) == -1)
-    //{
-    //    /* +++ エラーメッセージを表示 +++ */
-    //    MessageBox(
-    //        GetMainWindowHandle(),
-    //        "SatgeScene::Init() : Failed to generate Stage_Map.csv Path",
-    //        "StageScene Error",
-    //        MB_OK
-    //    );
+    playerObject.Init();    // プレイヤーオブジェクトの初期化メソッドを実行
 
-    //    return;
-    //}
+    /* +++ ステージ番号に応じたマップデータのファイルのパスを生成 +++ */
+    if (sprintf_s(filePath, sizeof(filePath), ".\\game-data\\map\\Stage%d_Map.csv", stageNumber) == -1)     // ファイルパスの生成に失敗したら
+    {
+        /* +++ エラーメッセージを表示 +++ */
+        MessageBox(
+            GetMainWindowHandle(),
+            "SatgeScene::Init() : Failed to generate Stage_Map.csv Path",
+            "StageScene Error",
+            MB_OK
+        );
 
-    //mapManager.Load(filePath);  // csvファイルからマップデータを読み込む
+        return;
+    }
 
-    //if (sprintf_s(filePath, sizeof(filePath), ".\\game-data\\gimmick\\Stage%d_Gimmick.csv", stageNumber) == -1)
-    //{
-    //    /* +++ エラーメッセージを表示 +++ */
-    //    MessageBox(
-    //        GetMainWindowHandle(),
-    //        "SatgeScene::Init() : Failed to generate Stage_Gimmick.csv Path",
-    //        "StageScene Error",
-    //        MB_OK
-    //    );
+    mapManager.Load(filePath);  // csvファイルからマップデータを読み込む
 
-    //    return;
-    //}
+    /* +++ ギミックデータのファイルパスを生成 +++ */
+    if (sprintf_s(filePath, sizeof(filePath), ".\\game-data\\gimmick\\Stage%d_Gimmick.csv", stageNumber) == -1)    // ファイルパスを生成できなかったら
+    {
+        /* +++ エラーメッセージを表示 +++ */
+        MessageBox(
+            GetMainWindowHandle(),
+            "SatgeScene::Init() : Failed to generate Stage_Gimmick.csv Path",
+            "StageScene Error",
+            MB_OK
+        );
 
-    //gimmickManager.Load(filePath);
+        return;
+    }
+
+    gimmickManager.Load(filePath);  // ギミックデータを読み込む
 
     return;
 }
@@ -67,8 +71,8 @@ void StageScene::Update()
     // ゲーム更新
     // --------------------
 
-    // プレイヤーの更新
-    //gimmickManager.Update();    // ギミックの更新
+    playerObject.Update(&mapManager, &gimmickManager);  // プレイヤーオブジェクトの更新メソッドを実行
+    gimmickManager.Update();    // ギミックの更新
     // 当たり判定
 
     // -----------------
