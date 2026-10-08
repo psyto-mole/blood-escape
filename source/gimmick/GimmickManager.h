@@ -35,6 +35,8 @@ public:
 
 	int GetGimmickIDWithinRange(RECT range);		// 指定した範囲内のギミックのIDを取得
 
+	GimmickGroup GetGimmickGroup(int targetID);	// ギミックの属性を取得するメソッド
+
 	void ChangeGimmickState(int targetID, int state);	// ギミックの状態を変える
 	int GetGimmickState(int targetID);					// ギミックの状態を取得
 

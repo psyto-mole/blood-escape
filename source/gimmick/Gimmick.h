@@ -4,8 +4,10 @@
 #include "DxLib.h"
 
 
+/* --- ギミックの属性の列挙型 --- */
 enum class GimmickGroup
 {
+	None,		// 未分類
 	Normal,		// 通常ギミック(プレイヤーの「インタラクト」で起動できるギミック)
 	Blood,		// 吸血ギミック(プレイヤーの「自傷」により起動できるギミック)
 	Contaxt		// 接触ギミック(プレイヤーが接触と効果を受けるギミック)
@@ -33,6 +35,8 @@ protected:
 
 	GimmickType gimmickType;	// ギミックの種類
 
+	GimmickGroup gimmickGroup;	// ギミックの属性
+
 	int positionX;	// ギミックのX座標
 	int positionY;	// ギミックのY座標
 
@@ -54,10 +58,11 @@ public:
 	virtual void Update() = 0;	// ギミックの更新メソッド
 	virtual void Draw() = 0;	// ギミックの描画メソッド
 
-	int GetGimmickID();				// ギミックのIDを取得するメソッド
-	GimmickType GetGimmickType();	// ギミックの種類を取得するメソッド
-	POINT GetGimmickPosition();		// ギミックの位置をPOINT型で取得するメソッド
-	int GetGimmickState();			// ギミックの状態を取得するメソッド
+	int GetGimmickID();					// ギミックのIDを取得するメソッド
+	GimmickType GetGimmickType();		// ギミックの種類を取得するメソッド
+	GimmickGroup GetGimmickGroup();		// ギミックの属性を取得するメソッド
+	POINT GetGimmickPosition();			// ギミックの位置をPOINT型で取得するメソッド
+	int GetGimmickState();				// ギミックの状態を取得するメソッド
 
 	void SetGimmickState(int state);	// ギミックを指定した状態に変える
 	void AdvanceGimmickState();			// ギミックの状態を進める

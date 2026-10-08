@@ -251,9 +251,33 @@ int GimmickManager::GetGimmickIDWithinRange(RECT range)
 
     gimmick = GetGimmickWithinRange(range);     // 範囲内のギミックを取得
 
+    if (gimmick == NULL)    // ギミックが取得されていなければ
+    {
+        return -1;  // -1を返す
+    }
+
     id = gimmick->GetGimmickID();   // 取得したギミックのIDを取得
 
     return id;  // IDを返す
+}
+
+/* --- ギミックの属性を取得するメソッド-- - */
+GimmickGroup GimmickManager::GetGimmickGroup(int targetID)
+{
+    GimmickGroup targetGroup;    // 取得した属性を格納する変数
+
+    /* +++ IDが一致するギミックの属性を返す +++ */
+    for (int i = 0; i < gimmickNumber; i++)
+    {
+        if (gimmicks[i]->GetGimmickID() == targetID)     // ギミックのIDが指定したIDと同じなら
+        {
+            targetGroup = gimmicks[i]->GetGimmickGroup();    // ギミックの属性を取得
+
+            return targetGroup;     // 属性を返す
+        }
+    }
+
+    return GimmickGroup::None;  // 未分類を返す
 }
 
 /* -- - ギミックの状態を変える-- - */

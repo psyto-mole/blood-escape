@@ -45,6 +45,12 @@ GimmickType Gimmick::GetGimmickType()
 	return gimmickType;		// ギミックの種類を返す
 }
 
+/* --- ギミックの属性を取得するメソッド-- - */
+GimmickGroup Gimmick::GetGimmickGroup()
+{
+	return gimmickGroup;
+}
+
 /* --- ギミックの位置をPOINT型で取得するメソッド --- */
 POINT Gimmick::GetGimmickPosition()
 {
