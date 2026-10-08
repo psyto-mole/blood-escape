@@ -213,7 +213,7 @@ void Map::Draw() const
     }
 }
 
-/* --- 引数で渡した位置のタイルを取得するメソッド --- */
+/* --- 引数で渡した座標のタイルを取得するメソッド --- */
 int Map::GetTile(int x, int y) const
 {
     if (x < 0 || x >= width || y < 0 || y >= height)    // 引数で受け取った位置がマップの範囲外なら
@@ -224,7 +224,7 @@ int Map::GetTile(int x, int y) const
     return mapData[y][x];   // マップデータの該当の位置のデータを返す
 }
 
-/* --- 引数で渡した位置のタイルを取得するメソッド(引数がPOINT型) -- - */
+/* --- 引数で渡した座標のタイルを取得するメソッド(引数がPOINT型) -- - */
 int Map::GetTile(POINT position) const
 {
     if (position.x < 0 || position.x >= width || position.y < 0 || position.y >= height)    // 引数で受け取った位置がマップの範囲外なら
@@ -233,6 +233,65 @@ int Map::GetTile(POINT position) const
     }
 
     return mapData[position.y][position.x];   // マップデータの該当の位置のデータを返す
+}
+
+/* --- 引数で渡した座標を有するタイルを取得するメソッド-- - */
+int Map::GetCollisionTile(int x, int y) const
+{
+    if (x < 0 || x >= width || y < 0 || y >= height)    // 引数で受け取った位置がマップの範囲外なら
+    {
+        return -1;  // -1を返す
+    }
+
+    int i = 0;  // マップデータの2次元配列の列番号
+    int j = 0;  // マップデータの2次元配列の行番号
+
+    /* +++ 引数のX座標が属するタイルの行番号を取得 +++ */
+    // 
+    // タイルの横幅を加算していき、初めて引数のX座標を超えた時の番号を記録する
+    // 例) xより小さい<-| |->xより大きい
+    //      [0][1][2][3][4][5][6][7][8]...
+    //                   x
+    // 
+    //      ->4番目のタイル
+    while (j * TileSize < x)    // タイルの横幅が引数のX座標を超えるまで
+    {
+        j++;    // 行番号を加算
+    }
+
+    /* +++ 引数のY座標が属するタイルの列番号を取得 +++ */
+    while (i * TileSize < y)    // タイルの縦幅が引数のY座標を超えるまで
+    {
+        i++;    // 列番号を加算
+    }
+
+    return mapData[i][j];   // マップデータの該当の位置のデータを返す
+}
+
+/* --- 引数で渡した座標を有するタイルを取得するメソッド(引数がPOINT型) -- - */
+int Map::GetCollisionTile(POINT position) const
+{
+    if (position.x < 0 || position.x >= width || position.y < 0 || position.y >= height)    // 引数で受け取った位置がマップの範囲外なら
+    {
+        return -1;  // -1を返す
+    }
+
+    int i = 0;  // マップデータの2次元配列の列番号
+    int j = 0;  // マップデータの2次元配列の行番号
+
+    /* +++ 引数のX座標が属するタイルの行番号を取得 +++ */
+    while (j * TileSize < position.x)   // タイルの横幅が引数のX座標を超えるまで
+    {
+        j++;    // 行番号を加算
+    }
+
+    /* +++ 引数のY座標が属するタイルの列番号を取得 +++ */
+    while (i * TileSize < position.y)   // タイルの縦幅が引数のY座標を超えるまで
+    {
+        i++;    // 列番号を加算
+    }
+
+    return mapData[i][j];   // マップデータの該当の位置のデータを返す
 }
 
 /* --- マップの横幅を取得するメソッド --- */
@@ -245,4 +304,15 @@ int Map::GetWidth() const
 int Map::GetHeight() const
 {
     return height;  // マップの縦幅を返す
+}
+
+/* --- 引数で渡した位置のタイルが通行可能かを取得するメソッド-- - */
+bool Map::IsPassable(POINT position)
+{
+    if (GetCollisionTile(position) == PassableTile)     // 引数の位置が通行可能なら
+    {
+        return true;    // true(通行可能)を返す
+    }
+
+    return false;   // false(通行不可)を返す
 }
