@@ -297,6 +297,23 @@ void GimmickManager::ChangeGimmickState(int targetID, int state)
     return;
 }
 
+/* --- ギミックの状態を進める-- - */
+void GimmickManager::AdvanceGimmickState(int targetID)
+{
+    Gimmick* targetGimmick;  // 対象とするギミックのポインタ
+
+    targetGimmick = GetGimmickWithID(targetID);     // 状態を変えるギミックをIDから取得
+
+    if (targetGimmick == NULL)  // ポインタがNULLなら
+    {
+        return;     // 処理を終了する
+    }
+
+    targetGimmick->AdvanceGimmickState();  // ギミックの状態を進める
+
+    return;
+}
+
 /* --- ギミックの状態を取得-- - */
 int GimmickManager::GetGimmickState(int targetID)
 {

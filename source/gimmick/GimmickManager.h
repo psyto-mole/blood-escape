@@ -38,6 +38,7 @@ public:
 	GimmickGroup GetGimmickGroup(int targetID);	// ギミックの属性を取得するメソッド
 
 	void ChangeGimmickState(int targetID, int state);	// ギミックの状態を変える
+	void AdvanceGimmickState(int targetID);				// ギミックの状態を進める
 	int GetGimmickState(int targetID);					// ギミックの状態を取得
 
 	bool IsPassable(POINT position);	// 引数で渡した座標が通行可能かを判定するメソッド
