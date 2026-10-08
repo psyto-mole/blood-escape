@@ -33,6 +33,8 @@ public:
 	Gimmick* GetGimmickWithPos(int x, int y);		// 指定した位置のギミックを取得
 	Gimmick* GetGimmickWithinRange(RECT range);		// 指定した範囲のギミックのうち、中心に近いものを取得
 
+	int GetGimmickIDWithinRange(RECT range);		// 指定した範囲内のギミックのIDを取得
+
 	void ChangeGimmickState(int targetID, int state);	// ギミックの状態を変える
 	int GetGimmickState(int targetID);					// ギミックの状態を取得
 

@@ -243,6 +243,19 @@ Gimmick* GimmickManager::GetGimmickWithinRange(RECT range)
     return NULL;    // NULLを返す
 }
 
+/* --- 指定した範囲内のギミックのIDを取得-- - */
+int GimmickManager::GetGimmickIDWithinRange(RECT range)
+{
+    int id;             // 取得するギミックのID
+    Gimmick* gimmick;   // IDを取得するギミック
+
+    gimmick = GetGimmickWithinRange(range);     // 範囲内のギミックを取得
+
+    id = gimmick->GetGimmickID();   // 取得したギミックのIDを取得
+
+    return id;  // IDを返す
+}
+
 /* -- - ギミックの状態を変える-- - */
 void GimmickManager::ChangeGimmickState(int targetID, int state)
 {
