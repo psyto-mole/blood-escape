@@ -4,6 +4,13 @@
 #include "DxLib.h"
 
 
+enum class GimmickGroup
+{
+	Normal,		// 通常ギミック(プレイヤーの「インタラクト」で起動できるギミック)
+	Blood,		// 吸血ギミック(プレイヤーの「自傷」により起動できるギミック)
+	Contaxt		// 接触ギミック(プレイヤーが接触と効果を受けるギミック)
+};
+
 /* --- ギミックの種類の列挙型 --- */
 enum class GimmickType
 {
