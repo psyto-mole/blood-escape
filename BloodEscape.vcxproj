@@ -30,6 +30,7 @@
     <ClCompile Include="source\core\Sound.cpp" />
     <ClCompile Include="source\core\TextScroll.cpp" />
     <ClCompile Include="source\gimmick\BloodGimmick.cpp" />
+    <ClCompile Include="source\gimmick\ContactGimmick.cpp" />
     <ClCompile Include="source\gimmick\Gimmick.cpp" />
     <ClCompile Include="source\gimmick\GimmickManager.cpp" />
     <ClCompile Include="source\gimmick\NeedleFloor.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="source\core\Sound.h" />
     <ClInclude Include="source\core\TextScroll.h" />
     <ClInclude Include="source\gimmick\BloodGimmick.h" />
+    <ClInclude Include="source\gimmick\ContactGimmick.h" />
     <ClInclude Include="source\gimmick\Gimmick.h" />
     <ClInclude Include="source\gimmick\GimmickManager.h" />
     <ClInclude Include="source\gimmick\NeedleFloor.h" />
