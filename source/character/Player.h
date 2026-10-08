@@ -33,7 +33,8 @@ public:
 	void Update(Map* mapManager, GimmickManager* gimmickManager) override;	// プレイヤーの更新メソッド
 	void Draw() override;		// プレイヤーの描画メソッド
 
-	void MovePlayer();							// プレイヤーの移動メソッド(現在位置は変更しない)
+	void MovePlayer(Map* mapManager, GimmickManager* gimmickManager);	// プレイヤーの移動メソッド(現在位置は変更しない)
+
 	void InteractGimmick(Gimmick* gimmick);		// インタラクト(通常ギミックに作用する)メソッド
 	void SelfHarm(Gimmick* gimmick);			// 自傷(出血ギミックに作用する)メソッド
 

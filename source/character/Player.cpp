@@ -13,8 +13,7 @@
 /* --- コンストラクタ --- */
 Player::Player()
 {
-	SetCharacterNowPosition(0, 0);		// キャラクターの現在位置のX座標の初期化
-	SetCharacterNextPosition(0, 0);		// キャラクターの現在位置のY座標の初期化
+	SetCharacterPosition(0, 0);		// キャラクターの現在位置の初期化
 
 	maxHP = PlayerMaxHP;	// 最大HPを初期化
 	hp = maxHP;				// HPを最大HPに設定
@@ -64,17 +63,12 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 
 	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
 
-	if (inputVector != 5)
+	if (inputVector != 5)	// 入力方向が5(ニュートラル)でないなら
 	{
-		pastFacingDirection = inputVector;
+		pastFacingDirection = inputVector;	// プレイヤーが向いていた方向を更新
 	}
 
-	MovePlayer();	// 移動処理を行う(現在位置はまだ変更しない)
-
-	if (mapManager->GetTile(nextPosition) == 1)		// 移動後の座標が侵入可能なら
-	{
-		SetCharacterNowPosition(nextPosition);	// 現在位置を移動後の座標に変更
-	}
+	MovePlayer(mapManager, gimmickManager);		// 移動処理を行う
 
 	interactCollider = GenerateInteractCollision();		// インタラクトの判定を生成
 
@@ -113,7 +107,7 @@ void Player::Draw()
 }
 
 /* --- プレイヤーの移動メソッド --- */
-void Player::MovePlayer()
+void Player::MovePlayer(Map* mapManager, GimmickManager* gimmickManager)
 {	
 	/* +++ 入力方向に応じてキャラクターを移動 +++ */
 	switch (inputVector)
@@ -121,42 +115,50 @@ void Player::MovePlayer()
 	case 1:
 		/* +++ 1方向(左下)なら +++ */
 
-		MoveCharacter(-1 * speed, speed);	// 左下に移動
+		/* +++ 左下に移動 +++ */
+		MoveCharacter(mapManager, gimmickManager, -1 * speed, 0);
+		MoveCharacter(mapManager, gimmickManager, 0, speed);
 		break;
 	case 2:
 		/* +++ 2方向(下)なら +++ */
 
-		MoveCharacter(0, speed);	// 下に移動
+		MoveCharacter(mapManager, gimmickManager, 0, speed);	// 下に移動
 		break;
 	case 3:
 		/* +++ 3方向(右下)なら +++ */
 
-		MoveCharacter(speed, speed);	// 右下に移動
+		/* +++ 右下に移動 +++ */
+		MoveCharacter(mapManager, gimmickManager, speed, 0);
+		MoveCharacter(mapManager, gimmickManager, 0, speed);
 		break;
 	case 4:
 		/* +++ 4方向(左)なら +++ */
 
-		MoveCharacter(-1 * speed, 0);	// 左に移動
+		MoveCharacter(mapManager, gimmickManager, -1 * speed, 0);	// 左に移動
 		break;
 	case 6:
 		/* +++ 6方向(右)なら +++ */
 
-		MoveCharacter(speed, 0);	// 右に移動
+		MoveCharacter(mapManager, gimmickManager, speed, 0);	// 右に移動
 		break;
 	case 7:
 		/* +++ 7方向(左上)なら +++ */
 
-		MoveCharacter(-1 * speed, -1 * speed);	// 左上に移動
+		/* +++ 左上に移動 +++ */
+		MoveCharacter(mapManager, gimmickManager, -1 * speed, 0);
+		MoveCharacter(mapManager, gimmickManager, 0, -1 * speed);
 		break;
 	case 8:
 		/* +++ 8方向(上)なら +++ */
 
-		MoveCharacter(0, -1 * speed);	// 上に移動
+		MoveCharacter(mapManager, gimmickManager, 0, -1 * speed);	// 上に移動
 		break;
 	case 9:
 		/* +++ 9方向(右上)なら +++ */
 
-		MoveCharacter(speed, -1 * speed);	// 右上に移動
+		/* +++ 右上に移動 +++ */
+		MoveCharacter(mapManager, gimmickManager, speed, 0);
+		MoveCharacter(mapManager, gimmickManager, 0, -1 * speed);
 		break;
 	default:
 		break;
@@ -235,18 +237,18 @@ void Player::PlayerAnimation()
 	case 1:
 		/* +++ 1方向(左下)なら +++ */
 
-		DrawTurnGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
 		break;
 	case 2:
 		/* +++ 2方向(下)なら +++ */
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[2], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[2], FALSE);
 		}
 		else
 		{
-			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[1], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[1], FALSE);
 		}
 		break;
 	case 3:
@@ -254,44 +256,44 @@ void Player::PlayerAnimation()
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[4], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[4], FALSE);
 		}
 		else
 		{
-			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
 		}
 		break;
 	case 4:
 		/* +++ 4方向(左)なら +++ */
 
-		DrawTurnGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
 		break;
 	case 6:
 		/* +++ 6方向(右)なら +++ */
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[6], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[6], FALSE);
 		}
 		else
 		{
-			DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
 		}
 		break;
 	case 7:
 		/* +++ 7方向(左上)なら +++ */
 
-		DrawTurnGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
+		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
 		break;
 	case 8:
 		/* +++ 8方向(上)なら +++ */
 
-		DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[8], FALSE);
+		DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[8], FALSE);
 		break;
 	case 9:
 		/* +++ 9方向(右上)なら +++ */
 
-		DrawGraphOnPoint(nowPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
+		DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
 		break;
 	default:
 		break;
@@ -314,57 +316,57 @@ RECT Player::GenerateInteractCollision()
 		/* +++ 1方向なら +++ */
 
 		/* +++ プレイヤーの左側に中心座標を設定 +++ */
-		interactX = nowPosition.x - (PlayerInteractRextWidth / 2);
-		interactY = nowPosition.y;
+		interactX = characterPosition.x - (PlayerInteractRextWidth / 2);
+		interactY = characterPosition.y;
 		break;
 	case 2:
 		/* +++ 2方向なら +++ */
 
 		/* +++ プレイヤーの下側に中心座標を設定 +++ */
-		interactX = nowPosition.x;
-		interactY = nowPosition.y + (PlayerInteractRextHeight / 2);
+		interactX = characterPosition.x;
+		interactY = characterPosition.y + (PlayerInteractRextHeight / 2);
 		break;
 	case 3:
 		/* +++ 3方向なら +++ */
 
 		/* +++ プレイヤーの右側に中心座標を設定 +++ */
-		interactX = nowPosition.x + (PlayerInteractRextWidth / 2);
-		interactY = nowPosition.y;
+		interactX = characterPosition.x + (PlayerInteractRextWidth / 2);
+		interactY = characterPosition.y;
 		break;
 	case 4:
 		/* +++ 4方向なら +++ */
 
 		/* +++ プレイヤーの左側に中心座標を設定 +++ */
-		interactX = nowPosition.x - (PlayerInteractRextWidth / 2);
-		interactY = nowPosition.y;
+		interactX = characterPosition.x - (PlayerInteractRextWidth / 2);
+		interactY = characterPosition.y;
 		break;
 	case 6:
 		/* +++ 6方向なら +++ */
 
 		/* +++ プレイヤーの右側に中心座標を設定 +++ */
-		interactX = nowPosition.x + (PlayerInteractRextWidth / 2);
-		interactY = nowPosition.y;
+		interactX = characterPosition.x + (PlayerInteractRextWidth / 2);
+		interactY = characterPosition.y;
 		break;
 	case 7:
 		/* +++71方向なら +++ */
 
 		/* +++ プレイヤーの左側に中心座標を設定 +++ */
-		interactX = nowPosition.x - (PlayerInteractRextWidth / 2);
-		interactY = nowPosition.y;
+		interactX = characterPosition.x - (PlayerInteractRextWidth / 2);
+		interactY = characterPosition.y;
 		break;
 	case 8:
 		/* +++ 8方向なら +++ */
 
 		/* +++ プレイヤーの上側に中心座標を設定 +++ */
-		interactX = nowPosition.x;
-		interactY = nowPosition.y - (PlayerInteractRextHeight / 2);
+		interactX = characterPosition.x;
+		interactY = characterPosition.y - (PlayerInteractRextHeight / 2);
 		break;
 	case 9:
 		/* +++ 9方向なら +++ */
 
 		/* +++ プレイヤーの右側に中心座標を設定 +++ */
-		interactX = nowPosition.x + (PlayerInteractRextWidth / 2);
-		interactY = nowPosition.y;
+		interactX = characterPosition.x + (PlayerInteractRextWidth / 2);
+		interactY = characterPosition.y;
 		break;
 	}
 
