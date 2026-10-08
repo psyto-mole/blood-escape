@@ -5,7 +5,7 @@
 
 
 /* --- ギミックの種類の列挙型 --- */
-enum GimmickType
+enum class GimmickType
 {
 	None,				// なし
 	Goal,				// ゴール
@@ -31,13 +31,17 @@ protected:
 
 	int gimmickImage;	// ギミックの画像ハンドル
 
+	int gimmickState;	// ギミックの状態(0で初期状態)
+	int maxState;		// 最後の状態
+	bool isRoopState;	// 状態がループするか
+
 	int targetID;	// 連動するギミックのID
 
-	int gimmickState;	// ギミックの状態(0で初期状態)
+	bool isPassable;	// 通行可能か
 
 public:
-	Gimmick();		// コンストラクタ
-	~Gimmick();		// デストラクタ
+	Gimmick(int id, int x, int y);	// コンストラクタ
+	virtual ~Gimmick();				// デストラクタ
 
 	virtual void Init() = 0;	// ギミックの初期化メソッド
 	virtual void Update() = 0;	// ギミックの更新メソッド
@@ -49,4 +53,7 @@ public:
 	int GetGimmickState();			// ギミックの状態を取得するメソッド
 
 	void SetGimmickState(int state);	// ギミックを指定した状態に変える
+	void AdvanceGimmickState();			// ギミックの状態を進める
+
+	bool GetGimmickIsPassable();	// ギミックが通行可能かを取得するメソッド
 };
