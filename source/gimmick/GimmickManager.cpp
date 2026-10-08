@@ -3,15 +3,17 @@
 #include <stdio.h>
 #include <string.h>
 #include "GimmickManager.h"
+#include "Geometry.h"
+#include "NeedleFloor.h"
 
 
 /* --- コンストラクタ --- */
 GimmickManager::GimmickManager()
 {
 	/* +++ ギミックオブジェクトのポインタ配列の初期化 +++ */
-	for (int x = 0; x < GimmickNumberMax; x++)
+	for (int x = 0; x < MaxNumberOfGimmick; x++)
 	{
-		gimmick[x] = NULL;
+		gimmicks[x] = NULL;
 	}
 
 	gimmickNumber = 0;	// ギミック数を0に初期化
@@ -20,7 +22,6 @@ GimmickManager::GimmickManager()
 /* --- デストラクタ --- */
 GimmickManager::~GimmickManager()
 {
-	gimmickNumber = 0;
 }
 
 /* --- csvファイルからギミックデータを読み込むメソッド --- */
@@ -31,12 +32,12 @@ int GimmickManager::Load(const char* csvPath)
     char line[1024];  // csvファイルから読み込んだ文字列を格納する配列
 
     /* +++ csvファイルを読み込みモードで開く +++ */
-    if ((fp = fopen(csvPath, "r")) == NULL)     // csvファイルへのポインタがNULL(ファイルを開けなかった)なら
+    if ((fopen_s(&fp, csvPath, "r")) != 0)     // csvファイルを開けなかったら
     {
         /* +++ メッセージボックスでエラーの発生を報告 +++ */
         MessageBox(
             GetMainWindowHandle(),
-            "Cannot open the gimmick csv path.",
+            "Cannot open the gimmick csv file.",
             "File Error",
             MB_OK
         );
@@ -44,63 +45,62 @@ int GimmickManager::Load(const char* csvPath)
         return -1;   // -1(読み込み失敗)を返す
     }
 
-    fgets(line, sizeof(line), fp);  // csvファイルの1行目のヘッダーを読み飛ばす
+    if (fgets(line, sizeof(line), fp) != NULL)  // csvファイルの1行目のヘッダーを読み飛ばす(NULLの場合次の処理を実行)
+    {
+        /* +++ メッセージボックスでエラーの発生を報告 +++ */
+        MessageBox(
+            GetMainWindowHandle(),
+            "Cannot load data from the gimmick csv file.",
+            "Load Error",
+            MB_OK
+        );
+
+        fclose(fp);     // 開いたファイルを閉じる
+        return - 1;     // -1(読み込み失敗)を返す
+    }
 
     /* +++ csvファイルからデータを1行ずつ読み込む +++ */
     while (fgets(line, sizeof(line), fp) != NULL)   // csvファイルから文字列を読み込める限りループ
     {
-        if (gimmickNumber >= GimmickNumberMax)  // ギミックの数が最大値以上なら
+        if (gimmickNumber >= MaxNumberOfGimmick)  // ギミックの数が最大値以上なら
         {
             break;  // ループを終了
         }
 
-        int x = 0      // 2次元配列の行番号
-        char* token;    // 部分文字列を格納するポインタ
+        int id, x, y, state, target;    // ギミックのID、座標、状態、連携対象を一時的に格納する変数
+        char type[64];                  // ギミックの種類を一時的に格納する配列
 
-        line[strcspn(line, "\r\n")] = '\0';     // 改行を削除(文字列の改行までの長さを取得しインデックスとして指定)
+        // 読み込んだ文字列からギミックのデータを取得
+        int result = sscanf_s(
+            line,
+            "%d,%63[^,],%d,%d,%d,%d",
+            &id,
+            type,
+            &x, &y,
+            &state,
+            &target
+        );
 
-        /* +++ 空行は無視 +++ */
-        if (line[0] == '\0')
+        if (result != 6)    // 取得したデータに過不足があれば
         {
-            continue;
+            continue;   // そのデータを無視(次のループに移行)
         }
 
+        Gimmick* gimmick = CreateGimmick(type, id, x, y);   // データを基にギミックを生成
 
-        /*　+++ カンマで区切る +++ */
-        //* 例：
-        //*
-        //* 0,0,0,0,0
-        //*
-        //* ↓
-        //*
-        //* 0
-        //* 0
-        //* 0
-        //* 0
-        //* 0
-        token = strtok(line, ",");  // カンマまでの部分文字列を取得
-
-        /* +++ 部分文字列をマップデータとして格納 +++ */
-        while (token != NULL)   // 部分文字列が存在する限りループ
+        if (gimmick == NULL)    // 生成したギミックが未対応なら
         {
-            if (x >= MapWidth)   // x(行番号)がマップの横幅以上なら
-            {
-                break;  // ループを終了
-            }
-
-             = atoi(token);    // 部分文字列をマップデータ(整数)として格納
-
-            x++;    // x(行番号)を1加算
-
-            token = strtok(NULL, ",");  // 次のカンマまでの部分文字列を取得
+            continue;   // 生成したギミックを無視(次のループに移行)
         }
+
+        gimmicks[gimmickNumber] = gimmick;  // ギミックの配列に登録
+
+        gimmickNumber++;    // ステージ中のギミック数を1増やす
     }
 
     fclose(fp);     // ファイルを閉じる
 
-    return true;    // true(読み込み完了)を返す
-
-	return true;
+    return 0;    // 0(読み込み完了)を返す
 }
 
 /* --- ギミックの更新を行うメソッド --- */
@@ -109,7 +109,12 @@ void GimmickManager::Update()
     /* +++ ギミックを順に更新 +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        gimmick[i]->Update();
+        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        {
+            continue;   // そのギミックを無視(次のループに移行)
+        }
+
+        gimmicks[i]->Update();  // ギミックの更新メソッドを実行
     }
 
     return;
@@ -121,10 +126,33 @@ void GimmickManager::Draw() const
     /* +++ ギミックを順に描画 +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        gimmick[i]->Update();
+        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        {
+            continue;   // そのギミックを無視(次のループに移行)
+        }
+
+        gimmicks[i]->Draw();    // ギミックの描画処理を実行
     }
 
 	return;
+}
+
+/* --- ギミックを生成するメソッド-- - */
+Gimmick* GimmickManager::CreateGimmick(const char* type, int id, int x, int y)
+{
+    if (type == NULL)
+    {
+        return NULL;
+    }
+
+    if (strcmp(type, "NeedleFloor") == 0)
+    {
+        NeedleFloor createNeedle(id, x, y);
+
+        return &createNeedle;
+    }
+
+    return NULL;
 }
 
 /* --- ギミックをIDで検索 --- */
@@ -133,9 +161,14 @@ Gimmick* GimmickManager::GetGimmickWithID(int targetID)
     /* +++ IDが一致するギミックのポインタを返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        if (gimmick[i]->GetGimmickID() == targetID)     // ギミックIDが指定したIDと一致するなら
+        if (gimmicks[i] == NULL)    // ギミックが未対応なら
         {
-            return gimmick[i];  // ギミックのポインタを返す
+            continue;   // そのギミックを無視(次のループに移行)
+        }
+
+        if (gimmicks[i]->GetGimmickID() == targetID)     // ギミックIDが指定したIDと一致するなら
+        {
+            return gimmicks[i];  // ギミックのポインタを返す
         }
     }
 
@@ -145,20 +178,69 @@ Gimmick* GimmickManager::GetGimmickWithID(int targetID)
 /* --- 指定した位置のギミックを取得 --- */
 Gimmick* GimmickManager::GetGimmickWithPos(int x, int y)
 {
-    POINT gimmickPos;    // ギミックの位置のPOINT型変数
-
-    /* +++ 位置が一致するギミックのポインタを返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        gimmickPos = gimmick[i]->GetGimmickPosition();
+        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        {
+            continue;   // そのギミックを無視(次のループに移行)
+        }
+
+        POINT gimmickPos;    // ギミックの位置のPOINT型変数
+
+        /* +++ 位置が一致するギミックのポインタを返す +++ */
+        gimmickPos = gimmicks[i]->GetGimmickPosition();
 
         if (gimmickPos.x == x && gimmickPos.y == y)     // ギミックの座標が指定した座標と一致する
         {
-            return gimmick[i];  // ギミックのポインタを返す
+            return gimmicks[i];  // ギミックのポインタを返す
         }
     }
 
     return NULL;    // NULLを返す(取得失敗)
+}
+
+/* --- 指定した範囲のギミックのうち、中心に近いものを取得-- - */
+Gimmick* GimmickManager::GetGimmickWithinRange(RECT range)
+{
+    int arrayNumber = -1;     // ギミック配列の要素番号
+    double minDistance;         // ギミックと範囲の中心の最短距離
+
+    for (int i = 0; i < gimmickNumber; i++)
+    {
+        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        {
+            continue;   // そのギミックを無視(次のループに移行)
+        }
+
+        POINT gimmickPos;    // ギミックの位置のPOINT型変数
+
+        /* +++ 位置が一致するギミックのポインタを返す +++ */
+        gimmickPos = gimmicks[i]->GetGimmickPosition();     // ギミックの位置を取得
+
+        if (gimmickPos.x >= range.left && gimmickPos.x <= range.right       // ギミックの座標が指定した範囲内にあるなら
+            && gimmickPos.y >= range.top && gimmickPos.y <= range.bottom)
+        {
+            double calcResult;  // 距離の計算結果
+            POINT rectCenter;   // 範囲の中心
+
+            rectCenter = GetRectCenter(range);  // 範囲の中心を取得
+
+            calcResult = sqrt(pow((double)(rectCenter.x - gimmickPos.x), 2) + pow((double)(rectCenter.y - gimmickPos.y), 2));   // 範囲の中心との距離を計算
+
+            if (calcResult < minDistance)
+            {
+                minDistance = calcResult;   // ギミックと範囲中心の最短距離を更新
+                arrayNumber = i;          // ギミック配列の要素番号を保存
+            }
+        }
+    }
+
+    if (arrayNumber != -1)
+    {
+        return gimmicks[arrayNumber];  // 範囲の中心に最も近いギミックのポインタを返す
+    }
+
+    return NULL;    // NULLを返す
 }
 
 /* -- - ギミックの状態を変える-- - */
@@ -186,13 +268,41 @@ int GimmickManager::GetGimmickState(int targetID)
     /* +++ IDが一致するギミックの状態を返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        if (gimmick[i]->GetGimmickID() == targetID)     // ギミックのIDが指定したIDと同じなら
+        if (gimmicks[i]->GetGimmickID() == targetID)     // ギミックのIDが指定したIDと同じなら
         {
-            targetState = gimmick[i]->GetGimmickState();    // ギミックの状態を取得
+            targetState = gimmicks[i]->GetGimmickState();    // ギミックの状態を取得
 
             return targetState;     // 状態を返す
         }
     }
 
     return -1;     // -1を返す(取得失敗)
+}
+
+/* --- 引数で渡した座標が通行可能かを判定するメソッド-- - */
+bool GimmickManager::IsPassable(POINT position)
+{
+    POINT gimmickPosition;    // ギミックの座標
+
+    /* +++ 各ギミックの座標ｗｐ取得 +++ */
+    for (int i = 0; i < gimmickNumber; i++)
+    {
+        gimmickPosition = gimmicks[i]->GetGimmickPosition();    // ギミックの座標を取得
+
+        if (position.x >= gimmickPosition.x - GimmickSize / 2
+            && position.x <= gimmickPosition.x + GimmickSize / 2
+            && position.y >= gimmickPosition.y - GimmickSize / 2
+            && position.y <= gimmickPosition.y + GimmickSize / 2
+            )
+        {
+            if (gimmicks[i]->GetGimmickIsPassable())
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    return false;
 }

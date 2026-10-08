@@ -3,16 +3,17 @@
 
 #include "DxLib.h"
 #include "Gimmick.h"
-#include "NeedleFloor.h"
 
 
-#define GimmickNumberMax	100		// ステージ中のギミック数の最大値
+#define MaxNumberOfGimmick	100		// ステージ中のギミック数の最大値
+#define NumberOfGimmickData	6		// csvファイルから読み込むギミック1つあたりのデータの数
+#define GimmickSize			32		// ギミックの大きさ
 
 /* --- ギミックマネージャークラス --- */
 class GimmickManager
 {
 private:
-	Gimmick* gimmick[GimmickNumberMax];		// ギミックオブジェクトのポインタを格納する配列
+	Gimmick* gimmicks[MaxNumberOfGimmick];	// ギミックオブジェクトのポインタを格納する配列
 
 	int gimmickNumber;	// ステージ中のギミック数
 
@@ -26,9 +27,14 @@ public:
 	void Update();		// ギミックの更新を行うメソッド
 	void Draw() const;  // ギミックの描画を行うメソッド
 
-	Gimmick* GetGimmickWithID(int targertID);	// ギミックをIDで検索
-	Gimmick* GetGimmickWithPos(int x, int y);	// 指定した位置のギミックを取得
+	Gimmick* CreateGimmick(const char* type, int id, int x, int y);		// ギミックを生成するメソッド
 
-	void ChangeGimmickState(int targetID, int state);		// ギミックの状態を変える
-	int GetGimmickState(int targetID);				// ギミックの状態を取得
+	Gimmick* GetGimmickWithID(int targertID);		// ギミックをIDで検索
+	Gimmick* GetGimmickWithPos(int x, int y);		// 指定した位置のギミックを取得
+	Gimmick* GetGimmickWithinRange(RECT range);		// 指定した範囲のギミックのうち、中心に近いものを取得
+
+	void ChangeGimmickState(int targetID, int state);	// ギミックの状態を変える
+	int GetGimmickState(int targetID);					// ギミックの状態を取得
+
+	bool IsPassable(POINT position);	// 引数で渡した座標が通行可能かを判定するメソッド
 };
