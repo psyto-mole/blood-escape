@@ -33,6 +33,7 @@
     <ClCompile Include="source\gimmick\ContactGimmick.cpp" />
     <ClCompile Include="source\gimmick\Gimmick.cpp" />
     <ClCompile Include="source\gimmick\GimmickManager.cpp" />
+    <ClCompile Include="source\gimmick\Goal.cpp" />
     <ClCompile Include="source\gimmick\NeedleFloor.cpp" />
     <ClCompile Include="source\gimmick\TransParentFloor.cpp" />
     <ClCompile Include="source\graphic\Geometry.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="source\gimmick\ContactGimmick.h" />
     <ClInclude Include="source\gimmick\Gimmick.h" />
     <ClInclude Include="source\gimmick\GimmickManager.h" />
+    <ClInclude Include="source\gimmick\Goal.h" />
     <ClInclude Include="source\gimmick\NeedleFloor.h" />
     <ClInclude Include="source\gimmick\TransparentFloor.h" />
     <ClInclude Include="source\graphic\Geometry.h" />
