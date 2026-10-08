@@ -102,7 +102,7 @@
     <ClCompile Include="source\gimmick\ContactGimmick.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\gimmick\Goal.cpp">
+    <ClCompile Include="source\gimmick\GoalPoint.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -206,7 +206,7 @@
     <ClInclude Include="source\gimmick\ContactGimmick.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="source\gimmick\Goal.h">
+    <ClInclude Include="source\gimmick\GoalPoint.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
