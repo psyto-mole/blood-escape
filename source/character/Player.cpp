@@ -59,7 +59,7 @@ void Player::Init()
 /* --- プレイヤーの更新メソッド --- */
 void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 {
-	Gimmick* interactGimmick;
+	int interactGimmickID;		// インタラクトを行うギミックのID
 
 	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
 
@@ -72,24 +72,20 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 
 	interactCollider = GenerateInteractCollision();		// インタラクトの判定を生成
 
-	interactGimmick = gimmickManager->GetGimmickWithinRange(interactCollider);	// インタラクトの範囲にあるギミックを取得
+	interactGimmickID = gimmickManager->GetGimmickIDWithinRange(interactCollider);	// インタラクトの範囲にあるギミックのIDを取得
 
-	if (interactGimmick != NULL)	// ギミックが取得されていれば
+	if (Key_Check_Click(KEY_INPUT_RETURN))	// エンターキーがクリックされたら
 	{
-		if (Key_Check_Click(KEY_INPUT_A))	// Aキーがクリックされたら
-		{
-			InteractGimmick(interactGimmick);	// インタラクトメソッドを実行
-		}
-		else if (Key_Check_Click(KEY_INPUT_S))	// Sキーがクリックされたら
-		{
-			SelfHarm(interactGimmick);	// 自傷メソッドを実行
-		}
+		InteractGimmick(gimmickManager, interactGimmickID);		// インタラクトメソッドを実行
 	}
-
+	else if (Key_Check_Click(KEY_INPUT_SPACE))	// スペースキーがクリックされたら
+	{
+		SelfHarm(gimmickManager, interactGimmickID);	// 自傷メソッドを実行
+	}
 
 	ProcessBleeding();	// 出血の処理を行う
 
-	hpBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + hp + 1, PlayerHPBarLowerRightY);
+	hpBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + hp + 1, PlayerHPBarLowerRightY);	// HPバーのサイズを再定義
 
 	return;
 }
@@ -168,24 +164,24 @@ void Player::MovePlayer(Map* mapManager, GimmickManager* gimmickManager)
 }
 
 /* --- インタラクト(通常ギミックに作用する)メソッド-- - */
-void Player::InteractGimmick(Gimmick* gimmick)
+void Player::InteractGimmick(GimmickManager* gimmickManager, int gimmickID)
 {
-	if (/* ギミックが通常ギミックなら */)	// ギミックが通常ギミックなら
+	if (gimmickManager->GetGimmickGroup(gimmickID) == GimmickGroup::Normal)		// ギミックが通常ギミックなら
 	{
-		gimmick->AdvanceGimmickState();		// 状態を1進める
+		gimmickManager->AdvanceGimmickState(gimmickID);		// ギミックの状態を進める
 	}
 
 	return;
 }
 
 /* --- 自傷(出血ギミックに作用する)メソッド-- - */
-void Player::SelfHarm(Gimmick* gimmick)
+void Player::SelfHarm(GimmickManager* gimmickManager, int gimmickID)
 {
 	TakeDamage(DamageOfSelfHarm);	// 自傷の被ダメージを受ける
 
-	if (/* ギミックが出血ギミックなら */)	// ギミックが出血ギミックなら
+	if (gimmickManager->GetGimmickGroup(gimmickID) == GimmickGroup::Blood)		// ギミックが出血ギミックなら
 	{
-		gimmick->AdvanceGimmickState();		// 状態を1進める
+		gimmickManager->AdvanceGimmickState(gimmickID);		// ギミックの状態を進める
 	}
 
 	return;
