@@ -3,8 +3,17 @@
 #include <stdio.h>
 #include <string.h>
 #include "GimmickManager.h"
+
 #include "Geometry.h"
+
+#include "GoalPoint.h"
 #include "NeedleFloor.h"
+#include "TransparentFloor.h"
+#include "Altar.h"
+#include "Bloodpack.h"
+#include "Bandage.h"
+#include "Switch.h"
+#include "Door.h"
 
 
 /* --- コンストラクタ --- */
@@ -145,11 +154,53 @@ Gimmick* GimmickManager::CreateGimmick(const char* type, int id, int x, int y)
         return NULL;
     }
 
-    if (strcmp(type, "NeedleFloor") == 0)
+    if (strcmp(type, "GoalPoint") == 0)
+    {
+        GoalPoint createGoal(id, x, y);
+
+        return &createGoal;
+    }
+    else if (strcmp(type, "NeedleFloor") == 0)
     {
         NeedleFloor createNeedle(id, x, y);
 
         return &createNeedle;
+    }
+    else if (strcmp(type, "TransprentFloor") == 0)
+    {
+        TransparentFloor createTransparentFkoor(id, x, y);
+
+        return &createTransparentFkoor;
+    }
+    else if (strcmp(type, "Altar") == 0)
+    {
+        Altar createAltar(id, x, y);
+
+        return &createAltar;
+    }
+    else if (strcmp(type, "Bloodpack") == 0)
+    {
+        BloodPack createBloodPack(id, x, y);
+
+        return &createBloodPack;
+    }
+    else if (strcmp(type, "Bandage") == 0)
+    {
+        Bandage createBandage(id, x, y);
+
+        return &createBandage;
+    }
+    else if (strcmp(type, "Switch") == 0)
+    {
+        Switch createSwitch(id, x, y);
+
+        return &createSwitch;
+    }
+    else if (strcmp(type, "Door") == 0)
+    {
+        Door createDoor(id, x, y);
+
+        return &createDoor;
     }
 
     return NULL;
@@ -202,8 +253,8 @@ Gimmick* GimmickManager::GetGimmickWithPos(int x, int y)
 /* --- 指定した範囲のギミックのうち、中心に近いものを取得-- - */
 Gimmick* GimmickManager::GetGimmickWithinRange(RECT range)
 {
-    int arrayNumber = -1;     // ギミック配列の要素番号
-    double minDistance;         // ギミックと範囲の中心の最短距離
+    int arrayNumber = -1;       // ギミック配列の要素番号
+    double minDistance = 32.;   // ギミックと範囲の中心の最短距離
 
     for (int i = 0; i < gimmickNumber; i++)
     {
