@@ -1,25 +1,32 @@
-/* === 針床ギミックのクラスのソースファイル === */
+/* === 針床のクラスのソースファイル === */
 
 #include "NeedleFloor.h"
 
 
-NeedleFloor::NeedleFloor(int id, int x, int y) : Gimmick(id, x, y)
+/* --- コンストラクタ --- */
+NeedleFloor::NeedleFloor(int id, int x, int y) : ContactGimmick(id, x, y)
 {
 }
 
-// ギミックの初期化メソッド
+/* --- デストラクタ --- */
+NeedleFloor::~NeedleFloor()
+{
+
+}
+
+/* --- 針床の初期化メソッド --- */
 void NeedleFloor::Init()
 {
 	return;
 }
 
-// ギミックの更新メソッド
+/* --- 針床の更新メソッド --- */
 void NeedleFloor::Update()
 {
 	return;
 }
 
-// ギミックの描画メソッド
+/* --- 針床の描画メソッド --- */
 void NeedleFloor::Draw()
 {
 	return;

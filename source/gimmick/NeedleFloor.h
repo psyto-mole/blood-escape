@@ -1,17 +1,18 @@
 #pragma once
-/* === 針床ギミックのクラスのヘッダファイル === */
+/* === 針床のクラスのヘッダファイル === */
 
 #include "DxLib.h"
-#include "Gimmick.h"
+#include "ContactGimmick.h"
 
 
-/* --- 針床ギミックのクラス(Gimmickクラスの派生クラス) --- */
-class NeedleFloor : public Gimmick
+/* --- 針床のクラス(ContactGimmickクラスの派生クラス) --- */
+class NeedleFloor : public ContactGimmick
 {
 public:
 	NeedleFloor(int id, int x, int y);	// コンストラクタ
+	~NeedleFloor() override;			// デストラクタ
 
-	void Init();	// ギミックの初期化メソッド
-	void Update();	// ギミックの更新メソッド
-	void Draw();	// ギミックの描画メソッド
+	void Init() override;		// 針床の初期化メソッド
+	void Update() override;		// 針床の更新メソッド
+	void Draw() override;		// 針床の描画メソッド
 };
