@@ -440,12 +440,16 @@ bool GimmickManager::IsPassable(POINT playerPosition)
 }
 
 /* --- ステージクリアを確認するメソッド --- */
-//bool GimmickManager::CheckStageClear()
-//{
-//    for (int i = 0; i < gimmickNumber; i++)
-//    {
-//
-//    }
-//
-//    return false;
-//}
+bool GimmickManager::CheckStageClear()
+{
+    Gimmick* goalGimmick;
+
+    goalGimmick = GetGimmickWithType(GimmickType::GoalPoint);
+
+    if (goalGimmick->IsGoal())
+    {
+        return true;
+    }
+
+        return false;
+}
