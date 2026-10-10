@@ -113,7 +113,7 @@ int GimmickManager::Load(const char* csvPath)
 }
 
 /* --- ギミックの更新を行うメソッド --- */
-void GimmickManager::Update()
+void GimmickManager::Update(Player* player)
 {
     /* +++ ギミックを順に更新 +++ */
     for (int i = 0; i < gimmickNumber; i++)

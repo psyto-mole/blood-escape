@@ -3,6 +3,7 @@
 
 #include "DxLib.h"
 #include "Gimmick.h"
+#include "Player.h"
 
 
 #define MaxNumberOfGimmick	100		// ステージ中のギミック数の最大値
@@ -23,8 +24,8 @@ public:
 
 	int Load(const char* csvPath);	// csvファイルからギミックデータを読み込むメソッド
 
-	void Update();		// ギミックの更新を行うメソッド
-	void Draw() const;	// ギミックの描画を行うメソッド
+	void Update(Player* player);	// ギミックの更新を行うメソッド
+	void Draw() const;				// ギミックの描画を行うメソッド
 
 	Gimmick* CreateGimmick(const char* type, int id, int x, int y, int state, int target);	// ギミックを生成するメソッド
 
