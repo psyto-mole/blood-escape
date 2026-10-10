@@ -12,8 +12,8 @@ protected:
 
 
 public:
-	ContactGimmick(int id, int x, int y);	// コンストラクタ
-	~ContactGimmick() override;				// デストラクタ
+	ContactGimmick(int id, int x, int y, int state, int target);	// コンストラクタ
+	~ContactGimmick() override;										// デストラクタ
 
 	virtual void Init() = 0;	// 接触ギミックの初期化メソッド
 	virtual void Update() = 0;	// 接触ギミックの更新メソッド
