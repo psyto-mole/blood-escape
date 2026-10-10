@@ -29,9 +29,10 @@ public:
 
 	Gimmick* CreateGimmick(const char* type, int id, int x, int y, int state, int target);	// ギミックを生成するメソッド
 
-	Gimmick* GetGimmickWithID(int targertID);		// ギミックをIDで検索
-	Gimmick* GetGimmickWithPos(int x, int y);		// 指定した位置のギミックを取得
-	Gimmick* GetGimmickWithinRange(RECT range);		// 指定した範囲のギミックのうち、中心に近いものを取得
+	Gimmick* GetGimmickWithID(int targertID);				// ギミックをIDで検索
+	Gimmick* GetGimmickWithPos(int x, int y);				// 指定した位置のギミックを取得
+	Gimmick* GetGimmickWithinRange(RECT range);				// 指定した範囲のギミックのうち、中心に近いものを取得
+	Gimmick* GetGimmickWithType(GimmickType gimmickType);	// ギミックを種類で検索
 
 	int GetGimmickIDWithinRange(RECT range);		// 指定した範囲内のギミックのIDを取得
 
@@ -44,4 +45,6 @@ public:
 	void ActivateGimmick(int itargetID);	// IDで指定したギミックを起動する
 
 	bool IsPassable(POINT playerPosition);					// 引数で渡した座標が通行可能かを判定するメソッド
+
+	bool CheckStageClear();		// ステージクリアを確認するメソッド
 };

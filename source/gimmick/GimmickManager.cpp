@@ -123,7 +123,7 @@ void GimmickManager::Update(Player* player)
             continue;   // そのギミックを無視(次のループに移行)
         }
 
-         gimmicks[i]->Update();  // プレイヤーの位置を渡しギミックの更新メソッドを実行
+         gimmicks[i]->Update(player);  // プレイヤーの位置を渡しギミックの更新メソッドを実行
     }
 
     return;
@@ -294,6 +294,21 @@ Gimmick* GimmickManager::GetGimmickWithinRange(RECT range)
     return NULL;    // NULLを返す
 }
 
+/* --- ギミックを種類で検索 ^--- */
+Gimmick* GimmickManager::GetGimmickWithType(GimmickType gimmickType)
+{
+    /* +++ 最初に見つかった指定した種類のギミックを返す +++ */
+    for (int i = 0; i < gimmickNumber; i++)
+    {
+        if (gimmicks[i]->GetGimmickType() == GimmickType::GoalPoint)    // ギミックの種類が指定したものと同じなら
+        {
+            return gimmicks[i];     // そのギミックを返す
+        }
+    }
+
+    return NULL;    // NULLを返す
+}
+
 /* --- 指定した範囲内のギミックのIDを取得-- - */
 int GimmickManager::GetGimmickIDWithinRange(RECT range)
 {
@@ -423,3 +438,14 @@ bool GimmickManager::IsPassable(POINT playerPosition)
 
     return true;   // true(通行可能)を返す
 }
+
+/* --- ステージクリアを確認するメソッド --- */
+//bool GimmickManager::CheckStageClear()
+//{
+//    for (int i = 0; i < gimmickNumber; i++)
+//    {
+//
+//    }
+//
+//    return false;
+//}
