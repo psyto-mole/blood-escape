@@ -2,6 +2,7 @@
 /* === ギミッククラスのヘッダファイル === */
 
 #include "DxLib.h"
+#include "Player.h"
 
 
 #define GimmickSize	32	// ギミックの大きさ
@@ -57,9 +58,9 @@ public:
 	Gimmick(int id, int x, int y, int state, int target);		// コンストラクタ
 	virtual ~Gimmick();											// デストラクタ
 
-	virtual void Init() = 0;	// ギミックの初期化メソッド
-	virtual void Update() = 0;	// ギミックの更新メソッド
-	virtual void Draw() = 0;	// ギミックの描画メソッド
+	virtual void Init() = 0;					// ギミックの初期化メソッド
+	virtual void Update(Player* player) = 0;	// ギミックの更新メソッド
+	virtual void Draw() = 0;					// ギミックの描画メソッド
 
 	int GetGimmickID();				// ギミックのIDを取得するメソッド
 	GimmickTag GetGimmickTag();		// ギミックのタグを取得するメソッド
