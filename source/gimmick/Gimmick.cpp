@@ -117,6 +117,14 @@ void Gimmick::AdvanceGimmickState()
 	return;
 }
 
+/* --- ギミックの起動メソッド --- */
+void Gimmick::Activate()
+{
+	isActive = true;
+
+	return;
+}
+
 /* --- 引数で渡した座標との接触を判定 --- */
 bool Gimmick::CheckContactPoint(POINT point)
 {

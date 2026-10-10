@@ -71,7 +71,7 @@ public:
 	void SetGimmickState(int state);	// ギミックを指定した状態に変えるメソッド
 	void AdvanceGimmickState();			// ギミックの状態を1つ進めるメソッド
 
-	virtual void Activate() = 0;	// ギミックの起動メソッド
+	void Activate();	// ギミックの起動メソッド
 
 	bool CheckContactPoint(POINT point);	// 引数で渡した座標との接触を判定するメソッド
 };
