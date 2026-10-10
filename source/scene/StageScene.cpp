@@ -72,18 +72,40 @@ void StageScene::Update()
     // --------------------
 
     playerObject.Update(&mapManager, &gimmickManager);  // プレイヤーオブジェクトの更新メソッドを実行
-    gimmickManager.Update();    // ギミックの更新
+
+    gimmickManager.Update(&playerObject);    // ギミックの更新
     // 当たり判定
 
     // -----------------
     // クリア判定
     // -----------------
 
-    if (Key_Check_Click(KEY_INPUT_RETURN))
+    if (GameDebug)
+    {
+        if (Key_Check_Click(KEY_INPUT_N))
+        {
+            transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
+
+            if (stageNumber >= NumberOfStage)
+            {
+                transition.sceneType = SceneType::Clear;    // 遷移情報のシーンの種類をクリアシーンにする
+            }
+            else
+            {
+                transition.sceneType = SceneType::Stage;    // 遷移情報のシーンの種類をステージにする
+
+                transition.stageNum = stageNumber + 1;  //  遷移情報のステージ番号に自身の番号 + 1を代入
+            }
+
+            return;
+        }
+    }
+
+    if (gimmickManager.CheckStageClear())    // 　プレイヤーがゴールに到達したら
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
-        if (stageNumber >= NumberOfStage)
+        if (stageNumber >= NumberOfStage)     // ステージ番号がステージ数以上なら(最終ステージなら)
         {
             transition.sceneType = SceneType::Clear;    // 遷移情報のシーンの種類をクリアシーンにする
         }
@@ -97,37 +119,22 @@ void StageScene::Update()
         return;
     }
 
-    //if (/* パズルをクリアした */)    // 　プレイヤーがゴールに到達したら
-    //{
-    //    transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
-
-    //    if (stageNumber >= NumberOfStage)     // ステージ番号がステージ数以上なら(最終ステージなら)
-    //    {
-    //        transition.sceneType = SceneType::Clear;    // 遷移情報のシーンの種類をクリアシーンにする
-    //    }
-    //    else
-    //    {
-    //        transition.sceneType = SceneType::Stage;    // 遷移情報のシーンの種類をステージにする
-
-    //        transition.stageNum = stageNumber + 1;  //  遷移情報のステージ番号に自身の番号 + 1を代入
-    //    }
-
-    //    return;
-    //}
-
     // --------------------------
     // ゲームオーバー判定
     // --------------------------
 
-    if (Key_Check_Click(KEY_INPUT_SPACE))  // ゲームオーバーになったら
+    if (GameDebug)
     {
-        transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
+        if (Key_Check_Click(KEY_INPUT_SPACE))  // ゲームオーバーになったら
+        {
+            transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
-        transition.sceneType = SceneType::GameOver;     // 遷移情報のシーンの種類をゲームオーバーシーンにする
+            transition.sceneType = SceneType::GameOver;     // 遷移情報のシーンの種類をゲームオーバーシーンにする
 
-        transition.stageNum = stageNumber;  // 遷移情報のステージ番号に自身の番号を代入する
+            transition.stageNum = stageNumber;  // 遷移情報のステージ番号に自身の番号を代入する
 
-        return;
+            return;
+        }
     }
 
     //if (/* ゲームオーバー */)  // 　ゲームオーバーになったら
@@ -147,12 +154,15 @@ void StageScene::Update()
 /* --- ステージの描画メソッド --- */
 void StageScene::Draw()
 {
-    //mapManager.Draw();      // マップの描画
-    //gimmickManager.Draw();  // ギミックの描画
-    // プレイヤー描画
+    mapManager.Draw();      // マップの描画
+    gimmickManager.Draw();  // ギミックの描画
+    playerObject.Draw();    // プレイヤー描画
     // UI描画
 
-    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_White, KHDot_100_9, "Stage %d", stageNumber);
+    if (GameDebug)
+    {
+        DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_White, KHDot_100_9, "Stage %d", stageNumber);
+    }
 
     return;
 }
