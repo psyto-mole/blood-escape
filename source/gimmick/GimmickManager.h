@@ -7,7 +7,6 @@
 
 #define MaxNumberOfGimmick	100		// ステージ中のギミック数の最大値
 #define NumberOfGimmickData	6		// csvファイルから読み込むギミック1つあたりのデータの数
-#define GimmickSize			32		// ギミックの大きさ
 
 /* --- ギミックマネージャークラス --- */
 class GimmickManager
@@ -25,9 +24,9 @@ public:
 	int Load(const char* csvPath);	// csvファイルからギミックデータを読み込むメソッド
 
 	void Update();		// ギミックの更新を行うメソッド
-	void Draw() const;  // ギミックの描画を行うメソッド
+	void Draw() const;	// ギミックの描画を行うメソッド
 
-	Gimmick* CreateGimmick(const char* type, int id, int x, int y);		// ギミックを生成するメソッド
+	Gimmick* CreateGimmick(const char* type, int id, int x, int y, int state, int target);	// ギミックを生成するメソッド
 
 	Gimmick* GetGimmickWithID(int targertID);		// ギミックをIDで検索
 	Gimmick* GetGimmickWithPos(int x, int y);		// 指定した位置のギミックを取得
@@ -35,11 +34,13 @@ public:
 
 	int GetGimmickIDWithinRange(RECT range);		// 指定した範囲内のギミックのIDを取得
 
-	GimmickGroup GetGimmickGroup(int targetID);	// ギミックの属性を取得するメソッド
+	GimmickTag GetGimmickTag(int targetID);		// ギミックのタグを取得するメソッド
 
 	void ChangeGimmickState(int targetID, int state);	// ギミックの状態を変える
 	void AdvanceGimmickState(int targetID);				// ギミックの状態を進める
 	int GetGimmickState(int targetID);					// ギミックの状態を取得
 
-	bool IsPassable(POINT position);	// 引数で渡した座標が通行可能かを判定するメソッド
+	void ActivateGimmick(int itargetID);	// IDで指定したギミックを起動する
+
+	bool IsPassable(POINT playerPosition);					// 引数で渡した座標が通行可能かを判定するメソッド
 };

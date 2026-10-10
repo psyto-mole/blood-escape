@@ -95,7 +95,7 @@ int GimmickManager::Load(const char* csvPath)
             continue;   // そのデータを無視(次のループに移行)
         }
 
-        Gimmick* gimmick = CreateGimmick(type, id, x, y);   // データを基にギミックを生成
+        Gimmick* gimmick = CreateGimmick(type, id, x, y, state, target);   // データを基にギミックを生成
 
         if (gimmick == NULL)    // 生成したギミックが未対応なら
         {
@@ -123,7 +123,7 @@ void GimmickManager::Update()
             continue;   // そのギミックを無視(次のループに移行)
         }
 
-        gimmicks[i]->Update();  // ギミックの更新メソッドを実行
+         gimmicks[i]->Update();  // プレイヤーの位置を渡しギミックの更新メソッドを実行
     }
 
     return;
@@ -147,7 +147,7 @@ void GimmickManager::Draw() const
 }
 
 /* --- ギミックを生成するメソッド-- - */
-Gimmick* GimmickManager::CreateGimmick(const char* type, int id, int x, int y)
+Gimmick* GimmickManager::CreateGimmick(const char* type, int id, int x, int y, int state, int target)
 {
     if (type == NULL)
     {
@@ -156,49 +156,49 @@ Gimmick* GimmickManager::CreateGimmick(const char* type, int id, int x, int y)
 
     if (strcmp(type, "GoalPoint") == 0)
     {
-        GoalPoint createGoal(id, x, y);
+        GoalPoint createGoal(id, x, y, state, target);
 
         return &createGoal;
     }
     else if (strcmp(type, "NeedleFloor") == 0)
     {
-        NeedleFloor createNeedle(id, x, y);
+        NeedleFloor createNeedle(id, x, y, state, target);
 
         return &createNeedle;
     }
     else if (strcmp(type, "TransprentFloor") == 0)
     {
-        TransparentFloor createTransparentFkoor(id, x, y);
+        TransparentFloor createTransparentFkoor(id, x, y, state, target);
 
         return &createTransparentFkoor;
     }
     else if (strcmp(type, "Altar") == 0)
     {
-        Altar createAltar(id, x, y);
+        Altar createAltar(id, x, y, state, target);
 
         return &createAltar;
     }
     else if (strcmp(type, "Bloodpack") == 0)
     {
-        BloodPack createBloodPack(id, x, y);
+        BloodPack createBloodPack(id, x, y, state, target);
 
         return &createBloodPack;
     }
     else if (strcmp(type, "Bandage") == 0)
     {
-        Bandage createBandage(id, x, y);
+        Bandage createBandage(id, x, y, state, target);
 
         return &createBandage;
     }
     else if (strcmp(type, "Switch") == 0)
     {
-        Switch createSwitch(id, x, y);
+        Switch createSwitch(id, x, y, state, target);
 
         return &createSwitch;
     }
     else if (strcmp(type, "Door") == 0)
     {
-        Door createDoor(id, x, y);
+        Door createDoor(id, x, y, state, target);
 
         return &createDoor;
     }
@@ -312,23 +312,23 @@ int GimmickManager::GetGimmickIDWithinRange(RECT range)
     return id;  // IDを返す
 }
 
-/* --- ギミックの属性を取得するメソッド-- - */
-GimmickGroup GimmickManager::GetGimmickGroup(int targetID)
+/* --- ギミックのタグを取得するメソッド-- - */
+GimmickTag GimmickManager::GetGimmickTag(int targetID)
 {
-    GimmickGroup targetGroup;    // 取得した属性を格納する変数
+    GimmickTag targetGroup;    // 取得した属性を格納する変数
 
     /* +++ IDが一致するギミックの属性を返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
         if (gimmicks[i]->GetGimmickID() == targetID)     // ギミックのIDが指定したIDと同じなら
         {
-            targetGroup = gimmicks[i]->GetGimmickGroup();    // ギミックの属性を取得
+            targetGroup = gimmicks[i]->GetGimmickTag();    // ギミックの属性を取得
 
             return targetGroup;     // 属性を返す
         }
     }
 
-    return GimmickGroup::None;  // 未分類を返す
+    return GimmickTag::None;  // 未分類を返す
 }
 
 /* -- - ギミックの状態を変える-- - */
@@ -384,30 +384,42 @@ int GimmickManager::GetGimmickState(int targetID)
     return -1;     // -1を返す(取得失敗)
 }
 
-/* --- 引数で渡した座標が通行可能かを判定するメソッド-- - */
-bool GimmickManager::IsPassable(POINT position)
+/* --- IDで指定したギミックを起動する --- */
+void GimmickManager::ActivateGimmick(int targetID)
 {
-    POINT gimmickPosition;    // ギミックの座標
-
-    /* +++ 各ギミックの座標ｗｐ取得 +++ */
+    /* +++ IDが一致するギミックの状態を返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        gimmickPosition = gimmicks[i]->GetGimmickPosition();    // ギミックの座標を取得
-
-        if (position.x >= gimmickPosition.x - GimmickSize / 2
-            && position.x <= gimmickPosition.x + GimmickSize / 2
-            && position.y >= gimmickPosition.y - GimmickSize / 2
-            && position.y <= gimmickPosition.y + GimmickSize / 2
-            )
+        if (gimmicks[i]->GetGimmickID() == targetID)     // ギミックのIDが指定したIDと同じなら
         {
-            if (gimmicks[i]->GetGimmickIsPassable())
-            {
-                return true;
-            }
-
-            return false;
+            gimmicks[i]->Activate();    // ギミックの状態を取得
         }
     }
 
-    return false;
+    return;
+}
+
+/* --- 引数で渡した座標が通行可能かを判定するメソッド-- - */
+bool GimmickManager::IsPassable(POINT playerPosition)
+{
+    /* +++ 各ギミックについてプレイヤーとの接触状態と通行の可不可を調べる +++ */
+    for (int i = 0; i < gimmickNumber; i++)
+    {
+        if(gimmicks[i]->CheckContactPoint(playerPosition))  // ギミックがプレイヤーと接触していたら
+        {
+            if (gimmicks[i]->GetGimmickTag() == GimmickTag::Contact)    // ギミックが接触ギミックなら
+            {
+                gimmicks[i]->Activate();    // ギミックを起動
+            }
+
+            if (gimmicks[i]->GetGimmickIsPassable())    // ギミックが通行可能であれば
+            {
+                return true;    // true(通行可能)を返す
+            }
+
+            return false;   // false(通行不可)を返す
+        }
+    }
+
+    return true;   // true(通行可能)を返す
 }
