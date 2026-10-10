@@ -4,7 +4,7 @@
 
 
 /* --- コンストラクタ-- - */
-Bandage::Bandage(int id, int x, int y) : ContactGimmick(id, x, y)
+Bandage::Bandage(int id, int x, int y, int state, int target) : OneShotGimmick(id, x, y, state, target)
 {
 
 }

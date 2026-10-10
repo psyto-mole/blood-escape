@@ -2,18 +2,18 @@
 /* === 包帯のヘッダファイル === */
 
 #include "DxLib.h"
-#include "ContactGimmick.h"
+#include "OneShotGimmick.h"
 
 
 /* --- 包帯クラス(ContactGimmickクラスの派生クラス) --- */
-class Bandage : public ContactGimmick
+class Bandage : public OneShotGimmick
 {
 private:
 
 
 public:
-	Bandage(int id, int x, int y);	// コンストラクタ
-	~Bandage() override;			// デストラクタ
+	Bandage(int id, int x, int y, int state, int target);	// コンストラクタ
+	~Bandage() override;									// デストラクタ
 
 	void Init() override;		// 包帯の初期化メソッド
 	void Update() override;		// 包帯の更新メソッド
