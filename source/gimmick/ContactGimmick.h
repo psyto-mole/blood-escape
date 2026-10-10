@@ -9,7 +9,7 @@
 class ContactGimmick : public Gimmick
 {
 protected:
-
+	bool isContact;		// プレイヤーと接触しているか
 
 public:
 	ContactGimmick(int id, int x, int y, int state, int target);	// コンストラクタ
