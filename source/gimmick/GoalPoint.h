@@ -22,5 +22,5 @@ public:
 	void Update(Player* player) override;	// ゴール地点の更新メソッド
 	void Draw() override;					// ゴール地点の描画メソッド
 
-	bool IsGoal();	// ゴールしたか判定するメソッド
+	bool IsGoal() override;		// ゴール判定のメソッド
 };
