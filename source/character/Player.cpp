@@ -59,6 +59,11 @@ void Player::Init()
 /* --- プレイヤーの更新メソッド --- */
 void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 {
+	if (hp <= 0)	// HPが0以下なら
+	{
+		return;		// 何もせずに終了
+	}
+
 	int interactGimmickID;		// インタラクトを行うギミックのID
 
 	inputVector = GetInputVector();		// プレイヤーの入力方向を取得
@@ -69,6 +74,13 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 	}
 
 	MovePlayer(mapManager, gimmickManager);		// 移動処理を行う
+
+	if (mapManager->IsThereTile(characterPosition) != true)		// 移動後の位置に足場が無ければ
+	{
+		Falling();	// 落下メソッドを実行
+
+		return;		// 処理を終了
+	}
 
 	interactCollider = GenerateInteractCollision();		// インタラクトの判定を生成
 
@@ -93,6 +105,11 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 /* --- プレイヤーの描画メソッド-- - */
 void Player::Draw()
 {
+	if (hp <= 0)	// HPが0以下なら
+	{
+		return;		// 何もせずに終了
+	}
+
 	PlayerAnimation();	// アニメーションを描画
 
 	DrawInteractCollision();	// インタラクトの判定を描画
@@ -228,6 +245,14 @@ void Player::TakeDamage(int value)
 void Player::Transfusion(int value)
 {
 	Calc_HP(value, FALSE);	// HPを増やす
+
+	return;
+}
+
+/* --- 落下のメソッド --- */
+void Player::Falling()
+{
+	Set_HP(0);	// プレイヤーのHPを0にする
 
 	return;
 }

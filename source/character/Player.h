@@ -33,7 +33,7 @@ public:
 	void Update(Map* mapManager, GimmickManager* gimmickManager) override;	// プレイヤーの更新メソッド
 	void Draw() override;		// プレイヤーの描画メソッド
 
-	void MovePlayer(Map* mapManager, GimmickManager* gimmickManager);	// プレイヤーの移動メソッド(現在位置は変更しない)
+	void MovePlayer(Map* mapManager, GimmickManager* gimmickManager);	// プレイヤーの移動メソッド
 
 	void InteractGimmick(GimmickManager* gimmickManager, int gimmickID);	// インタラクト(通常ギミックを操作する)メソッド
 	void SelfHarm(GimmickManager* gimmickManager, int gimmickID);			// 自傷(出血ギミックを操作する)メソッド
@@ -43,6 +43,8 @@ public:
 	void SetBleedingFalse();		// 出血状態を解除するメソッド
 	void TakeDamage(int value);		// 被ダメージのメソッド
 	void Transfusion(int value);	// 輸血メソッド
+
+	void Falling();		// 落下のメソッド
 
 private:
 	void PlayerAnimation();		// プレイヤーのアニメーションメソッド
