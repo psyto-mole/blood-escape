@@ -28,15 +28,15 @@ public:
 	virtual void Update(Map* mapManager, GimmickManager* gimmickManager) = 0;	// キャラクターの更新メソッド
 	virtual void Draw() = 0;	// キャラクターの描画メソッド
 
-	POINT GetCharacterNowPosition();															// キャラクターの現在位置を取得するメソッド
+	POINT GetCharacterPosition();																// キャラクターの現在位置を取得するメソッド
 	void SetCharacterPosition(int x, int y);													// キャラクターの現在位置を設定するメソッド
 	void SetCharacterPosition(POINT position);													// キャラクターの現在位置を設定するメソッド(引数がPOINT型)
 	void MoveCharacter(Map* mapManager, GimmickManager* gimmickManagerint, int x, int y);		// 引数で渡した値だけキャラクターを動かすメソッド
 	void MoveCharacter(Map* mapManager, GimmickManager* gimmickManagerint, POINT position);		// 引数で渡した値だけキャラクターを動かすメソッド(引数がPOINT型)
 
-	void Calc_HP(int value, int isDamage);		// HPを増減させるメソッド
-
-	int Get_HP();	// HPを取得するメソッド
+	void Set_HP(int value);					// HPを指定した値に設定する
+	void Calc_HP(int value, int isDamage);	// HPを増減させるメソッド
+	int Get_HP();							// HPを取得するメソッド
 
 	int Get_MaxHP();	// 最大HPを取得するメソッド
 };

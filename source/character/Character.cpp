@@ -22,7 +22,7 @@ Character::~Character()
 }
 
 /* --- キャラクターの現在位置を取得するメソッド-- - */
-POINT Character::GetCharacterNowPosition()
+POINT Character::GetCharacterPosition()
 {
 	return characterPosition;		// 現在位置を返す
 }
@@ -74,6 +74,23 @@ void Character::MoveCharacter(Map* mapManager, GimmickManager* gimmickManager, P
 	if (mapManager->IsPassable(nextPosition) && gimmickManager->IsPassable(nextPosition))	// 移動後の座標が侵入可能なら
 	{
 		SetCharacterPosition(nextPosition);	// 現在位置を移動後の座標に変更
+	}
+
+	return;
+}
+
+/* --- HPを指定した値に設定する --- */
+void Character::Set_HP(int value)
+{
+	hp = value;		// HPを引数で渡した値に設定する
+
+	if (hp >= maxHP)	// HPが最大HP以上なら
+	{
+		hp = maxHP;		// HPを最大HPの値にする
+	}
+	else if (hp < 0)	// HPが0以下であれば
+	{
+		hp = 0;		// HPを0にする
 	}
 
 	return;
