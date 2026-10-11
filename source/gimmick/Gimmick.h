@@ -75,6 +75,7 @@ public:
 	void AdvanceGimmickState();			// ギミックの状態を1つ進めるメソッド
 
 	void Activate();	// ギミックの起動メソッド
+	void Inactivate();	// ギミックの停止メソッド
 
 	bool CheckContactPoint(POINT point);	// 引数で渡した座標との接触を判定するメソッド
 

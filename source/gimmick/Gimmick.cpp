@@ -132,7 +132,15 @@ void Gimmick::AdvanceGimmickState()
 /* --- ギミックの起動メソッド --- */
 void Gimmick::Activate()
 {
-	isActive = true;
+	isActive = true;	// ギミックを起動
+
+	return;
+}
+
+/* --- ギミックの停止メソッド --- */
+void Gimmick::Inactivate()
+{
+	isActive = false;	// ギミックを停止
 
 	return;
 }
@@ -140,14 +148,14 @@ void Gimmick::Activate()
 /* --- 引数で渡した座標との接触を判定 --- */
 bool Gimmick::CheckContactPoint(POINT point)
 {
-	RECT gimmickRect;
+	RECT gimmickRect;	// ギミックの判定
 
-	gimmickRect = GetRectOnPoint(positionX, positionY, GimmickSize, GimmickSize);
+	gimmickRect = GetRectOnPoint(positionX, positionY, GimmickSize, GimmickSize);	// ギミックの判定となる矩形を取得
 
-	if (CollisionRectToPoint(gimmickRect, point))
+	if (CollisionRectToPoint(gimmickRect, point))	// ギミックの判定と引数の座標が接触しているなら
 	{
-		return true;
+		return true;	// trueを返す
 	}
 
-	return false;
+	return false;	// falseを返す
 }
