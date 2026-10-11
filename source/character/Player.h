@@ -42,6 +42,7 @@ public:
 	void SetBleedingTrue();			// 出血状態にするメソッド
 	void SetBleedingFalse();		// 出血状態を解除するメソッド
 	void TakeDamage(int value);		// 被ダメージのメソッド
+	void Transfusion(int value);	// 輸血メソッド
 
 private:
 	void PlayerAnimation();		// プレイヤーのアニメーションメソッド

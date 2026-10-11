@@ -166,9 +166,9 @@ void Player::MovePlayer(Map* mapManager, GimmickManager* gimmickManager)
 /* --- インタラクト(通常ギミックに作用する)メソッド-- - */
 void Player::InteractGimmick(GimmickManager* gimmickManager, int gimmickID)
 {
-	if (gimmickManager->GetGimmickGroup(gimmickID) == GimmickGroup::Normal)		// ギミックが通常ギミックなら
+	if (gimmickManager->GetGimmickTag(gimmickID) == GimmickTag::Normal)		// ギミックが通常ギミックなら
 	{
-		gimmickManager->AdvanceGimmickState(gimmickID);		// ギミックの状態を進める
+		gimmickManager->ActivateGimmick(gimmickID);		// ギミックの状態を進める
 	}
 
 	return;
@@ -179,9 +179,9 @@ void Player::SelfHarm(GimmickManager* gimmickManager, int gimmickID)
 {
 	TakeDamage(DamageOfSelfHarm);	// 自傷の被ダメージを受ける
 
-	if (gimmickManager->GetGimmickGroup(gimmickID) == GimmickGroup::Blood)		// ギミックが出血ギミックなら
+	if (gimmickManager->GetGimmickTag(gimmickID) == GimmickTag::Blood)		// ギミックが出血ギミックなら
 	{
-		gimmickManager->AdvanceGimmickState(gimmickID);		// ギミックの状態を進める
+		gimmickManager->ActivateGimmick(gimmickID);		// ギミックの状態を進める
 	}
 
 	return;
@@ -220,6 +220,14 @@ void Player::TakeDamage(int value)
 	Calc_HP(value, TRUE);	// HPを減らす
 
 	SetBleedingTrue();	// 出血状態にする
+
+	return;
+}
+
+/* --- 輸血メソッド --- */
+void Player::Transfusion(int value)
+{
+	Calc_HP(value, FALSE);	// HPを増やす
 
 	return;
 }
