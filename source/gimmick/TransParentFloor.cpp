@@ -4,9 +4,15 @@
 
 
 /* --- コンストラクタ-- - */
-TransparentFloor::TransparentFloor(int id, int x, int y) : BloodGimmick(id, x, y)
+TransparentFloor::TransparentFloor(int id, int x, int y, int state, int target) : BloodGimmick(id, x, y, state, target)
 {
+	gimmickType = GimmickType::TransparentFloor;	// ギミックの種類を「透明床」に設定
 
+	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
+
+	maxState = TransparentFloorSateMax;		// 最後の状態を設定
+
+	isPassable = true;	// ギミックを「通行可能」に設定
 }
 
 /* --- デストラクタ-- - */
@@ -22,8 +28,20 @@ void TransparentFloor::Init()
 }
 
 /* --- ギミックの更新メソッド --- */
-void TransparentFloor::Update()
+void TransparentFloor::Update(Player* player)
 {
+	if (gimmickState == maxState)	// ギミックが最後の状態なら
+	{
+		return;		// 何もせずに終了
+	}
+
+	if (isActive)
+	{
+		SetGimmickState(maxState);	// ギミックを最後の状態に設定
+
+		Inactivate();	// ギミックを停止する
+	}
+
 	return;
 }
 
