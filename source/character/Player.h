@@ -46,6 +46,8 @@ public:
 
 	void Falling();		// 落下のメソッド
 
+	bool IsGameOver();	// ゲームオーバーの判定メソッド
+
 private:
 	void PlayerAnimation();		// プレイヤーのアニメーションメソッド
 

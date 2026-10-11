@@ -257,6 +257,21 @@ void Player::Falling()
 	return;
 }
 
+/* --- ゲームオーバーの判定メソッド --- */
+bool Player::IsGameOver()
+{
+	if (hp <= 0)	// HPが0以下なら
+	{
+		// ゲームオーバーの演出
+
+		//SE_Play()
+
+		return true;	// true(ゲームオーバー)を返す
+	}
+
+	return false;	// falseを返す
+}
+
 /* --- プレイヤーのアニメーションメソッド-- - */
 void Player::PlayerAnimation()
 {
