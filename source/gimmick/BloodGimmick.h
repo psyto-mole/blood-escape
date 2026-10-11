@@ -7,12 +7,9 @@
 
 class BloodGimmick : public Gimmick
 {
-protected:
-	
-
 public:
-	BloodGimmick(int id, int x, int y);		// コンストラクタ
-	~BloodGimmick() override;				// デストラクタ
+	BloodGimmick(int id, int x, int y, int state, int target);	// コンストラクタ
+	~BloodGimmick() override;									// デストラクタ
 
 	virtual void Init() = 0;	// ギミックの初期化メソッド
 	virtual void Update() = 0;	// ギミックの更新メソッド
