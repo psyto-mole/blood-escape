@@ -124,6 +124,16 @@ void GimmickManager::Update(Player* player)
         }
 
          gimmicks[i]->Update(player);  // プレイヤーの位置を渡しギミックの更新メソッドを実行
+
+         if (gimmicks[i]->GetGimmickType() == GimmickType::Switch
+             && gimmicks[i]->GetGimmickType() == GimmickType::Altar)
+         {
+             int searchTargetID;  // 探す対象ID
+
+             searchTargetID = gimmicks[i]->GetGimmickTargetID();    //連動するギミックのIDを取得
+
+             ActivateGimmick(searchTargetID);   // 連動するギミックを起動
+         }
     }
 
     return;
