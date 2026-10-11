@@ -306,13 +306,24 @@ int Map::GetHeight() const
     return height;  // マップの縦幅を返す
 }
 
-/* --- 引数で渡した位置のタイルが通行可能かを取得するメソッド-- - */
+/* --- 引数で渡した位置のタイルが通行可能かを判定するメソッド-- - */
 bool Map::IsPassable(POINT position)
 {
-    if (GetCollisionTile(position) == PassableTile)     // 引数の位置が通行可能なら
+    if (GetCollisionTile(position) != ObstacleTile)     // 引数の位置が通行不可でないなら
     {
         return true;    // true(通行可能)を返す
     }
 
     return false;   // false(通行不可)を返す
+}
+
+/* --- 引数で渡した位置にタイルがあるか判定するメソッド --- */
+bool Map::IsThereTile(POINT position)
+{
+    if (GetCollisionTile(position) != HollowTile)   // 引数の位置が空洞なら
+    {
+        return false;   // false(タイルなし)を返す
+    }
+
+    return true;    // true(タイルあり)を返す
 }

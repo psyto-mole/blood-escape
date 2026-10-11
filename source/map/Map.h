@@ -9,7 +9,7 @@
 #define TileSize        32  // タイルサイズ
 #define TileSetWidth    3   // タイルセットの横方向のタイル数(タイルセットの画像のサイズ/タイルサイズ)
 
-#define HollowTile      0   // タイルなし
+#define HollowTile      0   // 空洞
 #define PassableTile    1   // 通行可能タイル
 #define ObstacleTile    2   // 侵入不可タイル
 
@@ -39,5 +39,6 @@ public:
     int GetWidth() const;                           // マップの横幅を取得するメソッド
     int GetHeight() const;                          // マップの縦幅を取得するメソッド
 
-    bool IsPassable(POINT position);    // 引数で渡した位置のタイルが通行可能かを取得するメソッド
+    bool IsPassable(POINT position);    // 引数で渡した位置のタイルが通行可能かを判定するメソッド
+    bool IsThereTile(POINT position);   // 引数で渡した位置にタイルがあるか判定するメソッド
 };
