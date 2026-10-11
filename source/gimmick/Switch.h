@@ -5,15 +5,16 @@
 #include "Gimmick.h"
 
 
+#define SwitchStateMax	2	// スイッチの状態の種類
+
+/* --- スイッチギミックのクラス(Gimmickクラスの派生クラス) --- */
 class Switch : public Gimmick
 {
-private:
-
 public:
-	Switch(int id, int x, int y);	// コンストラクタ
-	~Switch() override;				// デストラクタ
+	Switch(int id, int x, int y, int state, int target);	// コンストラクタ
+	~Switch() override;										// デストラクタ
 
-	void Init() override;		// スイッチギミックの初期化メソッド
-	void Update() override;		// スイッチギミックの更新メソッド
-	void Draw() override;		// スイッチギミックの描画メソッド
+	void Init() override;					// スイッチギミックの初期化メソッド
+	void Update(Player* player) override;	// スイッチギミックの更新メソッド
+	void Draw() override;					// スイッチギミックの描画メソッド
 };
