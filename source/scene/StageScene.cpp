@@ -157,12 +157,6 @@ void StageScene::Draw()
     mapManager.Draw();      // マップの描画
     gimmickManager.Draw();  // ギミックの描画
     playerObject.Draw();    // プレイヤー描画
-    // UI描画
-
-    if (GameDebug)
-    {
-        DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_White, KHDot_100_9, "Stage %d", stageNumber);
-    }
 
     return;
 }
@@ -170,7 +164,6 @@ void StageScene::Draw()
 /* --- ステージの終了メソッド --- */
 void StageScene::End()
 {
-    // ステージ固有のリソース解放
 }
 
 /* --- ステージ番号の取得メソッド --- */
