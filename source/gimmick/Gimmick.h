@@ -69,6 +69,7 @@ public:
 	int GetGimmickState();			// ギミックの状態を取得するメソッド
 	int GetGimmickTargetID();		// 連動するギミックのIDを取得するメソッド
 	bool GetGimmickIsPassable();	// ギミックが通行可能かを取得するメソッド
+	bool GetGimmickIsActive();		// ギミックが起動しているかを取得するメソッド
 
 	void SetGimmickState(int state);	// ギミックを指定した状態に変えるメソッド
 	void AdvanceGimmickState();			// ギミックの状態を1つ進めるメソッド

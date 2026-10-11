@@ -83,7 +83,13 @@ int Gimmick::GetGimmickTargetID()
 /* --- ギミックが通行可能かを取得するメソッド-- - */
 bool Gimmick::GetGimmickIsPassable()
 {
-	return isPassable;
+	return isPassable;	// 通行可能かを返す
+}
+
+/* --- ギミックが起動しているかを取得するメソッド --- */
+bool Gimmick::GetGimmickIsActive()
+{
+	return isActive;	// 起動しているかを返す
 }
 
 /* --- ギミックを指定した状態に変える --- */
