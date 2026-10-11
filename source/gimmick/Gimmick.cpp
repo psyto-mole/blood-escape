@@ -20,7 +20,7 @@ Gimmick::Gimmick(int id, int x, int y, int state, int target)
 	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
 
 	gimmickState = state;	// ギミックの状態の初期化
-	maxState = 0;			// 最後の状態を0に設定
+	maxState = 1;			// 最後の状態を1に設定
 	isRoopState = false;	// 状態がループしないように設定
 
 	targetID = target;	// 連動するギミックのIDの初期化
@@ -87,11 +87,11 @@ void Gimmick::SetGimmickState(int state)
 
 	if (gimmickState >= maxState)	// 状態がそのギミックの撮り得る最後の状態を超えたなら
 	{
-		gimmickState = maxState - 1;	// 最後の状態にする
+		gimmickState = maxState;	// 最後の状態にする
 	}
-	else if (gimmickState < 0)	// ギミックの状態が0を下回るなら
+	else if (gimmickState < 1)	// ギミックの状態が1を下回るなら
 	{
-		gimmickState = 0;	// ギミックの状態を初期化(0に設定)
+		gimmickState = 1;	// ギミックの状態を初期化(1に設定)
 	}
 
 	return;
@@ -106,11 +106,11 @@ void Gimmick::AdvanceGimmickState()
 	{
 		if (isRoopState)	// 状態がループするギミックなら
 		{
-			gimmickState = 0;	// 状態を初期化する
+			gimmickState = 1;	// 状態を初期化する
 		}
 		else
 		{
-			gimmickState = maxState - 1;	// 状態を最後の状態に設定
+			gimmickState = maxState;	// 状態を最後の状態に設定
 		}
 	}
 

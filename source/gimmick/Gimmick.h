@@ -44,7 +44,7 @@ protected:
 
 	int gimmickImage;	// ギミックの画像ハンドル
 
-	int gimmickState;	// ギミックの状態(0で初期状態)
+	int gimmickState;	// ギミックの状態(1で初期状態)
 	int maxState;		// 最後の状態
 	bool isRoopState;	// 状態がループするか
 
@@ -75,4 +75,6 @@ public:
 	void Activate();	// ギミックの起動メソッド
 
 	bool CheckContactPoint(POINT point);	// 引数で渡した座標との接触を判定するメソッド
+
+	virtual bool IsGoal() = 0;	// ゴール判定のメソッド
 };
