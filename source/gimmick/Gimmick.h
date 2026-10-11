@@ -67,6 +67,7 @@ public:
 	GimmickType GetGimmickType();	// ギミックの種類を取得するメソッド
 	POINT GetGimmickPosition();		// ギミックの位置をPOINT型で取得するメソッド
 	int GetGimmickState();			// ギミックの状態を取得するメソッド
+	int GetGimmickTargetID();		// 連動するギミックのIDを取得するメソッド
 	bool GetGimmickIsPassable();	// ギミックが通行可能かを取得するメソッド
 
 	void SetGimmickState(int state);	// ギミックを指定した状態に変えるメソッド

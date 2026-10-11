@@ -74,6 +74,12 @@ int Gimmick::GetGimmickState()
 	return gimmickState;	// ギミックの状態を返す
 }
 
+/* --- 連動するギミックのIDを取得するメソッド --- */
+int Gimmick::GetGimmickTargetID()
+{
+	return targetID;	// 連動するギミックのIDを返す
+}
+
 /* --- ギミックが通行可能かを取得するメソッド-- - */
 bool Gimmick::GetGimmickIsPassable()
 {
