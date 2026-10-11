@@ -137,16 +137,16 @@ void StageScene::Update()
         }
     }
 
-    //if (/* ゲームオーバー */)  // 　ゲームオーバーになったら
-    //{
-    //    transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
+    if (playerObject.IsGameOver())  // 　ゲームオーバーなら
+    {
+        transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
-    //    transition.sceneType = SceneType::GameOver;     // 遷移情報のシーンの種類をゲームオーバーシーンにする
+        transition.sceneType = SceneType::GameOver;     // 遷移情報のシーンの種類をゲームオーバーシーンにする
 
-    //    transition.stageNum = stageNumber;  // 遷移情報のステージ番号に自身の番号を代入する
+        transition.stageNum = stageNumber;  // 遷移情報のステージ番号に自身の番号を代入する
 
-    //    return;
-    //}
+        return;
+    }
 
     sceneElapsedFrame++;    // 経過フレームを1加算
 }
