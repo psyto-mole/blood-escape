@@ -68,7 +68,7 @@ void Bandage::Update(Player* player)
 /* --- 包帯の描画メソッド-- - */
 void Bandage::Draw()
 {
-	if (gimmickState == 2)	// 最後の状態(取得済み)なら
+	if (gimmickState == maxState)	// 最後の状態(取得済み)なら
 	{
 		return;		// 何もせずに終了
 	}
