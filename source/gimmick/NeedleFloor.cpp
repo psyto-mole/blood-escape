@@ -1,14 +1,14 @@
 /* === 針床のクラスのソースファイル === */
 
 #include "NeedleFloor.h"
+#include "Geometry.h"
+#include "Image.h"
 
 
 /* --- コンストラクタ --- */
 NeedleFloor::NeedleFloor(int id, int x, int y, int state, int target) : ContactGimmick(id, x, y, state, target)
 {
 	gimmickType = GimmickType::NeedleFloor;	// ギミックの種類を「針床」に設定
-
-	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
 
 	maxState = NeedleFloorStateMax;		// 最後の状態を設定
 }
@@ -22,32 +22,48 @@ NeedleFloor::~NeedleFloor()
 /* --- 針床の初期化メソッド --- */
 int NeedleFloor::Init()
 {
-	return;
+	gimmickImage[0] = LoadGraph(PathOfNeedleFloorImage1);	// 状態1の時の画像の読み込み・ハンドル取得
+	gimmickImage[1] = LoadGraph(PathOfNeedleFloorImage2);	// 状態2の時の画像の読み込み・ハンドル取得
+
+	if (gimmickImage[0] == -1 || gimmickImage[1] == -1)		// 読み込めていない画像があるなら
+	{
+		/* +++ エラーメッセージの表示 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"NeedleFloor.cpp: Can not load NeedleFloor's image.",
+			"Image Error",
+			MB_OK
+		);
+
+		return -1;	// -1を返す(初期化失敗)
+	}
+
+	return 0;
 }
 
 /* --- 針床の更新メソッド --- */
 void NeedleFloor::Update(Player* player)
 {
-	if (isActive)
+	if (isActive)	// 起動しているなら
 	{
-		if (isContact)
+		if (isContact)	// プレイヤーと接触しているなら
 		{
-			return;
+			return;		// 何もせずに終了
 		}
 		else
 		{
-			player->TakeDamage(NeedleFloorDamage);
+			player->TakeDamage(NeedleFloorDamage);	// プレイヤーにダメージを与える
 
 			SetGimmickState(maxState);	// ギミックの状態を最後の状態に設定
 
 			//SE_Play();
 
-			isContact = true;
+			isContact = true;	// 接触状態にする
 		}
 	}
 	else
 	{
-		isContact = false;
+		isContact = false;	// 接触状態を解除する
 	}
 
 	return;
