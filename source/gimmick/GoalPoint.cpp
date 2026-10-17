@@ -11,7 +11,7 @@ GoalPoint::GoalPoint(int id, int x, int y, int state, int target) : ContactGimmi
 
 	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
 
-	maxState = GoalPointStateMax;	// ゴール地点の状態の最大値を設定
+	maxState = GoalPointStateMax;	// 最後の状態を設定
 
 	isGoal = false;
 }
@@ -22,7 +22,7 @@ GoalPoint::~GoalPoint()
 }
 
 /* --- ゴール地点の初期化メソッド --- */
-void GoalPoint::Init()
+int GoalPoint::Init()
 {
 	return;
 }
@@ -30,6 +30,16 @@ void GoalPoint::Init()
 /* --- ゴール地点の更新メソッド --- */
 void GoalPoint::Update(Player* player)
 {
+	if (isGoal)
+	{
+		if (isActive)	// ドアが起動状態なら
+		{
+			Inactivate();	// ドアを停止状態にする
+		}
+
+		return;
+	}
+
 	if (isActive)
 	{
 		isGoal = true;	// ゴール判定をtrue(ゴールした)に設定

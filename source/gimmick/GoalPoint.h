@@ -18,7 +18,7 @@ public:
 	GoalPoint(int id, int x, int y, int state, int target);		// ゴール地点のコンストラクタ
 	~GoalPoint() override;										// ゴール地点のデストラクタ
 
-	void Init() override;					// ゴール地点の初期化メソッド
+	int Init() override;					// ゴール地点の初期化メソッド
 	void Update(Player* player) override;	// ゴール地点の更新メソッド
 	void Draw() override;					// ゴール地点の描画メソッド
 
