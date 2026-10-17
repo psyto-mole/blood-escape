@@ -11,23 +11,44 @@
 #include "Font.h"
 
 /* --- シーンの初期化メソッド --- */
-void SceneManager::Init()
+int SceneManager::Init()
 {
     currentScene = std::make_unique<TitleScene>();  // タイトル画面のポインタを取得
 
-    currentScene->Init();   // 現在のシーンの初期化メソッドを実行
+    if (currentScene == nullptr)
+    {
+        /* +++ エラーメッセージを表示 +++ */
+        MessageBox(
+        );
+
+        return -1;  // -1を返す(初期化失敗)
+    }
+
+    if (currentScene->Init() == -1)   // 現在のシーンの初期化に失敗したら
+    {
+        /* +++ エラーメッセージを表示 +++ */
+        MessageBox(
+        );
+
+        return -1;  // -1を返す(初期化失敗)
+    }
 
     fadeManager.FadeInit(255, 10);  // フェードの透明度とスピードを設定
     fadeManager.SetStateFadeIn();   // フェードの状態を設定
 
     gameEnd = false;
 
-    return;
+    return 0;
 }
 
 
-void SceneManager::Update()
+int SceneManager::Update()
 {
+    if (gameEnd)    // ゲームが終了しているなら
+    {
+        return -1;  // -1を返す(ゲームの終了)
+    }
+
     /* +++ フェード処理 +++ */
     if (fadeManager.GetFadeState() != FadeState::None)  // フェード処理中なら(フェードの状態が「フェードしない」でなければ)
     {
@@ -38,13 +59,12 @@ void SceneManager::Update()
 
         fadeManager.FadeUpdate();   // フェードを更新する
 
-        return;
+        return 0;
     }
 
-    /* +++ 現在のシーンの更新処理を実行 +++ */
     if (currentScene == nullptr)    // 現在のシーンに何も割り当てられていなければ
     {
-        return;     // 処理を終了する
+        return -1;     // -1を返す(更新処理を終了する)
     }
 
     currentScene->Update();     // 現在のシーンの更新メソッドを実行
@@ -58,7 +78,7 @@ void SceneManager::Update()
 
     if (transition.transitionType == TransitionType::None)  // 遷移しない場合
     {
-        return;     // 処理を終了
+        return 0;     // 処理を終了
     }
 
     if (transition.transitionType == TransitionType::ChangeScene)   // シーンを変える場合
@@ -66,7 +86,7 @@ void SceneManager::Update()
         RequestSceneChange(transition);     // 遷移情報を渡してシーンの遷移を要請する
     }
 
-    return;
+    return 0;
 }
 
 /* --- シーンの描画メソッド --- */
@@ -97,17 +117,6 @@ void SceneManager::End()
     nextScene.reset();  // 次のシーンの割り当てをなくす(nullptrにする)
 
     return;
-}
-
-/* --- ゲームの終了を確認するためのメソッド-- - */
-bool SceneManager::IsGameEnd()
-{
-    if (gameEnd)
-    {
-        return true;
-    }
-
-    return false;
 }
 
 /* --- シーン遷移要請メソッド --- */
