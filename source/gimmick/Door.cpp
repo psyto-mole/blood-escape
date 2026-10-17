@@ -1,6 +1,8 @@
 /* === ドアギミックのソースファイル === */
 
 #include "Door.h"
+#include "Geometry.h"
+#include "Image.h"
 
 
 /* --- コンストラクタ --- */
@@ -9,8 +11,6 @@ Door::Door(int id, int x, int y, int state, int target) : Gimmick(id, x, y, stat
 	gimmickTag = GimmickTag::Normal;	// ギミックのタグを「通常ギミック」に設定
 
 	gimmickType = GimmickType::Door;	// ギミックの種類を「ドアギミック」に設定
-
-	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
 
 	maxState = DoorStateMax;	// 最後の状態を1設定
 }
@@ -24,7 +24,23 @@ Door::~Door()
 /* --- ドアギミックの初期化メソッド --- */
 int Door::Init()
 {
-	return;
+	gimmickImage[0] = LoadGraph(PathOfDoorImage1);		// 状態1の時の画像の読み込み・ハンドル取得
+	gimmickImage[1] = LoadGraph(PathOfDoorImage2);		// 状態2の時の画像の読み込み・ハンドル取得
+
+	if (gimmickImage[0] == -1 || gimmickImage[1] == -1)		// 読み込めていない画像があるなら
+	{
+		/* +++ エラーメッセージの表示 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Door.cpp: Can not load Door's image.",
+			"Image Error",
+			MB_OK
+		);
+
+		return -1;	// -1を返す(初期化失敗)
+	}
+
+	return 0;
 }
 
 /* --- ドアギミックの更新メソッド --- */
