@@ -72,18 +72,20 @@ void NeedleFloor::Update(Player* player)
 /* --- j°‚Ì•`‰æƒƒ\ƒbƒh --- */
 void NeedleFloor::Draw()
 {
-	/* +++ j°‚Ìó‘Ô‚É‰‚¶‚Ä•`‰æ‚ğ•Ï‚¦‚é +++ */
+	POINT drawPoint = GetPoint(positionX, positionY);	// •`‰æ‚·‚éÀ•W‚ğPOINTŒ^‚Åæ“¾
+
+	/* +++ ó‘Ô‚É‰‚¶‚Äj°‚ğ•`‰æ‚·‚é +++ */
 	switch (gimmickState)
 	{
 	case 1:
-		/* +++ ó‘Ô0(‰Šúó‘Ô)‚Ìê‡ +++ */
+		/* +++ ó‘Ô1(‰Šúó‘Ô)‚Ìê‡ +++ */
 
-		// ’Êí‚Ìj°‚ğ•`‰æ
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// ó‘Ô1‚Å•`‰æ
 		break;
 	case 2:
-		/* +++ ó‘Ô1‚Ìê‡ +++ */
+		/* +++ ó‘Ô2‚Ìê‡ +++ */
 
-		//ŒŒ”G‚ê‚Ìj°‚ğ•`‰æ
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], FALSE);	//ó‘Ô2‚Å•`‰æ
 		break;
 	}
 
