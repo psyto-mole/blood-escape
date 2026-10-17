@@ -1,14 +1,14 @@
 /* === 包帯のソースファイル === */
 
 #include "Bandage.h"
+#include "Geometry.h"
+#include "Image.h"
 
 
 /* --- コンストラクタ-- - */
 Bandage::Bandage(int id, int x, int y, int state, int target) : ContactGimmick(id, x, y, state, target)
 {
 	gimmickType = GimmickType::Bandage;		// ギミックの種類を「包帯」に設定
-
-	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
 
 	maxState = BandageStateMax;		// 最後の状態を設定
 }
@@ -20,8 +20,23 @@ Bandage::~Bandage()
 }
 
 /* --- 包帯の初期化メソッド-- - */
-void Bandage::Init()
+int Bandage::Init()
 {
+	gimmickImage[0] = LoadGraph(PathOfBandageImage);		// 画像の読み込み・ハンドル取得
+
+	if (gimmickImage[0] == -1)		// 画像が読み込めていないなら
+	{
+		/* +++ エラーメッセージの表示 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Bandage.cpp: Can not load Bandage's image.",
+			"Image Error",
+			MB_OK
+		);
+
+		return -1;	// -1を返す(初期化失敗)
+	}
+
 	return;
 }
 
@@ -30,6 +45,11 @@ void Bandage::Update(Player* player)
 {
 	if (gimmickState == maxState)	// 最後の状態(取得済み)なら
 	{
+		if (isActive)	// ドアが起動状態なら
+		{
+			Inactivate();	// ドアを停止状態にする
+		}
+
 		return;		// 何もせずに処理を終了
 	}
 

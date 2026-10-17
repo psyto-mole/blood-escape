@@ -14,7 +14,7 @@ public:
 	Bandage(int id, int x, int y, int state, int target);	// コンストラクタ
 	~Bandage() override;									// デストラクタ
 
-	void Init() override;					// 包帯の初期化メソッド
+	int Init() override;					// 包帯の初期化メソッド
 	void Update(Player* player) override;	// 包帯の更新メソッド
 	void Draw() override;					// 包帯の描画メソッド
 };
