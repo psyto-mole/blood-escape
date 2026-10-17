@@ -37,7 +37,7 @@ int BloodPack::Init()
 		return -1;	// -1を返す(初期化失敗)
 	}
 
-	return;
+	return 0;
 }
 
 /* --- 輸血パックの更新メソッド --- */
@@ -68,5 +68,14 @@ void BloodPack::Update(Player* player)
 /* --- 輸血パックの描画メソッド-- - */
 void BloodPack::Draw()
 {
+	if (gimmickState == maxState)	// 最後の状態(取得済み)なら
+	{
+		return;		// 何もせずに終了
+	}
+
+	POINT drawPoint = GetPoint(positionX, positionY);	// 描画する座標をPOINT型で取得
+
+	DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// 輸血パックを描画
+
 	return;
 }
