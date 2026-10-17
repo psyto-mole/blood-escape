@@ -9,13 +9,13 @@
 
 
 /* --- タイトルシーンの初期化メソッド --- */
-void TitleScene::Init()
+int TitleScene::Init()
 {
     transition = {};    // 遷移情報をクリア
 
     sceneElapsedFrame = 0;
 
-    return;
+    return 0;
 }
 
 /* --- タイトルシーンの更新メソッド --- */
