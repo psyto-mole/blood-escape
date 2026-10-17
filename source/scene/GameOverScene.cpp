@@ -25,7 +25,7 @@ GameOverScene::~GameOverScene()
 }
 
 /* --- ゲームオーバーシーンの初期化メソッド --- */
-void GameOverScene::Init()
+int GameOverScene::Init()
 {
     selectedIndex = 1;  // 選択肢の初期値を0(リトライ)に設定
 
@@ -33,7 +33,7 @@ void GameOverScene::Init()
 
     sceneElapsedFrame = 0;  // 経過フレームをリセット
 
-    return;
+    return 0;
 }
 
 /* --- ゲームオーバーシーンの更新メソッド --- */

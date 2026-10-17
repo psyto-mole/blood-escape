@@ -21,7 +21,7 @@ public:
     GameOverScene(int stage);   // コンストラクタ
     ~GameOverScene();           // デストラクタ
 
-    void Init() override;       // ゲームオーバーシーンの初期化メソッド
+    int Init() override;       // ゲームオーバーシーンの初期化メソッド
     void Update() override;     // ゲームオーバーシーンの更新メソッド
     void Draw() override;       // ゲームオーバーシーンの描画メソッド
     void End() override;        // ゲームオーバーシーンの終了メソッド

@@ -9,7 +9,7 @@
 class ClearScene : public Scene
 {
 public:
-    void Init() override;    // クリアシーンの初期化メソッド
+    int Init() override;    // クリアシーンの初期化メソッド
     void Update() override;  // クリアシーンの更新メソッド
     void Draw() override;    // クリアシーンの描画メソッド
     void End() override;     // クリアシーンの終了メソッド

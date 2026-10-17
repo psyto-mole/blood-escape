@@ -9,13 +9,13 @@
 
 
 /* --- クリアシーンの初期化メソッド --- */
-void ClearScene::Init()
+int ClearScene::Init()
 {
 	transition = {};	// 遷移情報をクリア
 
 	sceneElapsedFrame = 0;	// 経過フレームをリセット
 
-	return;
+	return 0;
 }
 
 /* --- クリアシーンの更新メソッド --- */
