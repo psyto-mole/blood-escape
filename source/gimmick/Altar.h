@@ -14,7 +14,7 @@ public:
 	Altar(int id, int x, int y, int state, int target);		// コンストラクタ
 	~Altar() override;										// デストラクタ
 
-	void Init() override;					// 祭壇の初期化メソッド
+	int Init() override;					// 祭壇の初期化メソッド
 	void Update(Player* player) override;	// 祭壇の更新メソッド
 	void Draw() override;					// 祭壇の描画メソッド
 };
