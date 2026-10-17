@@ -71,5 +71,22 @@ void Switch::Update(Player* player)
 /* --- スイッチギミックの描画メソッド-- - */
 void Switch::Draw()
 {
+	POINT drawPoint = GetPoint(positionX, positionY);	// 描画する座標をPOINT型で取得
+
+	/* +++ 状態に応じてスイッチを描画する +++ */
+	switch (gimmickState)
+	{
+	case 1:
+		/* +++ 状態1なら +++ */
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// 状態1で描画
+		break;
+	case 2:
+		/* +++ 状態2なら +++ */
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], FALSE);	// 状態2で描画
+		break;
+	}
+
 	return;
 }
