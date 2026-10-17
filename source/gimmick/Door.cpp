@@ -22,7 +22,7 @@ Door::~Door()
 }
 
 /* --- ドアギミックの初期化メソッド --- */
-void Door::Init()
+int Door::Init()
 {
 	return;
 }

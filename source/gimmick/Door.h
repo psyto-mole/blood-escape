@@ -14,7 +14,7 @@ public:
 	Door(int id, int x, int y, int state, int target);	// コンストラクタ
 	~Door() override;									// デストラクタ
 
-	void Init() override;					// ドアギミックの初期化メソッド
+	int Init() override;					// ドアギミックの初期化メソッド
 	void Update(Player* player) override;	// ドアギミックの更新メソッド
 	void Draw() override;					// ドアギミックの描画メソッド
 };
