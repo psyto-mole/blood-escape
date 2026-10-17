@@ -69,5 +69,22 @@ void TransparentFloor::Update(Player* player)
 /* --- ギミックの描画メソッド --- */
 void TransparentFloor::Draw()
 {
+	POINT drawPoint = GetPoint(positionX, positionY);	// 描画する座標をPOINT型で取得
+
+	/* +++ ギミックの状態に応じて透明床の描画処理を行う +++ */
+	switch (gimmickState)
+	{
+	case 1:
+		/* +++ 状態1なら +++ */
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// 状態1で描画
+		break;
+	case 2:
+		/* +++ 状態2なら +++ */
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], FALSE);	// 状態1で描画
+		break;
+	}
+
 	return;
 }
