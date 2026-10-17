@@ -13,8 +13,6 @@
 #include "SceneManager.h"
 #include "Geometry.h"
 #include "Message.h"
-#include "SaveLoad.h"
-//#include "Menu.h"
 
 
 /* +++ プロトタイプ宣言 +++ */
@@ -108,23 +106,6 @@ int Game_Init(SceneManager* sceneManager)
 
 	Mouse_Init();	// マウス処理の初期化
 
-	if (sceneManager == NULL)	// シーン管理オブジェクトのポインタが取得できない
-	{
-		/* +++ エラーメッセージを表示 +++ */
-		MessageBox(
-			GetMainWindowHandle(),
-			"Cannot get scene manager pointer to initialize.",
-			"Main Error",
-			MB_OK
-		);
-
-		return -1;	// -1を返す(初期化失敗)
-	}
-
-	sceneManager->Init();	// シーンの初期化
-
-	Data_Init();
-
 	/* +++ サウンド処理の初期化 +++ */
 	if (Sound_Init() == -1)		// 初期化失敗
 	{
@@ -138,9 +119,25 @@ int Game_Init(SceneManager* sceneManager)
 		return -1;	// -1を返す(初期化関数を初期化失敗で終わらせる)
 	}
 
-	//Menu_Init();
-
 	Geometry_Init();
+
+	if (sceneManager == NULL)	// シーン管理オブジェクトのポインタが取得できない
+	{
+		/* +++ エラーメッセージを表示 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Cannot get scene manager pointer to initialize.",
+			"Main Error",
+			MB_OK
+		);
+
+		return -1;	// -1を返す(初期化失敗)
+	}
+
+	if (sceneManager->Init() == -1)	// シーンの初期化に失敗したら
+	{
+		return -1;	// -1を返す(初期化失敗)
+	}
 
 	return 0;	// 諸々の初期化関数の終了(正常終了)
 }
@@ -173,14 +170,12 @@ int Game_Update(SceneManager* sceneManager)
 		return -1;	// -1を返す(更新失敗)
 	}
 
-	sceneManager->Update();	// シーンの更新
-
-	if (sceneManager->IsGameEnd())	// ゲームが終了したら
+	if (sceneManager->Update() == -1)	// シーンの更新に失敗した、またはゲームが終了したら
 	{
 		return -1;	// -1を返す
 	}
 
-	sceneManager->Draw();
+	sceneManager->Draw();	// シーンの描画
 
 	return 0;
 }
