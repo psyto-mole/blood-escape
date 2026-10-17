@@ -10,7 +10,7 @@ NeedleFloor::NeedleFloor(int id, int x, int y, int state, int target) : ContactG
 
 	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
 
-	maxState = NeedleFloorStateMax;		// 最後の状態を0に設定
+	maxState = NeedleFloorStateMax;		// 最後の状態を設定
 }
 
 /* --- デストラクタ --- */
@@ -20,7 +20,7 @@ NeedleFloor::~NeedleFloor()
 }
 
 /* --- 針床の初期化メソッド --- */
-void NeedleFloor::Init()
+int NeedleFloor::Init()
 {
 	return;
 }
@@ -38,7 +38,7 @@ void NeedleFloor::Update(Player* player)
 		{
 			player->TakeDamage(NeedleFloorDamage);
 
-			SetGimmickState(1);		// ギミックの状態を1に設定
+			SetGimmickState(maxState);	// ギミックの状態を最後の状態に設定
 
 			//SE_Play();
 
@@ -59,12 +59,12 @@ void NeedleFloor::Draw()
 	/* +++ 針床の状態に応じて描画を変える +++ */
 	switch (gimmickState)
 	{
-	case 0:
+	case 1:
 		/* +++ 状態0(初期状態)の場合 +++ */
 
 		// 通常の針床を描画
 		break;
-	case 1:
+	case 2:
 		/* +++ 状態1の場合 +++ */
 
 		//血濡れの針床を描画
