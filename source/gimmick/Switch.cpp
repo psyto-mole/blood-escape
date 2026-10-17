@@ -1,6 +1,8 @@
 /* === スイッチギミックのソースファイル === */
 
 #include "Switch.h"
+#include "Geometry.h"
+#include "Image.h"
 
 
 /* --- コンストラクタ-- - */
@@ -9,8 +11,6 @@ Switch::Switch(int id, int x, int y, int state, int target) : Gimmick(id, x, y, 
 	gimmickTag = GimmickTag::Normal;	// ギミックのタグを「通常ギミック」に設定
 
 	gimmickType = GimmickType::Switch;	// ギミックの種類を「スイッチ」に設定
-
-	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
 
 	maxState = SwitchStateMax;	// 最後の状態を設定
 }
@@ -24,6 +24,22 @@ Switch::~Switch()
 /* --- スイッチギミックの初期化メソッド-- - */
 int Switch::Init()
 {
+	gimmickImage[0] = LoadGraph(PathOfSwitchImage1);		// 状態1の時の画像の読み込み・ハンドル取得
+	gimmickImage[1] = LoadGraph(PathOfSwitchImage2);		// 状態2の時の画像の読み込み・ハンドル取得
+
+	if (gimmickImage[0] == -1 || gimmickImage[1] == -1)		// 読み込めていない画像があるなら
+	{
+		/* +++ エラーメッセージの表示 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Switch.cpp: Can not load Switch's image.",
+			"Image Error",
+			MB_OK
+		);
+
+		return -1;	// -1を返す(初期化失敗)
+	}
+
 	return;
 }
 
@@ -40,11 +56,11 @@ void Switch::Update(Player* player)
 		return;		// 何もせずに終了
 	}
 
-	if (isActive)
+	if (isActive)	// 起動状態なら
 	{
 		SetGimmickState(maxState);	// ギミックを最後の状態にする
 
-		Inactivate();	// 停止状態にする
+		//Inactivate();	// 停止状態にする
 
 		// SE_Play();
 	}
