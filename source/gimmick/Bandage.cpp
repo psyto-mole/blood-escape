@@ -45,9 +45,9 @@ void Bandage::Update(Player* player)
 {
 	if (gimmickState == maxState)	// 最後の状態(取得済み)なら
 	{
-		if (isActive)	// ドアが起動状態なら
+		if (isActive)	// 包帯が起動状態なら
 		{
-			Inactivate();	// ドアを停止状態にする
+			Inactivate();	// 包帯を停止状態にする
 		}
 
 		return;		// 何もせずに処理を終了
@@ -68,7 +68,14 @@ void Bandage::Update(Player* player)
 /* --- 包帯の描画メソッド-- - */
 void Bandage::Draw()
 {
-	// 描画
+	if (gimmickState == 2)	// 最後の状態(取得済み)なら
+	{
+		return;		// 何もせずに終了
+	}
+
+	POINT drawPoint = GetPoint(positionX, positionY);
+
+	DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// 包帯を描画
 
 	return;
 }
