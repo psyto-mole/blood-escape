@@ -41,7 +41,7 @@ protected:
 public:
     virtual ~Scene() = default;     // デストラクタ
 
-    virtual void Init() = 0;    // このシーンの初期化メソッド
+    virtual int Init() = 0;     // このシーンの初期化メソッド
     virtual void Update() = 0;  // このシーンの更新メソッド
     virtual void Draw() = 0;    // このシーンの描画メソッド
     virtual void End() = 0;     // このシーンの終了メソッド
