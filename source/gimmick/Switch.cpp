@@ -22,7 +22,7 @@ Switch::~Switch()
 }
 
 /* --- スイッチギミックの初期化メソッド-- - */
-void Switch::Init()
+int Switch::Init()
 {
 	return;
 }
@@ -32,6 +32,11 @@ void Switch::Update(Player* player)
 {
 	if (gimmickState == maxState)	// ギミックが最後の像体(起動済み)なら
 	{
+		if (isActive)	// ドアが起動状態なら
+		{
+			Inactivate();	// ドアを停止状態にする
+		}
+
 		return;		// 何もせずに終了
 	}
 

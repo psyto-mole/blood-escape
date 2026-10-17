@@ -14,7 +14,7 @@ public:
 	Switch(int id, int x, int y, int state, int target);	// コンストラクタ
 	~Switch() override;										// デストラクタ
 
-	void Init() override;					// スイッチギミックの初期化メソッド
+	int Init() override;					// スイッチギミックの初期化メソッド
 	void Update(Player* player) override;	// スイッチギミックの更新メソッド
 	void Draw() override;					// スイッチギミックの描画メソッド
 };
