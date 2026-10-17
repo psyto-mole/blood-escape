@@ -13,7 +13,7 @@ TutorialScene::~TutorialScene()
 }
 
 /* --- チュートリアルシーンの初期化メソッド --- */
-void TutorialScene::Init()
+int TutorialScene::Init()
 {
     transition = {};    // 遷移情報をクリア
 
@@ -27,7 +27,7 @@ void TutorialScene::Init()
             "投げる度胸もないのか",
         });
 
-    return;
+    return 0;
 }
 
 /* --- チュートリアルシーンの更新メソッド --- */

@@ -15,7 +15,7 @@ private:
 public:
     ~TutorialScene();   // デストラクタ
 
-    void Init() override;       // チュートリアルシーンの初期化メソッド
+    int Init() override;        // チュートリアルシーンの初期化メソッド
     void Update() override;     // チュートリアルシーンの更新メソッド
     void Draw() override;       // チュートリアルシーンの描画メソッド
     void End() override;        // チュートリアルシーンの終了メソッド
