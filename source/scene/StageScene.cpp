@@ -19,7 +19,7 @@ StageScene::~StageScene()
 }
 
 /* --- ステージの初期化メソッド --- */
-void StageScene::Init()
+int StageScene::Init()
 {
     char filePath[256];     // ファイルパス用の配列
 
@@ -40,7 +40,7 @@ void StageScene::Init()
             MB_OK
         );
 
-        return;
+        return -1;  // -1を返す(初期化失敗)
     }
 
     mapManager.Load(filePath);  // csvファイルからマップデータを読み込む
@@ -56,12 +56,20 @@ void StageScene::Init()
             MB_OK
         );
 
-        return;
+        return -1;  // -1を返す(初期化失敗)
     }
 
-    gimmickManager.Load(filePath);  // ギミックデータを読み込む
+    if (gimmickManager.Load(filePath) == -1)  // ギミックデータを読み込むのに失敗したら
+    {
+        return -1;  // -1を返す(初期化失敗)
+    }
 
-    return;
+    if (gimmickManager.Init() == -1)    // ギミックの初期化に失敗したら
+    {
+        return -1;  // -1を返す(初期化失敗)
+    }
+
+    return 0;
 }
 
 /* --- ステージの更新メソッド --- */

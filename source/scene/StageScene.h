@@ -24,7 +24,7 @@ public:
     StageScene(int stage);  // コンストラクタ
     ~StageScene();          // デストラクタ
 
-    void Init() override;       // ステージの初期化メソッド
+    int Init() override;       // ステージの初期化メソッド
     void Update() override;     // ステージの更新メソッド
     void Draw() override;       // ステージの描画メソッド
     void End() override;        // ステージの終了メソッド
