@@ -1,6 +1,7 @@
 /* === 祭壇ギミックのソースファイル === */
 
 #include "Altar.h"
+#include "Geometry.h"
 #include "Image.h"
 
 
@@ -68,5 +69,22 @@ void Altar::Update(Player* player)
 /* --- 祭壇の描画メソッド --- */
 void Altar::Draw()
 {
+	POINT drawPoint = GetPoint(positionX, positionY);	// 描画を行う座標をPOINT型で取得
+
+	/* +++ ギミックの状態に応じて描画処理を行う +++ */
+	switch (gimmickState)
+	{
+	case 1:
+		/* +++ 状態1なら +++ */
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// 祭壇を状態1で描画
+		break;
+	case 2:
+		/* +++ 状態2なら +++ */
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], FALSE);	// 祭壇を状態1で描画
+		break;
+	}
+
 	return;
 }
