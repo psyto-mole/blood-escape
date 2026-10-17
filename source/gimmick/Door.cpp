@@ -60,7 +60,7 @@ void Door::Update(Player* player)
 	{
 		SetGimmickState(maxState);	// ドアを最後の状態にする
 
-		Inactivate();	// ドアを停止する
+		//Inactivate();	// ドアを停止する
 
 		//SEW_Play();
 	}
@@ -71,5 +71,22 @@ void Door::Update(Player* player)
 /* --- ドアギミックの描画メソッド --- */
 void Door::Draw()
 {
+	POINT drawPoint = GetPoint(positionX, positionY);	// 描画する座標をPOINT型で取得
+
+	/* +++ 状態に応じてドアを描画する +++ */
+	switch (gimmickState)
+	{
+	case 1:
+		/* +++ 状態1なら +++*/
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// 状態1で描画
+		break;
+	case 2:
+		/* +++ 状態2なら +++ */
+
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], FALSE);	// 状態2で描画
+		break;
+	}
+
 	return;
 }
