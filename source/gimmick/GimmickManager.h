@@ -24,6 +24,7 @@ public:
 
 	int Load(const char* csvPath);	// csvファイルからギミックデータを読み込むメソッド
 
+	int Init();						// ギミックの初期化をおこなうメソッド
 	void Update(Player* player);	// ギミックの更新を行うメソッド
 	void Draw() const;				// ギミックの描画を行うメソッド
 

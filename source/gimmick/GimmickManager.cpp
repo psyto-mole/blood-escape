@@ -68,6 +68,8 @@ int GimmickManager::Load(const char* csvPath)
         return - 1;     // -1(読み込み失敗)を返す
     }
 
+    gimmickNumber = 0;  // ギミック数を初期化
+
     /* +++ csvファイルからデータを1行ずつ読み込む +++ */
     while (fgets(line, sizeof(line), fp) != NULL)   // csvファイルから文字列を読み込める限りループ
     {
@@ -112,6 +114,26 @@ int GimmickManager::Load(const char* csvPath)
     return 0;    // 0(読み込み完了)を返す
 }
 
+/* --- ギミックの初期化をおこなうメソッド --- */
+int GimmickManager::Init()
+{
+    /* +++ ギミックを順に更新 +++ */
+    for (int i = 0; i < gimmickNumber; i++)
+    {
+        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        {
+            continue;   // そのギミックを無視(次のループに移行)
+        }
+
+        if (gimmicks[i]->Init() == -1)  // ギミックの初期化に失敗したら
+        {
+            return -1;  // -1を返す(初期化失敗)
+        }
+    }
+
+    return 0;
+}
+
 /* --- ギミックの更新を行うメソッド --- */
 void GimmickManager::Update(Player* player)
 {
@@ -122,8 +144,6 @@ void GimmickManager::Update(Player* player)
         {
             continue;   // そのギミックを無視(次のループに移行)
         }
-
-        gimmicks[i]->Update(player);  // プレイヤーの位置を渡しギミックの更新メソッドを実行
 
         if (gimmicks[i]->GetGimmickType() == GimmickType::Switch
             && gimmicks[i]->GetGimmickType() == GimmickType::Altar)
@@ -137,6 +157,8 @@ void GimmickManager::Update(Player* player)
                 ActivateGimmick(searchTargetID);   // 連動するギミックを起動
             }
         }
+
+        gimmicks[i]->Update(player);  // プレイヤーを渡しギミックの更新メソッドを実行
     }
 
     return;
