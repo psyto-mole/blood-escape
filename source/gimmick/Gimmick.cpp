@@ -17,7 +17,10 @@ Gimmick::Gimmick(int id, int x, int y, int state, int target)
 	positionX = x;	// ギミックのX座標の初期化
 	positionY = y;	// ギミックのY座標の初期化
 
-	gimmickImage = -1;	// ギミックの画像ハンドルの初期化
+	for (int i = 0; i < GimmickStateMax; i++)
+	{
+		gimmickImage[i] = -1;	// ギミックの画像ハンドルの配列の初期化
+	}
 
 	gimmickState = state;	// ギミックの状態の初期化
 	maxState = 1;			// 最後の状態を1に設定
@@ -27,15 +30,18 @@ Gimmick::Gimmick(int id, int x, int y, int state, int target)
 
 	isPassable = false;		// ギミックを「通行不可」に設定
 
-	isActive = false;
+	isActive = false;	// 起動状態の初期化
 }
 
 /* --- デストラクタ --- */
 Gimmick::~Gimmick()
 {
-	if (gimmickImage != -1)
+	for (int i = 0; i < GimmickStateMax; i++)
 	{
-		DeleteGraph(gimmickImage);
+		if (gimmickImage[i] != -1)	// ギミックの画像ハンドルが-1でなければ
+		{
+			DeleteGraph(gimmickImage[i]);	// ギミックの画像ハンドルを削除
+		}
 	}
 }
 

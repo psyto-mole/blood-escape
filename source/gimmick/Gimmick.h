@@ -5,7 +5,8 @@
 #include "Player.h"
 
 
-#define GimmickSize	32	// ギミックの大きさ
+#define GimmickSize	32		// ギミックの大きさ
+#define GimmickStateMax	10	// ギミックの状態の種類の最大
 
 /* --- ギミックのタグの列挙型 --- */
 enum class GimmickTag
@@ -20,14 +21,14 @@ enum class GimmickTag
 enum class GimmickType
 {
 	None,				// なし
+	Altar,				// 祭壇
+	Bandage,			// 包帯
+	BloodPack,			// 輸血パック
+	Door,				// ドア
 	GoalPoint,			// ゴール
 	NeedleFloor,		// 針床
-	TransparentFloor,	// 透明床
-	Altar,				// 祭壇
-	BloodPack,			// 輸血パック
-	Bandage,			// 包帯
 	Switch,				// スイッチ
-	Door				// ドア
+	TransparentFloor	// 透明床
 };
 
 class Gimmick
@@ -42,7 +43,7 @@ protected:
 	int positionX;	// ギミックのX座標
 	int positionY;	// ギミックのY座標
 
-	int gimmickImage;	// ギミックの画像ハンドル
+	int gimmickImage[GimmickStateMax];	// ギミックの画像ハンドルの配列
 
 	int gimmickState;	// ギミックの状態(1で初期状態)
 	int maxState;		// 最後の状態
@@ -58,7 +59,7 @@ public:
 	Gimmick(int id, int x, int y, int state, int target);		// コンストラクタ
 	virtual ~Gimmick();											// デストラクタ
 
-	virtual void Init() = 0;					// ギミックの初期化メソッド
+	virtual int Init() = 0;						// ギミックの初期化メソッド
 	virtual void Update(Player* player) = 0;	// ギミックの更新メソッド
 	virtual void Draw() = 0;					// ギミックの描画メソッド
 
