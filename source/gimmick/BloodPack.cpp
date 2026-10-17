@@ -20,7 +20,7 @@ BloodPack::~BloodPack()
 }
 
 /* --- 輸血パックの初期化メソッド --- */
-void BloodPack::Init()
+int BloodPack::Init()
 {
 	return;
 }
@@ -30,6 +30,11 @@ void BloodPack::Update(Player* player)
 {
 	if (gimmickState == maxState)	// ギミックの状態が最後の状態(取得済み)なら
 	{
+		if (isActive)	// ドアが起動状態なら
+		{
+			Inactivate();	// ドアを停止状態にする
+		}
+
 		return;	// 何もせずに終了
 	}
 

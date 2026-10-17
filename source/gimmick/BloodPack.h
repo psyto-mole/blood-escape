@@ -15,7 +15,7 @@ public:
 	BloodPack(int id, int x, int y, int state, int target);		// コンストラクタ
 	~BloodPack() override;										// デストラクタ
 
-	void Init() override;					// 輸血パックの初期化メソッド
+	int Init() override;					// 輸血パックの初期化メソッド
 	void Update(Player* player) override;	// 輸血パックの更新メソッド
 	void Draw() override;					// 輸血パックの描画メソッド
 };
