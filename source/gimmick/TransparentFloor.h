@@ -14,7 +14,7 @@ public:
 	TransparentFloor(int id, int x, int y, int state, int target);	// コンストラクタ
 	~TransparentFloor() override;									// デストラクタ
 
-	void Init() override;					// ギミックの初期化メソッド
+	int Init() override;					// ギミックの初期化メソッド
 	void Update(Player* palyer) override;	// ギミックの更新メソッド
 	void Draw() override;					// ギミックの描画メソッド
 };

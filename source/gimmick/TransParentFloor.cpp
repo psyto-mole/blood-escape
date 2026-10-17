@@ -22,7 +22,7 @@ TransparentFloor::~TransparentFloor()
 }
 
 /* --- ギミックの初期化メソッド --- */
-void TransparentFloor::Init()
+int TransparentFloor::Init()
 {
 	return;
 }
@@ -32,6 +32,11 @@ void TransparentFloor::Update(Player* player)
 {
 	if (gimmickState == maxState)	// ギミックが最後の状態なら
 	{
+		if (isActive)	// ドアが起動状態なら
+		{
+			Inactivate();	// ドアを停止状態にする
+		}
+
 		return;		// 何もせずに終了
 	}
 
