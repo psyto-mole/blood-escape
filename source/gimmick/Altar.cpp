@@ -46,9 +46,9 @@ void Altar::Update(Player* player)
 {
 	if (gimmickState == maxState)	// ギミックの状態が最後の状態(起動済み)なら
 	{
-		if (isActive)	// ドアが起動状態なら
+		if (isActive)	// 祭壇が起動状態なら
 		{
-			Inactivate();	// ドアを停止状態にする
+			Inactivate();	// 祭壇を停止状態にする
 		}
 
 		return;		// 何もせずに終了
@@ -58,7 +58,7 @@ void Altar::Update(Player* player)
 	{
 		SetGimmickState(maxState);	// ギミックを最後の状態にする
 
-		Inactivate();	// 祭壇を停止状態にする
+		//Inactivate();	// 祭壇を停止状態にする
 
 		//SE_Play();
 	}
