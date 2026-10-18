@@ -24,4 +24,6 @@ public:
 	int Init();		// メニュー画面の初期化メソッド
 	void Update();	// メニュー画面の更新メソッド
 	void Draw();	// メニュー画面の描画メソッド
+
+	MenuState GetMenuState();	// メニュー画面の状態を取得するメソッド
 };

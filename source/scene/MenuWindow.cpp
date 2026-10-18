@@ -32,3 +32,9 @@ void MenuWindow::Draw()
 {
 	return;
 }
+
+/* --- メニュー画面の状態を取得するメソッド --- */
+MenuState MenuWindow::GetMenuState()
+{
+	return menuState;
+}
