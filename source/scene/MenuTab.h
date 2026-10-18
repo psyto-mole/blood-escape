@@ -8,7 +8,8 @@
 class MenuTab
 {
 private:
-
+	RECT menuTabFrame;		// メニュータブの外枠
+	RECT menuTabInside;		// メニュータブの内側
 
 public:
 	MenuTab();		// コンストラクタ
