@@ -21,8 +21,6 @@ Menu::~Menu()
 /* --- メニューの初期化メソッド --- */
 int Menu::Init()
 {
-	menuState = MenuState::Close;	// メニューの状態を「閉じている」に設定
-
 	menuTab.Init();		// メニュータブを初期化
 
 	menuWindow.Init();	// メニュー画面の初期化
@@ -33,19 +31,37 @@ int Menu::Init()
 /* --- メニューの更新メソッド --- */
 void Menu::Update()
 {
+	if (menuWindow.GetMenuState() == MenuState::Close)	// メニュー画面が閉じているなら
+	{
+		menuTab.Update();	// メニュータブの更新メソッドを実行
+
+		return;
+	}
+
+	menuWindow.Update();	// メニュー画面の更新メソッドを実行
+
 	return;
 }
 
 /* --- メニューの描画メソッド --- */
 void Menu::Draw()
 {
+	if (menuWindow.GetMenuState() == MenuState::Close)	// メニュー画面が閉じているなら
+	{
+		menuTab.Draw();		// メニュータブを描画
+
+		return;
+	}
+
+	menuWindow.Draw();	// メニュー画面を描画
+
 	return;
 }
 
 /* --- メニュー画面を開いているかを取得するメソッド --- */
 bool Menu::IsMenuOpen()
 {
-	if (menuState == MenuState::Close)	// メニューが閉じているなら
+	if (menuWindow.GetMenuState() == MenuState::Close)	// メニューが閉じているなら
 	{
 		return false;	// falseを返す
 	}
