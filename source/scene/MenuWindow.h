@@ -17,6 +17,18 @@ class MenuWindow
 private:
 	MenuState menuState;	// メニュー画面の状態を管理する変数
 
+	RECT menuWindowFrame;	// メニューウィンドウの外枠
+	RECT menuWindowInside;	// メニューウィンドウの内側
+
+	RECT menuButton1Frame;		// メニュー画面のボタン1の外枠
+	RECT menuButton1Inside;		// メニュー画面のボタン1の内側
+	RECT menuButton2Frame;		// メニュー画面のボタン2の外枠
+	RECT menuButton2Inside;		// メニュー画面のボタン2の内側
+	RECT menuButton3Frame;		// メニュー画面のボタン3の外枠
+	RECT menuButton3Inside;		// メニュー画面のボタン3の内側
+	RECT menuButton4Frame;		// メニュー画面のボタン4の外枠
+	RECT menuButton4Inside;		// メニュー画面のボタン4の内側
+
 public:
 	MenuWindow();	// コンストラクタ
 	~MenuWindow();	// デストラクタ
