@@ -49,6 +49,7 @@
     <ClCompile Include="source\scene\ClearScene.cpp" />
     <ClCompile Include="source\scene\Fade.cpp" />
     <ClCompile Include="source\scene\GameOverScene.cpp" />
+    <ClCompile Include="source\scene\Menu.cpp" />
     <ClCompile Include="source\scene\Scene.cpp" />
     <ClCompile Include="source\scene\SceneManager.cpp" />
     <ClCompile Include="source\scene\StageScene.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="source\scene\ClearScene.h" />
     <ClInclude Include="source\scene\Fade.h" />
     <ClInclude Include="source\scene\GameOverScene.h" />
+    <ClInclude Include="source\scene\Menu.h" />
     <ClInclude Include="source\scene\Scene.h" />
     <ClInclude Include="source\scene\SceneManager.h" />
     <ClInclude Include="source\scene\StageScene.h" />
