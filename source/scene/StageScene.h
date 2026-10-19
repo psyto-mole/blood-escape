@@ -8,7 +8,7 @@
 #include "GimmickManager.h"
 
 
-#define NumberOfStage   3   // ステージ数
+#define NumberOfStage   4   // ステージ数
 
 /* --- ステージクラス(Sceneクラスの派生クラスで全ステージ共通) --- */
 class StageScene : public Scene
