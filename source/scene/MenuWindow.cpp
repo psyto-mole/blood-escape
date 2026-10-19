@@ -105,166 +105,166 @@ void MenuWindow::Update()
 /* --- メニュー画面の描画メソッド --- */
 void MenuWindow::Draw()
 {
-//	if (menuState == MenuState::Close)	// メニュー画面が閉じれれている状態なら
-//	{
-//		return;		// 何もせずに終了
-//	}
-//
-//	DrawRect(menuWindowFrame, Color_White, true, 1);	// メニュー画面の外枠を描画
-//	DrawRect(menuWindowInside, Color_Black, true, 1);	// メニュー画面の内側を描画
-//
-//	/* +++ メニュー画面の状態に応じて描画する +++ */
-//	switch (menuState)
-//	{
-//	case MenuState::MenuTop:
-//		/* +++ メニュートップの場合 +++ */
-//
-//		/* +++ カーソルが接触しているボタンを色を変えて描画 +++ */
-//		if (CollisionRectToPoint(menuTopButton1Frame, nowMousePoint))	// ボタン1と接触している場合
-//		{
-//			/* +++ ボタン1を赤枠に白、それ以外を白枠に黒で描画 +++ */
-//			DrawRect(menuTopButton1Frame, Color_Red, true, 1);
-//			DrawRect(menuTopButton1Inside, Color_White, true, 1);
-//			DrawRect(menuTopButton2Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton3Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton4Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
-//
-//			/* +++ ボタン1の文字列を赤で、それ以外を白で描画 +++ */
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowEndGame);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
-//		}
-//		else if (CollisionRectToPoint(menuTopButton2Frame, nowMousePoint))	// ボタン2と接触している場合
-//		{
-//			/* +++ ボタン2を赤枠に白、それ以外を白枠に黒で描画 +++ */
-//			DrawRect(menuTopButton1Frame, Color_Red, true, 1);
-//			DrawRect(menuTopButton1Inside, Color_White, true, 1);
-//			DrawRect(menuTopButton2Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton3Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton4Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
-//
-//			/* +++ ボタン2の文字列を赤で、それ以外を白で描画 +++ */
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowCredit);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
-//		}
-//		else if (CollisionRectToPoint(menuTopButton3Frame, nowMousePoint))	// ボタン3と接触している場合
-//		{
-//			/* +++ ボタン3を赤枠に白、それ以外を白枠に黒で描画 +++ */
-//			DrawRect(menuTopButton1Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton1Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton2Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton3Frame, Color_Red, true, 1);
-//			DrawRect(menuTopButton3Inside, Color_White, true, 1);
-//			DrawRect(menuTopButton4Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
-//
-//			/* +++ ボタン3の文字列を赤で、それ以外を白で描画 +++ */
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowBack);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
-//		}
-//		else if (CollisionRectToPoint(menuTopButton4Frame, nowMousePoint))	// ボタン4と接触している場合
-//		{
-//			/* +++ ボタン4を赤枠に白、それ以外を白枠に黒で描画 +++ */
-//			DrawRect(menuTopButton1Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton1Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton2Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton3Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton4Frame, Color_Red, true, 1);
-//			DrawRect(menuTopButton4Inside, Color_White, true, 1);
-//
-//			/* +++ ボタン4の文字列を赤で、それ以外を白で描画 +++ */
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindow);
-//		}
-//		else
-//		{
-//			/* +++ ボタンを白枠に黒で描画 +++ */
-//			DrawRect(menuTopButton1Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton1Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton2Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton3Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
-//			DrawRect(menuTopButton4Frame, Color_White, true, 1);
-//			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
-//
-//			/* +++ ボタンの文字列をを白で描画 +++ */
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
-//			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
-//		}
-//		break;
-//	case MenuState::Operation:
-//		/* +++ 操作方法の表示の場合 +++ */
-//
-//		Draw
-//		break;
-//	case MenuState::GameEnd:
-//		/* +++ ゲーム終了画面の場合 +++ */
-//
-//		DrawFormatStringToHandleAlign(MenuWindowCenterX, MenuWindowCenterY - 200, FAlign_AllCenter, Color_White, , "%s", QuestionGameEnd);	// 「ゲームを終了しますか」の文字列を白で描画
-//
-//		/* +++ カーソルが接触しているボタンに応じて描画 +++ */
-//;		if (CollisionRectToPoint(gameEndYesButtonFrame, nowMousePoint))		// カーソルが「はい」のボタンに接触しているなら
-//		{
-//			DrawRect(gameEndYesButtonFrame, Color_Red, true, 1);		// 「はい」ボタンの外枠を赤で描画
-//			DrawRect(gameEndYesButtonInside, Color_White, true, 1);		// 「はい」ボタンの内側を白で描画
-//			DrawRect(gameEndNoButtonFrame, Color_White, true, 1);		// 「いいえ」ボタンの外枠を白で描画
-//			DrawRect(gameEndNoButtonInside, Color_Black, true, 1);		// 「いいえ」ボタンの内側を黒で描画
-//
-//			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_Red, , "%s", ResponseYes);		// 「はい」の文字列を赤で描画
-//			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseNo);		// 「いいえ」の文字列を白で描画
-//		}
-//		else if (CollisionRectToPoint(gameEndNoButtonFrame, nowMousePoint))		// カーソルが「いいえ」のボタンに接触しているなら
-//		{
-//			DrawRect(gameEndYesButtonFrame, Color_White, true, 1);		// 「はい」ボタンの外枠を白で描画
-//			DrawRect(gameEndYesButtonInside, Color_Black, true, 1);		// 「はい」ボタンの内側を黒で描画
-//			DrawRect(gameEndNoButtonFrame, Color_Red, true, 1);		// 「いいえ」ボタンの外枠を赤で描画
-//			DrawRect(gameEndNoButtonInside, Color_White, true, 1);		// 「いいえ」ボタンの内側を白で描画
-//
-//			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseYes);		// 「はい」の文字列を白で描画
-//			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_Red, , "%s", ResponseNo);		// 「いいえ」の文字列を赤で描画
-//		}
-//		else
-//		{
-//			DrawRect(gameEndYesButtonFrame, Color_White, true, 1);		// 「はい」ボタンの外枠を白で描画
-//			DrawRect(gameEndYesButtonInside, Color_Black, true, 1);		// 「はい」ボタンの内側を黒で描画
-//			DrawRect(gameEndNoButtonFrame, Color_White, true, 1);		// 「いいえ」ボタンの外枠を白で描画
-//			DrawRect(gameEndNoButtonInside, Color_Black, true, 1);		// 「いいえ」ボタンの内側を黒で描画
-//
-//			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseYes);		// 「はい」の文字列を白で描画
-//			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseNo);		// 「いいえ」の文字列を白で描画
-//		}
-//		break;
-//	case MenuState::Credit:
-//		/* +++ 使用楽曲を表示する画面の場合 +++ */
-//
-//		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 200, FAlign_AllCenter, Color_LightBlue, , "%s", MusicUsed);			// 「使用楽曲」の文字列を水色で描画
-//		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 50, FAlign_AllCenter, Color_White, , "%s", MaohDamashi);			// 「魔王魂」の文字列を水色で描画
-//		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY + 150, FAlign_AllCenter, Color_White, , "%s", SoundEffectLab);		// 「効果音ラボ」の文字列を水色で描画
-//		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY + 300, FAlign_AllCenter, Color_White, , "%s", OtoLogic);			// 「OtoLogic」の文字列を水色で描画
-//		
-//		DrawFormatStringToHandleAlign(MenuWindowCenterX + 200, MenuWindowCenterY - 200, FAlign_AllCenter, Color_Purple, , "%s", ToolUsed);	// 「使用ツール」の文字列を紫で描画
-//		DrawFormatStringToHandleAlign(MenuWindowCenterX + 200, MenuWindowCenterY - 50, FAlign_AllCenter, Color_White, , "%s", DotArt);	// 「DotArt」の文字列を紫で描画
-//		break;
-//	}
+	if (menuState == MenuState::Close)	// メニュー画面が閉じれれている状態なら
+	{
+		return;		// 何もせずに終了
+	}
+
+	DrawRect(menuWindowFrame, Color_White, true, 1);	// メニュー画面の外枠を描画
+	DrawRect(menuWindowInside, Color_Black, true, 1);	// メニュー画面の内側を描画
+
+	/* +++ メニュー画面の状態に応じて描画する +++ */
+	switch (menuState)
+	{
+	case MenuState::MenuTop:
+		/* +++ メニュートップの場合 +++ */
+
+		/* +++ カーソルが接触しているボタンを色を変えて描画 +++ */
+		if (CollisionRectToPoint(menuTopButton1Frame, nowMousePoint))	// ボタン1と接触している場合
+		{
+			/* +++ ボタン1を赤枠に白、それ以外を白枠に黒で描画 +++ */
+			DrawRect(menuTopButton1Frame, Color_Red, true, 1);
+			DrawRect(menuTopButton1Inside, Color_White, true, 1);
+			DrawRect(menuTopButton2Frame, Color_White, true, 1);
+			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton3Frame, Color_White, true, 1);
+			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton4Frame, Color_White, true, 1);
+			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
+
+			/* +++ ボタン1の文字列を赤で、それ以外を白で描画 +++ */
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
+		}
+		else if (CollisionRectToPoint(menuTopButton2Frame, nowMousePoint))	// ボタン2と接触している場合
+		{
+			/* +++ ボタン2を赤枠に白、それ以外を白枠に黒で描画 +++ */
+			DrawRect(menuTopButton1Frame, Color_Red, true, 1);
+			DrawRect(menuTopButton1Inside, Color_White, true, 1);
+			DrawRect(menuTopButton2Frame, Color_White, true, 1);
+			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton3Frame, Color_White, true, 1);
+			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton4Frame, Color_White, true, 1);
+			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
+
+			/* +++ ボタン2の文字列を赤で、それ以外を白で描画 +++ */
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
+		}
+		else if (CollisionRectToPoint(menuTopButton3Frame, nowMousePoint))	// ボタン3と接触している場合
+		{
+			/* +++ ボタン3を赤枠に白、それ以外を白枠に黒で描画 +++ */
+			DrawRect(menuTopButton1Frame, Color_White, true, 1);
+			DrawRect(menuTopButton1Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton2Frame, Color_White, true, 1);
+			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton3Frame, Color_Red, true, 1);
+			DrawRect(menuTopButton3Inside, Color_White, true, 1);
+			DrawRect(menuTopButton4Frame, Color_White, true, 1);
+			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
+
+			/* +++ ボタン3の文字列を赤で、それ以外を白で描画 +++ */
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
+		}
+		else if (CollisionRectToPoint(menuTopButton4Frame, nowMousePoint))	// ボタン4と接触している場合
+		{
+			/* +++ ボタン4を赤枠に白、それ以外を白枠に黒で描画 +++ */
+			DrawRect(menuTopButton1Frame, Color_White, true, 1);
+			DrawRect(menuTopButton1Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton2Frame, Color_White, true, 1);
+			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton3Frame, Color_White, true, 1);
+			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton4Frame, Color_Red, true, 1);
+			DrawRect(menuTopButton4Inside, Color_White, true, 1);
+
+			/* +++ ボタン4の文字列を赤で、それ以外を白で描画 +++ */
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindow);
+		}
+		else
+		{
+			/* +++ ボタンを白枠に黒で描画 +++ */
+			DrawRect(menuTopButton1Frame, Color_White, true, 1);
+			DrawRect(menuTopButton1Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton2Frame, Color_White, true, 1);
+			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton3Frame, Color_White, true, 1);
+			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
+			DrawRect(menuTopButton4Frame, Color_White, true, 1);
+			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
+
+			/* +++ ボタンの文字列をを白で描画 +++ */
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
+		}
+		break;
+	case MenuState::Operation:
+		/* +++ 操作方法の表示の場合 +++ */
+
+		Draw
+		break;
+	case MenuState::GameEnd:
+		/* +++ ゲーム終了画面の場合 +++ */
+
+		DrawFormatStringToHandleAlign(MenuWindowCenterX, MenuWindowCenterY - 200, FAlign_AllCenter, Color_White, , "%s", QuestionGameEnd);	// 「ゲームを終了しますか」の文字列を白で描画
+
+		/* +++ カーソルが接触しているボタンに応じて描画 +++ */
+;		if (CollisionRectToPoint(gameEndYesButtonFrame, nowMousePoint))		// カーソルが「はい」のボタンに接触しているなら
+		{
+			DrawRect(gameEndYesButtonFrame, Color_Red, true, 1);		// 「はい」ボタンの外枠を赤で描画
+			DrawRect(gameEndYesButtonInside, Color_White, true, 1);		// 「はい」ボタンの内側を白で描画
+			DrawRect(gameEndNoButtonFrame, Color_White, true, 1);		// 「いいえ」ボタンの外枠を白で描画
+			DrawRect(gameEndNoButtonInside, Color_Black, true, 1);		// 「いいえ」ボタンの内側を黒で描画
+
+			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_Red, , "%s", ResponseYes);		// 「はい」の文字列を赤で描画
+			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseNo);		// 「いいえ」の文字列を白で描画
+		}
+		else if (CollisionRectToPoint(gameEndNoButtonFrame, nowMousePoint))		// カーソルが「いいえ」のボタンに接触しているなら
+		{
+			DrawRect(gameEndYesButtonFrame, Color_White, true, 1);		// 「はい」ボタンの外枠を白で描画
+			DrawRect(gameEndYesButtonInside, Color_Black, true, 1);		// 「はい」ボタンの内側を黒で描画
+			DrawRect(gameEndNoButtonFrame, Color_Red, true, 1);		// 「いいえ」ボタンの外枠を赤で描画
+			DrawRect(gameEndNoButtonInside, Color_White, true, 1);		// 「いいえ」ボタンの内側を白で描画
+
+			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseYes);		// 「はい」の文字列を白で描画
+			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_Red, , "%s", ResponseNo);		// 「いいえ」の文字列を赤で描画
+		}
+		else
+		{
+			DrawRect(gameEndYesButtonFrame, Color_White, true, 1);		// 「はい」ボタンの外枠を白で描画
+			DrawRect(gameEndYesButtonInside, Color_Black, true, 1);		// 「はい」ボタンの内側を黒で描画
+			DrawRect(gameEndNoButtonFrame, Color_White, true, 1);		// 「いいえ」ボタンの外枠を白で描画
+			DrawRect(gameEndNoButtonInside, Color_Black, true, 1);		// 「いいえ」ボタンの内側を黒で描画
+
+			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseYes);		// 「はい」の文字列を白で描画
+			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, , "%s", ResponseNo);		// 「いいえ」の文字列を白で描画
+		}
+		break;
+	case MenuState::Credit:
+		/* +++ 使用楽曲を表示する画面の場合 +++ */
+
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 200, FAlign_AllCenter, Color_LightBlue, , "%s", MusicUsed);			// 「使用楽曲」の文字列を水色で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 50, FAlign_AllCenter, Color_White, , "%s", MaohDamashi);			// 「魔王魂」の文字列を水色で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY + 150, FAlign_AllCenter, Color_White, , "%s", SoundEffectLab);		// 「効果音ラボ」の文字列を水色で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY + 300, FAlign_AllCenter, Color_White, , "%s", OtoLogic);			// 「OtoLogic」の文字列を水色で描画
+		
+		DrawFormatStringToHandleAlign(MenuWindowCenterX + 200, MenuWindowCenterY - 200, FAlign_AllCenter, Color_Purple, , "%s", ToolUsed);	// 「使用ツール」の文字列を紫で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX + 200, MenuWindowCenterY - 50, FAlign_AllCenter, Color_White, , "%s", DotArt);	// 「DotArt」の文字列を紫で描画
+		break;
+	}
 
 	return;
 }
