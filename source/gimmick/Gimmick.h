@@ -27,6 +27,7 @@ enum class GimmickType
 	Door,				// ドア
 	GoalPoint,			// ゴール
 	NeedleFloor,		// 針床
+	StartPoint,			// スタート地点
 	Switch,				// スイッチ
 	TransparentFloor	// 透明床
 };
