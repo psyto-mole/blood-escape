@@ -71,12 +71,12 @@ bool Menu::IsMenuOpen()
 }
 
 /* --- ゲーム終了が選択されているかを取得するメソッド --- */
-//bool Menu::IsGameEnd()
-//{
-//	if (menuWindow.GetGameEnd())	// ゲーム終了が選択されているなら
-//	{
-//		return true;	// trueを返す
-//	}
-//
-//	return false;	// falseを返す
-//}
+bool Menu::IsGameEnd()
+{
+	if (menuWindow.GetGameEnd())	// ゲーム終了が選択されているなら
+	{
+		return true;	// trueを返す
+	}
+
+	return false;	// falseを返す
+}
