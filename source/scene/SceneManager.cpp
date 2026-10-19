@@ -46,10 +46,10 @@ int SceneManager::Init()
 
 int SceneManager::Update()
 {
-    //if (menuManager.IsGameEnd())    // ゲーム終了が選択されているなら
-    //{
-    //    return -1;  // -1を返す
-    //}
+    if (menuManager.IsGameEnd())    // ゲーム終了が選択されているなら
+    {
+        return -1;  // -1を返す
+    }
 
     /* +++ フェード処理 +++ */
     if (fadeManager.GetFadeState() != FadeState::None)  // フェード処理中なら(フェードの状態が「フェードしない」でなければ)
