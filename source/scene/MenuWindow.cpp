@@ -54,50 +54,50 @@ void MenuWindow::Init()
 /* --- メニュー画面の更新メソッド --- */
 void MenuWindow::Update()
 {
-	///* +++ メニュー画面の状態に応じて処理を変える +++ */
-	//switch (menuState)
-	//{
-	//case MenuState::MenuTop:
-	//	/* +++ メニュートップの場合 +++ */
+	/* +++ メニュー画面の状態に応じて処理を変える +++ */
+	switch (menuState)
+	{
+	case MenuState::MenuTop:
+		/* +++ メニュートップの場合 +++ */
 
-	//	if (CollisionRectToPoint(menuTopButton1Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン1がクリックされたら
-	//	{
-	//		SetMenuState(MenuState::Operation);		// メニューの状態を操作方法表示に設定
-	//	}
-	//	else if (CollisionRectToPoint(menuTopButton2Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン2がクリックされたら
-	//	{
-	//		SetMenuState(MenuState::GameEnd);	// メニュー画面の状態をゲーム終了画面にする
-	//	}
-	//	else if (CollisionRectToPoint(menuTopButton3Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン3がクリックされたら
-	//	{
-	//		SetMenuState(MenuState::Credit);	// メニュー画面の状態を使用楽曲表示にする
-	//	}
-	//	else if (CollisionRectToPoint(menuTopButton4Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン4がクリックされたら
-	//	{
-	//		SetMenuState(MenuState::Close);	// メニュー画面を閉じる
-	//	}
-	//	break;
-	//case MenuState::GameEnd:
-	//	/* +++ ゲーム終了画面の場合 +++ */
+		if (CollisionRectToPoint(menuTopButton1Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン1がクリックされたら
+		{
+			SetMenuState(MenuState::Operation);		// メニューの状態を操作方法表示に設定
+		}
+		else if (CollisionRectToPoint(menuTopButton2Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン2がクリックされたら
+		{
+			SetMenuState(MenuState::GameEnd);	// メニュー画面の状態をゲーム終了画面にする
+		}
+		else if (CollisionRectToPoint(menuTopButton3Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン3がクリックされたら
+		{
+			SetMenuState(MenuState::Credit);	// メニュー画面の状態を使用楽曲表示にする
+		}
+		else if (CollisionRectToPoint(menuTopButton4Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン4がクリックされたら
+		{
+			SetMenuState(MenuState::Close);	// メニュー画面を閉じる
+		}
+		break;
+	case MenuState::GameEnd:
+		/* +++ ゲーム終了画面の場合 +++ */
 
-	//	if (CollisionRectToPoint(gameEndYesButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「はい」ボタンがクリックされた
-	//	{
-	//		SetGameEndTrue();	// ゲーム終了を選択状態にする
-	//	}
-	//	else if (CollisionRectToPoint(gameEndNoButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「いいえ」ボタンがクリックされた
-	//	{
-	//		SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップにする
-	//	}
-	//	break;
-	//}
+		if (CollisionRectToPoint(gameEndYesButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「はい」ボタンがクリックされた
+		{
+			SetGameEndTrue();	// ゲーム終了を選択状態にする
+		}
+		else if (CollisionRectToPoint(gameEndNoButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「いいえ」ボタンがクリックされた
+		{
+			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップにする
+		}
+		break;
+	}
 
-	//if (menuState != MenuState::MenuTop)	// メニュー画面の状態が画面トップでないなら
-	//{
-	//	if (CollisionRectToPoint(backTopButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「戻る」ボタンがクリックされたら
-	//	{
-	//		SetMenuState(MenuState::MenuTop);	// メニュー画面の状態を画面トップに設定
-	//	}
-	//}
+	if (menuState != MenuState::MenuTop)	// メニュー画面の状態が画面トップでないなら
+	{
+		if (CollisionRectToPoint(backTopButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「戻る」ボタンがクリックされたら
+		{
+			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態を画面トップに設定
+		}
+	}
 
 	return;
 }
