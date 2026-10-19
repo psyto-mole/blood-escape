@@ -291,16 +291,16 @@ void MenuWindow::SetGameEndFalse()
 	return;
 }
 
-///* --- メニュー画面の状態を取得するメソッド --- */
-//MenuState MenuWindow::GetMenuState()
-//{
-//	return menuState;
-//}
-//
-///* --- メニュー画面の状態を設定するメソッド --- */
-//void MenuWindow::SetMenuState(MenuState state)
-//{
-//	menuState = state;	// メニュー画面の状態を設定
-//
-//	return;
-//}
+/* --- メニュー画面の状態を取得するメソッド --- */
+MenuState MenuWindow::GetMenuState()
+{
+	return menuState;
+}
+
+/* --- メニュー画面の状態を設定するメソッド --- */
+void MenuWindow::SetMenuState(MenuState state)
+{
+	menuState = state;	// メニュー画面の状態を設定
+
+	return;
+}
