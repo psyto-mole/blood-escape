@@ -1,9 +1,6 @@
 /* === メニュー処理のソースファイル === */
 
 #include "Menu.h"
-#include "Geometry.h"
-#include "Color.h"
-#include "RectParameter.h"
 
 
 /* --- コンストラクタ --- */
@@ -19,13 +16,13 @@ Menu::~Menu()
 }
 
 /* --- メニューの初期化メソッド --- */
-int Menu::Init()
+void Menu::Init()
 {
 	menuTab.Init();		// メニュータブを初期化
 
 	menuWindow.Init();	// メニュー画面の初期化
 
-	return 0;
+	return;
 }
 
 /* --- メニューの更新メソッド --- */
@@ -33,7 +30,11 @@ void Menu::Update()
 {
 	if (menuWindow.GetMenuState() == MenuState::Close)	// メニュー画面が閉じているなら
 	{
-		menuTab.Update();	// メニュータブの更新メソッドを実行
+		/* +++ メニュータブの更新メソッドを実行 +++ */
+		if (menuTab.Update() == -1)	// メニュー画面が開かれたら
+		{
+			menuWindow.SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップに設定
+		}
 
 		return;
 	}
@@ -68,3 +69,14 @@ bool Menu::IsMenuOpen()
 
 	return true;	// trueを返す
 }
+
+/* --- ゲーム終了が選択されているかを取得するメソッド --- */
+//bool Menu::IsGameEnd()
+//{
+//	if (menuWindow.GetGameEnd())	// ゲーム終了が選択されているなら
+//	{
+//		return true;	// trueを返す
+//	}
+//
+//	return false;	// falseを返す
+//}

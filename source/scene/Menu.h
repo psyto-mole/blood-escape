@@ -18,9 +18,11 @@ public:
 	Menu();		// コンストラクタ
 	~Menu();	// デストラクタ
 
-	int Init();		// メニューの初期化メソッド
+	void Init();	// メニューの初期化メソッド
 	void Update();	// メニューの更新メソッド
 	void Draw();	// メニューの描画メソッド
 
 	bool IsMenuOpen();	// メニュー画面を開いているかを取得するメソッド
+
+	bool IsGameEnd();	// ゲーム終了が選択されているかを取得するメソッド
 };
