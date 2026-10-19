@@ -269,28 +269,28 @@ void MenuWindow::Draw()
 	return;
 }
 
-///* --- ゲーム終了フラグを取得するメソッド --- */
-//bool MenuWindow::GetGameEnd()
-//{
-//	return gameEnd;		// ゲーム終了が選択されているかのフラグを返す
-//}
-//
-///* --- ゲーム終了フラグをtrueにするメソッド --- */
-//void MenuWindow::SetGameEndTrue()
-//{
-//	gameEnd = true;		// ゲーム終了が選択されているかをtrueにする
-//
-//	return;
-//}
-//
-///* --- ゲーム終了フラグをfalseにするメソッド --- */
-//void MenuWindow::SetGameEndFalse()
-//{
-//	gameEnd = false;	// ゲーム終了が選択されているかのフラグをfalseにする
-//
-//	return;
-//}
-//
+/* --- ゲーム終了フラグを取得するメソッド --- */
+bool MenuWindow::GetGameEnd()
+{
+	return gameEnd;		// ゲーム終了が選択されているかのフラグを返す
+}
+
+/* --- ゲーム終了フラグをtrueにするメソッド --- */
+void MenuWindow::SetGameEndTrue()
+{
+	gameEnd = true;		// ゲーム終了が選択されているかをtrueにする
+
+	return;
+}
+
+/* --- ゲーム終了フラグをfalseにするメソッド --- */
+void MenuWindow::SetGameEndFalse()
+{
+	gameEnd = false;	// ゲーム終了が選択されているかのフラグをfalseにする
+
+	return;
+}
+
 ///* --- メニュー画面の状態を取得するメソッド --- */
 //MenuState MenuWindow::GetMenuState()
 //{

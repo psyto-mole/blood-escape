@@ -50,10 +50,10 @@ public:
 	void Update();	// メニュー画面の更新メソッド
 	void Draw();	// メニュー画面の描画メソッド
 
-	//bool GetGameEnd();			// ゲーム終了フラグを取得するメソッド
-	//void SetGameEndTrue();		// ゲーム終了フラグをtrueにするメソッド
-	//void SetGameEndFalse();		// ゲーム終了フラグをfalseにするメソッド
+	bool GetGameEnd();			// ゲーム終了フラグを取得するメソッド
+	void SetGameEndTrue();		// ゲーム終了フラグをtrueにするメソッド
+	void SetGameEndFalse();		// ゲーム終了フラグをfalseにするメソッド
 
-	//MenuState GetMenuState();				// メニュー画面の状態を取得するメソッド
-	//void SetMenuState(MenuState state);		// メニュー画面の状態を設定するメソッド
+//	MenuState GetMenuState();				// メニュー画面の状態を取得するメソッド
+//	void SetMenuState(MenuState state);		// メニュー画面の状態を設定するメソッド
 };
