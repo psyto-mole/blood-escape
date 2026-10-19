@@ -15,7 +15,7 @@ public:
 	MenuTab();		// コンストラクタ
 	~MenuTab();		// デストラクタ
 
-	int Init();		// メニュータブの初期化メソッド
-	void Update();	// メニュータブの更新メソッド
+	void Init();	// メニュータブの初期化メソッド
+	int Update();	// メニュータブの更新メソッド
 	void Draw();	// メニュータブの描画メソッド
 };

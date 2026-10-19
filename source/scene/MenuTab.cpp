@@ -22,18 +22,23 @@ MenuTab::MenuTab()
 }
 
 /* --- メニュータブの初期化メソッド --- */
-int MenuTab::Init()
+void MenuTab::Init()
 {
 	menuTabFrame = GetRectOnPoint(MenuTabCenterX, MenuTabCenterY, MenuTabFrameWidth, MenuTabFrameHeight);		// メニュータブの外枠の矩形を取得
 	menuTabInside = GetRectOnPoint(MenuTabCenterX, MenuTabCenterY, MenuTabInsideWidth, MenuTabInsideHeight);	// メニュータブの内側の矩形を取得
 
-	return 0;
+	return;
 }
 
 /* --- メニュータブの更新メソッド --- */
-void MenuTab::Update()
+int MenuTab::Update()
 {
-	return;
+	if (CollisionRectToPoint(menuTabFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))
+	{
+		return -1;	// -1を返す(メニュー画面起動)
+	}
+
+	return 0;
 }
 
 /* --- メニュータブの描画メソッド --- */
