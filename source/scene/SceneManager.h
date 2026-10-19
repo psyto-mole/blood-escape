@@ -4,6 +4,7 @@
 #include <memory>
 #include "DxLib.h"
 #include "Scene.h"
+#include "Menu.h"
 #include "Fade.h"
 
 
@@ -15,6 +16,8 @@ class SceneManager
 private:
     std::unique_ptr<Scene> currentScene;    // 現在のシーンのポインタ
     std::unique_ptr<Scene> nextScene;       // 次のシーンのポインタ
+
+    Menu menuManager;   // メニューの処理を管理する変数
 
     Fade fadeManager;   // フェード処理を管理する変数
 

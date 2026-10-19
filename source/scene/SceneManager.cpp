@@ -33,6 +33,8 @@ int SceneManager::Init()
         return -1;  // -1を返す(初期化失敗)
     }
 
+    menuManager.Init();     // メニューを初期化
+
     fadeManager.FadeInit(255, 10);  // フェードの透明度とスピードを設定
     fadeManager.SetStateFadeIn();   // フェードの状態を設定
 
@@ -44,10 +46,10 @@ int SceneManager::Init()
 
 int SceneManager::Update()
 {
-    if (gameEnd)    // ゲームが終了しているなら
-    {
-        return -1;  // -1を返す(ゲームの終了)
-    }
+    //if (menuManager.IsGameEnd())    // ゲーム終了が選択されているなら
+    //{
+    //    return -1;  // -1を返す
+    //}
 
     /* +++ フェード処理 +++ */
     if (fadeManager.GetFadeState() != FadeState::None)  // フェード処理中なら(フェードの状態が「フェードしない」でなければ)
@@ -58,6 +60,13 @@ int SceneManager::Update()
         }
 
         fadeManager.FadeUpdate();   // フェードを更新する
+
+        return 0;
+    }
+
+    if (menuManager.IsMenuOpen())    // メニューを開いているなら
+    {
+        menuManager.Update();   // メニューの更新メソッドを実行
 
         return 0;
     }
@@ -92,6 +101,13 @@ int SceneManager::Update()
 /* --- シーンの描画メソッド --- */
 void SceneManager::Draw()
 {
+    if (menuManager.IsMenuOpen())    // メニューを開いているなら
+    {
+        menuManager.Draw();   // メニューの更新メソッドを実行
+
+        return;
+    }
+
     if (currentScene == nullptr)    // 現在のシーンに何も割り当てられていないなら
     {
         return;     // 処理を終了
