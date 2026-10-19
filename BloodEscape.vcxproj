@@ -38,6 +38,7 @@
     <ClCompile Include="source\gimmick\GimmickManager.cpp" />
     <ClCompile Include="source\gimmick\GoalPoint.cpp" />
     <ClCompile Include="source\gimmick\NeedleFloor.cpp" />
+    <ClCompile Include="source\gimmick\StartPoint.cpp" />
     <ClCompile Include="source\gimmick\Switch.cpp" />
     <ClCompile Include="source\gimmick\TransParentFloor.cpp" />
     <ClCompile Include="source\gimmick\Door.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="source\gimmick\GimmickManager.h" />
     <ClInclude Include="source\gimmick\GoalPoint.h" />
     <ClInclude Include="source\gimmick\NeedleFloor.h" />
+    <ClInclude Include="source\gimmick\StartPoint.h" />
     <ClInclude Include="source\gimmick\Switch.h" />
     <ClInclude Include="source\gimmick\TransparentFloor.h" />
     <ClInclude Include="source\gimmick\Door.h" />
