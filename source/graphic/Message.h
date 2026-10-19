@@ -37,36 +37,32 @@ extern MessagePattern displayMessagePattern;
 #define NameEnemy	"エネミー"
 
 
-
 /* === シーンマネージャ === */
 #define FlagStatusTrue		"true"		// 「true」の文字列(デバッグ用)
 #define FlagStatusFalse		"false"		// 「false」の文字列(デバッグ用)
 
 
+/* === メニュー === */
+/* +++ メニュータブ +++ */
+#define MenuTabText	"メニュー"	// メニュータブのボタンの文字列
 
-/* === システムメニュー === */
 /* +++ メニュートップ +++ */
-#define OptionSystemMenuAchievement		"記録"
-#define OptionSystemMenuDelete			"データ消去"
-#define OptionSystemMenuEndGame			"ゲーム終了"
-#define OptionSystemMenuCredit			"クレジット"
-#define OptionSystemMenuBack			"戻る"
+#define OptionMenuWindowOperation	"操作方法"
+#define OptionMenuWindowEndGame		"ゲーム終了"
+#define OptionMenuWindowCredit		"クレジット"
+#define OptionMenuWindowBack		"戻る"
 
-#define DetailAchievement	"これまでの討伐記録を確認します"
-#define DetailDeleteData	"保存されているデータを消去します"
-#define DetailGameEnd		"ゲームを終了します"
-#define DetailCredit		"仕様楽曲などを表示します"
-#define DetailBackMenu		"メニューを閉じゲームに戻ります"
-
+#define DetailMenuWindowOperation	"操作方法を表示します"
+#define DetailMenuWindowGameEnd		"ゲームを終了します"
+#define DetailMenuWindowCredit		"仕様楽曲などを表示します"
+#define DetailMenuWindowBackMenu	"メニューを閉じゲームに戻ります"
 
 /* +++ データ消去画面 +++ */
 #define QuestionDeleteData1		"ゲームデータを消去しますか?"
 #define QuestionDeleteData2		"※消去したデータは戻せません"
 
-
 /* +++ ゲームの終了 +++ */
 #define QuestionGameEnd		"ゲームを終了しますか?"
-
 
 /* +++ クレジット +++ */
 #define MusicUsed		"使用楽曲"
@@ -76,7 +72,6 @@ extern MessagePattern displayMessagePattern;
 
 #define ToolUsed	"使用ツール"
 #define DotArt		"DotArt"
-
 
 
 /* === タイトル画面 === */
@@ -94,12 +89,5 @@ extern MessagePattern displayMessagePattern;
 #define StringBackTitle	"タイトルに戻る"	// 「タイトルに戻る」
 
 
-
 /* === クリア画面 === */
 #define StringResultMessage	"Congratulation!!"	// お祝いメッセージ
-
-
-
-/* +++ 修飾 +++ */
-#define Players		"Playerの"
-#define Enemys		"Enemyの"
