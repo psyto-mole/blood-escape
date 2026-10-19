@@ -335,7 +335,7 @@ Gimmick* GimmickManager::GetGimmickWithType(GimmickType gimmickType)
     /* +++ 最初に見つかった指定した種類のギミックを返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        if (gimmicks[i]->GetGimmickType() == GimmickType::GoalPoint)    // ギミックの種類が指定したものと同じなら
+        if (gimmicks[i]->GetGimmickType() == gimmickType)    // ギミックの種類が指定したものと同じなら
         {
             return gimmicks[i];     // そのギミックを返す
         }
@@ -474,17 +474,30 @@ bool GimmickManager::IsPassable(POINT playerPosition)
     return true;   // true(通行可能)を返す
 }
 
+/* --- プレイヤーのスタート地点を取得するメソッド --- */
+POINT GimmickManager::GetPlayerStartPosition()
+{
+    POINT playerStartPosition;  // プレイヤーのスタート地点の座標
+    Gimmick* startGimmick;      // スタート地点のギミックのポインタを格納する変数
+
+    startGimmick = GetGimmickWithType(GimmickType::StartPoint);     // スタート地点のギミックを取得
+
+    playerStartPosition = startGimmick->GetGimmickPosition();   // スタート地点の座標を取得
+
+    return playerStartPosition;     // プレイヤーのスタート地点の座標を返す
+}
+
 /* --- ステージクリアを確認するメソッド --- */
 bool GimmickManager::CheckStageClear()
 {
-    Gimmick* goalGimmick;
+    Gimmick* goalGimmick;   // ゴールのギミックのポインタを格納する変数
 
-    goalGimmick = GetGimmickWithType(GimmickType::GoalPoint);
+    goalGimmick = GetGimmickWithType(GimmickType::GoalPoint);   // ゴール地点のギミックを取得
 
-    if (goalGimmick->IsGoal())
+    if (goalGimmick->IsGoal())  // ゴールしているなら
     {
-        return true;
+        return true;    // trueを返す
     }
 
-        return false;
+        return false;   // falseを返す
 }

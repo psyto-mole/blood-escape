@@ -45,7 +45,9 @@ public:
 
 	void ActivateGimmick(int itargetID);	// IDで指定したギミックを起動する
 
-	bool IsPassable(POINT playerPosition);					// 引数で渡した座標が通行可能かを判定するメソッド
+	bool IsPassable(POINT playerPosition);	// 引数で渡した座標が通行可能かを判定するメソッド
+
+	POINT GetPlayerStartPosition();		// プレイヤーのスタート地点を取得するメソッド
 
 	bool CheckStageClear();		// ステージクリアを確認するメソッド
 };
