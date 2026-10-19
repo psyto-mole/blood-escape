@@ -15,19 +15,37 @@
 #define MenuTabInsideHeight	(MenuTabFrameHeight - 4)
 
 /* +++ メニュー画面 +++ */
-#define MenuWindowCenterX			(GameWindowWidth / 2)
-#define MenuWindowCenterY			(GameWindowHeight / 2)
-#define MenuWindowFrameWidth		720
-#define MenuWindowFrameHeight		1280
-#define MenuWindowInsideWidth		(MenuWindowFrameWidth - 6)
-#define MenuWindowInsideHeightr		(MenuWindowFrameHeight - 6)
-#define MenuWindowButtonWidth		200
-#define MenuWindowButtonHeight		100
-#define MenuWindowButtonCenterX		(GameWindowWidth - 150)
-#define MenuWindowButton1CenterY	(GameWindowHeight - 300)
-#define MenuWindowButton2CenterY	(MenuWindowButton1CenterY + 150)
-#define MenuWindowButton3CenterY	(MenuWindowButton2CenterY + 150)
-#define MenuWindowButton4CenterY	(MenuWindowButton3CenterY + 150)
+#define MenuWindowCenterX		(GameWindowWidth / 2)
+#define MenuWindowCenterY		(GameWindowHeight / 2)
+#define MenuWindowFrameWidth	720
+#define MenuWindowFrameHeight	1280
+#define MenuWindowInsideWidth	(MenuWindowFrameWidth - 6)
+#define MenuWindowInsideHeight	(MenuWindowFrameHeight - 6)
+
+#define MenuTopButtonFrameWidth		200
+#define MenuTopButtonFrameHeight	100
+#define MenuTopButtonInsideWidth	(MenuTopButtonFrameWidth - 4)
+#define MenuTopButtonInsideHeight	(MenuTopButtonFrameHeight - 4)
+#define MenuTopButtonCenterX		(GameWindowWidth - 150)
+#define MenuTopButton1CenterY		(GameWindowHeight - 300)
+#define MenuTopButton2CenterY		(MenuTopButton1CenterY + 150)
+#define MenuTopButton3CenterY		(MenuTopButton2CenterY + 150)
+#define MenuTopButton4CenterY		(MenuTopButton3CenterY + 150)
+
+#define BackTopButtonCenterX		(MenuWindowCenterX - MenuWindowFrameWidth / 2 + 50)
+#define BackTopButtonCenterY		(MenuWindowCenterY - MenuWindowFrameHeight / 2 + 25)
+#define BackTopButtonFrameWidth		100
+#define BackTopButtonFrameHeight	50
+#define BackTopButtonInsideWidth	(BackTopButtonFrameWidth - 4)
+#define BackTopButtonInsideHeight	(BackTopButtonFrameHeight - 4)
+
+#define GameEndYesButtonCenterX		(MenuWindowCenterX - 150)
+#define GameEndNoButtonCenterX		(MenuWindowCenterX + 150)
+#define GameEndButtonCenterY		(MenuWindowCenterY + 100)
+#define GameEndButtonFrameWidth		200
+#define GameEndButtonFrameHeight	100
+#define GameEndButtonInsideWidth	(GameEndButtonFrameWidth - 6)
+#define GameEndButtonInsideHeight	(GameEndButtonFrameHeight - 6)
 
 
 /* === ステージシーン === */
