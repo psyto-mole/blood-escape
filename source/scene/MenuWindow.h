@@ -18,29 +18,29 @@ enum class MenuState
 class MenuWindow
 {
 private:
-	//bool gameEnd;	// 「ゲーム終了」が選択されているかのフラグ
+	bool gameEnd;	// 「ゲーム終了」が選択されているかのフラグ
 
-	//MenuState menuState;	// メニュー画面の状態を管理する変数
+	MenuState menuState;	// メニュー画面の状態を管理する変数
 
-	//RECT menuWindowFrame;	// メニューウィンドウの外枠
-	//RECT menuWindowInside;	// メニューウィンドウの内側
+	RECT menuWindowFrame;	// メニューウィンドウの外枠
+	RECT menuWindowInside;	// メニューウィンドウの内側
 
-	//RECT menuTopButton1Frame;	// メニュー画面トップのボタン1の外枠
-	//RECT menuTopButton1Inside;	// メニュー画面トップのボタン1の内側
-	//RECT menuTopButton2Frame;	// メニュー画面トップのボタン2の外枠
-	//RECT menuTopButton2Inside;	// メニュー画面トップのボタン2の内側
-	//RECT menuTopButton3Frame;	// メニュー画面トップのボタン3の外枠
-	//RECT menuTopButton3Inside;	// メニュー画面トップのボタン3の内側
-	//RECT menuTopButton4Frame;	// メニュー画面トップのボタン4の外枠
-	//RECT menuTopButton4Inside;	// メニュー画面トップのボタン4の内側
+	RECT menuTopButton1Frame;	// メニュー画面トップのボタン1の外枠
+	RECT menuTopButton1Inside;	// メニュー画面トップのボタン1の内側
+	RECT menuTopButton2Frame;	// メニュー画面トップのボタン2の外枠
+	RECT menuTopButton2Inside;	// メニュー画面トップのボタン2の内側
+	RECT menuTopButton3Frame;	// メニュー画面トップのボタン3の外枠
+	RECT menuTopButton3Inside;	// メニュー画面トップのボタン3の内側
+	RECT menuTopButton4Frame;	// メニュー画面トップのボタン4の外枠
+	RECT menuTopButton4Inside;	// メニュー画面トップのボタン4の内側
 
-	//RECT backTopButtonFrame;	// メニュートップに戻るボタンの外枠
-	//RECT backTopButtonInside;	// メニュートップに戻るボタンの内側
+	RECT backTopButtonFrame;	// メニュートップに戻るボタンの外枠
+	RECT backTopButtonInside;	// メニュートップに戻るボタンの内側
 
-	//RECT gameEndYesButtonFrame;		// ゲーム終了画面の「はい」のボタンの外枠
-	//RECT gameEndYesButtonInside;	// ゲーム終了画面の「はい」のボタンの内側
-	//RECT gameEndNoButtonFrame;		// ゲーム終了画面の「いいえ」のボタンの外枠
-	//RECT gameEndNoButtonInside;		// ゲーム終了画面の「いいえ」のボタンの内側
+	RECT gameEndYesButtonFrame;		// ゲーム終了画面の「はい」のボタンの外枠
+	RECT gameEndYesButtonInside;	// ゲーム終了画面の「はい」のボタンの内側
+	RECT gameEndNoButtonFrame;		// ゲーム終了画面の「いいえ」のボタンの外枠
+	RECT gameEndNoButtonInside;		// ゲーム終了画面の「いいえ」のボタンの内側
 
 public:
 	MenuWindow();	// コンストラクタ
