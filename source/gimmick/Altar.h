@@ -17,4 +17,6 @@ public:
 	int Init() override;					// 祭壇の初期化メソッド
 	void Update(Player* player) override;	// 祭壇の更新メソッド
 	void Draw() override;					// 祭壇の描画メソッド
+
+	bool IsGoal() override;		// ゴール判定のメソッド(このギミックでは使用しない)
 };

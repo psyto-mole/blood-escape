@@ -17,4 +17,6 @@ public:
 	int Init() override;					// 包帯の初期化メソッド
 	void Update(Player* player) override;	// 包帯の更新メソッド
 	void Draw() override;					// 包帯の描画メソッド
+
+	bool IsGoal() override;		// ゴール判定のメソッド(このギミックでは使用しない)
 };

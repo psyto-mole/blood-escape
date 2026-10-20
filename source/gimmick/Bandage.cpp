@@ -79,3 +79,9 @@ void Bandage::Draw()
 
 	return;
 }
+
+/* --- ゴール判定のメソッド(このギミックでは使用しない) --- */
+bool Bandage::IsGoal()
+{
+	return false;
+}

@@ -18,4 +18,6 @@ public:
 	int Init() override;					// 針床の初期化メソッド
 	void Update(Player* player) override;	// 針床の更新メソッド
 	void Draw() override;					// 針床の描画メソッド
+
+	bool IsGoal() override;		// ゴール判定のメソッド(このギミックでは使用しない)
 };

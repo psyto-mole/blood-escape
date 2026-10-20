@@ -17,4 +17,6 @@ public:
 	int Init() override;					// ギミックの初期化メソッド
 	void Update(Player* palyer) override;	// ギミックの更新メソッド
 	void Draw() override;					// ギミックの描画メソッド
+
+	bool IsGoal() override;		// ゴール判定のメソッド(このギミックでは使用しない)
 };

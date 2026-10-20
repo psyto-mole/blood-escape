@@ -90,3 +90,9 @@ void Switch::Draw()
 
 	return;
 }
+
+/* --- ゴール判定のメソッド(このギミックでは使用しない) --- */
+bool Switch::IsGoal()
+{
+	return false;
+}

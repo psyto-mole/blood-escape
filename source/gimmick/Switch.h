@@ -17,4 +17,6 @@ public:
 	int Init() override;					// スイッチギミックの初期化メソッド
 	void Update(Player* player) override;	// スイッチギミックの更新メソッド
 	void Draw() override;					// スイッチギミックの描画メソッド
+
+	bool IsGoal() override;		// ゴール判定のメソッド(このギミックでは使用しない)
 };

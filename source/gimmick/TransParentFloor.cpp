@@ -88,3 +88,9 @@ void TransparentFloor::Draw()
 
 	return;
 }
+
+/* --- ゴール判定のメソッド(このギミックでは使用しない) --- */
+bool TransparentFloor::IsGoal()
+{
+	return false;
+}

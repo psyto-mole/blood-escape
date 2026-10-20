@@ -18,4 +18,6 @@ public:
 	int Init() override;					// スタート地点の初期化メソッド
 	void Update(Player* player) override;	// スタート地点の更新メソッド
 	void Draw() override;					// スタート地点の描画メソッド
+
+	bool IsGoal() override;		// ゴール判定のメソッド(このギミックでは使用しない)
 };

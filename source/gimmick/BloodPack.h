@@ -18,4 +18,6 @@ public:
 	int Init() override;					// 輸血パックの初期化メソッド
 	void Update(Player* player) override;	// 輸血パックの更新メソッド
 	void Draw() override;					// 輸血パックの描画メソッド
+
+	bool IsGoal() override;		// ゴール判定のメソッド(このギミックでは使用しない)
 };
