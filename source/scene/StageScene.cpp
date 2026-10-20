@@ -27,8 +27,6 @@ int StageScene::Init()
 
     sceneElapsedFrame = 0;  // 経過フレームをリセット
 
-    playerObject.Init();    // プレイヤーオブジェクトの初期化メソッドを実行
-
     /* +++ ステージ番号に応じたマップデータのファイルのパスを生成 +++ */
     if (sprintf_s(filePath, sizeof(filePath), ".\\game-data\\map\\Stage%d_Map.csv", stageNumber) == -1)     // ファイルパスの生成に失敗したら
     {
@@ -68,6 +66,8 @@ int StageScene::Init()
     {
         return -1;  // -1を返す(初期化失敗)
     }
+
+    playerObject.Init(gimmickManager.GetPlayerStartPosition());    // スタート地点の座標を渡してプレイヤーオブジェクトの初期化メソッドを実行
 
     return 0;
 }
