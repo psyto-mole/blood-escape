@@ -13,6 +13,7 @@
 #include "Bloodpack.h"
 #include "Bandage.h"
 #include "Switch.h"
+#include "StartPoint.h"
 #include "Door.h"
 
 
@@ -224,6 +225,12 @@ Gimmick* GimmickManager::CreateGimmick(const char* type, int id, int x, int y, i
         Bandage createBandage(id, x, y, state, target);
 
         return &createBandage;
+    }
+    else if (strcmp(type, "StartPoint") == 0)
+    {
+        StartPoint createStart(id, x, y, state, target);
+
+        return &createStart;
     }
     else if (strcmp(type, "Switch") == 0)
     {

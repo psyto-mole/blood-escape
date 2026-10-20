@@ -141,4 +141,6 @@ int GetInputVector()
 	{
 		return 6;
 	}
+
+	return 5;
 }

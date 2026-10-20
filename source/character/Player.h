@@ -29,9 +29,9 @@ protected:
 public:
 	Player();	// コンストラクタ
 
-	void Init() override;		// プレイヤーの初期化メソッド
+	void Init(POINT startPosition) override;								// プレイヤーの初期化メソッド
 	void Update(Map* mapManager, GimmickManager* gimmickManager) override;	// プレイヤーの更新メソッド
-	void Draw() override;		// プレイヤーの描画メソッド
+	void Draw() override;													// プレイヤーの描画メソッド
 
 	void MovePlayer(Map* mapManager, GimmickManager* gimmickManager);	// プレイヤーの移動メソッド
 

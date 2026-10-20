@@ -24,9 +24,9 @@ public:
 	Character();	// コンストラクタ
 	~Character();	// デストラクタ
 
-	virtual void Init() = 0;
+	virtual void Init(POINT startPosition) = 0;									// キャラクターの初期化メソッド
 	virtual void Update(Map* mapManager, GimmickManager* gimmickManager) = 0;	// キャラクターの更新メソッド
-	virtual void Draw() = 0;	// キャラクターの描画メソッド
+	virtual void Draw() = 0;													// キャラクターの描画メソッド
 
 	POINT GetCharacterPosition();																// キャラクターの現在位置を取得するメソッド
 	void SetCharacterPosition(int x, int y);													// キャラクターの現在位置を設定するメソッド

@@ -117,7 +117,6 @@ int Map::Load(const char* csvPath)
         }
     }
 
-
     height = y;     // c•‚ğæ“¾
 
     fclose(fp);     // ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é

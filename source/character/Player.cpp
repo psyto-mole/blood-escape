@@ -40,10 +40,12 @@ Player::Player()
 }
 
 /* --- プレイヤーの初期化メソッド-- - */
-void Player::Init()
+void Player::Init(POINT startPosition)
 {
 	hp = maxHP;
 	speed = PlayerSpeed;
+
+	characterPosition = startPosition;
 
 	maxHPBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + maxHP + 1, PlayerHPBarLowerRightY);
 	hpBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + hp + 1, PlayerHPBarLowerRightY);

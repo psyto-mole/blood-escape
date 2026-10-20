@@ -13,7 +13,7 @@ bool initialized;									// 初期化済みかどうかを判定するフラグ
 /* --- ゲームデータの初期化関数 --- */
 void Data_Init()
 {
-	int i, j;
+	//int i, j;
 
 	/*for (i = 0; i < CharacterNumber; i++)
 	{
@@ -23,10 +23,10 @@ void Data_Init()
 		}
 	}*/
 
-	alreadySaved = false;
+	/*alreadySaved = false;
 	initialized = true;
 
-	Data_Load();
+	Data_Load();*/
 
 	/*for (i = 0; i < CharacterNumber; i++)
 	{
@@ -44,117 +44,117 @@ void Data_Init()
 /* --- ゲームデータをセーブする関数 --- */
 void Data_Save()
 {
-	size_t dataSize;
-	FILE* fp;
+	//size_t dataSize;
+	//FILE* fp;
 
-	if (alreadySaved)
-	{
-		return;
-	}
-	else
-	{
-		errorCode = fopen_s(&fp, PathDataFile, "wb");
+	//if (alreadySaved)
+	//{
+	//	return;
+	//}
+	//else
+	//{
+	//	errorCode = fopen_s(&fp, PathDataFile, "wb");
 
-		if (errorCode != 0)
-		{
-			MessageBox(
-				GetMainWindowHandle(),			// ウィンドウハンドル
-				"Save file could not be open",	// エラー内容
-				"Save Error",					// エラータイトル
-				MB_OK							// OKボタンのみ表示
-			);
+	//	if (errorCode != 0)
+	//	{
+	//		MessageBox(
+	//			GetMainWindowHandle(),			// ウィンドウハンドル
+	//			"Save file could not be open",	// エラー内容
+	//			"Save Error",					// エラータイトル
+	//			MB_OK							// OKボタンのみ表示
+	//		);
 
-			return;
-		}
+	//		return;
+	//	}
 
-		//dataSize = fwrite(saveArray, sizeof(int), CharacterNumber * CharacterNumber, fp);
+	//	//dataSize = fwrite(saveArray, sizeof(int), CharacterNumber * CharacterNumber, fp);
 
-		//if (dataSize != CharacterNumber * CharacterNumber)
-		//{
-		//	MessageBox(
-		//		GetMainWindowHandle(),		// ウィンドウハンドル
-		//		"Save failed",				// エラー内容
-		//		"Save Error",				// エラータイトル
-		//		MB_OK						// OKボタンのみ表示
-		//	);
+	//	//if (dataSize != CharacterNumber * CharacterNumber)
+	//	//{
+	//	//	MessageBox(
+	//	//		GetMainWindowHandle(),		// ウィンドウハンドル
+	//	//		"Save failed",				// エラー内容
+	//	//		"Save Error",				// エラータイトル
+	//	//		MB_OK						// OKボタンのみ表示
+	//	//	);
 
-		//	return;
-		//}
+	//	//	return;
+	//	//}
 
-		if (alreadySaved == false)
-		{
-			alreadySaved = true;
-		}
+	//	if (alreadySaved == false)
+	//	{
+	//		alreadySaved = true;
+	//	}
 
-		if (initialized)
-		{
-			initialized = false;
-		}
+	//	if (initialized)
+	//	{
+	//		initialized = false;
+	//	}
 
-		dataSize = fwrite(&initialized, sizeof(bool), 1, fp);
+	//	dataSize = fwrite(&initialized, sizeof(bool), 1, fp);
 
-		if (dataSize != 1)
-		{
-			MessageBox(
-				GetMainWindowHandle(),		// ウィンドウハンドル
-				"Save failed",				// エラー内容
-				"Save Error",				// エラータイトル
-				MB_OK						// OKボタンのみ表示
-			);
+	//	if (dataSize != 1)
+	//	{
+	//		MessageBox(
+	//			GetMainWindowHandle(),		// ウィンドウハンドル
+	//			"Save failed",				// エラー内容
+	//			"Save Error",				// エラータイトル
+	//			MB_OK						// OKボタンのみ表示
+	//		);
 
-			return;
-		}
-	}
+	//		return;
+	//	}
+	//}
 
-	fclose(fp);
+	//fclose(fp);
 	return;
 }
 
 /* --- ゲームデータをロードする関数 --- */
 void Data_Load()
 {
-	size_t dataSize;
-	FILE* fp;
+	//size_t dataSize;
+	//FILE* fp;
 
-	int i, j;
+	//int i, j;
 
 
-	errorCode = fopen_s(&fp, PathDataFile, "rb");
+	//errorCode = fopen_s(&fp, PathDataFile, "rb");
 
-	if (errorCode == 0)
-	{
-		/*dataSize = fread(saveArray, sizeof(int), CharacterNumber * CharacterNumber, fp);
+	//if (errorCode == 0)
+	//{
+	//	/*dataSize = fread(saveArray, sizeof(int), CharacterNumber * CharacterNumber, fp);
 
-		if (dataSize != CharacterNumber * CharacterNumber)
-		{
-			for (i = 0; i < CharacterNumber; i++)
-			{
-				for (j = 0; j < CharacterNumber; j++)
-					saveArray[i][j] = 0;
-			}
-		}*/
+	//	if (dataSize != CharacterNumber * CharacterNumber)
+	//	{
+	//		for (i = 0; i < CharacterNumber; i++)
+	//		{
+	//			for (j = 0; j < CharacterNumber; j++)
+	//				saveArray[i][j] = 0;
+	//		}
+	//	}*/
 
-		dataSize = fread(&initialized, sizeof(bool), 1, fp);
+	//	dataSize = fread(&initialized, sizeof(bool), 1, fp);
 
-		if (dataSize != 1)
-		{
-			initialized = true;
-		}
+	//	if (dataSize != 1)
+	//	{
+	//		initialized = true;
+	//	}
 
-		fclose(fp);
-	}
-	else
-	{
-		/*for (i = 0; i < CharacterNumber; i++)
-		{
-			for (j = 0; j < CharacterNumber; j++)
-			{
-				saveArray[i][j] = 0;
-			}
-		}*/
-	}
+	//	fclose(fp);
+	//}
+	//else
+	//{
+	//	for (i = 0; i < CharacterNumber; i++)
+	//	{
+	//		for (j = 0; j < CharacterNumber; j++)
+	//		{
+	//			saveArray[i][j] = 0;
+	//		}
+	//	}
+	//}
 
-	alreadySaved = false;
+	//alreadySaved = false;
 
 	return;
 }
@@ -162,9 +162,9 @@ void Data_Load()
 /* --- ゲームデータを更新する関数 --- */
 void Data_Update(int playerNumber, int enemyNumber)
 {
-	int i, j;
-	/*int targetLine;
-	int targetColumn;*/
+	/*int i, j;
+	int targetLine;
+	int targetColumn;
 
 	if (alreadySaved)
 	{
@@ -172,7 +172,7 @@ void Data_Update(int playerNumber, int enemyNumber)
 	}
 	else
 	{
-		/*if (enemyNumber <= CharacterNumber && playerNumber <= CharacterNumber)
+		if (enemyNumber <= CharacterNumber && playerNumber <= CharacterNumber)
 		{
 			targetLine = (playerNumber - 1);
 			targetColumn = (enemyNumber - 1);
@@ -189,8 +189,8 @@ void Data_Update(int playerNumber, int enemyNumber)
 					total_saveArray_Now += saveArray[i][j];
 				}
 			}
-		}*/
-	}
+		}
+	}*/
 
 	return;
 }
@@ -198,25 +198,25 @@ void Data_Update(int playerNumber, int enemyNumber)
 /* --- ゲームデータを消去する関数 --- */
 void Data_Delete()
 {
-	size_t dataSize;
-	FILE* fp;
+	//size_t dataSize;
+	//FILE* fp;
 
-	int i, j;
+	//int i, j;
 
 
-	errorCode = fopen_s(&fp, PathDataFile, "wb");
+	//errorCode = fopen_s(&fp, PathDataFile, "wb");
 
-	if (errorCode != 0)
-	{
-		MessageBox(
-			GetMainWindowHandle(),			// ウィンドウハンドル
-			"Save file could not be open",	// エラー内容
-			"Save Error",					// エラータイトル
-			MB_OK							// OKボタンのみ表示
-		);
+	//if (errorCode != 0)
+	//{
+	//	MessageBox(
+	//		GetMainWindowHandle(),			// ウィンドウハンドル
+	//		"Save file could not be open",	// エラー内容
+	//		"Save Error",					// エラータイトル
+	//		MB_OK							// OKボタンのみ表示
+	//	);
 
-		return;
-	}
+	//	return;
+	//}
 
 	/*for (i = 0; i < CharacterNumber; i++)
 	{
@@ -228,43 +228,43 @@ void Data_Delete()
 
 	dataSize = fwrite(saveArray, sizeof(int), CharacterNumber * CharacterNumber, fp)*/;
 
-	if (dataSize != CharacterNumber * CharacterNumber)
-	{
-		MessageBox(
-			GetMainWindowHandle(),		// ウィンドウハンドル
-			"Save failed",				// エラー内容
-			"Save Error",				// エラータイトル
-			MB_OK						// OKボタンのみ表示
-		);
+	//if (dataSize != CharacterNumber * CharacterNumber)
+	//{
+	//	MessageBox(
+	//		GetMainWindowHandle(),		// ウィンドウハンドル
+	//		"Save failed",				// エラー内容
+	//		"Save Error",				// エラータイトル
+	//		MB_OK						// OKボタンのみ表示
+	//	);
 
-		return;
-	}
+	//	return;
+	//}
 
-	if (alreadySaved)
-	{
-		alreadySaved = false;
-	}
+	//if (alreadySaved)
+	//{
+	//	alreadySaved = false;
+	//}
 
-	if (initialized == false)
-	{
-		initialized = true;
-	}
+	//if (initialized == false)
+	//{
+	//	initialized = true;
+	//}
 
-	dataSize = fwrite(&initialized, sizeof(bool), 1, fp);
+	//dataSize = fwrite(&initialized, sizeof(bool), 1, fp);
 
-	if (dataSize != 1)
-	{
-		MessageBox(
-			GetMainWindowHandle(),		// ウィンドウハンドル
-			"Save failed",				// エラー内容
-			"Save Error",				// エラータイトル
-			MB_OK						// OKボタンのみ表示
-		);
+	//if (dataSize != 1)
+	//{
+	//	MessageBox(
+	//		GetMainWindowHandle(),		// ウィンドウハンドル
+	//		"Save failed",				// エラー内容
+	//		"Save Error",				// エラータイトル
+	//		MB_OK						// OKボタンのみ表示
+	//	);
 
-		return;
-	}
+	//	return;
+	//}
 
-	fclose(fp);
+	//fclose(fp);
 
 	return;
 }
