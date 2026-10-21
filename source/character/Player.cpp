@@ -5,6 +5,7 @@
 #include "Key.h"
 #include "Color.h"
 #include "Font.h"
+#include "Sound.h"
 #include "Geometry.h"
 #include "RectParameter.h"
 #include "Animation.h"
@@ -186,6 +187,8 @@ void Player::InteractGimmick(GimmickManager* gimmickManager, int gimmickID)
 	if (gimmickManager->GetGimmickTag(gimmickID) == GimmickTag::Normal)		// ギミックが通常ギミックなら
 	{
 		gimmickManager->ActivateGimmick(gimmickID);		// ギミックの状態を進める
+
+		Sound_Play(SE_Interact);	// ギミック操作時のSEを再生
 	}
 
 	return;
@@ -201,6 +204,8 @@ void Player::SelfHarm(GimmickManager* gimmickManager, int gimmickID)
 		gimmickManager->ActivateGimmick(gimmickID);		// ギミックの状態を進める
 	}
 
+	Sound_Play(SE_SelfHarm);	// 自傷のSEを再生
+
 	return;
 }
 
@@ -210,6 +215,8 @@ void Player::ProcessBleeding()
 	if (isBleeding)		// 出血状態なら
 	{
 		Calc_HP(1, TRUE);	// 1のスリップダメージを受ける
+
+		Sound_Play(SE_Bleeding);	// 出血のSEを再生
 	}
 
 	return;
