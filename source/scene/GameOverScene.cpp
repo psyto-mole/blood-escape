@@ -5,6 +5,7 @@
 #include "Key.h"
 #include "Color.h"
 #include "Font.h"
+#include "Sound.h"
 #include "Geometry.h"
 #include "Message.h"
 #include "RectParameter.h"
@@ -33,6 +34,8 @@ int GameOverScene::Init()
 
     sceneElapsedFrame = 0;  // 経過フレームをリセット
 
+    Sound_Play(BGM_GameOver);   // ゲームオーバー画面のBGMを再生
+
     return 0;
 }
 
@@ -49,6 +52,8 @@ void GameOverScene::Update()
             {
                 selectedIndex = NumberOfGameoverOption;  // 選択肢の値をMaxにする(最後の選択肢にする)
             }
+
+            Sound_Play(SE_Select);   // 選択肢を変更した時のSEを再生
         }
         else if (Key_Check_Click(KEY_INPUT_RIGHT))   // 右キーがクリックされたら
         {
@@ -58,6 +63,8 @@ void GameOverScene::Update()
             {
                 selectedIndex = 0;  // 選択肢を最初に戻す
             }
+
+            Sound_Play(SE_Select);   // 選択肢を変更した時のSEを再生
         }
 
         if (Key_Check_Click(KEY_INPUT_RETURN))     // エンターがクリックされた
@@ -74,6 +81,8 @@ void GameOverScene::Update()
             {
                 transition.sceneType = SceneType::Title;    // 遷移情報のシーンの種類をステージにする
             }
+
+            Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
         }
     }
 
@@ -110,5 +119,7 @@ void GameOverScene::Draw()
 /* --- ゲームオーバーシーンの終了メソッド ---*/
 void GameOverScene::End()
 {
+    Sound_Stop(&BGM_GameOver);  // ゲームオーバー画面のBGMの再生を停止
+
     return;
 }
