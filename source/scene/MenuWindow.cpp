@@ -78,7 +78,7 @@ void MenuWindow::Update()
 			SetMenuState(MenuState::Close);	// メニュー画面を閉じる
 		}
 
-		//Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+		Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
 		break;
 	case MenuState::GameEnd:
 		/* +++ ゲーム終了画面の場合 +++ */
@@ -92,8 +92,8 @@ void MenuWindow::Update()
 			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップにする
 		}
 
-		//Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
-		//Sound_Play(SE_Cancel);  // 選択肢を取り消した時のSEを再生
+		Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+		Sound_Play(SE_Cancel);  // 選択肢を取り消した時のSEを再生
 		break;
 	}
 
@@ -104,7 +104,7 @@ void MenuWindow::Update()
 			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態を画面トップに設定
 		}
 
-		//Sound_Play(SE_Cancel);   // 選択肢を取り消したた時のSEを再生
+		Sound_Play(SE_Cancel);   // 選択肢を取り消したた時のSEを再生
 	}
 
 	return;
