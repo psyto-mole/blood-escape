@@ -5,6 +5,7 @@
 #include "Geometry.h"
 #include "Color.h"
 #include "Font.h"
+#include "Sound.h"
 #include "Message.h"
 #include "Rectparameter.h"
 
@@ -76,6 +77,8 @@ void MenuWindow::Update()
 		{
 			SetMenuState(MenuState::Close);	// メニュー画面を閉じる
 		}
+
+		//Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
 		break;
 	case MenuState::GameEnd:
 		/* +++ ゲーム終了画面の場合 +++ */
@@ -88,6 +91,9 @@ void MenuWindow::Update()
 		{
 			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップにする
 		}
+
+		//Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+		//Sound_Play(SE_Cancel);  // 選択肢を取り消した時のSEを再生
 		break;
 	}
 
@@ -97,6 +103,8 @@ void MenuWindow::Update()
 		{
 			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態を画面トップに設定
 		}
+
+		//Sound_Play(SE_Cancel);   // 選択肢を取り消したた時のSEを再生
 	}
 
 	return;
@@ -133,28 +141,28 @@ void MenuWindow::Draw()
 			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
 
 			/* +++ ボタン1の文字列を赤で、それ以外を白で描画 +++ */
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowOperation);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
 		}
 		else if (CollisionRectToPoint(menuTopButton2Frame, nowMousePoint))	// ボタン2と接触している場合
 		{
 			/* +++ ボタン2を赤枠に白、それ以外を白枠に黒で描画 +++ */
-			DrawRect(menuTopButton1Frame, Color_White, true, 1);
-			DrawRect(menuTopButton1Inside, Color_Black, true, 1);
-			DrawRect(menuTopButton2Frame, Color_Red, true, 1);
-			DrawRect(menuTopButton2Inside, Color_White, true, 1);
+			DrawRect(menuTopButton1Frame, Color_Red, true, 1);
+			DrawRect(menuTopButton1Inside, Color_White, true, 1);
+			DrawRect(menuTopButton2Frame, Color_White, true, 1);
+			DrawRect(menuTopButton2Inside, Color_Black, true, 1);
 			DrawRect(menuTopButton3Frame, Color_White, true, 1);
 			DrawRect(menuTopButton3Inside, Color_Black, true, 1);
 			DrawRect(menuTopButton4Frame, Color_White, true, 1);
 			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
 
 			/* +++ ボタン2の文字列を赤で、それ以外を白で描画 +++ */
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowOperation);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowEndGame);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
 		}
 		else if (CollisionRectToPoint(menuTopButton3Frame, nowMousePoint))	// ボタン3と接触している場合
 		{
@@ -169,10 +177,10 @@ void MenuWindow::Draw()
 			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
 
 			/* +++ ボタン3の文字列を赤で、それ以外を白で描画 +++ */
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowOperation);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowCredit);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
 		}
 		else if (CollisionRectToPoint(menuTopButton4Frame, nowMousePoint))	// ボタン4と接触している場合
 		{
@@ -187,10 +195,10 @@ void MenuWindow::Draw()
 			DrawRect(menuTopButton4Inside, Color_White, true, 1);
 
 			/* +++ ボタン4の文字列を赤で、それ以外を白で描画 +++ */
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowOperation);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_Red, , "%s", OptionMenuWindow);
 		}
 		else
 		{
@@ -205,10 +213,10 @@ void MenuWindow::Draw()
 			DrawRect(menuTopButton4Inside, Color_Black, true, 1);
 
 			/* +++ ボタンの文字列をを白で描画 +++ */
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowOperation);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
-			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton1CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowEndGame);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton2CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowCredit);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton3CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindowBack);
+			DrawFormatStringToHandleAlign(MenuTopButtonCenterX, MenuTopButton4CenterY, FAlign_AllCenter, Color_White, , "%s", OptionMenuWindow);
 		}
 		break;
 	case MenuState::Operation:
