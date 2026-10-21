@@ -3,6 +3,7 @@
 #include "Switch.h"
 #include "Geometry.h"
 #include "Image.h"
+#include "Sound.h"
 
 
 /* --- コンストラクタ-- - */
@@ -62,7 +63,7 @@ void Switch::Update(Player* player)
 
 		//Inactivate();	// 停止状態にする
 
-		// SE_Play();
+		 Sound_Play(SE_Switch);		// スイッチのSEを再生
 	}
 
 	return;

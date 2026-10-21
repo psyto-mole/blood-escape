@@ -1,6 +1,7 @@
 /* === ゴール地点のソースファイル === */
 
 #include "GoalPoint.h"
+#include "Sound.h"
 
 
 /* --- ゴール地点のコンストラクタ-- - */
@@ -41,7 +42,7 @@ void GoalPoint::Update(Player* player)
 	{
 		isGoal = true;	// ゴール判定をtrue(ゴールした)に設定
 
-		//SE_Play();
+		Sound_Play(SE_GoalPoint);	// ゴール地点のSEを再生
 	}
 
 	return;

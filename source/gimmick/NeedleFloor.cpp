@@ -3,6 +3,7 @@
 #include "NeedleFloor.h"
 #include "Geometry.h"
 #include "Image.h"
+#include "Sound.h"
 
 
 /* --- コンストラクタ --- */
@@ -56,7 +57,7 @@ void NeedleFloor::Update(Player* player)
 
 			SetGimmickState(maxState);	// ギミックの状態を最後の状態に設定
 
-			//SE_Play();
+			Sound_Play(SE_NeedleFloor);		// 針床のSEを再生
 
 			isContact = true;	// 接触状態にする
 		}

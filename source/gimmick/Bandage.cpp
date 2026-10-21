@@ -3,6 +3,7 @@
 #include "Bandage.h"
 #include "Geometry.h"
 #include "Image.h"
+#include "Sound.h"
 
 
 /* --- コンストラクタ-- - */
@@ -59,7 +60,7 @@ void Bandage::Update(Player* player)
 
 		SetGimmickState(maxState);	// ギミックを最後の状態(取得済み)に設定
 
-		//SE_Play();
+		Sound_Play(SE_Bandage);		// 包帯の取得時のSEを再生
 	}
 
 	return;

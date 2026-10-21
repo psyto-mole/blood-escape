@@ -3,6 +3,7 @@
 #include "Door.h"
 #include "Geometry.h"
 #include "Image.h"
+#include "Sound.h"
 
 
 /* --- コンストラクタ --- */
@@ -62,7 +63,7 @@ void Door::Update(Player* player)
 
 		//Inactivate();	// ドアを停止する
 
-		//SEW_Play();
+		Sound_Play(SE_Door);	// ドアのSEを再生
 	}
 
 	return;
