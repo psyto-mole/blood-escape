@@ -6,6 +6,7 @@
 #include "Color.h"
 #include "Font.h"
 #include "Message.h"
+#include "Sound.h"
 
 
 /* --- クリアシーンの初期化メソッド --- */
@@ -14,6 +15,8 @@ int ClearScene::Init()
 	transition = {};	// 遷移情報をクリア
 
 	sceneElapsedFrame = 0;	// 経過フレームをリセット
+
+	Sound_Play(BGM_Clear);	// クリア画面のBGMを再生
 
 	return 0;
 }
@@ -25,6 +28,8 @@ void ClearScene::Update()
 	{
 		transition.transitionType = TransitionType::ChangeScene;	// 遷移情報の遷移の状態を「シーン切り替え」に設定
 		transition.sceneType = SceneType::Title;					// 遷移情報のシーンの種類をタイトルシーンに設定
+
+		Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
 	}
 
 	sceneElapsedFrame += 1;		// 経過フレームを1加算
@@ -43,5 +48,7 @@ void ClearScene::Draw()
 /* --- クリアシーンの終了メソッド --- */
 void ClearScene::End()
 {
+	Sound_Stop(&BGM_Clear);		// クリア画面のBGMの再生を停止
+
 	return;
 }
