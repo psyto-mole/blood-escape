@@ -5,6 +5,7 @@
 #include "Key.h"
 #include "Color.h"
 #include "Font.h"
+#include "Sound.h"
 
 
 /* --- Stageクラスのコンストラクタ --- */
@@ -68,6 +69,8 @@ int StageScene::Init()
     }
 
     playerObject.Init(gimmickManager.GetPlayerStartPosition());    // スタート地点の座標を渡してプレイヤーオブジェクトの初期化メソッドを実行
+
+    Sound_Play(BGM_Stage);  // ステージのBGMを再生
 
     return 0;
 }
@@ -172,6 +175,9 @@ void StageScene::Draw()
 /* --- ステージの終了メソッド --- */
 void StageScene::End()
 {
+    Sound_Stop(&BGM_Stage);  // ステージのBGMの再生を停止
+
+    return;
 }
 
 /* --- ステージ番号の取得メソッド --- */
