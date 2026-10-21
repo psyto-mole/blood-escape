@@ -1,10 +1,12 @@
 /* === メニュータブ関連の処理のソースファイル === */
 
 #include "MenuTab.h"
+#include "Key.h"
 #include "Mouse.h"
 #include "Geometry.h"
 #include "Color.h"
 #include "Font.h"
+#include "Sound.h"
 #include "Message.h"
 #include "RectParameter.h"
 
@@ -33,8 +35,10 @@ void MenuTab::Init()
 /* --- メニュータブの更新メソッド --- */
 int MenuTab::Update()
 {
-	if (CollisionRectToPoint(menuTabFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))
+	if (Key_Check_Click(KEY_INPUT_M))	// Mキーがクリックされたら
 	{
+		//Sound_Play(SE_Menu);
+
 		return -1;	// -1を返す(メニュー画面起動)
 	}
 
