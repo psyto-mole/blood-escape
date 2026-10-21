@@ -41,7 +41,7 @@ Player::Player()
 }
 
 /* --- プレイヤーの初期化メソッド-- - */
-void Player::Init()
+void Player::Init(POINT startPosition)
 {
 	hp = maxHP;
 	speed = PlayerSpeed;
@@ -53,6 +53,8 @@ void Player::Init()
 
 	inputVector = 5;			// 入力方向を5(ニュートラル)に設定
 	pastFacingDirection = 5;	// プレイヤーが前に向いていた向きを5に設定
+
+	characterPosition = startPosition;	// プレイヤーの座標をスタート地点の座標にする
 
 	return;
 }

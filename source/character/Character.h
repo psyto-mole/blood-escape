@@ -24,7 +24,7 @@ public:
 	Character();	// コンストラクタ
 	~Character();	// デストラクタ
 
-	virtual void Init() = 0;
+	virtual void Init(POINT startPosition) = 0;
 	virtual void Update(Map* mapManager, GimmickManager* gimmickManager) = 0;	// キャラクターの更新メソッド
 	virtual void Draw() = 0;	// キャラクターの描画メソッド
 
