@@ -1,6 +1,7 @@
 /* === 文字送り処理のソースファイル ==== */
 
 #include "TextScroll.h"
+#include "Sound.h"
 
 
 /* --- コンストラクタ --- */
@@ -46,6 +47,8 @@ void TextPrinter::Update()
 		displayPosition += GetCharacterByte(displayPosition);	// 現在表示している文字のバイト数だけ進める
 	
 		timer = 0;	// タイマーを0に戻す
+
+		Sound_Play(SE_TextScroll);	// 文字送りのSEを再生
 	}
 
 	return;

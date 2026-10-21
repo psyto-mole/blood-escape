@@ -28,7 +28,7 @@ public:
 
 	void AdvanceText();								// 文章を進めるメソッド(Enterキーが押されたときに実行する)
 	void SkipScroll(const std::string& message);	// 文字送りを飛ばすメソッド
-	void ChangeText();		// 文章を変えるメソッド
+	void ChangeText();								// 文章を変えるメソッド
 
 
 	bool IsCurrentMessageFinished() const;	// 現在の文章が最後まで表示されたか
