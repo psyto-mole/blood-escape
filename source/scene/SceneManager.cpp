@@ -1,6 +1,7 @@
 /* === シーンの管理を行うクラスのソースファイル === */
 
 #include "SceneManager.h"
+#include "Gamemanager.h"
 #include "TitleScene.h"
 #include "TutorialScene.h"
 #include "StageScene.h"
@@ -19,6 +20,10 @@ int SceneManager::Init()
     {
         /* +++ エラーメッセージを表示 +++ */
         MessageBox(
+            GetMainWindowHandle(),
+            "SceneManager.cpp : Init(): currentScene is NULL.",
+            "Pointer Error",
+            MB_OK
         );
 
         return -1;  // -1を返す(初期化失敗)
@@ -28,6 +33,10 @@ int SceneManager::Init()
     {
         /* +++ エラーメッセージを表示 +++ */
         MessageBox(
+            GetMainWindowHandle(),
+            "SceneManager.cpp : Init(): Failed currentScene Init().",
+            "Initialize Error",
+            MB_OK
         );
 
         return -1;  // -1を返す(初期化失敗)
@@ -80,9 +89,12 @@ int SceneManager::Update()
 
     SceneTransition transition = currentScene->GetTransition();     // 現在のシーンから遷移情報を取得
 
-    if (Key_Check_Click(KEY_INPUT_Q))
+    if (GameDebug)
     {
-        gameEnd = true;
+        if (Key_Check_Click(KEY_INPUT_Q))
+        {
+            gameEnd = true;
+        }
     }
 
     if (transition.transitionType == TransitionType::None)  // 遷移しない場合
