@@ -5,6 +5,7 @@
 #include "Key.h"
 #include "Color.h"
 #include "Font.h"
+#include "Sound.h"
 #include "Message.h"
 
 
@@ -14,6 +15,8 @@ int TitleScene::Init()
     transition = {};    // 遷移情報をクリア
 
     sceneElapsedFrame = 0;
+
+    Sound_Play(BGM_Title);  // タイトル画面のBGMを再生
 
     return 0;
 }
@@ -26,6 +29,8 @@ void TitleScene::Update()
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
 
         transition.sceneType = SceneType::Tutorial;     // 遷移情報のシーンの種類をチュートリアルシーンにする
+
+        Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
     }
     else
     {
@@ -48,5 +53,7 @@ void TitleScene::Draw()
 /* --- タイトルシーンの終了処理 --- */
 void TitleScene::End()
 {
+    Sound_Stop(&BGM_Title);     // タイトル画面のBGMの再生を停止
+
     return;
 }
