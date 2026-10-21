@@ -37,7 +37,7 @@ int MenuTab::Update()
 {
 	if (Key_Check_Click(KEY_INPUT_M))	// Mキーがクリックされたら
 	{
-		//Sound_Play(SE_Menu);
+		Sound_Play(SE_Menu);
 
 		return -1;	// -1を返す(メニュー画面起動)
 	}
