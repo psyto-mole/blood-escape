@@ -5,6 +5,7 @@
 #include "Key.h"
 #include "Color.h"
 #include "Font.h"
+#include "Sound.h"
 
 
 /* --- デストラクタ --- */
@@ -27,6 +28,8 @@ int TutorialScene::Init()
             "投げる度胸もないのか",
         });
 
+    Sound_Play(BGM_Tutorial);   // チュートリアル画面のBGMを再生
+
     return 0;
 }
 
@@ -38,6 +41,8 @@ void TutorialScene::Update()
     if (Key_Check_Click(KEY_INPUT_RETURN))  // Enterキーがクリックされたら
     {
         textPrinter.AdvanceText();  // 文章を進める
+
+        Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
     }
 
     if (textPrinter.IsAllMessageFinished() && sceneElapsedFrame >= GameFPS)   // シーンが切り替わってから1秒が経過し、文字送りが終了したらステージ1へ
@@ -63,5 +68,7 @@ void TutorialScene::Draw()
 /* --- チュートリアルシーンの終了メソッド --- */
 void TutorialScene::End()
 {
+    Sound_Stop(&BGM_Tutorial);  // チュートリアル画面のBGMの再生を停止
+
     return;
 }
