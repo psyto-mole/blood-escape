@@ -41,8 +41,6 @@ void TutorialScene::Update()
     if (Key_Check_Click(KEY_INPUT_RETURN))  // Enterキーがクリックされたら
     {
         textPrinter.AdvanceText();  // 文章を進める
-
-        Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
     }
 
     if (textPrinter.IsAllMessageFinished() && sceneElapsedFrame >= GameFPS)   // シーンが切り替わってから1秒が経過し、文字送りが終了したらステージ1へ
