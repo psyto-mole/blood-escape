@@ -3,6 +3,10 @@
 
 #include "DxLib.h"
 #include "Character.h"
+#include "Image.h"
+
+class Map;
+class GimmickManager;
 
 
 #define PlayerMaxHP	100		// プレイヤーの最大HP
@@ -17,7 +21,7 @@ protected:
 	int inputVector;			// プレイヤーの入力方向を格納する変数
 	int pastFacingDirection;	// プレイヤーが前に向いていた向き
 
-	int playerAnimation[9];		// プレイヤーのアニメーションの画像ハンドルの配列
+	int playerAnimation[PlayerAnimationDivNum];		// プレイヤーのアニメーションの画像ハンドルの配列
 
 	bool isBleeding;	// 出血状態
 
@@ -29,7 +33,7 @@ protected:
 public:
 	Player();	// コンストラクタ
 
-	void Init(POINT startPosition) override;		// プレイヤーの初期化メソッド
+	int Init(POINT startPosition) override;		// プレイヤーの初期化メソッド
 	void Update(Map* mapManager, GimmickManager* gimmickManager) override;	// プレイヤーの更新メソッド
 	void Draw() override;		// プレイヤーの描画メソッド
 

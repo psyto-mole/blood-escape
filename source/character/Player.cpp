@@ -6,9 +6,11 @@
 #include "Color.h"
 #include "Font.h"
 #include "Sound.h"
+#include "Map.h"
+#include "Gimmick.h"
+#include "Gimmickmanager.h"
 #include "Geometry.h"
 #include "RectParameter.h"
-#include "Animation.h"
 
 
 /* --- コンストラクタ --- */
@@ -30,18 +32,15 @@ Player::Player()
 	inputVector = 5;			// 入力方向を5(ニュートラル)に設定
 	pastFacingDirection = 5;	// プレイヤーが前に向いていた向きを5に設定
 
-	// アニメーション画像を読み込み
-	LoadDivGraph(
-		PlayerAnimationPath, 
-		PlayerAnimationDivNum, 
-		PlayerAnimationDivX, PlayerAnimationDivY, 
-		PlayerAnimationSizeX, PlayerAnimationSizeY, 
-		playerAnimation
-	);
+	/* +++ アニメーションの画像ハンドルを初期化 +++ */
+	for (int i = 0; i < PlayerAnimationDivNum; i++)
+	{
+		playerAnimation[i] = -1;	// 画像ハンドルを初期化
+	}
 }
 
 /* --- プレイヤーの初期化メソッド-- - */
-void Player::Init(POINT startPosition)
+int Player::Init(POINT startPosition)
 {
 	hp = maxHP;
 	speed = PlayerSpeed;
@@ -56,7 +55,20 @@ void Player::Init(POINT startPosition)
 
 	characterPosition = startPosition;	// プレイヤーの座標をスタート地点の座標にする
 
-	return;
+	/* +++ アニメーション画像を読み込み +++ */
+	if (LoadDivGraph(PlayerAnimationPath, PlayerAnimationDivNum, PlayerAnimationDivX, PlayerAnimationDivY, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation) == -1)	// 読み込みに失敗したら
+	{
+		MessageBox(
+			GetMainWindowHandle(),
+			"Player.cpp : Init() : Failed to load player's animation.",
+			"Load Error",
+			MB_OK
+		);
+
+		return -1;	// -1を返す(初期化失敗)
+	}
+
+	return 0;
 }
 
 /* --- プレイヤーの更新メソッド --- */

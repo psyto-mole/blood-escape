@@ -1,6 +1,8 @@
 /* === キャラクタークラスのソースファイル === */
 
 #include "Character.h"
+#include "GimmickManager.h"
+#include "Map.h"
 
 
 /* --- コンストラクタ --- */

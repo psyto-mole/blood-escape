@@ -2,9 +2,9 @@
 /* === キャラクタークラスのヘッダファイル === */
 
 #include "DxLib.h"
-#include "Map.h"
-#include "GimmickManager.h"
 
+class Map;
+class GimmickManager;
 
 /* --- キャラクタークラス --- */
 class Character
@@ -24,7 +24,7 @@ public:
 	Character();	// コンストラクタ
 	~Character();	// デストラクタ
 
-	virtual void Init(POINT startPosition) = 0;
+	virtual int Init(POINT startPosition) = 0;
 	virtual void Update(Map* mapManager, GimmickManager* gimmickManager) = 0;	// キャラクターの更新メソッド
 	virtual void Draw() = 0;	// キャラクターの描画メソッド
 
