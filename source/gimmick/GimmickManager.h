@@ -1,6 +1,7 @@
 #pragma once
 /* === ギミックを管理する処理のヘッダファイル === */
 
+#include <memory>
 #include "DxLib.h"
 #include "Gimmick.h"
 #include "Player.h"
@@ -13,7 +14,7 @@
 class GimmickManager
 {
 private:
-	Gimmick* gimmicks[MaxNumberOfGimmick];	// ギミックオブジェクトのポインタを格納する配列
+	std::unique_ptr<Gimmick> gimmicks[MaxNumberOfGimmick];	// ギミックオブジェクトのポインタを格納する配列
 
 	int gimmickNumber;	// ステージ中のギミック数
 
@@ -28,7 +29,7 @@ public:
 	void Update(Player* player);	// ギミックの更新を行うメソッド
 	void Draw() const;				// ギミックの描画を行うメソッド
 
-	Gimmick* CreateGimmick(const char* type, int id, int x, int y, int state, int target);	// ギミックを生成するメソッド
+	std::unique_ptr<Gimmick> CreateGimmick(const char* type, int id, int x, int y, int state, int target);	// ギミックを生成するメソッド
 
 	Gimmick* GetGimmickWithID(int targertID);				// ギミックをIDで検索
 	Gimmick* GetGimmickWithPos(int x, int y);				// 指定した位置のギミックを取得

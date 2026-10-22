@@ -57,8 +57,8 @@ protected:
 	bool isActive;	// 起動しているか
 
 public:
-	Gimmick(int id, int x, int y, int state, int target);		// コンストラクタ
-	virtual ~Gimmick();											// デストラクタ
+	Gimmick(int id, int x, int y, int state, int target);	// コンストラクタ
+	virtual ~Gimmick();										// デストラクタ
 
 	virtual int Init() = 0;						// ギミックの初期化メソッド
 	virtual void Update(Player* player) = 0;	// ギミックの更新メソッド

@@ -2,18 +2,20 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <utility>
 #include "GimmickManager.h"
 
 #include "Geometry.h"
 
+#include "Altar.h"
+#include "Bandage.h"
+#include "Bloodpack.h"
+#include "Door.h"
 #include "GoalPoint.h"
 #include "NeedleFloor.h"
-#include "TransparentFloor.h"
-#include "Altar.h"
-#include "Bloodpack.h"
-#include "Bandage.h"
+#include "StartPoint.h"
 #include "Switch.h"
-#include "Door.h"
+#include "TransparentFloor.h"
 
 
 /* --- コンストラクタ --- */
@@ -22,7 +24,7 @@ GimmickManager::GimmickManager()
 	/* +++ ギミックオブジェクトのポインタ配列の初期化 +++ */
 	for (int x = 0; x < MaxNumberOfGimmick; x++)
 	{
-		gimmicks[x] = NULL;
+		gimmicks[x] = nullptr;
 	}
 
 	gimmickNumber = 0;	// ギミック数を0に初期化
@@ -54,12 +56,12 @@ int GimmickManager::Load(const char* csvPath)
         return -1;   // -1(読み込み失敗)を返す
     }
 
-    if (fgets(line, sizeof(line), fp) != NULL)  // csvファイルの1行目のヘッダーを読み飛ばす(NULLの場合次の処理を実行)
+    if (fgets(line, sizeof(line), fp) == NULL)  // csvファイルの1行目のヘッダーを読み飛ばす(NULLの場合次の処理を実行)
     {
         /* +++ メッセージボックスでエラーの発生を報告 +++ */
         MessageBox(
             GetMainWindowHandle(),
-            "Cannot load data from the gimmick csv file.",
+            "GimmickManager.cpp : Load() : Cannot load data from the gimmick csv file.",
             "Load Error",
             MB_OK
         );
@@ -87,6 +89,7 @@ int GimmickManager::Load(const char* csvPath)
             "%d,%63[^,],%d,%d,%d,%d",
             &id,
             type,
+            (unsigned)_countof(type),
             &x, &y,
             &state,
             &target
@@ -97,14 +100,14 @@ int GimmickManager::Load(const char* csvPath)
             continue;   // そのデータを無視(次のループに移行)
         }
 
-        Gimmick* gimmick = CreateGimmick(type, id, x, y, state, target);   // データを基にギミックを生成
+        std::unique_ptr<Gimmick> gimmick = CreateGimmick(type, id, x, y, state, target);   // データを基にギミックを生成
 
         if (gimmick == NULL)    // 生成したギミックが未対応なら
         {
             continue;   // 生成したギミックを無視(次のループに移行)
         }
 
-        gimmicks[gimmickNumber] = gimmick;  // ギミックの配列に登録
+        gimmicks[gimmickNumber] = std::move(gimmick);  // ギミックの配列に登録
 
         gimmickNumber++;    // ステージ中のギミック数を1増やす
     }
@@ -120,7 +123,7 @@ int GimmickManager::Init()
     /* +++ ギミックを順に更新 +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        if (gimmicks[i] == nullptr)    // ギミックが未対応なら
         {
             continue;   // そのギミックを無視(次のループに移行)
         }
@@ -182,63 +185,51 @@ void GimmickManager::Draw() const
 }
 
 /* --- ギミックを生成するメソッド-- - */
-Gimmick* GimmickManager::CreateGimmick(const char* type, int id, int x, int y, int state, int target)
+std::unique_ptr<Gimmick> GimmickManager::CreateGimmick(const char* type, int id, int x, int y, int state, int target)
 {
-    if (type == NULL)
+    if (type == nullptr)
     {
-        return NULL;
+        return nullptr;
     }
 
-    if (strcmp(type, "GoalPoint") == 0)
+    if (strcmp(type, "Altar") == 0)
     {
-        GoalPoint createGoal(id, x, y, state, target);
-
-        return &createGoal;
-    }
-    else if (strcmp(type, "NeedleFloor") == 0)
-    {
-        NeedleFloor createNeedle(id, x, y, state, target);
-
-        return &createNeedle;
-    }
-    else if (strcmp(type, "TransprentFloor") == 0)
-    {
-        TransparentFloor createTransparentFkoor(id, x, y, state, target);
-
-        return &createTransparentFkoor;
-    }
-    else if (strcmp(type, "Altar") == 0)
-    {
-        Altar createAltar(id, x, y, state, target);
-
-        return &createAltar;
-    }
-    else if (strcmp(type, "Bloodpack") == 0)
-    {
-        BloodPack createBloodPack(id, x, y, state, target);
-
-        return &createBloodPack;
+        return std::make_unique<Altar>(id, x, y, state, target);
     }
     else if (strcmp(type, "Bandage") == 0)
     {
-        Bandage createBandage(id, x, y, state, target);
-
-        return &createBandage;
+        return std::make_unique<Bandage>(id, x, y, state, target);
     }
-    else if (strcmp(type, "Switch") == 0)
+    else if (strcmp(type, "Bloodpack") == 0)
     {
-        Switch createSwitch(id, x, y, state, target);
-
-        return &createSwitch;
+        return std::make_unique<BloodPack>(id, x, y, state, target);
     }
     else if (strcmp(type, "Door") == 0)
     {
-        Door createDoor(id, x, y, state, target);
-
-        return &createDoor;
+        return std::make_unique<Door>(id, x, y, state, target);
+    }
+    else if (strcmp(type, "GoalPoint") == 0)
+    {
+        return std::make_unique<GoalPoint>(id, x, y, state, target);
+    }
+    else if (strcmp(type, "NeedleFloor") == 0)
+    {
+        return std::make_unique<NeedleFloor>(id, x, y, state, target);
+    }
+    else if (strcmp(type, "SatrtPoint") == 0)
+    {
+        return std::make_unique<StartPoint>(id, x, y, state, target);
+    }
+    else if (strcmp(type, "Switch") == 0)
+    {
+        return std::make_unique<Switch>(id, x, y, state, target);
+    }
+    else if (strcmp(type, "TransprentFloor") == 0)
+    {
+        return std::make_unique<TransparentFloor>(id, x, y, state, target);
     }
 
-    return NULL;
+    return nullptr;
 }
 
 /* --- ギミックをIDで検索 --- */
@@ -247,18 +238,18 @@ Gimmick* GimmickManager::GetGimmickWithID(int targetID)
     /* +++ IDが一致するギミックのポインタを返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
-        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        if (gimmicks[i] == nullptr)    // ギミックが未対応なら
         {
             continue;   // そのギミックを無視(次のループに移行)
         }
 
         if (gimmicks[i]->GetGimmickID() == targetID)     // ギミックIDが指定したIDと一致するなら
         {
-            return gimmicks[i];  // ギミックのポインタを返す
+            return gimmicks[i].get();  // ギミックのポインタを返す
         }
     }
 
-    return NULL;    // NULLを返す(検索失敗)
+    return nullptr;    // NULLを返す(検索失敗)
 }
 
 /* --- 指定した位置のギミックを取得 --- */
@@ -266,7 +257,7 @@ Gimmick* GimmickManager::GetGimmickWithPos(int x, int y)
 {
     for (int i = 0; i < gimmickNumber; i++)
     {
-        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        if (gimmicks[i] == nullptr)    // ギミックが未対応なら
         {
             continue;   // そのギミックを無視(次のループに移行)
         }
@@ -278,11 +269,11 @@ Gimmick* GimmickManager::GetGimmickWithPos(int x, int y)
 
         if (gimmickPos.x == x && gimmickPos.y == y)     // ギミックの座標が指定した座標と一致する
         {
-            return gimmicks[i];  // ギミックのポインタを返す
+            return gimmicks[i].get();  // ギミックのポインタを返す
         }
     }
 
-    return NULL;    // NULLを返す(取得失敗)
+    return nullptr;    // NULLを返す(取得失敗)
 }
 
 /* --- 指定した範囲のギミックのうち、中心に近いものを取得-- - */
@@ -293,7 +284,7 @@ Gimmick* GimmickManager::GetGimmickWithinRange(RECT range)
 
     for (int i = 0; i < gimmickNumber; i++)
     {
-        if (gimmicks[i] == NULL)    // ギミックが未対応なら
+        if (gimmicks[i] == nullptr)    // ギミックが未対応なら
         {
             continue;   // そのギミックを無視(次のループに移行)
         }
@@ -323,10 +314,10 @@ Gimmick* GimmickManager::GetGimmickWithinRange(RECT range)
 
     if (arrayNumber != -1)
     {
-        return gimmicks[arrayNumber];  // 範囲の中心に最も近いギミックのポインタを返す
+        return gimmicks[arrayNumber].get();  // 範囲の中心に最も近いギミックのポインタを返す
     }
 
-    return NULL;    // NULLを返す
+    return nullptr;    // NULLを返す
 }
 
 /* --- ギミックを種類で検索 ^--- */
@@ -335,13 +326,18 @@ Gimmick* GimmickManager::GetGimmickWithType(GimmickType gimmickType)
     /* +++ 最初に見つかった指定した種類のギミックを返す +++ */
     for (int i = 0; i < gimmickNumber; i++)
     {
+        if (gimmicks[i] == nullptr)    // ギミックが未対応なら
+        {
+            continue;   // そのギミックを無視(次のループに移行)
+        }
+
         if (gimmicks[i]->GetGimmickType() == gimmickType)    // ギミックの種類が指定したものと同じなら
         {
-            return gimmicks[i];     // そのギミックを返す
+            return gimmicks[i].get();     // そのギミックを返す
         }
     }
 
-    return NULL;    // NULLを返す
+    return nullptr;    // NULLを返す
 }
 
 /* --- 指定した範囲内のギミックのIDを取得-- - */
@@ -352,7 +348,7 @@ int GimmickManager::GetGimmickIDWithinRange(RECT range)
 
     gimmick = GetGimmickWithinRange(range);     // 範囲内のギミックを取得
 
-    if (gimmick == NULL)    // ギミックが取得されていなければ
+    if (gimmick == nullptr)    // ギミックが取得されていなければ
     {
         return -1;  // -1を返す
     }
@@ -388,7 +384,7 @@ void GimmickManager::ChangeGimmickState(int targetID, int state)
 
     targetGimmick = GetGimmickWithID(targetID);     // 状態を変えるギミックをIDから取得
 
-    if (targetGimmick == NULL)  // ポインタがNULLなら
+    if (targetGimmick == nullptr)  // ポインタがNULLなら
     {
         return;     // 処理を終了する
     }
@@ -405,7 +401,7 @@ void GimmickManager::AdvanceGimmickState(int targetID)
 
     targetGimmick = GetGimmickWithID(targetID);     // 状態を変えるギミックをIDから取得
 
-    if (targetGimmick == NULL)  // ポインタがNULLなら
+    if (targetGimmick == nullptr)  // ポインタがNULLなら
     {
         return;     // 処理を終了する
     }
@@ -482,6 +478,11 @@ POINT GimmickManager::GetPlayerStartPosition()
 
     startGimmick = GetGimmickWithType(GimmickType::StartPoint);     // スタート地点のギミックを取得
 
+    if (startGimmick == nullptr)    // スタート地点のギミックが見つからない
+    {
+        return GetPoint(2, 2);  // スタート地点を座標(2, 2)に設定
+    }
+
     playerStartPosition = startGimmick->GetGimmickPosition();   // スタート地点の座標を取得
 
     return playerStartPosition;     // プレイヤーのスタート地点の座標を返す
@@ -493,6 +494,11 @@ bool GimmickManager::CheckStageClear()
     Gimmick* goalGimmick;   // ゴールのギミックのポインタを格納する変数
 
     goalGimmick = GetGimmickWithType(GimmickType::GoalPoint);   // ゴール地点のギミックを取得
+
+    if (goalGimmick == nullptr)     // ゴール地点のギミックが見つからないなら
+    {
+        return false;   // falseを返す
+    }
 
     if (goalGimmick->IsGoal())  // ゴールしているなら
     {
