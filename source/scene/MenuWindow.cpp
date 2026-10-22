@@ -1,6 +1,7 @@
 /* === メニュー画面関連の処理のソースファイル === */
 
 #include "MenuWindow.h"
+#include "Key.h"
 #include "Mouse.h"
 #include "Geometry.h"
 #include "Color.h"
@@ -25,6 +26,8 @@ MenuWindow::~MenuWindow()
 /* --- メニュー画面の初期化メソッド --- */
 void MenuWindow::Init()
 {
+	selectedIndex = 1;	// 選択している選択肢の番号を初期化
+
 	gameEnd = false;	// ゲーム終了フラグをfalseにする
 
 	menuState = MenuState::Close;	// メニュー画面を閉じている状態に設定
@@ -61,50 +64,155 @@ void MenuWindow::Update()
 	case MenuState::MenuTop:
 		/* +++ メニュートップの場合 +++ */
 
-		if (CollisionRectToPoint(menuTopButton1Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン1がクリックされたら
+		if (Key_Check_Click(KEY_INPUT_UP))	// 上キーが押されたら
 		{
-			SetMenuState(MenuState::Operation);		// メニューの状態を操作方法表示に設定
+			selectedIndex--;	// 選択している選択肢の番号を1減らす
+
+			if(selectedIndex <= 0)	// 選択している選択肢の番号が0以下になったら
+			{
+				selectedIndex = NumberOfMenuTopOption;	// 選択している選択肢の番号を最後に設定
+			}
+
+			Sound_Play(SE_Select);   // 選択肢の変更のSEを再生
 		}
-		else if (CollisionRectToPoint(menuTopButton2Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン2がクリックされたら
+		else if (Key_Check_Click(KEY_INPUT_DOWN))	// 下キーが押されたら
 		{
-			SetMenuState(MenuState::GameEnd);	// メニュー画面の状態をゲーム終了画面にする
-		}
-		else if (CollisionRectToPoint(menuTopButton3Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン3がクリックされたら
-		{
-			SetMenuState(MenuState::Credit);	// メニュー画面の状態を使用楽曲表示にする
-		}
-		else if (CollisionRectToPoint(menuTopButton4Frame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))	// ボタン4がクリックされたら
-		{
-			SetMenuState(MenuState::Close);	// メニュー画面を閉じる
+			selectedIndex++;	// 選択している選択肢の番号を1増やす
+
+			if (selectedIndex > NumberOfMenuTopOption)	// 選択している選択肢の番号が最大値を超えたら
+			{
+				selectedIndex = 1;	// 最初の選択肢の戻す
+			}
+
+			Sound_Play(SE_Select);   // 選択肢の変更のSEを再生
 		}
 
-		Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+		if (Key_Check_Click(KEY_INPUT_RETURN))	// エンターキーが押された
+		{
+			/* +++ 選択されている選択肢の番号に応じて処理を変える +++ */
+			switch (selectedIndex)
+			{
+			case 1:
+				/* +++「 操作方法」が選択されている +++ */
+
+				selectedIndex = 1;	// 選択している選択肢の番号を1に設定
+
+				SetMenuState(MenuState::Operation);		// メニューの状態を操作方法表示に設定
+
+				Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+				break;
+			case 2:
+				/* +++ 「ゲームを終了」が選択されている +++ */
+
+				selectedIndex = 2;	// 選択している選択肢の番号を2(「はい」)に設定
+
+				SetMenuState(MenuState::GameEnd);	// メニューの状態をゲーム終了画面に設定
+
+				Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+				break;
+			case 3:
+				/* +++ 「使用楽曲」が選択されている +++ */
+
+				selectedIndex = 1;	// 選択している選択肢の番号を1に設定
+
+				SetMenuState(MenuState::Credit);	// メニューの状態を使用楽曲の表示に設定
+
+				Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+				break;
+			case 4:
+				/* +++ 「戻る」が選択されている +++ */
+
+				selectedIndex = 1;	// 選択している選択肢の番号を1に設定
+
+				SetMenuState(MenuState::Close);		// メニューを閉じる
+
+				Sound_Play(SE_Cancel);   // 選択肢の取り消しのSEを再生
+				break;
+			}
+		}
+		break;
+	case MenuState::Operation:
+		/* +++ 操作方法の説明画面の場合 +++ */
+
+		if (Key_Check_Click(KEY_INPUT_RETURN))	// エンターキーが押された
+		{
+			selectedIndex = 1;	// 選択している選択肢の番号を1に設定
+
+			SetMenuState(MenuState::Close);		// メニューを閉じる
+
+			Sound_Play(SE_Cancel);   // 選択肢の取り消しのSEを再生
+		}
 		break;
 	case MenuState::GameEnd:
 		/* +++ ゲーム終了画面の場合 +++ */
 
-		if (CollisionRectToPoint(gameEndYesButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「はい」ボタンがクリックされた
+		if (Key_Check_Click(KEY_INPUT_LEFT))	// 左キーが押されたら
 		{
-			SetGameEndTrue();	// ゲーム終了を選択状態にする
+			selectedIndex--;	// 選択している選択肢の番号を1減らす
+
+			if (selectedIndex <= 0)	// 選択している選択肢の番号が0以下になったら
+			{
+				selectedIndex = NumberOfGameEndOption;	// 選択している選択肢の番号を最後に設定
+			}
+
+			Sound_Play(SE_Select);   // 選択肢の変更のSEを再生
 		}
-		else if (CollisionRectToPoint(gameEndNoButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「いいえ」ボタンがクリックされた
+		else if (Key_Check_Click(KEY_INPUT_RIGHT))	// 右キーが押されたら
 		{
-			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップにする
+			selectedIndex++;	// 選択している選択肢の番号を1増やす
+
+			if (selectedIndex > NumberOfGameEndOption)	// 選択している選択肢の番号が最大値を超えたら
+			{
+				selectedIndex = 1;	// 最初の選択肢の戻す
+			}
+
+			Sound_Play(SE_Select);   // 選択肢の変更のSEを再生
 		}
 
-		Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
-		Sound_Play(SE_Cancel);  // 選択肢を取り消した時のSEを再生
+		if (Key_Check_Click(KEY_INPUT_RETURN))
+		{
+			switch (selectedIndex)
+			{
+			case 1:
+				/* +++ 「戻る」が選択されている場合 +++ */
+
+				selectedIndex = 1;	// 選択している選択肢の番号を1に設定
+
+				SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップにする
+
+				Sound_Play(SE_Cancel);  // 選択肢を取り消した時のSEを再生
+				break;
+			case 2:
+				/* +++ 「はい」が選択されている場合 +++ */
+
+				SetGameEndTrue();	// ゲーム終了を選択状態にする
+
+				Sound_Play(SE_Enter);   // エンターキーを押した時のSEを再生
+				break;
+			case 3:
+				/* +++ 「いいえ」が選択されている場合 +++ */
+
+				selectedIndex = 1;	// 選択している選択肢の番号を1に設定
+
+				SetMenuState(MenuState::MenuTop);	// メニュー画面の状態をメニュートップにする
+
+				Sound_Play(SE_Cancel);  // 選択肢を取り消した時のSEを再生
+				break;
+			}
+		}
 		break;
-	}
+	case MenuState::Credit:
+		/* +++ 使用楽曲の説明画面の場合 +++ */
 
-	if (menuState != MenuState::MenuTop)	// メニュー画面の状態が画面トップでないなら
-	{
-		if (CollisionRectToPoint(backTopButtonFrame, nowMousePoint) && Mouse_Check_Click(MOUSE_INPUT_LEFT))		// 「戻る」ボタンがクリックされたら
+		if (Key_Check_Click(KEY_INPUT_RETURN))	// エンターキーが押された
 		{
-			SetMenuState(MenuState::MenuTop);	// メニュー画面の状態を画面トップに設定
-		}
+			selectedIndex = 1;	// 選択している選択肢の番号を1に設定
 
-		Sound_Play(SE_Cancel);   // 選択肢を取り消したた時のSEを再生
+			SetMenuState(MenuState::Close);		// メニューを閉じる
+
+			Sound_Play(SE_Cancel);   // 選択肢の取り消しのSEを再生
+		}
+		break;
 	}
 
 	return;

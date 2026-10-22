@@ -4,6 +4,9 @@
 #include "DxLib.h"
 
 
+#define NumberOfMenuTopOption	4	// メニュー画面トップの選択肢の数
+#define NumberOfGameEndOption	3	// ゲーム終了画面の選択肢の数
+
 /* --- メニュー画面の状態の列挙型 --- */
 enum class MenuState
 {
@@ -18,6 +21,8 @@ enum class MenuState
 class MenuWindow
 {
 private:
+	int selectedIndex;	// 選択されている選択肢の番号
+
 	bool gameEnd;	// 「ゲーム終了」が選択されているかのフラグ
 
 	MenuState menuState;	// メニュー画面の状態を管理する変数
