@@ -48,18 +48,10 @@ int MenuTab::Update()
 /* --- メニュータブの描画メソッド --- */
 void MenuTab::Draw()
 {
-	if (CollisionRectToPoint(menuTabFrame, nowMousePoint))
-	{
-		DrawRect(menuTabFrame, Color_Blue, true, 1);	// メニュータブの外枠を青で描画
-		DrawRect(menuTabInside, Color_White, true, 1);	// メニュータブの内側を白で描画
-		DrawFormatStringToHandleAlign(MenuTabCenterX, MenuTabCenterY, FAlign_AllCenter, Color_Blue, KHDot_20_1,"%s", MenuTabText);	// メニュータブの文字列を青で描画
-	}
-	else
-	{
-		DrawRect(menuTabFrame, Color_White, true, 1);	// メニュータブの外枠を白で描画
-		DrawRect(menuTabInside, Color_Black, true, 1);	// メニュータブの内側を黒で描画
-		DrawFormatStringToHandleAlign(MenuTabCenterX, MenuTabCenterY, FAlign_AllCenter, Color_White, KHDot_20_1, "%s", MenuTabText);	// メニュータブの文字列を白で描画
-	}
+	
+	DrawRect(menuTabFrame, Color_Blue, true, 1);	// メニュータブの外枠を青で描画
+	DrawRect(menuTabInside, Color_White, true, 1);	// メニュータブの内側を白で描画
+	DrawFormatStringToHandleAlign(MenuTabCenterX, MenuTabCenterY, FAlign_AllCenter, Color_Blue, KHDot_20_1,"%s", MenuTabText);	// メニュータブの文字列を青で描画
 
 	return;
 }
