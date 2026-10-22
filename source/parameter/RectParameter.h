@@ -9,7 +9,7 @@
 /* +++ メニュータブ +++ */
 #define MenuTabCenterX		(GameWindowWidth - 150)
 #define MenuTabCenterY		(GameWindowHeight - 100)
-#define MenuTabFrameWidth	100
+#define MenuTabFrameWidth	200
 #define MenuTabFrameHeight	50
 #define MenuTabInsideWidth	(MenuTabFrameWidth - 4)
 #define MenuTabInsideHeight	(MenuTabFrameHeight - 4)
