@@ -4,7 +4,9 @@
 
 
 /* +++ 横書きフォント +++ */
+int KHDot_20_1;		// KHドットフォント(サイズ20、太さ1)
 int KHDot_30_1;		// KHドットフォント(サイズ30、太さ1)
+int KHDot_50_2;		// KHドットフォント(サイズ50、太さ2)
 int KHDot_100_9;	// KHドットフォント(サイズ100、太さ9)
 
 /* +++ 縦書きフォント +++ */
@@ -15,7 +17,9 @@ int Font_Init()
 {
 	/* === フォントデータの作成 === */
 	/* +++ 横書きフォント +++ */
+	KHDot_20_1	= LoadFontDataToHandle(PathKHDotS20T1B1, 0);	// KHドットフォント(サイズ20、太さ1)
 	KHDot_30_1	= LoadFontDataToHandle(PathKHDotS30T1B1, 0);	// KHドットフォント(サイズ30、太さ1)
+	KHDot_50_2	= LoadFontDataToHandle(PathKHDotS50T2B1, 0);	// KHドットフォント(サイズ50、太さ2)
 	KHDot_100_9 = LoadFontDataToHandle(PathKHDotS100T9B1, 0);	// KHドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */
@@ -27,8 +31,21 @@ int Font_Init()
 		/* +++ エラーメッセージを出力 +++ */
 		MessageBox(
 			GetMainWindowHandle(),
-			"Cannot load KHDot_100_9",
-			"Font Error",
+			"Font.cpp : Init() : Cannot load KHDot_100_9",
+			"Load Error",
+			MB_OK
+		);
+
+		return -1;	// 初期化失敗(-1を返す)
+	}
+
+	if (KHDot_50_2 == -1)	// フォントデータが作成できていなかったら
+	{
+		/* +++ エラーメッセージを出力 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Font.cpp : Init() : Cannot load KHDot_50_2",
+			"Load Error",
 			MB_OK
 		);
 
@@ -40,8 +57,21 @@ int Font_Init()
 		/* +++ エラーメッセージを出力 +++ */
 		MessageBox(
 			GetMainWindowHandle(),
-			"Cannot load KHDot_30_1",
-			"Font Error",
+			"Font.cpp : Init() : Cannot load KHDot_30_1",
+			"Load Error",
+			MB_OK
+		);
+
+		return -1;	// 初期化失敗(-1を返す)
+	}
+
+	if (KHDot_20_1 == -1)	// フォントデータが作成できていなかったら
+	{
+		/* +++ エラーメッセージを出力 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Font.cpp : Init() : Cannot load KHDot_20_1",
+			"Load Error",
 			MB_OK
 		);
 
@@ -56,7 +86,9 @@ void Font_End()
 {
 	/* === フォントデータをメモリから削除 === */
 	/* +++ 横書きフォント +++ */
+	DeleteFontToHandle(KHDot_20_1);		// KHドットフォント(サイズ20、太さ1)
 	DeleteFontToHandle(KHDot_30_1);		// KHドットフォント(サイズ30、太さ1)
+	DeleteFontToHandle(KHDot_50_2);		// KHドットフォント(サイズ50、太さ2)
 	DeleteFontToHandle(KHDot_100_9);	// KHドットフォント(サイズ100、太さ9)
 
 	/* +++ 縦書きフォント +++ */

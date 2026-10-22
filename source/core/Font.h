@@ -17,11 +17,17 @@ enum Font_Align
 /* +++ DXフォントファイルのパス +++ */
 #define PathKHDotS100T9B1	".\\font\\KHDot\\KHDot_Hibiya24_S100_T9_B1.dft"
 #define PathKHDotS100T9B4	".\\font\\KHDot\\KHDot_Hibiya24_S100_T9_B4.dft"
+#define PathKHDotS50T2B1	".\\font\\KHDot\\KHDot_Kagurazaka12_S50_T2_B1.dft"
+#define PathKHDotS50T2B4	".\\font\\KHDot\\KHDot_Kagurazaka12_S50_T2_B4.dft"
 #define PathKHDotS30T1B1	".\\font\\KHDot\\KHDot_Kagurazaka12_S30_T1_B1.dft"
 #define PathKHDotS30T1B4	".\\font\\KHDot\\KHDot_Kagurazaka12_S30_T1_B4.dft"
+#define PathKHDotS20T1B1	".\\font\\KHDot\\KHDot_Kagurazaka12_S20_T1_B1.dft"
+#define PathKHDotS20T1B4	".\\font\\KHDot\\KHDot_Kagurazaka12_S20_T1_B4.dft"
 
 /* +++ 横書きフォント +++ */
+extern int KHDot_20_1;		// KHドットフォント(サイズ20、太さ1)
 extern int KHDot_30_1;		// KHドットフォント(サイズ30、太さ1)
+extern int KHDot_50_2;		// KHドットフォント(サイズ50、太さ2)
 extern int KHDot_100_9;		// KHドットフォント(サイズ100、太さ9)
 
 /* +++ 縦書きフォント +++ */
