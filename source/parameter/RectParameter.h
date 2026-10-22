@@ -17,17 +17,17 @@
 /* +++ ÉÅÉjÉÖÅ[âÊñ  +++ */
 #define MenuWindowCenterX		(GameWindowWidth / 2)
 #define MenuWindowCenterY		(GameWindowHeight / 2)
-#define MenuWindowFrameWidth	720
-#define MenuWindowFrameHeight	1280
+#define MenuWindowFrameWidth	1200
+#define MenuWindowFrameHeight	1000
 #define MenuWindowInsideWidth	(MenuWindowFrameWidth - 6)
 #define MenuWindowInsideHeight	(MenuWindowFrameHeight - 6)
 
-#define MenuTopButtonFrameWidth		200
+#define MenuTopButtonFrameWidth		400
 #define MenuTopButtonFrameHeight	100
 #define MenuTopButtonInsideWidth	(MenuTopButtonFrameWidth - 4)
 #define MenuTopButtonInsideHeight	(MenuTopButtonFrameHeight - 4)
-#define MenuTopButtonCenterX		(GameWindowWidth - 150)
-#define MenuTopButton1CenterY		(GameWindowHeight - 300)
+#define MenuTopButtonCenterX		(MenuWindowCenterX - 150)
+#define MenuTopButton1CenterY		(MenuWindowCenterY - 300)
 #define MenuTopButton2CenterY		(MenuTopButton1CenterY + 150)
 #define MenuTopButton3CenterY		(MenuTopButton2CenterY + 150)
 #define MenuTopButton4CenterY		(MenuTopButton3CenterY + 150)
