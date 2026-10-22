@@ -40,7 +40,7 @@ int TransparentFloor::Init()
 		return -1;	// -1を返す(初期化失敗)
 	}
 
-	return;
+	return 0;
 }
 
 /* --- ギミックの更新メソッド --- */

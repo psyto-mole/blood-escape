@@ -82,7 +82,7 @@ void BloodPack::Draw()
 }
 
 /* --- ゴール判定のメソッド(このギミックでは使用しない) --- */
-bool BloodPackIsGoal()
+bool BloodPack::IsGoal()
 {
 	return false;
 }

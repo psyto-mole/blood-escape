@@ -23,11 +23,11 @@ typedef struct _Sound
 
 
 /* +++ BGM +++ */
-#define PathBGMTitle	".\\sound\\bgm\\maou_damashi\\maoh_bgm_8bit26.mp3"	// タイトル画面のBGMのパス
-#define PathBGMTutorial	".\\sound\\bgm\\maou_damashi\\maoh_bgm_8bit21.mp3"	// チュートリアル画面のBGMのパス
-#define PathBGMStage	".\\sound\\bgm\\maou_damashi\\maoh_bgm_8bit04.mp3"	// ステージのBGMのパス
-#define PathBGMGameOver	".\\sound\\bgm\\maou_damashi\\maoh_bgm_8bit03.mp3"	// ゲームオーバー画面のBGMのパス
-#define PathBGMClear	".\\sound\\bgm\\maou_damashi\\maoh_bgm_8bit23.mp3"	// クリア画面のBGMのパス
+#define PathBGMTitle	".\\sound\\bgm\\maou_damashi\\maou_bgm_8bit26.mp3"	// タイトル画面のBGMのパス
+#define PathBGMTutorial	".\\sound\\bgm\\maou_damashi\\maou_bgm_8bit21.mp3"	// チュートリアル画面のBGMのパス
+#define PathBGMStage	".\\sound\\bgm\\maou_damashi\\maou_bgm_8bit04.mp3"	// ステージのBGMのパス
+#define PathBGMGameOver	".\\sound\\bgm\\maou_damashi\\maou_bgm_8bit03.mp3"	// ゲームオーバー画面のBGMのパス
+#define PathBGMClear	".\\sound\\bgm\\maou_damashi\\maou_bgm_8bit23.mp3"	// クリア画面のBGMのパス
 
 extern Sound BGM_Title;		// タイトル画面のBGM
 extern Sound BGM_Tutorial;	// チュートリアル画面のBGM
@@ -50,7 +50,7 @@ extern Sound SE_Select;		// 選択肢を変更した時のSE
 
 /* +++ プレイヤー関連のSE +++ */
 #define PathSEInteract	".\\sound\\se\\sound_effect_lab\\press_enter33.mp3"		// ギミック操作のSEのパス
-#define PathSESelfHarm	".\\sound\\se\\sound_effect_lab\\wield_whip1.mp3"		// 自傷のSEのパス
+#define PathSESelfHarm	".\\sound\\se\\sound_effect_lab\\weild_whip1.mp3"		// 自傷のSEのパス
 #define PathSEBleeding	".\\sound\\se\\sound_effect_lab\\blood_drips1.mp3"		// 出血のSEのパス
 
 extern Sound SE_Interact;	// ギミック操作のSE

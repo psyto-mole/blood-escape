@@ -21,12 +21,10 @@
   <ItemGroup>
     <ClCompile Include="source\character\Character.cpp" />
     <ClCompile Include="source\character\Player.cpp" />
-    <ClCompile Include="source\core\Animation.cpp" />
     <ClCompile Include="source\core\Color.cpp" />
     <ClCompile Include="source\core\Font.cpp" />
     <ClCompile Include="source\core\Key.cpp" />
     <ClCompile Include="source\core\Mouse.cpp" />
-    <ClCompile Include="source\core\SaveLoad.cpp" />
     <ClCompile Include="source\core\Sound.cpp" />
     <ClCompile Include="source\core\TextScroll.cpp" />
     <ClCompile Include="source\gimmick\Altar.cpp" />
@@ -62,13 +60,11 @@
   <ItemGroup>
     <ClInclude Include="source\character\Character.h" />
     <ClInclude Include="source\character\Player.h" />
-    <ClInclude Include="source\core\Animation.h" />
     <ClInclude Include="source\core\Color.h" />
     <ClInclude Include="source\core\Font.h" />
     <ClInclude Include="source\core\GameManager.h" />
     <ClInclude Include="source\core\Key.h" />
     <ClInclude Include="source\core\Mouse.h" />
-    <ClInclude Include="source\core\SaveLoad.h" />
     <ClInclude Include="source\core\Sound.h" />
     <ClInclude Include="source\core\TextScroll.h" />
     <ClInclude Include="source\gimmick\Altar.h" />

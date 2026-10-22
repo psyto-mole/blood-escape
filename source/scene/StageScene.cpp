@@ -29,7 +29,7 @@ int StageScene::Init()
     sceneElapsedFrame = 0;  // 経過フレームをリセット
 
     /* +++ ステージ番号に応じたマップデータのファイルのパスを生成 +++ */
-    if (sprintf_s(filePath, sizeof(filePath), ".\\game-data\\map\\Stage%d_Map.csv", stageNumber) == -1)     // ファイルパスの生成に失敗したら
+    if (sprintf_s(filePath, sizeof(filePath), ".\\map\\Stage%d_Map.csv", stageNumber) == -1)     // ファイルパスの生成に失敗したら
     {
         /* +++ エラーメッセージを表示 +++ */
         MessageBox(
@@ -45,7 +45,7 @@ int StageScene::Init()
     mapManager.Load(filePath);  // csvファイルからマップデータを読み込む
 
     /* +++ ギミックデータのファイルパスを生成 +++ */
-    if (sprintf_s(filePath, sizeof(filePath), ".\\game-data\\gimmick\\Stage%d_Gimmick.csv", stageNumber) == -1)    // ファイルパスを生成できなかったら
+    if (sprintf_s(filePath, sizeof(filePath), ".\\gimmick\\Stage%d_Gimmick.csv", stageNumber) == -1)    // ファイルパスを生成できなかったら
     {
         /* +++ エラーメッセージを表示 +++ */
         MessageBox(
@@ -68,7 +68,10 @@ int StageScene::Init()
         return -1;  // -1を返す(初期化失敗)
     }
 
-    playerObject.Init(gimmickManager.GetPlayerStartPosition());    // スタート地点の座標を渡してプレイヤーオブジェクトの初期化メソッドを実行
+    if (playerObject.Init(gimmickManager.GetPlayerStartPosition()) == -1)    // プレイヤーの初期化に失敗したら
+    {
+        return -1;  // -1を返す(初期化失敗)
+    }
 
     Sound_Play(BGM_Stage);  // ステージのBGMを再生
 

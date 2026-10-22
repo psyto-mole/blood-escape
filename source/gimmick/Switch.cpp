@@ -41,7 +41,7 @@ int Switch::Init()
 		return -1;	// -1を返す(初期化失敗)
 	}
 
-	return;
+	return 0;
 }
 
 /* --- スイッチギミックの更新メソッド-- - */
