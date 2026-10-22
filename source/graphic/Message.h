@@ -44,7 +44,7 @@ extern MessagePattern displayMessagePattern;
 
 /* === メニュー === */
 /* +++ メニュータブ +++ */
-#define MenuTabText	"メニュー"	// メニュータブのボタンの文字列
+#define MenuTabText	"メニュー (M)"	// メニュータブのボタンの文字列
 
 /* +++ メニュートップ +++ */
 #define OptionMenuWindowOperation	"操作方法"
