@@ -73,16 +73,16 @@ int SceneManager::Update()
         return 0;
     }
 
-    if (menuManager.IsMenuOpen())    // メニューを開いているなら
-    {
-        menuManager.Update();   // メニューの更新メソッドを実行
-
-        return 0;
-    }
-
     if (currentScene == nullptr)    // 現在のシーンに何も割り当てられていなければ
     {
         return -1;     // -1を返す(更新処理を終了する)
+    }
+        
+    menuManager.Update();   // メニューの更新メソッドを実行
+
+    if (menuManager.IsMenuOpen())   // メニューが開いているなら
+    {
+        return 0;     // シーンの処理は行わない
     }
 
     currentScene->Update();     // 現在のシーンの更新メソッドを実行
@@ -113,16 +113,16 @@ int SceneManager::Update()
 /* --- シーンの描画メソッド --- */
 void SceneManager::Draw()
 {
-    if (menuManager.IsMenuOpen())    // メニューを開いているなら
-    {
-        menuManager.Draw();   // メニューの更新メソッドを実行
-
-        return;
-    }
-
     if (currentScene == nullptr)    // 現在のシーンに何も割り当てられていないなら
     {
         return;     // 処理を終了
+    }
+
+    menuManager.Draw();   // メニューの更新メソッドを実行
+
+    if (menuManager.IsMenuOpen())   // メニューが開いているなら
+    {
+        return;     // シーンの描画は行わない
     }
 
     currentScene->Draw();   // 現在のシーンの描画処理を行う
