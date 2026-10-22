@@ -32,6 +32,24 @@
 #define PathOfTransparentFloorImage2	".\\image\\TransparentFloor2_32x32.png"
 
 
+/* +++ ゲームマスターのアニメーション +++ */
+#define OrganizerAnimationPath		".\\image\\GameMaster_96x96.png"
+#define OrganizerAnimationDivX		2
+#define OrganizerAnimationDivY		2
+#define OrganizerAnimationDivNum	4
+#define OrganizerAnimationSizeX		48
+#define OrganizerAnimationSizeY		48
+
+
+/* +++ プレイヤーのアニメーション +++ */
+#define PlayerAnimationPath		".\\image\\Player_96x96.png"
+#define PlayerAnimationDivX		3
+#define PlayerAnimationDivY		3
+#define PlayerAnimationDivNum	9
+#define PlayerAnimationSizeX	32
+#define PlayerAnimationSizeY	32
+
+
 extern int Image_Init(void);	// 画像の初期化関数
 extern void Image_End(void);	// 画像の終了処を行う理関数
 
