@@ -336,9 +336,12 @@ void MenuWindow::Draw()
 
 		DrawFormatStringToHandleAlign(MenuWindowCenterX, MenuWindowCenterY - 200, FAlign_AllCenter, Color_White, KHDot_50_2, "%s", QuestionGameEnd);	// 「ゲームを終了しますか」の文字列を白で描画
 
-		/* +++ カーソルが接触しているボタンに応じて描画 +++ */
-;		if (CollisionRectToPoint(gameEndYesButtonFrame, nowMousePoint))		// カーソルが「はい」のボタンに接触しているなら
+		/* +++ 選択されているボタンに応じて描画 +++ */
+		;		switch (selectedIndex)
 		{
+		case 2:
+			/* +++ 「はい」が選択されている +++ */
+
 			DrawRect(gameEndYesButtonFrame, Color_Red, true, 1);		// 「はい」ボタンの外枠を赤で描画
 			DrawRect(gameEndYesButtonInside, Color_White, true, 1);		// 「はい」ボタンの内側を白で描画
 			DrawRect(gameEndNoButtonFrame, Color_White, true, 1);		// 「いいえ」ボタンの外枠を白で描画
@@ -346,9 +349,10 @@ void MenuWindow::Draw()
 
 			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_Red, KHDot_50_2, "%s", ResponseYes);		// 「はい」の文字列を赤で描画
 			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, KHDot_50_2, "%s", ResponseNo);		// 「いいえ」の文字列を白で描画
-		}
-		else if (CollisionRectToPoint(gameEndNoButtonFrame, nowMousePoint))		// カーソルが「いいえ」のボタンに接触しているなら
-		{
+			break;
+		case 3:
+			/* +++ 「いいえ」が選択されている +++ */
+
 			DrawRect(gameEndYesButtonFrame, Color_White, true, 1);		// 「はい」ボタンの外枠を白で描画
 			DrawRect(gameEndYesButtonInside, Color_Black, true, 1);		// 「はい」ボタンの内側を黒で描画
 			DrawRect(gameEndNoButtonFrame, Color_Red, true, 1);			// 「いいえ」ボタンの外枠を赤で描画
@@ -356,9 +360,10 @@ void MenuWindow::Draw()
 
 			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, KHDot_50_2, "%s", ResponseYes);		// 「はい」の文字列を白で描画
 			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_Red, KHDot_50_2, "%s", ResponseNo);		// 「いいえ」の文字列を赤で描画
-		}
-		else
-		{
+			break;
+		default:
+			/* +++ どちらも選択されていない +++ */
+
 			DrawRect(gameEndYesButtonFrame, Color_White, true, 1);		// 「はい」ボタンの外枠を白で描画
 			DrawRect(gameEndYesButtonInside, Color_Black, true, 1);		// 「はい」ボタンの内側を黒で描画
 			DrawRect(gameEndNoButtonFrame, Color_White, true, 1);		// 「いいえ」ボタンの外枠を白で描画
@@ -366,6 +371,7 @@ void MenuWindow::Draw()
 
 			DrawFormatStringToHandleAlign(GameEndYesButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, KHDot_50_2, "%s", ResponseYes);		// 「はい」の文字列を白で描画
 			DrawFormatStringToHandleAlign(GameEndNoButtonCenterX, GameEndButtonCenterY, FAlign_AllCenter, Color_White, KHDot_50_2, "%s", ResponseNo);		// 「いいえ」の文字列を白で描画
+			break;
 		}
 		break;
 	case MenuState::Credit:
@@ -381,21 +387,22 @@ void MenuWindow::Draw()
 		break;
 	}
 
-	if (menuState != MenuState::MenuTop)
+	/* +++ メニュー画面トップに戻るボタンの描画 +++ */
+	if (menuState != MenuState::MenuTop)	// メニューの状態がメニュー画面トップでないなら
 	{
-		if (selectedIndex == 1)
+		if (selectedIndex == 1)		// 「メニュートップ」ボタンが選択されているなら
 		{
-			DrawRect(backTopButtonFrame, Color_White, true, 1);
-			DrawRect(backTopButtonInside, Color_Red, true, 1);
+			DrawRect(backTopButtonFrame, Color_White, true, 1);		// ボタンの外枠を白で描画
+			DrawRect(backTopButtonInside, Color_Red, true, 1);		// ボタンの内側を赤で描画
 
-			DrawFormatStringToHandleAlign(BackTopButtonCenterX, BackTopButtonCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", BackButtonText);
+			DrawFormatStringToHandleAlign(BackTopButtonCenterX, BackTopButtonCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", BackButtonText);		// 「メニュートップ」の文字列を白で描画
 		}
 		else
 		{
-			DrawRect(backTopButtonFrame, Color_White, true, 1);
-			DrawRect(backTopButtonInside, Color_Black, true, 1);
+			DrawRect(backTopButtonFrame, Color_White, true, 1);		// ボタンの外枠を白で描画
+			DrawRect(backTopButtonInside, Color_Black, true, 1);	// ボタンの内側を黒で描画
 
-			DrawFormatStringToHandleAlign(BackTopButtonCenterX, BackTopButtonCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", BackButtonText);
+			DrawFormatStringToHandleAlign(BackTopButtonCenterX, BackTopButtonCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", BackButtonText);		// 「メニュートップ」の文字列を白で描画
 		}
 	}
 
