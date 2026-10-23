@@ -77,12 +77,12 @@ void Altar::Draw()
 	case 1:
 		/* +++ ó‘Ô1‚È‚ç +++ */
 
-		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// Õ’d‚ğó‘Ô1‚Å•`‰æ
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], TRUE);	// Õ’d‚ğó‘Ô1‚Å•`‰æ
 		break;
 	case 2:
 		/* +++ ó‘Ô2‚È‚ç +++ */
 
-		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], FALSE);	// Õ’d‚ğó‘Ô1‚Å•`‰æ
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], TRUE);	// Õ’d‚ğó‘Ô1‚Å•`‰æ
 		break;
 	}
 

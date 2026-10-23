@@ -76,7 +76,7 @@ void BloodPack::Draw()
 
 	POINT drawPoint = GetPoint(positionX, positionY);	// 描画する座標をPOINT型で取得
 
-	DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// 輸血パックを描画
+	DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], TRUE);	// 輸血パックを描画
 
 	return;
 }

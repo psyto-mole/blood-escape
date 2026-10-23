@@ -86,12 +86,12 @@ void TransparentFloor::Draw()
 	case 1:
 		/* +++ ó‘Ô1‚È‚ç +++ */
 
-		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// ó‘Ô1‚Å•`‰æ
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], TRUE);	// ó‘Ô1‚Å•`‰æ
 		break;
 	case 2:
 		/* +++ ó‘Ô2‚È‚ç +++ */
 
-		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], FALSE);	// ó‘Ô1‚Å•`‰æ
+		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], TRUE);	// ó‘Ô1‚Å•`‰æ
 		break;
 	}
 

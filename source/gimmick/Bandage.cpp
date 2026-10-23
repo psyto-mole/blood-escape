@@ -76,7 +76,7 @@ void Bandage::Draw()
 
 	POINT drawPoint = GetPoint(positionX, positionY);
 
-	DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], FALSE);	// •ï‘Ñ‚ð•`‰æ
+	DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[0], TRUE);	// •ï‘Ñ‚ð•`‰æ
 
 	return;
 }
