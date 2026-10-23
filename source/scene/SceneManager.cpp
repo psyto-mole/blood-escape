@@ -89,14 +89,6 @@ int SceneManager::Update()
 
     SceneTransition transition = currentScene->GetTransition();     // Œ»İ‚ÌƒV[ƒ“‚©‚ç‘JˆÚî•ñ‚ğæ“¾
 
-    if (GameDebug)
-    {
-        if (Key_Check_Click(KEY_INPUT_Q))
-        {
-            gameEnd = true;
-        }
-    }
-
     if (transition.transitionType == TransitionType::None)  // ‘JˆÚ‚µ‚È‚¢ê‡
     {
         return 0;     // ˆ—‚ğI—¹
