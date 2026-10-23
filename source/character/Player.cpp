@@ -302,18 +302,18 @@ void Player::PlayerAnimation()
 	case 1:
 		/* +++ 1ï˚å¸(ç∂â∫)Ç»ÇÁ +++ */
 
-		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], TRUE);
 		break;
 	case 2:
 		/* +++ 2ï˚å¸(â∫)Ç»ÇÁ +++ */
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[2], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[2], TRUE);
 		}
 		else
 		{
-			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[1], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[1], TRUE);
 		}
 		break;
 	case 3:
@@ -321,44 +321,49 @@ void Player::PlayerAnimation()
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[4], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[4], TRUE);
 		}
 		else
 		{
-			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[3], TRUE);
 		}
 		break;
 	case 4:
 		/* +++ 4ï˚å¸(ç∂)Ç»ÇÁ +++ */
 
-		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], TRUE);
+		break;
+	case 5:
+		/* +++ 5ï˚å¸(ç∂)Ç»ÇÁ +++ */
+
+		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[0], TRUE);
 		break;
 	case 6:
 		/* +++ 6ï˚å¸(âE)Ç»ÇÁ +++ */
 
 		if (isBleeding)
 		{
-			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[6], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[6], TRUE);
 		}
 		else
 		{
-			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], FALSE);
+			DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[5], TRUE);
 		}
 		break;
 	case 7:
 		/* +++ 7ï˚å¸(ç∂è„)Ç»ÇÁ +++ */
 
-		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
+		DrawTurnGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], TRUE);
 		break;
 	case 8:
 		/* +++ 8ï˚å¸(è„)Ç»ÇÁ +++ */
 
-		DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[8], FALSE);
+		DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[8], TRUE);
 		break;
 	case 9:
 		/* +++ 9ï˚å¸(âEè„)Ç»ÇÁ +++ */
 
-		DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], FALSE);
+		DrawGraphOnPoint(characterPosition, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation[7], TRUE);
 		break;
 	default:
 		break;
