@@ -4,6 +4,11 @@
 #include "DxLib.h"
 
 
+/* +++ マップのタイルセットの画像パス +++ */
+#define PathOfPassableTile		".\\image\\MapTile10_96x96.png"		// 通行可能タイルの画像dのパス
+#define PathOfImpassableTile	".\\image\\MapTile20_96x96.png"		// 通行不可タイルの画像dのパス
+
+
 /* === ギミックの画像パス === */
 /* +++ 祭壇の画像パス +++ */
 #define PathOfAltarImage1	".\\image\\Altar1_32x32.png"
