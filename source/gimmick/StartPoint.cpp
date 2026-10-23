@@ -1,6 +1,9 @@
 /* === スタート地点のソースファイル === */
 
 #include "StartPoint.h"
+#include "GameManager.h"
+#include "Geometry.h"
+#include "Color.h"
 
 
 /* --- スタート地点のコンストラクタ --- */
@@ -36,6 +39,11 @@ void StartPoint::Update(Player* player)
 /* --- スタート地点の描画メソッド --- */
 void StartPoint::Draw()
 {
+	if (GameDebug)
+	{
+		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
+	}
+
 	return;
 }
 

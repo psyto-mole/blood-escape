@@ -1,6 +1,9 @@
 /* === ゴール地点のソースファイル === */
 
 #include "GoalPoint.h"
+#include "GameManager.h"
+#include "Geometry.h"
+#include "Color.h"
 #include "Sound.h"
 
 
@@ -51,6 +54,11 @@ void GoalPoint::Update(Player* player)
 /* --- ゴール地点の描画メソッド --- */
 void GoalPoint::Draw()
 {
+	if (GameDebug)
+	{
+		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
+	}
+
 	return;
 }
 

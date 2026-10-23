@@ -1,8 +1,10 @@
 /* === 透明床ギのソースファイル === */
 
 #include "TransparentFloor.h"
+#include "GameManager.h"
 #include "Geometry.h"
 #include "Image.h"
+#include "Color.h"
 
 
 /* --- コンストラクタ-- - */
@@ -69,6 +71,13 @@ void TransparentFloor::Update(Player* player)
 /* --- ギミックの描画メソッド --- */
 void TransparentFloor::Draw()
 {
+	if (GameDebug)
+	{
+		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
+	
+		return;
+	}
+
 	POINT drawPoint = GetPoint(positionX, positionY);	// 描画する座標をPOINT型で取得
 
 	/* +++ ギミックの状態に応じて透明床の描画処理を行う +++ */
