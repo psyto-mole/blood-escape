@@ -5,6 +5,8 @@
 #include <utility>
 #include "GimmickManager.h"
 
+#include "GameManager.h"
+
 #include "Geometry.h"
 
 #include "Altar.h"
@@ -102,8 +104,18 @@ int GimmickManager::Load(const char* csvPath)
 
         std::unique_ptr<Gimmick> gimmick = CreateGimmick(type, id, x, y, state, target);   // データを基にギミックを生成
 
-        if (gimmick == NULL)    // 生成したギミックが未対応なら
+        if (gimmick == nullptr)    // 生成したギミックが未対応なら
         {
+            if (GameDebug)
+            {
+                MessageBox(
+                    GetMainWindowHandle(),
+                    "GimmickManager.cpp : Load() : Failed to create gimmick.",
+                    "Create Error",
+                    MB_OK
+                );
+            }
+
             continue;   // 生成したギミックを無視(次のループに移行)
         }
 
@@ -200,7 +212,7 @@ std::unique_ptr<Gimmick> GimmickManager::CreateGimmick(const char* type, int id,
     {
         return std::make_unique<Bandage>(id, x, y, state, target);
     }
-    else if (strcmp(type, "Bloodpack") == 0)
+    else if (strcmp(type, "BloodPack") == 0)
     {
         return std::make_unique<BloodPack>(id, x, y, state, target);
     }
@@ -216,7 +228,7 @@ std::unique_ptr<Gimmick> GimmickManager::CreateGimmick(const char* type, int id,
     {
         return std::make_unique<NeedleFloor>(id, x, y, state, target);
     }
-    else if (strcmp(type, "SatrtPoint") == 0)
+    else if (strcmp(type, "StartPoint") == 0)
     {
         return std::make_unique<StartPoint>(id, x, y, state, target);
     }
@@ -224,7 +236,7 @@ std::unique_ptr<Gimmick> GimmickManager::CreateGimmick(const char* type, int id,
     {
         return std::make_unique<Switch>(id, x, y, state, target);
     }
-    else if (strcmp(type, "TransprentFloor") == 0)
+    else if (strcmp(type, "TransparentFloor") == 0)
     {
         return std::make_unique<TransparentFloor>(id, x, y, state, target);
     }
@@ -480,6 +492,16 @@ POINT GimmickManager::GetPlayerStartPosition()
 
     if (startGimmick == nullptr)    // スタート地点のギミックが見つからない
     {
+        if (GameDebug)
+        {
+            MessageBox(
+                GetMainWindowHandle(),
+                "GimmickManager.cpp : GetPlayerStartPosition() : Failed to get StartPoint pointer.",
+                "Get Error",
+                MB_OK
+            );
+        }
+
         return GetPoint(2, 2);  // スタート地点を座標(2, 2)に設定
     }
 
