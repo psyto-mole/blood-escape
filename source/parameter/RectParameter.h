@@ -56,7 +56,7 @@
 /* +++ プレイヤーUI +++ */
 #define PlayerHPBarCenterY		(GameWindowHeight - 100)							// プレイヤーのHPバーの中心のY座標
 #define PlayerHPBarHeight		50													// プレイヤーのHPバーの高さ
-#define PlayerHPBarUpperLeftX	(GameWindowWidth - 150)								// プレイヤーのHPバーの左上のX座標
+#define PlayerHPBarUpperLeftX	(GameWindowWidth / 2)								// プレイヤーのHPバーの左上のX座標
 #define PlayerHPBarUpperLeftY	(PlayerHPBarCenterY - PlayerHPBarHeight / 2)		// プレイヤーのHPバーの左上のY座標
 #define PlayerHPBarLowerRightY	(PlayerHPBarCenterY + PlayerHPBarHeight / 2 + 1)	// プレイヤーのHPバーの右下Yの座標
 
