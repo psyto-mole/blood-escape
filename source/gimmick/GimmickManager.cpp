@@ -200,7 +200,7 @@ std::unique_ptr<Gimmick> GimmickManager::CreateGimmick(const char* type, int id,
     {
         return std::make_unique<Bandage>(id, x, y, state, target);
     }
-    else if (strcmp(type, "Bloodpack") == 0)
+    else if (strcmp(type, "BloodPack") == 0)
     {
         return std::make_unique<BloodPack>(id, x, y, state, target);
     }
@@ -216,7 +216,7 @@ std::unique_ptr<Gimmick> GimmickManager::CreateGimmick(const char* type, int id,
     {
         return std::make_unique<NeedleFloor>(id, x, y, state, target);
     }
-    else if (strcmp(type, "SatrtPoint") == 0)
+    else if (strcmp(type, "StartPoint") == 0)
     {
         return std::make_unique<StartPoint>(id, x, y, state, target);
     }
@@ -224,7 +224,7 @@ std::unique_ptr<Gimmick> GimmickManager::CreateGimmick(const char* type, int id,
     {
         return std::make_unique<Switch>(id, x, y, state, target);
     }
-    else if (strcmp(type, "TransprentFloor") == 0)
+    else if (strcmp(type, "TransparentFloor") == 0)
     {
         return std::make_unique<TransparentFloor>(id, x, y, state, target);
     }
