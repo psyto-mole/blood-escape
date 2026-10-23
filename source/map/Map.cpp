@@ -4,7 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Map.h"
+#include "GameManager.h"
 #include "Image.h"
+#include "Font.h"
+#include "Color.h"
+#include "Geometry.h"
 
 
 /* --- コンストラクタ --- */
@@ -255,6 +259,12 @@ void Map::Draw() const
                 break;
             default:
                 break;
+            }
+
+            if (GameDebug)
+            {
+                DrawRect(GetRect(screenX, screenY, screenX + TileSize, screenY + TileSize), Color_LightGreen, false, 1);
+                DrawFormatStringToHandleAlign(screenX + TileSize / 2, screenY + TileSize / 2, FAlign_AllCenter, Color_LightGreen, KHDot_20_1, "%d", tile);
             }
         }
     }
