@@ -96,7 +96,7 @@ void StageScene::Update()
 
     if (GameDebug)
     {
-        if (Key_Check_Click(KEY_INPUT_N))
+        if (Key_Check_Click(KEY_INPUT_RETURN))
         {
             transition.transitionType = TransitionType::ChangeScene;    // ‘JˆÚ‚Ìó‘Ô‚ğƒV[ƒ“Ø‚è‘Ö‚¦‚É‚·‚é
 
