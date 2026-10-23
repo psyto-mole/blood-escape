@@ -48,7 +48,7 @@ void GameOverScene::Update()
         {
             selectedIndex--;    // 選択肢の値を1減らす(1つ前の選択肢にする)
 
-            if (selectedIndex < 0)  // 選択肢の値が0を下回ったら
+            if (selectedIndex <= 0)  // 選択肢の値が0以下になったら
             {
                 selectedIndex = NumberOfGameoverOption;  // 選択肢の値をMaxにする(最後の選択肢にする)
             }
@@ -61,7 +61,7 @@ void GameOverScene::Update()
 
             if (selectedIndex > NumberOfGameoverOption)  // 選択肢の値が選択肢の個数を超えたら
             {
-                selectedIndex = 0;  // 選択肢を最初に戻す
+                selectedIndex = 1;  // 選択肢を最初に戻す
             }
 
             Sound_Play(SE_Select);   // 選択肢を変更した時のSEを再生
