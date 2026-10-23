@@ -9,9 +9,9 @@
 #define TileSize        32  // タイルサイズ
 #define TileSetWidth    3   // タイルセットの横方向のタイル数(タイルセットの画像のサイズ/タイルサイズ)
 
-#define HollowTile      0   // 空洞
-#define PassableTile    1   // 通行可能タイル
-#define ObstacleTile    2   // 侵入不可タイル
+#define HollowTile      10  // 空洞
+#define PassableTile    1   // 通行可能タイルの10の位
+#define ObstacleTile    2   // 侵入不可タイルの10の位
 
 class Map
 {
@@ -21,14 +21,15 @@ private:
     int width;      // マップの横幅(タイル数)
     int height;     // マップの縦幅(タイル数)
 
-    int tileImage;  // タイルセットの画像ハンドルを格納する変数
+    int passableTileImage;      // 通行可能タイルセットの画像ハンドル
+    int impassableTileImage;    // 通行不可タイルセットの画像ハンドル
 
 public:
     Map();      // コンストラクタ
     ~Map();     // デストラクタ
 
-    int Load(const char* csvPath);              // csvファイルからマップデータを読み込むメソッド
-    int LoadTileImage(const char* imagePath);   // タイルセットの画像を読み込むメソッド
+    int Load(const char* csvPath);  // csvファイルからマップデータを読み込むメソッド
+    int LoadTileImage();            // タイルセットの画像を読み込むメソッド
 
     void Draw() const;  // マップの描画を行うメソッド
 

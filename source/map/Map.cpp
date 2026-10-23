@@ -4,14 +4,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Map.h"
+#include "Image.h"
 
 
 /* --- コンストラクタ --- */
 Map::Map()
 {
-    width = 0;          // マップの横幅の初期化
-    height = 0;         // マップの縦幅の初期化
-    tileImage = -1;     // タイルセットの画像ハンドルの初期化
+    width = 0;                  // マップの横幅の初期化
+    height = 0;                 // マップの縦幅の初期化
+    passableTileImage = -1;     // タイルセットの画像ハンドルの初期化
+    impassableTileImage = -1;   // タイルセットの画像ハンドルの初期化
 
     /* +++ マップデータの初期化 +++ */
     for (int y = 0; y < MapHeight; y++)
@@ -26,10 +28,16 @@ Map::Map()
 /* --- デストラクタ --- */
 Map::~Map()
 {
-    /* +++ タイルセットの画像ハンドルを削除 +++ */
-    if (tileImage != -1)
+    /* +++ 通行可能タイルセットの画像ハンドルを削除 +++ */
+    if (passableTileImage != -1)
     {
-        DeleteGraph(tileImage);
+        DeleteGraph(passableTileImage);
+    }
+
+    /* +++ 通行不可タイルセットの画像ハンドルを削除 +++ */
+    if (impassableTileImage != -1)
+    {
+        DeleteGraph(impassableTileImage);
     }
 }
 
@@ -41,6 +49,11 @@ int Map::Load(const char* csvPath)
     int y = 0;  // 2次元配列の列番号
 
     char line[1024];  // csvファイルから読み込んだ文字列を格納する配列
+
+    if (LoadTileImage() == -1)  // タイルセットの画像の読み込みに失敗したら
+    {
+        return -1;  // -1を返す(読み込み失敗)
+    }
 
     /* +++ csvファイルを読み込みモードで開く +++ */
     if ((fopen_s(&fp, csvPath, "r")) != 0)     // csvファイルへを開けなかったら
@@ -117,6 +130,7 @@ int Map::Load(const char* csvPath)
         }
     }
 
+
     height = y;     // 縦幅を取得
 
     fclose(fp);     // ファイルを閉じる
@@ -125,16 +139,30 @@ int Map::Load(const char* csvPath)
 }
 
 /* --- タイルセットの画像を読み込むメソッド --- */
-int Map::LoadTileImage(const char* imagePath)
+int Map::LoadTileImage()
 {
-    tileImage = LoadGraph(imagePath);   // タイルセットの画像のハンドルを取得
+    passableTileImage = LoadGraph(PathOfPassableTile);      // 通行可能タイルセットの画像のハンドルを取得
+    impassableTileImage = LoadGraph(PathOfImpassableTile);  // 通行不可タイルセットの画像のハンドルを取得
 
-    if (tileImage == -1)    // タイルセットの画像ハンドルが-1(読み込み失敗)なら
+    if (passableTileImage == -1)    // 通行可能タイルセットの読み込みに失敗したなら
     {
         /* +++ メッセージボックスでエラーを報告 +++ */
         MessageBox(
             GetMainWindowHandle(),
-            "Cannot load map image.",
+            "Map.cpp : LoadTileImage() : Failed to load passable tile image.",
+            "Load Error",
+            MB_OK
+        );
+
+        return -1;   // -1(読み込み失敗)を返す
+    }
+
+    if (impassableTileImage == -1)    // 通行不可タイルセットの読み込みに失敗したなら
+    {
+        /* +++ メッセージボックスでエラーを報告 +++ */
+        MessageBox(
+            GetMainWindowHandle(),
+            "Map.cpp : LoadTileImage() : Failed to load impassable tile image.",
             "Load Error",
             MB_OK
         );
@@ -151,7 +179,7 @@ void Map::Draw() const
     int x;  // 2次元配列の行番号
     int y;  // 2次元配列の列番号
 
-    if (tileImage == -1)    // タイルセットの画像が読み込めていないなら
+    if (passableTileImage == -1 || impassableTileImage == -1)    // タイルセットの画像が読み込めていないなら
     {
         return;     // 処理を終了
     }
@@ -162,6 +190,9 @@ void Map::Draw() const
         for (x = 0; x < width; x++)
         {
             int tile;   // タイルの値を格納する変数
+
+            int tileFirstDigit;     // タイルデータの1桁目(画像番号)
+            int tileSecondDigit;    // タイルデータの2桁目(タイルの種類、1:通行可能、2:通行不可)
 
             int tileX;  // タイルセット上の横方向野位置
             int tileY;  // タイルセット上の縦方向野位置
@@ -183,7 +214,9 @@ void Map::Draw() const
             //{
             //    continue;
             //}
-
+               
+            tileFirstDigit = tile % 10;     // タイルデータの1桁目を取得
+            tileSecondDigit = tile / 10;    // タイルデータの2桁目を取得
 
             /* +++ タイルセット上の位置を計算 +++ */
             // * 横4個, tile == 6の場合
@@ -194,8 +227,8 @@ void Map::Draw() const
             // * 
             // * tileX = 6 % 4 = 2
             // * tileY = 6 / 4 = 1
-            tileX = tile % TileSetWidth;    // タイルセット上の横方向の位置を算出
-            tileY = tile / TileSetWidth;    // タイルセット上の縦方向の位置を算出
+            tileX = tileFirstDigit % TileSetWidth;    // タイルセット上の横方向の位置を算出
+            tileY = tileFirstDigit / TileSetWidth;    // タイルセット上の縦方向の位置を算出
 
 
             /* +++ タイルセット画像から切り出す位置の計算 +++ */
@@ -207,7 +240,22 @@ void Map::Draw() const
             screenX = x * TileSize;     // 画面上の描画位置のX座標
             screenY = y * TileSize;     // 画面上の描画位置Yの座標
 
-            DrawRectGraph(screenX, screenY, sourceX, sourceY, TileSize, TileSize, tileImage, TRUE);     // タイルセットから32x32サイズのタイルチップを切り出して描画
+            /* +++ タイルの種類に応じて描画 +++ */
+            switch(tileSecondDigit)
+            {
+            case 1:
+                /* +++ 通行可能タイルなら +++ */
+
+                DrawRectGraph(screenX, screenY, sourceX, sourceY, TileSize, TileSize, passableTileImage, TRUE);     // 通行可能タイルセットから32x32サイズのタイルチップを切り出して描画
+                break;
+            case 2:
+                /* +++ 通行不可タイルなら +++ */
+
+                DrawRectGraph(screenX, screenY, sourceX, sourceY, TileSize, TileSize, impassableTileImage, TRUE);   // 通行不可タイルセットから32x32サイズのタイルチップを切り出して描画
+                break;
+            default:
+                break;
+            }
         }
     }
 }
@@ -308,7 +356,11 @@ int Map::GetHeight() const
 /* --- 引数で渡した位置のタイルが通行可能かを判定するメソッド-- - */
 bool Map::IsPassable(POINT position)
 {
-    if (GetCollisionTile(position) != ObstacleTile)     // 引数の位置が通行不可でないなら
+    int mapData;    // 取得するマップデータ
+
+    mapData = GetCollisionTile(position);  // マップデータを取得
+
+    if (mapData / 10 == 1)     // 引数の位置が通行可能なら
     {
         return true;    // true(通行可能)を返す
     }
@@ -319,7 +371,7 @@ bool Map::IsPassable(POINT position)
 /* --- 引数で渡した位置にタイルがあるか判定するメソッド --- */
 bool Map::IsThereTile(POINT position)
 {
-    if (GetCollisionTile(position) != HollowTile)   // 引数の位置が空洞なら
+    if (GetCollisionTile(position) == HollowTile)   // 引数の位置が空洞なら
     {
         return false;   // false(タイルなし)を返す
     }
