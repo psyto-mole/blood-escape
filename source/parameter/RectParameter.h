@@ -15,37 +15,37 @@
 #define MenuTabInsideHeight	(MenuTabFrameHeight - 4)
 
 /* +++ メニュー画面 +++ */
-#define MenuWindowCenterX		(GameWindowWidth / 2)
-#define MenuWindowCenterY		(GameWindowHeight / 2)
-#define MenuWindowFrameWidth	1200
-#define MenuWindowFrameHeight	1000
-#define MenuWindowInsideWidth	(MenuWindowFrameWidth - 6)
-#define MenuWindowInsideHeight	(MenuWindowFrameHeight - 6)
+#define MenuWindowCenterX		(GameWindowWidth / 2)			// メニュー画面のウィンドウの中心のX座標
+#define MenuWindowCenterY		(GameWindowHeight / 2)			// メニュー画面のウィンドウの中心のY座標
+#define MenuWindowFrameWidth	1200							// メニュー画面のウィンドウの外枠の幅
+#define MenuWindowFrameHeight	1000							// メニュー画面のウィンドウの外枠の高さ
+#define MenuWindowInsideWidth	(MenuWindowFrameWidth - 6)		// メニュー画面のウィンドウの内側の幅
+#define MenuWindowInsideHeight	(MenuWindowFrameHeight - 6)		// メニュー画面のウィンドウの内側の高さ
 
-#define MenuTopButtonFrameWidth		400
-#define MenuTopButtonFrameHeight	100
-#define MenuTopButtonInsideWidth	(MenuTopButtonFrameWidth - 4)
-#define MenuTopButtonInsideHeight	(MenuTopButtonFrameHeight - 4)
-#define MenuTopButtonCenterX		(MenuWindowCenterX - 150)
-#define MenuTopButton1CenterY		(MenuWindowCenterY - 300)
-#define MenuTopButton2CenterY		(MenuTopButton1CenterY + 150)
-#define MenuTopButton3CenterY		(MenuTopButton2CenterY + 150)
-#define MenuTopButton4CenterY		(MenuTopButton3CenterY + 150)
+#define MenuTopButtonFrameWidth		400								// メニュー画面トップの選択肢のボタンの外枠の幅
+#define MenuTopButtonFrameHeight	100								// メニュー画面トップの選択肢のボタンの外枠の高さ
+#define MenuTopButtonInsideWidth	(MenuTopButtonFrameWidth - 4)	// メニュー画面トップの選択肢のボタンの内側の幅
+#define MenuTopButtonInsideHeight	(MenuTopButtonFrameHeight - 4)	// メニュー画面トップの選択肢のボタンの内側の高さ
+#define MenuTopButtonCenterX		MenuWindowCenterX				// メニュー画面トップの選択肢のボタンの中心のX座標
+#define MenuTopButton1CenterY		(MenuWindowCenterY - 300)		// メニュー画面トップの選択肢のボタン1の中心のY座標
+#define MenuTopButton2CenterY		(MenuTopButton1CenterY + 150)	// メニュー画面トップの選択肢のボタン2の中心のY座標
+#define MenuTopButton3CenterY		(MenuTopButton2CenterY + 150)	// メニュー画面トップの選択肢のボタン3の中心のY座標
+#define MenuTopButton4CenterY		(MenuTopButton3CenterY + 150)	// メニュー画面トップの選択肢のボタン4の中心のY座標
 
-#define BackTopButtonCenterX		(MenuWindowCenterX - MenuWindowFrameWidth / 2 + 50)
-#define BackTopButtonCenterY		(MenuWindowCenterY - MenuWindowFrameHeight / 2 + 25)
-#define BackTopButtonFrameWidth		100
-#define BackTopButtonFrameHeight	50
-#define BackTopButtonInsideWidth	(BackTopButtonFrameWidth - 4)
-#define BackTopButtonInsideHeight	(BackTopButtonFrameHeight - 4)
+#define BackTopButtonFrameWidth		250																				// メニュー画面トップに戻るボタンの外枠の幅
+#define BackTopButtonFrameHeight	50																				// メニュー画面トップに戻るボタンの外枠の高さ
+#define BackTopButtonCenterX		(MenuWindowCenterX - MenuWindowFrameWidth / 2 + BackTopButtonFrameWidth / 2)	// メニュー画面トップに戻るボタンの中心のX座標
+#define BackTopButtonCenterY		(MenuWindowCenterY - MenuWindowFrameHeight / 2 + BackTopButtonFrameHeight / 2)	// メニュー画面トップに戻るボタンの中心のY座標
+#define BackTopButtonInsideWidth	(BackTopButtonFrameWidth - 4)													// メニュー画面トップに戻るボタンの内側の幅
+#define BackTopButtonInsideHeight	(BackTopButtonFrameHeight - 4)													// メニュー画面トップに戻るボタンの内側の高さ
 
-#define GameEndYesButtonCenterX		(MenuWindowCenterX - 150)
-#define GameEndNoButtonCenterX		(MenuWindowCenterX + 150)
-#define GameEndButtonCenterY		(MenuWindowCenterY + 100)
-#define GameEndButtonFrameWidth		200
-#define GameEndButtonFrameHeight	100
-#define GameEndButtonInsideWidth	(GameEndButtonFrameWidth - 6)
-#define GameEndButtonInsideHeight	(GameEndButtonFrameHeight - 6)
+#define GameEndYesButtonCenterX		(MenuWindowCenterX - 150)		// ゲーム終了画面の「はい」ボタンの中心のY座標
+#define GameEndNoButtonCenterX		(MenuWindowCenterX + 150)		// ゲーム終了画面の「いいえ」ボタンの中心のX座標
+#define GameEndButtonCenterY		(MenuWindowCenterY + 100)		// ゲーム終了画面のボタンの選択肢ボタンの中心のY座標
+#define GameEndButtonFrameWidth		200								// ゲーム終了画面のボタンの外枠の選択肢ボタンの幅
+#define GameEndButtonFrameHeight	100								// ゲーム終了画面のボタンの外枠の選択肢ボタンの高さ
+#define GameEndButtonInsideWidth	(GameEndButtonFrameWidth - 6)	// ゲーム終了画面のボタンの内側の選択肢ボタンの幅
+#define GameEndButtonInsideHeight	(GameEndButtonFrameHeight - 6)	// ゲーム終了画面のボタンの内側の選択肢ボタンの高さ
 
 
 /* === ステージシーン === */
