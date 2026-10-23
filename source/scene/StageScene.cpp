@@ -172,6 +172,14 @@ void StageScene::Draw()
     gimmickManager.Draw();  // ギミックの描画
     playerObject.Draw();    // プレイヤー描画
 
+    if (GameDebug)
+    {
+        if (playerObject.IsGameOver())  // 　ゲームオーバーなら
+        {
+            DrawFormatStringToHandleAlign(GameWindowWidth / 2, GameWindowHeight / 2, FAlign_AllCenter, Color_LightGreen, KHDot_30_1, "Player HP: %d", playerObject.Get_HP());
+        }
+    }
+
     return;
 }
 
