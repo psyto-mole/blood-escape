@@ -143,7 +143,7 @@ void MenuWindow::Update()
 		{
 			selectedIndex = 1;	// 選択している選択肢の番号を1に設定
 
-			SetMenuState(MenuState::Close);		// メニューを閉じる
+			SetMenuState(MenuState::MenuTop);	// メニュー画面トップに戻る
 
 			Sound_Play(SE_Cancel);   // 選択肢の取り消しのSEを再生
 		}
@@ -213,7 +213,7 @@ void MenuWindow::Update()
 		{
 			selectedIndex = 1;	// 選択している選択肢の番号を1に設定
 
-			SetMenuState(MenuState::Close);		// メニューを閉じる
+			SetMenuState(MenuState::MenuTop);	// メニュー画面トップに戻る
 
 			Sound_Play(SE_Cancel);   // 選択肢の取り消しのSEを再生
 		}
