@@ -75,7 +75,7 @@ void TransparentFloor::Draw()
 	{
 		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
 	
-		return;
+		//return;
 	}
 
 	POINT drawPoint = GetPoint(positionX, positionY);	// ï`âÊÇ∑ÇÈç¿ïWÇPOINTå^Ç≈éÊìæ
