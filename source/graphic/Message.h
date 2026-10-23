@@ -29,7 +29,7 @@ extern MessagePattern displayMessagePattern;
 
 
 /* +++ 「back」ボタン +++ */
-#define BackButtonText	"戻る"	// 「戻る」ボタンのテキスト
+#define BackButtonText	"メニューTOP"	// 「戻る」ボタンのテキスト
 
 
 /* +++ プレイヤー +++ */
@@ -56,10 +56,6 @@ extern MessagePattern displayMessagePattern;
 #define DetailMenuWindowGameEnd		"ゲームを終了します"
 #define DetailMenuWindowCredit		"仕様楽曲などを表示します"
 #define DetailMenuWindowBackMenu	"メニューを閉じゲームに戻ります"
-
-/* +++ データ消去画面 +++ */
-#define QuestionDeleteData1		"ゲームデータを消去しますか?"
-#define QuestionDeleteData2		"※消去したデータは戻せません"
 
 /* +++ ゲームの終了 +++ */
 #define QuestionGameEnd		"ゲームを終了しますか?"
