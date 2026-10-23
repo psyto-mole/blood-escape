@@ -29,7 +29,7 @@ extern MessagePattern displayMessagePattern;
 
 
 /* +++ 「back」ボタン +++ */
-#define BackButtonText	"メニューTOP"	// 「戻る」ボタンのテキスト
+#define BackButtonText	"<< メニューTOP"	// 「戻る」ボタンのテキスト
 
 
 /* +++ プレイヤー +++ */
