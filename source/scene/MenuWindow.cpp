@@ -381,7 +381,23 @@ void MenuWindow::Draw()
 		break;
 	}
 
-	
+	if (menuState != MenuState::MenuTop)
+	{
+		if (selectedIndex == 1)
+		{
+			DrawRect(backTopButtonFrame, Color_White, true, 1);
+			DrawRect(backTopButtonInside, Color_Red, true, 1);
+
+			DrawFormatStringToHandleAlign(BackTopButtonCenterX, BackTopButtonCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", BackButtonText);
+		}
+		else
+		{
+			DrawRect(backTopButtonFrame, Color_White, true, 1);
+			DrawRect(backTopButtonInside, Color_Black, true, 1);
+
+			DrawFormatStringToHandleAlign(BackTopButtonCenterX, BackTopButtonCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", BackButtonText);
+		}
+	}
 
 	return;
 }
