@@ -378,12 +378,12 @@ void MenuWindow::Draw()
 		/* +++ 使用楽曲を表示する画面の場合 +++ */
 
 		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 200, FAlign_AllCenter, Color_LightBlue, KHDot_50_2, "%s", MusicUsed);	// 「使用楽曲」の文字列を水色で描画
-		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 50, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", MaohDamashi);		// 「魔王魂」の文字列を水色で描画
-		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY + 150, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", SoundEffectLab);	// 「効果音ラボ」の文字列を水色で描画
-		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY + 300, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", OtoLogic);			// 「OtoLogic」の文字列を水色で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 150, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", MaohDamashi);		// 「魔王魂」の文字列を水色で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 100, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", SoundEffectLab);	// 「効果音ラボ」の文字列を水色で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 200, MenuWindowCenterY - 50, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", OtoLogic);			// 「OtoLogic」の文字列を水色で描画
 		
 		DrawFormatStringToHandleAlign(MenuWindowCenterX + 200, MenuWindowCenterY - 200, FAlign_AllCenter, Color_Purple, KHDot_50_2, "%s", ToolUsed);	// 「使用ツール」の文字列を紫で描画
-		DrawFormatStringToHandleAlign(MenuWindowCenterX + 200, MenuWindowCenterY - 50, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", DotArt);		// 「DotArt」の文字列を紫で描画
+		DrawFormatStringToHandleAlign(MenuWindowCenterX + 200, MenuWindowCenterY - 150, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", DotArt);		// 「DotArt」の文字列を紫で描画
 		break;
 	}
 
