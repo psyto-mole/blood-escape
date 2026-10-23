@@ -80,6 +80,15 @@ int Map::Load(const char* csvPath)
         char* token;    // 部分文字列を格納するポインタ
         char* context;  // トークンの位置を保持する変数
 
+        /* +++ UTF - 8 BOMがあれば除去する（ファイルの先頭行のみ）+++ */
+        if (y == 0 &&
+            (unsigned char)line[0] == 0xEF &&
+            (unsigned char)line[1] == 0xBB &&
+            (unsigned char)line[2] == 0xBF)
+        {
+            memmove(line, line + 3, strlen(line + 3) + 1);
+        }
+
         line[strcspn(line, "\r\n")] = '\0';     // 改行を削除(文字列の改行までの長さを取得しインデックスとして指定)
 
         /* +++ 空行は無視 +++ */
