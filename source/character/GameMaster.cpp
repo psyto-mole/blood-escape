@@ -54,7 +54,7 @@ void GameMaster::Update()
 /* --- ゲームマスターの描画メソッド --- */
 void GameMaster::Draw()
 {
-
+	DrawGraphOnPoint(position, GameMasterAnimationSizeX, GameMasterAnimationSizeY, animationHandle[drawImage], TRUE);	// ゲームマスターの画像を描画
 
 	return;
 }
