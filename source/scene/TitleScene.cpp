@@ -44,7 +44,7 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
     /* +++ ï`âÊèàóù +++ */
-    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Red, KHDot_100_9, "%s", StringGameTitle);
+    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Red, KHDot_200_9, "%s", StringGameTitle);
     DrawFormatStringToHandleAlign(GameWindowWidth / 2, 600, FAlign_AllCenter, Color_SW_Rainbow, KHDot_50_2, "%s", StringPressEnter);
 
     return;
