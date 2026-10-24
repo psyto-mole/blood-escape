@@ -14,8 +14,8 @@ Gimmick::Gimmick(int id, int x, int y, int state, int target)
 
 	gimmickType = GimmickType::None;	// ギミックの種類を「なし」に設定
 
-	positionX = x;	// ギミックのX座標の初期化
-	positionY = y;	// ギミックのY座標の初期化
+	positionX = x * GimmickSize - GimmickSize / 2;	// ギミックのX座標の初期化
+	positionY = y * GimmickSize - GimmickSize / 2;	// ギミックのY座標の初期化
 
 	for (int i = 0; i < GimmickStateMax; i++)
 	{
