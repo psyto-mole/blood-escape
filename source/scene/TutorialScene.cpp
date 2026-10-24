@@ -54,6 +54,15 @@ void TutorialScene::Update()
         textPrinter.AdvanceText();  // 文章を進める
     }
 
+    if (textPrinter.GetCurrentMessageNumber() >= 7)     // 「血が...」のくだり以降が表示されている
+    {
+        gameMasterObject.SetDrawImage(3);   // ゲームマスターオブジェクトの描画する画像の要素番号を3に設定
+    }
+    else
+    {
+        gameMasterObject.Update();  // ゲームマスターオブジェクトの更新メソッドを実行
+    }
+
     if (textPrinter.IsAllMessageFinished() && sceneElapsedFrame >= GameFPS)   // シーンが切り替わってから1秒が経過し、文字送りが終了したらステージ1へ
     {
         transition.transitionType = TransitionType::ChangeScene;    // 遷移の状態をシーン切り替えにする
@@ -69,7 +78,10 @@ void TutorialScene::Update()
 /* --- チュートリアルシーンの描画メソッド --- */
 void TutorialScene::Draw()
 {
-    textPrinter.Draw(100, 900, Color_White, KHDot_30_1);  // 文章を文字送り機能付きで表示
+
+    gameMasterObject.Draw();    // ゲームマスターオブジェクトの描画メソッドを実行
+
+    textPrinter.Draw(GameWindowWidth / 2, 900, FAlign_AllCenter,  Color_White, KHDot_50_2);  // 文章を文字送り機能付きで表示
 
     return;
 }
