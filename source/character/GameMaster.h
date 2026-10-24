@@ -20,4 +20,6 @@ public:
 	int Init();		// ゲームマスターの初期化メソッド
 	void Update();	// ゲームマスターの更新メソッド
 	void Draw();	// ゲームマスターの描画メソッド
+
+	void SetDrawImage(int imageIndexNumber);	// 描画する画像を指定するメソッド
 };

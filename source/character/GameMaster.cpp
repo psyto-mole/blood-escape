@@ -58,3 +58,11 @@ void GameMaster::Draw()
 
 	return;
 }
+
+/* --- 描画する画像を指定するメソッド --- */
+void GameMaster::SetDrawImage(int imageIndexNumber)
+{
+	drawImage = imageIndexNumber;	// 描画する画像を設定
+
+	return;
+}
