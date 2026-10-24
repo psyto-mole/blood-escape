@@ -71,7 +71,7 @@ void TransparentFloor::Update(Player* player)
 /* --- ギミックの描画メソッド --- */
 void TransparentFloor::Draw()
 {
-	if (GameDebug == 2)
+	if (GameDebug >= 2)
 	{
 		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
 	

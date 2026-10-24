@@ -94,7 +94,7 @@ void StageScene::Update()
     // クリア判定
     // -----------------
 
-    if (GameDebug == 1)
+    if (GameDebug >= 1)
     {
         if (Key_Check_Click(KEY_INPUT_RETURN))
         {
@@ -137,7 +137,7 @@ void StageScene::Update()
     // ゲームオーバー判定
     // --------------------------
 
-    if (GameDebug == 1)
+    if (GameDebug >= 1)
     {
         if (Key_Check_Click(KEY_INPUT_SPACE))  // ゲームオーバーになったら
         {
@@ -172,7 +172,7 @@ void StageScene::Draw()
     gimmickManager.Draw();  // ギミックの描画
     playerObject.Draw();    // プレイヤー描画
 
-    if (GameDebug == 2)
+    if (GameDebug >= 2)
     {
         if (playerObject.IsGameOver())  // 　ゲームオーバーなら
         {

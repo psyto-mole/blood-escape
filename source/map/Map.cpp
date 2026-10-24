@@ -275,7 +275,7 @@ void Map::Draw() const
                 break;
             }
 
-            if (GameDebug == 2)
+            if (GameDebug >= 3)
             {
                 DrawRect(GetRect(screenX, screenY, screenX + TileSize, screenY + TileSize), Color_LightGreen, false, 1);
                 DrawFormatStringToHandleAlign(screenX + TileSize / 2, screenY + TileSize / 2, FAlign_AllCenter, Color_LightGreen, KHDot_20_1, "%d", tile);
@@ -344,7 +344,7 @@ int Map::GetCollisionTile(POINT position) const
 {
     if (position.x < 0 || position.x >= width || position.y < 0 || position.y >= height)    // 引数で受け取った位置がマップの範囲外なら
     {
-        if (GameDebug == 2)
+        if (GameDebug >= 2)
         {
             DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 - 200, FAlign_AllCenter, Color_LightBlue, KHDot_20_1, "position.x : %d", position.x);
             DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 - 150, FAlign_AllCenter, Color_LightBlue, KHDot_20_1, "map tileNumberX : %d", tileNumberX);
@@ -371,7 +371,7 @@ int Map::GetCollisionTile(POINT position) const
         i++;    // 列番号を加算
     }
 
-    if (GameDebug == 2)
+    if (GameDebug >= 2)
     {
         DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2, FAlign_AllCenter, Color_Yellow, KHDot_30_1, "Map data : %d.", mapData[i][j]);
     }

@@ -65,7 +65,7 @@ void Character::MoveCharacter(Map* mapManager, GimmickManager* gimmickManager,in
 	}
 	else
 	{
-		if (GameDebug == 2)
+		if (GameDebug >= 2)
 		{
 			if (mapManager->IsPassable(nextPosition) != true)
 			{

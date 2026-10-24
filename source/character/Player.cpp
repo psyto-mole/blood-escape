@@ -131,6 +131,11 @@ void Player::Draw()
 
 	DrawPlayerUI();
 
+	if (GameDebug >= 2)
+	{
+		DrawCircle(characterPosition.x, characterPosition.y, 2, Color_SkyBlue, true, 1);
+	}
+
 	return;
 }
 
