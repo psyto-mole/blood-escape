@@ -148,6 +148,12 @@ bool TextPrinter::IsAllMessageFinished() const
 	return false;
 }
 
+/* --- 現在表示されている文章の文章番号を取得するメソッド --- */
+int TextPrinter::GetCurrentMessageNumber() const
+{
+	return (int)currentMessage;		// 現在表示している文章の文章番号をint型で返す
+}
+
 /* --- 現在位置の文字のバイトを取得-- - */
 size_t TextPrinter::GetCharacterByte(size_t pos) const
 {

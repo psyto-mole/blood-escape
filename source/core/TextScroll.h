@@ -31,9 +31,10 @@ public:
 	void ChangeText();								// 文章を変えるメソッド
 
 
-	bool IsCurrentMessageFinished() const;	// 現在の文章が最後まで表示されたか
-	bool IsAllMessageFinished() const;		// 全ての文章が最後まで表示されたか
+	bool IsCurrentMessageFinished() const;	// 現在の文章が最後まで表示されたかを判定するメソッド
+	bool IsAllMessageFinished() const;		// 全ての文章が最後まで表示されたかを判定するメソッド
+	int GetCurrentMessageNumber() const;	// 現在表示されている文章の文章番号を取得するメソッド
 
 private:
-	size_t GetCharacterByte(size_t pos) const;	// 現在位置の文字のバイトを取得
+	size_t GetCharacterByte(size_t pos) const;	// 現在位置の文字のバイトを取得するメソッド
 };
