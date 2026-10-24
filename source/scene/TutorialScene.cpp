@@ -26,7 +26,7 @@ int TutorialScene::Init()
     }
 
     /* +++ 表示する文章を設定 +++ */
-    /*textPrinter.SetMessages(
+    textPrinter.SetMessages(
         {
             "おはようございます...よくねむれましたか？",
             "これからあなたには...いのちがけのだっしゅにゲームにいどんでいただきます",
@@ -37,7 +37,7 @@ int TutorialScene::Init()
             "なかには...「ただ」ではどうにもできないしょうがいも...",
             "そのときは...「血」があなたをみちびくでしょう...",
             "ごけんとうをおいのりします..."
-        });*/
+        });
 
     Sound_Play(BGM_Tutorial);   // チュートリアル画面のBGMを再生
 
