@@ -14,6 +14,8 @@
 /* --- コンストラクタ --- */
 Map::Map()
 {
+    tileNumberX = 0;            // マップの横方向のタイル数の初期化
+    tileNumberY = 0;            // マップの縦方向のタイル数の初期化
     width = 0;                  // マップの横幅の初期化
     height = 0;                 // マップの縦幅の初期化
     passableTileImage = -1;     // タイルセットの画像ハンドルの初期化
@@ -130,9 +132,9 @@ int Map::Load(const char* csvPath)
 
 
         /* +++ 1行目の横幅を決定 +++ */
-        if (width == 0)
+        if (tileNumberX == 0)
         {
-            width = x;
+            tileNumberX = x;
         }
 
         y++;    // y(列番号)を1加算
@@ -144,7 +146,10 @@ int Map::Load(const char* csvPath)
     }
 
 
-    height = y;     // 縦幅を取得
+    tileNumberY = y;     // 縦幅を取得
+
+    width = tileNumberX * TileSize;     // アップの横幅を計算
+    height = tileNumberY * TileSize;    // アップの縦幅を計算
 
     fclose(fp);     // ファイルを閉じる
 
@@ -198,9 +203,9 @@ void Map::Draw() const
     }
 
     /* +++ マップの描画 +++ */
-    for (y = 0; y < height; y++)
+    for (y = 0; y < tileNumberY; y++)
     {
-        for (x = 0; x < width; x++)
+        for (x = 0; x < tileNumberX; x++)
         {
             int tile;   // タイルの値を格納する変数
 
@@ -279,10 +284,10 @@ void Map::Draw() const
     }
 }
 
-/* --- 引数で渡した座標のタイルを取得するメソッド --- */
+/* --- マップ上の引数で渡した要素のタイルを取得するメソッド --- */
 int Map::GetTile(int x, int y) const
 {
-    if (x < 0 || x >= width || y < 0 || y >= height)    // 引数で受け取った位置がマップの範囲外なら
+    if (x < 0 || x >= tileNumberX || y < 0 || y >= tileNumberY)    // 引数で受け取った位置がマップの範囲外なら
     {
         return -1;  // -1を返す
     }
@@ -290,10 +295,10 @@ int Map::GetTile(int x, int y) const
     return mapData[y][x];   // マップデータの該当の位置のデータを返す
 }
 
-/* --- 引数で渡した座標のタイルを取得するメソッド(引数がPOINT型) -- - */
+/* --- マップ上の引数で渡した要素のタイルを取得するメソッド(引数がPOINT型) -- - */
 int Map::GetTile(POINT position) const
 {
-    if (position.x < 0 || position.x >= width || position.y < 0 || position.y >= height)    // 引数で受け取った位置がマップの範囲外なら
+    if (position.x < 0 || position.x >= tileNumberX || position.y < 0 || position.y >= tileNumberY)    // 引数で受け取った位置がマップの範囲外なら
     {
         return -1;  // -1を返す
     }
@@ -339,6 +344,15 @@ int Map::GetCollisionTile(POINT position) const
 {
     if (position.x < 0 || position.x >= width || position.y < 0 || position.y >= height)    // 引数で受け取った位置がマップの範囲外なら
     {
+        if (GameDebug == 2)
+        {
+            DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 - 200, FAlign_AllCenter, Color_LightBlue, KHDot_20_1, "position.x : %d", position.x);
+            DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 - 150, FAlign_AllCenter, Color_LightBlue, KHDot_20_1, "map tileNumberX : %d", tileNumberX);
+            DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 - 100, FAlign_AllCenter, Color_Green, KHDot_20_1, "position.y : %d", position.y);
+            DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 - 50, FAlign_AllCenter, Color_Green, KHDot_20_1, "map tileNumberY : %d", tileNumberY);
+            DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2, FAlign_AllCenter, Color_Yellow, KHDot_30_1, "Next positon is out of map.");
+        }
+
         return -1;  // -1を返す
     }
 
@@ -355,6 +369,11 @@ int Map::GetCollisionTile(POINT position) const
     while (i * TileSize < position.y)   // タイルの縦幅が引数のY座標を超えるまで
     {
         i++;    // 列番号を加算
+    }
+
+    if (GameDebug == 2)
+    {
+        DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2, FAlign_AllCenter, Color_Yellow, KHDot_30_1, "Map data : %d.", mapData[i][j]);
     }
 
     return mapData[i][j];   // マップデータの該当の位置のデータを返す
@@ -378,6 +397,11 @@ bool Map::IsPassable(POINT position)
     int mapData;    // 取得するマップデータ
 
     mapData = GetCollisionTile(position);  // マップデータを取得
+
+    if (mapData == -1)  // マップデータの取得に失敗したら
+    {
+        return false;   // false(進行不可)を返す
+    }
 
     if (mapData / 10 == 1)     // 引数の位置が通行可能なら
     {

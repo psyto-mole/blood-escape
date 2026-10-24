@@ -18,8 +18,11 @@ class Map
 private:
     int mapData[MapHeight][MapWidth];   // マップデータを格納する2次元配列
 
-    int width;      // マップの横幅(タイル数)
-    int height;     // マップの縦幅(タイル数)
+    int tileNumberX;    // マップの横方向のタイル数
+    int tileNumberY;    // マップの縦方向のタイル数
+
+    int width;      // マップの横幅(横方向のタイル数 x タイルサイズ)
+    int height;     // マップの縦幅(縦方向のタイル数 x タイルサイズ)
 
     int passableTileImage;      // 通行可能タイルセットの画像ハンドル
     int impassableTileImage;    // 通行不可タイルセットの画像ハンドル
@@ -33,8 +36,8 @@ public:
 
     void Draw() const;  // マップの描画を行うメソッド
 
-    int GetTile(int x, int y) const;                // 引数で渡した座標のタイルを取得するメソッド
-    int GetTile(POINT position) const;              // 引数で渡した座標のタイルを取得するメソッド(引数がPOINT型)
+    int GetTile(int x, int y) const;                // マップデータ上の引数で渡した要素のタイルを取得するメソッド
+    int GetTile(POINT position) const;              // マップデータ上の引数で渡した要素のタイルを取得するメソッド(引数がPOINT型)
     int GetCollisionTile(int x, int y) const;       // 引数で渡した座標を有するタイルを取得するメソッド
     int GetCollisionTile(POINT position) const;     // 引数で渡した座標を有するタイルを取得するメソッド(引数がPOINT型)
     int GetWidth() const;                           // マップの横幅を取得するメソッド
