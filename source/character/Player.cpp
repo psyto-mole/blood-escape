@@ -25,8 +25,6 @@ Player::Player()
 	maxHPBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + maxHP + 1, PlayerHPBarLowerRightY);
 	hpBar = GetRect(PlayerHPBarUpperLeftX, PlayerHPBarUpperLeftY, PlayerHPBarUpperLeftX + hp + 1, PlayerHPBarLowerRightY);
 
-	interactCollider = GetRect(0, 0, 0, 0);
-
 	isBleeding = false;
 
 	inputVector = 5;			// 入力方向を5(ニュートラル)に設定
@@ -54,6 +52,8 @@ int Player::Init(POINT startPosition)
 	pastFacingDirection = 5;	// プレイヤーが前に向いていた向きを5に設定
 
 	characterPosition = startPosition;	// プレイヤーの座標をスタート地点の座標にする
+
+	interactCollider = GetRectOnPoint(characterPosition.x, characterPosition.y, PlayerInteractRextWidth, PlayerInteractRextHeight);		// インタラクトの判定を初期化
 
 	/* +++ アニメーション画像を読み込み +++ */
 	if (LoadDivGraph(PlayerAnimationPath, PlayerAnimationDivNum, PlayerAnimationDivX, PlayerAnimationDivY, PlayerAnimationSizeX, PlayerAnimationSizeY, playerAnimation) == -1)	// 読み込みに失敗したら
