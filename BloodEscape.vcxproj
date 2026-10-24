@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\character\Character.cpp" />
+    <ClCompile Include="source\character\GameMaster.cpp" />
     <ClCompile Include="source\character\Player.cpp" />
     <ClCompile Include="source\core\Color.cpp" />
     <ClCompile Include="source\core\Font.cpp" />
@@ -59,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\character\Character.h" />
+    <ClInclude Include="source\character\GameMaster.h" />
     <ClInclude Include="source\character\Player.h" />
     <ClInclude Include="source\core\Color.h" />
     <ClInclude Include="source\core\Font.h" />
