@@ -77,12 +77,16 @@ int SceneManager::Update()
     {
         return -1;     // -1を返す(更新処理を終了する)
     }
-        
-    menuManager.Update();   // メニューの更新メソッドを実行
 
     if (menuManager.IsMenuOpen())   // メニューが開いているなら
     {
+        menuManager.Update();   // メニューの更新メソッドを実行
+
         return 0;     // シーンの処理は行わない
+    }
+    else
+    {
+        menuManager.Update();   // メニューの更新メソッドを実行
     }
 
     currentScene->Update();     // 現在のシーンの更新メソッドを実行
