@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "DxLib.h"
+#include "Font.h"
 
 
 /* --- 文字送り機能付きで文章を描画するクラス --- */
@@ -23,8 +24,8 @@ public:
 
 	void SetMessages(const std::vector<std::string>& messages);		// 文章を設定するメソッド
 
-	void Update();											// 文字送り機能付き文章の更新メソッド
-	void Draw(int x, int y, int color, int fontHandle);		// 文字送り機能付き文章の描画メソッド
+	void Update();															// 文字送り機能付き文章の更新メソッド
+	void Draw(int x, int y, Font_Align align, int color, int fontHandle);	// 文字送り機能付き文章の描画メソッド
 
 	void AdvanceText();								// 文章を進めるメソッド(Enterキーが押されたときに実行する)
 	void SkipScroll(const std::string& message);	// 文字送りを飛ばすメソッド

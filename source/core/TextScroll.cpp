@@ -55,7 +55,7 @@ void TextPrinter::Update()
 }
 
 /* --- 文字送り機能付き文章の描画メソッド-- - */
-void TextPrinter::Draw(int x, int y, int color, int fontHandle)
+void TextPrinter::Draw(int x, int y, Font_Align align, int color, int fontHandle)
 {
 	if (messageMatrix.empty())	// 文章が存在しなければ
 	{
@@ -71,7 +71,7 @@ void TextPrinter::Draw(int x, int y, int color, int fontHandle)
 
 	std::string displayText = message.substr(0, displayPosition);	// 文章から表示する部分を抜き出す
 
-	DrawFormatStringToHandle(x, y, color, fontHandle, displayText.c_str());		// 文章を表示
+	DrawFormatStringToHandleAlign(x, y, align, color, fontHandle, displayText.c_str());		// 文章を表示
 
 	return;
 }
