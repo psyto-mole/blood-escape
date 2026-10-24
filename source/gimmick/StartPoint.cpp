@@ -39,7 +39,7 @@ void StartPoint::Update(Player* player)
 /* --- スタート地点の描画メソッド --- */
 void StartPoint::Draw()
 {
-	if (GameDebug)
+	if (GameDebug == 2)
 	{
 		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
 	}

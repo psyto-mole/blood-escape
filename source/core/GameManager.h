@@ -13,7 +13,6 @@
 
 // #define BattleSceneFPS		150		// バトルシーン中のFPS設定(GameFPS / BattleSceneFPSの値がバトルシーン中のFPSとなる)
 
-#define GameDebug	true		// デバッグモードの設定
-#define RuledLine	false		// 罫線モードの設定
+#define GameDebug	1		// デバッグモードの設定(0:通常プレイモード, 1:シーン遷移機能のみ有効, 2:グラフィック系の機能も有効, 3:罫線モード)
 
 #define StringLength	256		// 使用できる文字列の長さ

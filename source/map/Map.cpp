@@ -270,7 +270,7 @@ void Map::Draw() const
                 break;
             }
 
-            if (GameDebug)
+            if (GameDebug == 2)
             {
                 DrawRect(GetRect(screenX, screenY, screenX + TileSize, screenY + TileSize), Color_LightGreen, false, 1);
                 DrawFormatStringToHandleAlign(screenX + TileSize / 2, screenY + TileSize / 2, FAlign_AllCenter, Color_LightGreen, KHDot_20_1, "%d", tile);

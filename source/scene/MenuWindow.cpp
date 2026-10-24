@@ -231,7 +231,7 @@ void MenuWindow::Draw()
 		return;		// âΩÇ‡ÇπÇ∏Ç…èIóπ
 	}
 
-	if (GameDebug)
+	if (GameDebug == 2)
 	{
 		DrawFormatStringToHandleAlign(GameWindowWidth - 200, GameWindowHeight / 2, FAlign_AllCenter,  Color_LightGreen, KHDot_30_1,  "selectedIndex : %d", selectedIndex);
 	}
