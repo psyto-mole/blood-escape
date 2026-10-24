@@ -114,16 +114,20 @@ void SceneManager::Draw()
         return;     // 処理を終了
     }
 
-    menuManager.Draw();   // メニューの更新メソッドを実行
-
     if (menuManager.IsMenuOpen())   // メニューが開いているなら
     {
+        menuManager.Draw();   // メニューの描画メソッドを実行
+
         return;     // シーンの描画は行わない
     }
+    else
+    {
+        currentScene->Draw();   // 現在のシーンの描画処理を行う
 
-    currentScene->Draw();   // 現在のシーンの描画処理を行う
+        fadeManager.FadeDraw();     // フェードの描画を行う
 
-    fadeManager.FadeDraw();     // フェードの描画を行う
+        menuManager.Draw();   // メニューの描画メソッドを実行
+    }
 
     return;
 }
