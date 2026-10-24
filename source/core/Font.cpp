@@ -6,8 +6,10 @@
 /* +++ 横書きフォント +++ */
 int KHDot_20_1;		// KHドットフォント(サイズ20、太さ1)
 int KHDot_30_1;		// KHドットフォント(サイズ30、太さ1)
+int KHDot_40_2;		// KHドットフォント(サイズ40、太さ2)
 int KHDot_50_2;		// KHドットフォント(サイズ50、太さ2)
 int KHDot_100_9;	// KHドットフォント(サイズ100、太さ9)
+int KHDot_200_9;	// KHドットフォント(サイズ200、太さ9)
 
 /* +++ 縦書きフォント +++ */
 //int V_30_1;	// (サイズ30、太さ)
@@ -19,12 +21,27 @@ int Font_Init()
 	/* +++ 横書きフォント +++ */
 	KHDot_20_1	= LoadFontDataToHandle(PathKHDotS20T1B1, 0);	// KHドットフォント(サイズ20、太さ1)
 	KHDot_30_1	= LoadFontDataToHandle(PathKHDotS30T1B1, 0);	// KHドットフォント(サイズ30、太さ1)
+	KHDot_40_2	= LoadFontDataToHandle(PathKHDotS40T2B1, 0);	// KHドットフォント(サイズ40、太さ2)
 	KHDot_50_2	= LoadFontDataToHandle(PathKHDotS50T2B1, 0);	// KHドットフォント(サイズ50、太さ2)
 	KHDot_100_9 = LoadFontDataToHandle(PathKHDotS100T9B1, 0);	// KHドットフォント(サイズ100、太さ9)
+	KHDot_200_9 = LoadFontDataToHandle(PathKHDotS200T9B1, 0);	// KHドットフォント(サイズ200、太さ9)
 
 	/* +++ 縦書きフォント +++ */
 	//V_30_1 = CreateFontToHandle("@MS 明朝", 30, 1, DX_FONTTYPE_ANTIALIASING);	// (サイズ30、太さ1)
 
+
+	if (KHDot_200_9 == -1)	// フォントデータが作成できていなかったら
+	{
+		/* +++ エラーメッセージを出力 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Font.cpp : Init() : Cannot load KHDot_200_9",
+			"Load Error",
+			MB_OK
+		);
+
+		return -1;	// 初期化失敗(-1を返す)
+	}
 
 	if (KHDot_100_9 == -1)	// フォントデータが作成できていなかったら
 	{
@@ -45,6 +62,19 @@ int Font_Init()
 		MessageBox(
 			GetMainWindowHandle(),
 			"Font.cpp : Init() : Cannot load KHDot_50_2",
+			"Load Error",
+			MB_OK
+		);
+
+		return -1;	// 初期化失敗(-1を返す)
+	}
+
+	if (KHDot_40_2 == -1)	// フォントデータが作成できていなかったら
+	{
+		/* +++ エラーメッセージを出力 +++ */
+		MessageBox(
+			GetMainWindowHandle(),
+			"Font.cpp : Init() : Cannot load KHDot_40_2",
 			"Load Error",
 			MB_OK
 		);
@@ -88,8 +118,10 @@ void Font_End()
 	/* +++ 横書きフォント +++ */
 	DeleteFontToHandle(KHDot_20_1);		// KHドットフォント(サイズ20、太さ1)
 	DeleteFontToHandle(KHDot_30_1);		// KHドットフォント(サイズ30、太さ1)
+	DeleteFontToHandle(KHDot_40_2);		// KHドットフォント(サイズ40、太さ2)
 	DeleteFontToHandle(KHDot_50_2);		// KHドットフォント(サイズ50、太さ2)
 	DeleteFontToHandle(KHDot_100_9);	// KHドットフォント(サイズ100、太さ9)
+	DeleteFontToHandle(KHDot_200_9);	// KHドットフォント(サイズ200、太さ9)
 
 	/* +++ 縦書きフォント +++ */
 	//DeleteFontToHandle(V_30_1);		// (サイズ30、太さ1)
