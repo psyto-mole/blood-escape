@@ -1,6 +1,9 @@
 /* === キャラクタークラスのソースファイル === */
 
 #include "Character.h"
+#include "GameManager.h"
+#include "Font.h"
+#include "Color.h"
 #include "GimmickManager.h"
 #include "Map.h"
 
@@ -59,6 +62,21 @@ void Character::MoveCharacter(Map* mapManager, GimmickManager* gimmickManager,in
 	if (mapManager->IsPassable(nextPosition) && gimmickManager->IsPassable(nextPosition))	// 移動後の座標が侵入可能なら
 	{
 		SetCharacterPosition(nextPosition);	// 現在位置を移動後の座標に変更
+	}
+	else
+	{
+		if (GameDebug == 2)
+		{
+			if (mapManager->IsPassable(nextPosition) != true)
+			{
+				DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 + 200, FAlign_AllCenter, Color_Red, KHDot_30_1, "Map is not Passable");
+			}
+
+			if (gimmickManager->IsPassable(nextPosition) != true)
+			{
+				DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2 + 250, FAlign_AllCenter, Color_Violet, KHDot_30_1, "Gimmick is not Passable");
+			}
+		}
 	}
 
 	return;
