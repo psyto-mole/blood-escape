@@ -5,6 +5,8 @@
 #include "Image.h"
 
 
+#define AnimationSwitchingProbability	4	// アニメーションが切り換わる確率(1～100, 1が最低, 100が最高)
+
 /* --- ゲームマスターのクラス --- */
 class GameMaster
 {

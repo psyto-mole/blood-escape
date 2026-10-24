@@ -46,7 +46,12 @@ int GameMaster::Init()
 /* --- ゲームマスターの更新メソッド --- */
 void GameMaster::Update()
 {
-	drawImage = GetRand(2);		// 0～2の乱数を生成し、要素番号として格納
+	drawImage = 0;	// 描画する場像の要素番号をリセット
+
+	if (GetRand(100) <= AnimationSwitchingProbability)	// 画像が切り換わるなら
+	{
+		drawImage = GetRand(1) + 1;		// 1～2の乱数を生成し、要素番号として格納
+	}
 
 	return;
 }
@@ -54,7 +59,7 @@ void GameMaster::Update()
 /* --- ゲームマスターの描画メソッド --- */
 void GameMaster::Draw()
 {
-	DrawGraphOnPoint(position, GameMasterAnimationSizeX, GameMasterAnimationSizeY, animationHandle[drawImage], TRUE);	// ゲームマスターの画像を描画
+	DrawExtendGraphOnPoint(position, GameMasterAnimationSizeX * 20, GameMasterAnimationSizeY * 20, animationHandle[drawImage], TRUE);	// ゲームマスターの画像を描画
 
 	return;
 }
