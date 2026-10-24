@@ -38,12 +38,12 @@
 
 
 /* +++ ゲームマスターのアニメーション +++ */
-#define OrganizerAnimationPath		".\\image\\GameMaster_96x96.png"
-#define OrganizerAnimationDivX		2
-#define OrganizerAnimationDivY		2
-#define OrganizerAnimationDivNum	4
-#define OrganizerAnimationSizeX		48
-#define OrganizerAnimationSizeY		48
+#define GameMasterAnimationPath		".\\image\\GameMaster_96x96.png"
+#define GameMasterAnimationDivX		2
+#define GameMasterAnimationDivY		2
+#define GameMasterAnimationDivNum	4
+#define GameMasterAnimationSizeX	48
+#define GameMasterAnimationSizeY	48
 
 
 /* +++ プレイヤーのアニメーション +++ */
