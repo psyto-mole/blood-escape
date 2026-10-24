@@ -13,6 +13,8 @@ GameMaster::GameMaster()
 		animationHandle[0] = -1;	// アニメーションの画像ハンドルを初期化
 	}
 
+	drawImage = 0;	// 描画する画像の要素番号を初期化
+
 	position = GetPoint(GameWindowWidth / 2, GameWindowHeight / 2);		// 描画する位置を描画
 }
 
@@ -44,11 +46,15 @@ int GameMaster::Init()
 /* --- ゲームマスターの更新メソッド --- */
 void GameMaster::Update()
 {
+	drawImage = GetRand(2);		// 0～2の乱数を生成し、要素番号として格納
+
 	return;
 }
 
 /* --- ゲームマスターの描画メソッド --- */
 void GameMaster::Draw()
 {
+
+
 	return;
 }
