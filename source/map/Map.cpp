@@ -365,16 +365,32 @@ int Map::GetCollisionTile(POINT position) const
         j++;    // 行番号を加算
     }
 
+    j--;
+
+    if (j < 0)
+    {
+        j = 0;
+    }
+
     /* +++ 引数のY座標が属するタイルの列番号を取得 +++ */
     while (i * TileSize < position.y)   // タイルの縦幅が引数のY座標を超えるまで
     {
         i++;    // 列番号を加算
     }
 
+    i--;
+
+    if (i < 0)
+    {
+        i = 0;
+    }
+
     if (GameDebug >= 2)
     {
         DrawFormatStringToHandleAlign(GameWindowWidth - 300, GameWindowHeight / 2, FAlign_AllCenter, Color_Yellow, KHDot_30_1, "Map data : %d.", mapData[i][j]);
     }
+
+    
 
     return mapData[i][j];   // マップデータの該当の位置のデータを返す
 }
