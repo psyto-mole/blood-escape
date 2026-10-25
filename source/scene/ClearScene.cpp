@@ -39,6 +39,15 @@ int ClearScene::Init()
 /* --- クリアシーンの更新メソッド --- */
 void ClearScene::Update()
 {
+	textPrinter.Update();	// 文字送りを更新
+
+	if (Key_Check_Click(KEY_INPUT_RETURN))  // Enterキーがクリックされたら
+	{
+		textPrinter.AdvanceText();  // 文章を進める
+	}
+
+	gameMasterObject.Update();	// ゲームマスターの更新メソッドを実行
+
 	if (Key_Check_Click(KEY_INPUT_RETURN) && sceneElapsedFrame >= GameFPS)	// シーン切り替えから1秒が経過しエンターがクリックされたら
 	{
 		transition.transitionType = TransitionType::ChangeScene;	// 遷移情報の遷移の状態を「シーン切り替え」に設定
