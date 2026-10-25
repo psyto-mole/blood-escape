@@ -61,6 +61,8 @@ void Door::Update(Player* player)
 	{
 		SetGimmickState(maxState);	// ドアを最後の状態にする
 
+		isPassable = true;	// 通行可能にする
+
 		//Inactivate();	// ドアを停止する
 
 		Sound_Play(SE_Door);	// ドアのSEを再生
