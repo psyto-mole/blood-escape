@@ -159,33 +159,31 @@ void DrawFormatStringToHandleAlign(int x, int y, Font_Align align,
 	switch (align)
 	{
 	case FAlign_Left:
+		/* +++ 左揃えの場合 +++ */
+
 		// そのままなので何もしない
 		break;
+	case FAlign_LeftCenter:
+		/* +++ 左揃え(高さは中央揃え)の場合 +++ */
 
+		align_y = y - StringHeight / 2;		// y座標を中央に寄せる
+		break;
 	case FAlign_Center:
-		// 中央位置を計算
+		/* +++ 中央揃えの倍 +++ */
 
-		// x座標だけ中央に寄せる
-		align_x = x - StringWidth / 2;
+		align_x = x - StringWidth / 2;	// x座標だけ中央に寄せる
 		break;
-
 	case FAlign_Right:
-		// 右揃え
+		/* +++ 右揃えの場合 +++ */
 
-		// x座標のみ右に寄せる
-		align_x = x - StringWidth;
+		align_x = x - StringWidth;	// x座標のみ右に寄せる
 		break;
-
 	case FAlign_AllCenter:
-		// 上下左右ともに中央揃え
+		/* +++ 上下左右ともに中央揃えの場合 +++ */
 
-		// x座標を中央に寄せる
-		align_x = x - StringWidth / 2;
-
-		// y座標を中央に寄せる
-		align_y = y - StringHeight / 2;
+		align_x = x - StringWidth / 2;		// x座標を中央に寄せる
+		align_y = y - StringHeight / 2;		// y座標を中央に寄せる
 		break;
-
 	default:
 		break;
 	}
@@ -229,12 +227,9 @@ void DrawFormatVStringToHandleAlign(int x, int y, Font_Align align, unsigned int
 	switch (align)
 	{
 	case FAlign_Left:
-		// そのままなので何もしない
-		break;
-	case FAlign_LeftCenter:
-		/* +++ 左揃え(高さは中央ぞろえ)の場合 +++ */
+		/* +++ 左揃えの場合 +++ */
 
-		align_y = y - StringHeight / 2;		// y座標だけを中央に寄せる
+		// そのままなので何もしない
 		break;
 	case FAlign_Center:
 		/* +++ 中央ぞろえの場合 +++ */
