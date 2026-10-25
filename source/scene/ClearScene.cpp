@@ -2,6 +2,7 @@
 
 #include "ClearScene.h"
 #include "GameManager.h"
+#include "Geometry.h"
 #include "Key.h"
 #include "Color.h"
 #include "Font.h"
@@ -17,6 +18,20 @@ int ClearScene::Init()
 	sceneElapsedFrame = 0;	// 経過フレームをリセット
 
 	Sound_Play(BGM_Clear);	// クリア画面のBGMを再生
+
+	if (gameMasterObject.Init() == -1)
+	{
+		return -1;	// -1を返す(初期化失敗)
+	}
+
+	textPrinter.SetMessages(
+		{
+			"おめでとうございます",
+			"あなたはこのゲームにしょうりしました",
+			"みずからのいのちをけずることもいとわぬしせい...たいへんかんぷくいたしました",
+			"このゲーム...あなたにもたのしんでいただけたのならなによりです",
+			"それでは...またあらたなゲームでおあいしましょう"
+		});
 
 	return 0;
 }
@@ -40,7 +55,7 @@ void ClearScene::Update()
 /* --- クリアシーンの描画メソッド --- */
 void ClearScene::Draw()
 {
-	DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_White, KHDot_100_9, "%s", StringResultMessage);	// お祝いメッセージを描画
+	//DrawRect(GetRect(0, 0, GameWindowWidth, GameWindowHeight), Color_White, true, FALSE);	// ウィンドウの背景を白にする
 
 	return;
 }
