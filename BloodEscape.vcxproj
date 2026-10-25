@@ -32,6 +32,7 @@
     <ClCompile Include="source\gimmick\Bandage.cpp" />
     <ClCompile Include="source\gimmick\BloodGimmick.cpp" />
     <ClCompile Include="source\gimmick\BloodPack.cpp" />
+    <ClCompile Include="source\gimmick\BootGimmick.cpp" />
     <ClCompile Include="source\gimmick\ContactGimmick.cpp" />
     <ClCompile Include="source\gimmick\Gimmick.cpp" />
     <ClCompile Include="source\gimmick\GimmickManager.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="source\gimmick\Bandage.h" />
     <ClInclude Include="source\gimmick\BloodGimmick.h" />
     <ClInclude Include="source\gimmick\BloodPack.h" />
+    <ClInclude Include="source\gimmick\BootGimmick.h" />
     <ClInclude Include="source\gimmick\ContactGimmick.h" />
     <ClInclude Include="source\gimmick\Gimmick.h" />
     <ClInclude Include="source\gimmick\GimmickManager.h" />
