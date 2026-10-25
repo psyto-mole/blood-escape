@@ -149,7 +149,7 @@ void GimmickManager::Update(Player* player)
         }
 
         if (gimmicks[i]->GetGimmickType() == GimmickType::Switch
-            && gimmicks[i]->GetGimmickType() == GimmickType::Altar)
+            || gimmicks[i]->GetGimmickType() == GimmickType::Altar)
         {
             if (gimmicks[i]->GetGimmickIsActive())
             {
