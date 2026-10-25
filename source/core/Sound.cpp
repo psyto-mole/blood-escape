@@ -22,6 +22,7 @@ Sound SE_SelfHarm;	// 自傷のSE
 Sound SE_Bleeding;	// 出血のSE
 
 /* +++ ギミック関連のSE +++ */
+Sound SE_Altar;			// 祭壇のSE
 Sound SE_Bandage;		// 包帯のSE
 Sound SE_BloodPack;		// 輸血パックのSE
 Sound SE_Door;			// ドアのSE
@@ -202,12 +203,25 @@ int Sound_Init(void)
 	}
 
 	/* +++ ギミック関連のSE +++ */
+	SE_Altar = Sound_Load(PathSEAltar, SEVolume, DX_PLAYTYPE_BACK);		// 祭壇のSEの読み込み
+	if (SE_Altar.Handle == -1)	// 読み込みに失敗したら
+	{
+		MessageBox(
+			GetMainWindowHandle(),								// ウィンドウハンドル
+			"Sound.cpp : Init() : Failed to load altar SE.",	// エラー内容
+			"Load Error",										// エラータイトル
+			MB_OK												// OKボタンのみ表示
+		);
+
+		return -1;	// -1を返す(初期化失敗)
+	}
+
 	SE_Bandage = Sound_Load(PathSEBandage, SEVolume, DX_PLAYTYPE_BACK);	// 包帯取得時のSEの読み込み
 	if (SE_Bandage.Handle == -1)	// 読み込みに失敗したら
 	{
 		MessageBox(
 			GetMainWindowHandle(),								// ウィンドウハンドル
-			"Sound.cpp : Init() : Failed to load bandage SE.",		// エラー内容
+			"Sound.cpp : Init() : Failed to load bandage SE.",	// エラー内容
 			"Load Error",										// エラータイトル
 			MB_OK												// OKボタンのみ表示
 		);
@@ -219,10 +233,10 @@ int Sound_Init(void)
 	if (SE_BloodPack.Handle == -1)	// 読み込みに失敗したら
 	{
 		MessageBox(
-			GetMainWindowHandle(),								// ウィンドウハンドル
-			"Sound.cpp : Init() : Failed to load blood pack SE.",		// エラー内容
-			"Load Error",										// エラータイトル
-			MB_OK												// OKボタンのみ表示
+			GetMainWindowHandle(),									// ウィンドウハンドル
+			"Sound.cpp : Init() : Failed to load blood pack SE.",	// エラー内容
+			"Load Error",											// エラータイトル
+			MB_OK													// OKボタンのみ表示
 		);
 
 		return -1;	// -1を返す(初期化失敗)
@@ -245,10 +259,10 @@ int Sound_Init(void)
 	if (SE_GoalPoint.Handle == -1)	// 読み込みに失敗したら
 	{
 		MessageBox(
-			GetMainWindowHandle(),								// ウィンドウハンドル
-			"Sound.cpp : Init() : Failed to load goal point SE.",		// エラー内容
-			"Load Error",										// エラータイトル
-			MB_OK												// OKボタンのみ表示
+			GetMainWindowHandle(),									// ウィンドウハンドル
+			"Sound.cpp : Init() : Failed to load goal point SE.",	// エラー内容
+			"Load Error",											// エラータイトル
+			MB_OK													// OKボタンのみ表示
 		);
 
 		return -1;	// -1を返す(初期化失敗)
@@ -258,10 +272,10 @@ int Sound_Init(void)
 	if (SE_NeedleFloor.Handle == -1)	// 読み込みに失敗したら
 	{
 		MessageBox(
-			GetMainWindowHandle(),								// ウィンドウハンドル
+			GetMainWindowHandle(),										// ウィンドウハンドル
 			"Sound.cpp : Init() : Failed to load needle floor SE.",		// エラー内容
-			"Load Error",										// エラータイトル
-			MB_OK												// OKボタンのみ表示
+			"Load Error",												// エラータイトル
+			MB_OK														// OKボタンのみ表示
 		);
 
 		return -1;	// -1を返す(初期化失敗)
@@ -272,7 +286,7 @@ int Sound_Init(void)
 	{
 		MessageBox(
 			GetMainWindowHandle(),								// ウィンドウハンドル
-			"Sound.cpp : Init() : Failed to load switch SE.",		// エラー内容
+			"Sound.cpp : Init() : Failed to load switch SE.",	// エラー内容
 			"Load Error",										// エラータイトル
 			MB_OK												// OKボタンのみ表示
 		);
@@ -284,10 +298,10 @@ int Sound_Init(void)
 	if (SE_TextScroll.Handle == -1)	// 読み込みに失敗したら
 	{
 		MessageBox(
-			GetMainWindowHandle(),								// ウィンドウハンドル
-			"Sound.cpp : Init() : Failed to load text scroll SE.",		// エラー内容
-			"Load Error",										// エラータイトル
-			MB_OK												// OKボタンのみ表示
+			GetMainWindowHandle(),									// ウィンドウハンドル
+			"Sound.cpp : Init() : Failed to load text scroll SE.",	// エラー内容
+			"Load Error",											// エラータイトル
+			MB_OK													// OKボタンのみ表示
 		);
 
 		return -1;	// -1を返す(初期化失敗)
@@ -319,6 +333,7 @@ void Sound_End(void)
 	Sound_Delete(SE_Bleeding);	// 出血のSEを削除
 
 	/* +++ ギミック関連のSE +++ */
+	Sound_Delete(SE_Altar);			// 祭壇のSEを削除
 	Sound_Delete(SE_Bandage);		// 包帯取得時のSEを削除
 	Sound_Delete(SE_BloodPack);		// 輸血パック取得時のSEを削除
 	Sound_Delete(SE_Door);			// ドアのSEを削除

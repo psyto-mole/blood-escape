@@ -59,13 +59,15 @@ extern Sound SE_Bleeding;	// 出血のSE
 
 
 /* +++ ギミック関連のSE +++ */
-#define PathSEBandage		".\\sound\\se\\sound_effect_lab\\wrap.mp3"	// 包帯のSEのパス
-#define PathSEBloodPack		".\\sound\\se\\sound_effect_lab\\blisters2.mp3"	// 輸血パックのSEのパス
-#define PathSEDoor			".\\sound\\se\\sound_effect_lab\\close_door3.mp3"	// ドアのSEのパス
-#define PathSEGoalPoint		".\\sound\\se\\sound_effect_lab\\trauma.mp3"	// ゴール地点のSEのパス
+#define PathSEAltar			".\\sound\\se\\sound_effect_lab\\water_drop3.mp3"		// 祭壇のSEのパス
+#define PathSEBandage		".\\sound\\se\\sound_effect_lab\\wrap.mp3"				// 包帯のSEのパス
+#define PathSEBloodPack		".\\sound\\se\\sound_effect_lab\\blisters2.mp3"			// 輸血パックのSEのパス
+#define PathSEDoor			".\\sound\\se\\sound_effect_lab\\close_door3.mp3"		// ドアのSEのパス
+#define PathSEGoalPoint		".\\sound\\se\\sound_effect_lab\\trauma.mp3"			// ゴール地点のSEのパス
 #define PathSENeedleFloor	".\\sound\\se\\sound_effect_lab\\cut_with_knife.mp3"	// 針床のSEのパス
 #define PathSESwitch		".\\sound\\se\\sound_effect_lab\\push_lever.mp3"		// スイッチのSEのパス
 
+extern Sound SE_Altar;			// 祭壇のSE
 extern Sound SE_Bandage;		// 包帯のSE
 extern Sound SE_BloodPack;		// 輸血パックのSE
 extern Sound SE_Door;			// ドアのSE

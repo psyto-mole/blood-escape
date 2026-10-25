@@ -3,6 +3,7 @@
 #include "Altar.h"
 #include "Geometry.h"
 #include "Image.h"
+#include "Sound.h"
 
 
 /* --- コンストラクタ --- */
@@ -60,7 +61,7 @@ void Altar::Update(Player* player)
 
 		//Inactivate();	// 祭壇を停止状態にする
 
-		//SE_Play();
+		Sound_Play(SE_Altar);	// 祭壇のSEを再生
 	}
 
 	return;
