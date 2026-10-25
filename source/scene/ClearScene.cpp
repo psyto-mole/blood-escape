@@ -48,7 +48,7 @@ void ClearScene::Update()
 
 	gameMasterObject.Update();	// ゲームマスターの更新メソッドを実行
 
-	if (Key_Check_Click(KEY_INPUT_RETURN) && sceneElapsedFrame >= GameFPS)	// シーン切り替えから1秒が経過しエンターがクリックされたら
+	if (textPrinter.IsAllMessageFinished() && sceneElapsedFrame >= GameFPS)		// シーン切り替えから1秒が経過しメッセージが全て表示されているされたら
 	{
 		transition.transitionType = TransitionType::ChangeScene;	// 遷移情報の遷移の状態を「シーン切り替え」に設定
 		transition.sceneType = SceneType::Title;					// 遷移情報のシーンの種類をタイトルシーンに設定
@@ -64,7 +64,11 @@ void ClearScene::Update()
 /* --- クリアシーンの描画メソッド --- */
 void ClearScene::Draw()
 {
-	//DrawRect(GetRect(0, 0, GameWindowWidth, GameWindowHeight), Color_White, true, FALSE);	// ウィンドウの背景を白にする
+	DrawRect(GetRect(0, 0, GameWindowWidth, GameWindowHeight), Color_White, true, FALSE);	// ウィンドウの背景を白にする
+
+	gameMasterObject.Draw();	// ゲームマスターを描画
+
+	textPrinter.Draw(GameWindowWidth / 2, 900, FAlign_AllCenter, Color_Black, KHDot_40_2);	// メッセージを描画
 
 	return;
 }
