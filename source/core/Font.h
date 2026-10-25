@@ -18,17 +18,11 @@ enum Font_Align
 
 /* +++ DXフォントファイルのパス +++ */
 #define PathKHDotS200T9B1	".\\font\\KHDot\\KHDot_Hibiya24_S200_T9_B1.dft"
-#define PathKHDotS200T9B4	".\\font\\KHDot\\KHDot_Hibiya24_S200_T9_B4.dft"
 #define PathKHDotS100T9B1	".\\font\\KHDot\\KHDot_Hibiya24_S100_T9_B1.dft"
-#define PathKHDotS100T9B4	".\\font\\KHDot\\KHDot_Hibiya24_S100_T9_B4.dft"
 #define PathKHDotS50T2B1	".\\font\\KHDot\\KHDot_Kagurazaka12_S50_T2_B1.dft"
-#define PathKHDotS50T2B4	".\\font\\KHDot\\KHDot_Kagurazaka12_S50_T2_B4.dft"
 #define PathKHDotS40T2B1	".\\font\\KHDot\\KHDot_Kagurazaka12_S40_T2_B1.dft"
-#define PathKHDotS40T2B4	".\\font\\KHDot\\KHDot_Kagurazaka12_S40_T2_B4.dft"
 #define PathKHDotS30T1B1	".\\font\\KHDot\\KHDot_Kagurazaka12_S30_T1_B1.dft"
-#define PathKHDotS30T1B4	".\\font\\KHDot\\KHDot_Kagurazaka12_S30_T1_B4.dft"
 #define PathKHDotS20T1B1	".\\font\\KHDot\\KHDot_Kagurazaka12_S20_T1_B1.dft"
-#define PathKHDotS20T1B4	".\\font\\KHDot\\KHDot_Kagurazaka12_S20_T1_B4.dft"
 
 /* +++ 横書きフォント +++ */
 extern int KHDot_20_1;		// KHドットフォント(サイズ20、太さ1)
