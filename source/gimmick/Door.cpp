@@ -1,7 +1,10 @@
 /* === ドアギミックのソースファイル === */
 
 #include "Door.h"
+#include "GameManager.h"
 #include "Geometry.h"
+#include "Color.h"
+#include "Font.h"
 #include "Image.h"
 #include "Sound.h"
 
@@ -52,14 +55,14 @@ void Door::Update(Player* player)
 			Inactivate();	// ドアを停止状態にする
 		}
 
+		isPassable = true;	// 通行可能にする
+
 		return;		// 処理を終了
 	}
 
 	if (isActive)	// ドアが起動しているなら
 	{
 		SetGimmickState(maxState);	// ドアを最後の状態にする
-
-		isPassable = true;	// 通行可能にする
 
 		//Inactivate();	// ドアを停止する
 
@@ -87,6 +90,11 @@ void Door::Draw()
 
 		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], TRUE);	// 状態2で描画
 		break;
+	}
+
+	if (GameDebug >= 2)
+	{
+		DrawFormatStringToHandleAlign(positionX, positionY, FAlign_AllCenter, Color_LightGreen, KHDot_20_1, "%d", gimmickID);
 	}
 
 	return;

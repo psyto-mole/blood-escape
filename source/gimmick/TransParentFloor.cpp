@@ -71,13 +71,6 @@ void TransparentFloor::Update(Player* player)
 /* --- ƒMƒ~ƒbƒN‚Ì•`‰æƒƒ\ƒbƒh --- */
 void TransparentFloor::Draw()
 {
-	if (GameDebug >= 2)
-	{
-		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
-	
-		//return;
-	}
-
 	POINT drawPoint = GetPoint(positionX, positionY);	// •`‰æ‚·‚éÀ•W‚ðPOINTŒ^‚ÅŽæ“¾
 
 	/* +++ ƒMƒ~ƒbƒN‚Ìó‘Ô‚É‰ž‚¶‚Ä“§–¾°‚Ì•`‰æˆ—‚ðs‚¤ +++ */
@@ -93,6 +86,13 @@ void TransparentFloor::Draw()
 
 		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], TRUE);	// ó‘Ô1‚Å•`‰æ
 		break;
+	}
+
+	if (GameDebug >= 2)
+	{
+		DrawRect(GetRect(positionX - GimmickSize / 2, positionY - GimmickSize / 2, positionX + GimmickSize / 2 + 1, positionY + GimmickSize / 2 + 1), Color_Green, false, 3);
+
+		//return;
 	}
 
 	return;

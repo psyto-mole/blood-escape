@@ -1,7 +1,10 @@
 /* === 祭壇ギミックのソースファイル === */
 
 #include "Altar.h"
+#include "GameManager.h"
 #include "Geometry.h"
+#include "Color.h"
+#include "Font.h"
 #include "Image.h"
 #include "Sound.h"
 
@@ -85,6 +88,11 @@ void Altar::Draw()
 
 		DrawGraphOnPoint(drawPoint, GimmickSize, GimmickSize, gimmickImage[1], TRUE);	// 祭壇を状態1で描画
 		break;
+	}
+
+	if (GameDebug >= 2)
+	{
+		DrawFormatStringToHandleAlign(positionX, positionY, FAlign_AllCenter, Color_LightGreen, KHDot_20_1, "%d", gimmickID);
 	}
 
 	return;
