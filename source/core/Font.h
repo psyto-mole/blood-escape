@@ -10,6 +10,7 @@
 enum Font_Align
 {
 	FAlign_Left,		// ¶‘µ‚¦
+	FAlign_LeftCenter,	// ¶‘µ‚¦(‚‚³‚Í’†‰›‚¼‚ë‚¦)
 	FAlign_Center,		// ’†‰›‘µ‚¦
 	FAlign_Right,		// ‰E‘µ‚¦
 	FAlign_AllCenter	// ã‰º¶‰E‚Æ‚à‚É’†‰›‘µ‚¦
