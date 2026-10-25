@@ -57,6 +57,11 @@ extern MessagePattern displayMessagePattern;
 #define DetailMenuWindowCredit		"仕様楽曲などを表示します"
 #define DetailMenuWindowBackMenu	"メニューを閉じゲームに戻ります"
 
+/* +++ 操作説明 +++ */
+#define DetailInteractKey	"ギミックを操作する"						// インタラクトの説明文
+#define DetailSelfHarmKey	"自傷し血を必要とするギミックを起動する"	// 自傷の説明文
+#define DetailMoveKey		"キャラクターの移動に用いる"				// の説明文
+
 /* +++ ゲームの終了 +++ */
 #define QuestionGameEnd		"ゲームを終了しますか?"
 
@@ -73,10 +78,6 @@ extern MessagePattern displayMessagePattern;
 /* === タイトル画面 === */
 #define StringGameTitle		"Blood Escape"	// ゲームのタイトル
 #define StringPressEnter	"Press Enter"	// Press Enterの文字列
-
-
-/* === チュートリアル画面 === */
-
 
 
 /* === ゲームオーバー画面 === */
