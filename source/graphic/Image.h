@@ -5,8 +5,8 @@
 
 
 /* +++ マップのタイルセットの画像パス +++ */
-#define PathOfPassableTile		".\\image\\MapTile10_96x96.png"		// 通行可能タイルの画像dのパス
-#define PathOfImpassableTile	".\\image\\MapTile20_96x96.png"		// 通行不可タイルの画像dのパス
+#define PathOfPassableTile		".\\image\\MapTile10_96x96.png"		// 通行可能タイルの画像のパス
+#define PathOfImpassableTile	".\\image\\MapTile20_96x96.png"		// 通行不可タイルの画像のパス
 
 
 /* === ギミックの画像パス === */
@@ -53,6 +53,23 @@
 #define PlayerAnimationDivNum	9
 #define PlayerAnimationSizeX	32
 #define PlayerAnimationSizeY	32
+
+
+/* === メニューで使用する画像 === */
+/* +++ 操作方法 +++ */
+#define PathOfImageKeyA		".\\image\\Key_A_32x32.png"
+#define PathOfImageKeyS		".\\image\\Key_S_32x32.png"
+#define PathOfImageKeyUp	".\\image\\Key_Up_32x32.png"
+#define PathOfImageKeyDown	".\\image\\Key_Down_32x32.png"
+#define PathOfImageKeyRight	".\\image\\Key_Right_32x32.png"
+#define PathOfImageKeyLeft	".\\image\\Key_Left_32x32.png"
+
+extern int imageKeyA;		// Aキーの画像ハンドル
+extern int imageKeyS;		// Sキーの画像ハンドル
+extern int imageKeyUp;		// 上キーの画像ハンドル
+extern int imageKeyDown;	// 下キーの画像ハンドル
+extern int imageKeyRight;	// 右キーの画像ハンドル
+extern int imageKeyLeft;	// 左キーの画像ハンドル
 
 
 extern int Image_Init(void);	// 画像の初期化関数
