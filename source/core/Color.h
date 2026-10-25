@@ -9,20 +9,24 @@
 extern int Color_White;			// 白
 extern int Color_Black;			// 黒
 extern int Color_Gray;			// 灰色
-extern int Color_LightGray;		// 明るい灰色
-extern int Color_DarkGray;		// 暗い灰色
 extern int Color_Red;			// 赤
 extern int Color_Green;			// 緑
 extern int Color_Blue;			// 青
 extern int Color_Yellow;		// 黄
 extern int Color_Cyan;			// 水色
-extern int Color_Violet;		// 濃い紫
-extern int Color_Purple;		// 薄い紫
-extern int Color_LightGreen;	// 明るい緑
-extern int Color_DarkGreen;		// 暗い緑
-extern int Color_LightBlue;		// 明るい青
-extern int Color_DarkBlue;		// 暗い青
+extern int Color_Violet;		// バイオレット
+extern int Color_Purple;		// パープル
 extern int Color_SkyBlue;		// 空色
+
+extern int Color_LightGray;		// 明るい灰色
+extern int Color_LightRed;		// 明るい赤
+extern int Color_LightGreen;	// 明るい緑
+extern int Color_LightBlue;		// 明るい青
+
+extern int Color_DarkGray;		// 暗い灰色
+extern int Color_DarkRed;		// 暗い赤
+extern int Color_DarkGreen;		// 暗い緑
+extern int Color_DarkBlue;		// 暗い青
 
 extern int Color_SW_Rainbow;	// 時間経過で色が移り変わる虹色
 extern int Color_SW_Violet;		// 時間経過で点滅する紫色
