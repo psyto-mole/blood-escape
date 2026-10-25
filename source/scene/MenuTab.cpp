@@ -51,7 +51,7 @@ void MenuTab::Draw()
 	
 	DrawRect(menuTabFrame, Color_Blue, true, 1);	// メニュータブの外枠を青で描画
 	DrawRect(menuTabInside, Color_White, true, 1);	// メニュータブの内側を白で描画
-	DrawFormatStringToHandleAlign(MenuTabCenterX, MenuTabCenterY, FAlign_AllCenter, Color_Blue, KHDot_20_1,"%s", MenuTabText);	// メニュータブの文字列を青で描画
+	DrawFormatStringToHandleAlign(MenuTabCenterX, MenuTabCenterY, FAlign_AllCenter, Color_Blue, KHDot_30_1,"%s", MenuTabText);	// メニュータブの文字列を青で描画
 
 	return;
 }
