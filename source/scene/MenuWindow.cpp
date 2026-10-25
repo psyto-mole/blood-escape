@@ -5,6 +5,7 @@
 #include "Key.h"
 #include "Mouse.h"
 #include "Geometry.h"
+#include "Image.h"
 #include "Color.h"
 #include "Font.h"
 #include "Sound.h"
@@ -329,7 +330,36 @@ void MenuWindow::Draw()
 	case MenuState::Operation:
 		/* +++ 操作方法の表示の場合 +++ */
 
-		//Draw
+		/* +++ インタラクトの説明 +++ */
+		DrawExtendGraphOnPoint(GetPoint(MenuWindowCenterX - 300, MenuWindowCenterY - 200), 96, 96, imageKeyA, FALSE);
+
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 100, MenuWindowCenterY - 200, FAlign_LeftCenter, Color_White, KHDot_30_1, "%s", DetailInteractKey);
+		if (GameDebug >= 2)
+		{
+			DrawLine(MenuWindowCenterX - 300, MenuWindowCenterY - 200, MenuWindowCenterX, MenuWindowCenterY - 200, Color_Green, 2);
+		}
+
+
+		/* +++ 自傷の説明 +++ */
+		DrawExtendGraphOnPoint(GetPoint(MenuWindowCenterX - 300, MenuWindowCenterY - 50), 96, 96, imageKeyS, FALSE);
+
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 100, MenuWindowCenterY - 50, FAlign_LeftCenter, Color_White, KHDot_30_1, "%s", DetailSelfHarmKey);
+
+		if (GameDebug >= 2)
+		{
+			DrawLine(MenuWindowCenterX - 300, MenuWindowCenterY - 50, MenuWindowCenterX, MenuWindowCenterY - 50, Color_Green, 2);
+		}
+
+
+		/* +++ 移動方法の説明 +++ */
+		DrawExtendGraphOnPoint(GetPoint(MenuWindowCenterX - 300, MenuWindowCenterY + 100), 96, 96, imageKeyUp, FALSE);
+		DrawExtendGraphOnPoint(GetPoint(MenuWindowCenterX - 300, MenuWindowCenterY + 200), 96, 96, imageKeyDown, FALSE);
+		DrawExtendGraphOnPoint(GetPoint(MenuWindowCenterX - 400, MenuWindowCenterY + 200), 96, 96, imageKeyLeft, FALSE);
+		DrawExtendGraphOnPoint(GetPoint(MenuWindowCenterX - 200, MenuWindowCenterY + 200), 96, 96, imageKeyRight, FALSE);
+
+		DrawFormatStringToHandleAlign(MenuWindowCenterX - 100, MenuWindowCenterY + 150, FAlign_LeftCenter, Color_White, KHDot_30_1, "%s", DetailMoveKey);
+
+
 		break;
 	case MenuState::GameEnd:
 		/* +++ ゲーム終了画面の場合 +++ */
