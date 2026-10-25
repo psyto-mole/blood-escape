@@ -94,20 +94,22 @@ void GameOverScene::Update()
 /* --- ゲームオーバーシーンの描画メソッド --- */
 void GameOverScene::Draw()
 {
-    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Violet, KHDot_100_9, "%s", StringGameOver);
+    DrawRect(GetRect(0, 0, GameWindowWidth, GameWindowHeight), Color_DarkRed, true, 1);     // 背景を暗い赤にする
+
+    DrawFormatStringToHandleAlign(GameWindowWidth / 2, 300, FAlign_AllCenter, Color_Violet, KHDot_200_9, "%s", StringGameOver);
 
     if (selectedIndex == 1)
     {
-        DrawRect(option1Button, Color_White, true, 1);
-        DrawRect(option2Button, Color_White, false, 1);
+        DrawRect(option1Button, Color_White, true, 2);
+        DrawRect(option2Button, Color_White, false, 2);
 
         DrawFormatStringToHandleAlign(GameOverOption1CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_Black, KHDot_30_1, "%s", StringRetry);
         DrawFormatStringToHandleAlign(GameOverOption2CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", StringBackTitle);
     }
     else if (selectedIndex == 2)
     {
-        DrawRect(option1Button, Color_White, false, 1);
-        DrawRect(option2Button, Color_White, true, 1);
+        DrawRect(option1Button, Color_White, false, 2);
+        DrawRect(option2Button, Color_White, true, 2);
 
         DrawFormatStringToHandleAlign(GameOverOption1CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_White, KHDot_30_1, "%s", StringRetry);
         DrawFormatStringToHandleAlign(GameOverOption2CenterX, GameOverOptionCenterY, FAlign_AllCenter, Color_Black, KHDot_30_1, "%s", StringBackTitle);
