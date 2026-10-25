@@ -101,11 +101,11 @@ void Player::Update(Map* mapManager, GimmickManager* gimmickManager)
 
 	interactGimmickID = gimmickManager->GetGimmickIDWithinRange(interactCollider);	// インタラクトの範囲にあるギミックのIDを取得
 
-	if (Key_Check_Click(KEY_INPUT_RETURN))	// エンターキーがクリックされたら
+	if (Key_Check_Click(KEY_INPUT_A))	// エンターキーがクリックされたら
 	{
 		InteractGimmick(gimmickManager, interactGimmickID);		// インタラクトメソッドを実行
 	}
-	else if (Key_Check_Click(KEY_INPUT_SPACE))	// スペースキーがクリックされたら
+	else if (Key_Check_Click(KEY_INPUT_S))	// スペースキーがクリックされたら
 	{
 		SelfHarm(gimmickManager, interactGimmickID);	// 自傷メソッドを実行
 	}
