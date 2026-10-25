@@ -2,13 +2,13 @@
 /* === ドアギミックのヘッダファイル === */
 
 #include "DxLib.h"
-#include "Gimmick.h"
+#include "BootGimmick.h"
 
 
 #define DoorStateMax	2	// ドアの状態の種類
 
 /* --- ドアギミッククラス(Gimmickクラスの派生クラス) --- */
-class Door : public Gimmick
+class Door : public BootGimmick
 {
 public:
 	Door(int id, int x, int y, int state, int target);	// コンストラクタ

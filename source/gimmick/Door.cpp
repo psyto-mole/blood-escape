@@ -7,10 +7,8 @@
 
 
 /* --- コンストラクタ --- */
-Door::Door(int id, int x, int y, int state, int target) : Gimmick(id, x, y, state, target)
+Door::Door(int id, int x, int y, int state, int target) : BootGimmick(id, x, y, state, target)
 {
-	gimmickTag = GimmickTag::Normal;	// ギミックのタグを「通常ギミック」に設定
-
 	gimmickType = GimmickType::Door;	// ギミックの種類を「ドアギミック」に設定
 
 	maxState = DoorStateMax;	// 最後の状態を1設定
